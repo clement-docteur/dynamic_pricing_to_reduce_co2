@@ -33,9 +33,11 @@ historical time-of-use (TOU) tariff at a comparable average price? We answer thi
 (1,032 households on a dynamic tariff) with a three-step pipeline: a next-day forecast of grid carbon intensity,
 a demand-response simulator validated on held-out tariff events, and an optimal prescriptive tree that picks each
 day's price schedule from a small menu under an average-price constraint. Emissions are counted with marginal emission
-factors estimated from the 2013 grid. On the unseen test period (Nov--Dec 2013) a depth-1 policy tree lowers estimated
+factors estimated from the 2013 grid. On the unseen test period (Nov--Dec 2013) a depth-1 policy tree lowers simulated
 emissions by \pct{0.90} of the households' footprint (simulator bootstrap \pct{0.80}--\pct{1.01}), against a
-hindsight ceiling of \pct{0.97}; direct optimisation finds the same schedules, so interpretability costs nothing.
+hindsight ceiling of \pct{0.97}; this uses a price target above the 2013 tariff's test-period price, and at that
+tariff's own price the saving is \pct{0.71}. Direct optimisation finds the same schedules, so interpretability costs
+nothing, but the tree uses no carbon-forecast feature.
 The saving comes from evening conservation, not from shifting load to clean hours: a carbon-only rule that ignores
 demand response \emph{raises} emissions by \pct{1.68}. A time-average price cap does not protect bills (\pct{+9.2}).
 Over four rolling test windows the fixed tree falls short in summer; adding the remaining price budget as a tree input
@@ -70,7 +72,8 @@ exposed a weakness of the fixed tree (Section~\ref{sec:rolling}).
 \textbf{Households.} We use the 1,032 LCL households on the 2013 dynamic TOU tariff that have more than 95\% of their
 2013 half-hourly readings~\cite{lcl}. Households differ widely in when they use power, so we group them into four
 consumption clusters (285, 299, 299 and 149 households) taken from our reproduction of~\cite{bregere2020}
-(Figure~\ref{fig:data}a): cluster~1 has a sharp evening peak, cluster~2 uses more at night, cluster~3 uses the least.
+(Figure~\ref{fig:data}a; clusters numbered 0--3 as in the figure): cluster~0 peaks earliest in the evening,
+cluster~1 has a sharp evening peak, cluster~2 uses more at night, and cluster~3 (149 households) uses the least.
 LCL also metered 1,032 households who stayed on a flat tariff (``Std'', 14.228~p/kWh) and therefore saw no price events.
 They share the TOU households' weather, holidays and seasons, which makes them a natural control group for measuring
 the effect of prices.
@@ -84,7 +87,9 @@ half-hours. \textbf{Grid.} NESO half-hourly CI and generation mix, 2009--2013~\c
 \textbf{Timing and splits.} The schedule for day $d$ is announced at 12:00 GMT on day $d-1$, so every forecast and
 policy input uses only data available at that moment. We split 2013 by time, not at random, so that the test period
 is genuinely in the future of everything the models see (Table~\ref{tab:data}). Models, the schedule menu, tree depth
-and the Lagrange multiplier are chosen on training and validation data only, and the test period is used once.
+and the Lagrange multiplier are chosen on training and validation data only. The test period was used once for the
+fixed tree; the budget-aware tree was designed after the rolling evaluation, which includes Nov--Dec, so its
+Nov--Dec result is not a clean first look.
 \textbf{Price target.} The historical TOU time-average price over Jan--Oct, $\bar p = 13.608$~p/kWh. Because the 2013
 tariff averaged only 12.795~p/kWh during the test period, we also report a price-matched variant.
 
@@ -140,7 +145,8 @@ known day), training on NESO data from 2009 with monthly expanding refits and hy
 On validation the tree ensembles cut the mean absolute error of persistence by 24\% (24.0 vs 31.6~g/kWh) and XGBoost
 was selected; on the test period the gain shrinks (XGBoost 27.2, random forest 26.0, persistence 28.4~g/kWh;
 Figure~\ref{fig:ci}). The forecasts track the daily level but miss the timing of swings within a day: the rank
-correlation between forecast and actual half-hours of the same day is only 0.32 for XGBoost. The most likely reason is
+correlation between forecast and actual half-hours of the same day is only 0.32 for XGBoost, below persistence
+(0.38). The most likely reason is
 that these swings follow wind output and plant availability, which lagged grid data cannot anticipate; adding
 temperature does not help. The forecast enters the policy tree as five daily features (mean, evening mean,
 evening-minus-night gap, range, and start of the dirtiest 3-hour window).
@@ -180,7 +186,9 @@ $\pm 2$ standard errors.}
 
 \subsection{Step 2: demand-response simulator}\label{sec:sim}
 The proposal planned to adapt the conditional variational autoencoder (CVAE) of~\cite{bregere2020}. Our reproduction
-found its mean profiles accurate but its tariff response unreliable: the latent variable collapses, the sign of the
+matched its accuracy on the paper's random day split, but trained on Jan--Aug and tested on later months its mean
+profiles are no better than a naive same-day-type average in most clusters, and its tariff response is unreliable: the
+latent variable collapses, the sign of the
 response changes between training runs, and it barely reacts to High prices on held-out days. We keep it as a
 sensitivity case and use as main simulator a simpler cluster-level response model. The idea is to compare each TOU
 cluster with the flat-tariff households on the same half-hour: anything that affects both groups (weather, holidays,
@@ -199,11 +207,14 @@ and day-level terms. The middle one has the lowest validation error and is our m
 consumption is the observed consumption times the modelled ratio between that schedule and the historical one,
 $\hat y_{cdh}(z) = y_{cdh}\exp\!\big(m_c(z)_{dh} - m_c(z^{\text{hist}})_{dh}\big)$, clipped to $[1/4,4]$, so only the
 tariff response is modelled. Inside blocks, cluster~3 cuts use by 29\% under evening High prices and raises it by 49\%
-under afternoon Low prices; no other cluster exceeds 6\%. To check the simulator on data it has not seen, we measure
+under afternoon Low prices; no other cluster's in-block effect exceeds 6.5\%. To check the simulator on data it has not seen, we measure
 the actual effect of each Nov--Dec event as a difference-in-differences --- the change in TOU consumption during the
-block minus the change in Std consumption over the same half-hours --- and compare it with the simulated effect. The
-model reproduces these observed effects (e.g.\ High blocks: observed \pct{-7.7}, model \pct{-7.5}, CVAE \pct{-1.1};
-Figure~\ref{fig:sim}). Uncertainty is propagated with 200 weekly-block bootstrap refits.
+block minus the change in Std consumption over the same half-hours --- and compare it with the simulated effect. On Nov--Dec the
+model matches the observed effects for all households (High blocks: observed \pct{-7.7}, model \pct{-7.5}, CVAE
+\pct{-1.1}; Figure~\ref{fig:sim}). The match is looser elsewhere: on Sep--Oct (fitted on Jan--Aug) it overstates the
+High response (observed \pct{-4.2}, 95\% CI $[-7.0, -1.0]$, model \pct{-7.7}; cluster~3: \pct{-18.0} vs \pct{-26.9}),
+and in Nov--Dec it overstates cluster~3's dip before Low blocks (\pct{-6.5} vs \pct{-11.5}). Since savings scale with
+the response, these gaps suggest the simulated savings may be on the high side. Uncertainty is propagated with 200 weekly-block bootstrap refits.
 
 \begin{figure}[t]
 \centering
@@ -228,8 +239,11 @@ summaries, temperature, weekend/holiday, recent consumption) to a leaf $\ell(x_d
 \]
 The penalty $\lambda$ turns the price constraint into a cost: each p/kWh of time-average price counts as $\lambda$
 kg of CO$_2$, so a larger $\lambda$ makes expensive schedules (High blocks) less attractive. We solve this problem
-exactly by exhaustive search (all thresholds at the last split, 12 quantile thresholds above), for $D\in\{1,2,3\}$.
-The multiplier $\lambda$ is a hyperparameter chosen with $D$ on validation emissions; tuning $\lambda$ to meet the
+by branch-and-bound search, for $D\in\{1,2,3\}$: every threshold is tried at the last split, and 12 quantile
+thresholds per feature at the splits above, so the search is exact at depth~1 and approximate above
+(solver check, Section~\ref{sec:sens}).
+The multiplier $\lambda$ is a hyperparameter chosen with $D$ on validation emissions; among settings within 0.01\% of
+the best validation emissions we take the shallowest tree, then the one needing the fewest rule overrides. Tuning $\lambda$ to meet the
 target on training days made coarse trees spend nothing on new data. Each leaf also stores a ranking of all actions
 by summed cost.
 
@@ -259,10 +273,13 @@ The validation-selected tree has depth~1 (Figure~\ref{fig:trees}a, Table~\ref{ta
 (the households' mean use over the week ending two days before) exceeds 0.171~kWh per half-hour, it prescribes High
 17:00--20:00, otherwise Normal. Recent consumption marks the darker, colder half of the year, when an evening High
 block saves the most; no carbon-forecast feature enters the tree. In the test period the tree asks for
-the High block every day, the budget covers 16 of them, and the feasibility rule cancels the rest. The tree lowers
-emissions by \pct{0.90} of the footprint (about 2.7~kg CO$_2$ per household over 61 days), against \pct{0.97} for perfect
-hindsight. Direct optimisation picks exactly the same schedules, so the interpretable policy loses nothing, and a
-perfect MEF forecast changes nothing, because the policy is driven by demand, not by carbon timing.
+the High block every day; the budget covers the first 16 (1--16 November), and the feasibility rule cancels the rest,
+so the second half of the window runs at Normal prices. The tree lowers simulated emissions by \pct{0.90} of the
+footprint (about 2.7~kg CO$_2$ per household over 61 days), against \pct{0.97} for perfect hindsight; the bootstrap
+intervals of the tree, the budget-aware tree and the oracle overlap, so these policies are not distinguishable.
+Direct optimisation picks exactly the same schedules, so the interpretable policy loses nothing. A perfect MEF
+forecast changes nothing because the 2013 marginal factors are a season-by-hour table: every Nov--Dec day has the same
+factor profile, so only consumption, not carbon, varies from day to day in the costs.
 
 \begin{table}[t]
 \centering\small
@@ -325,10 +342,12 @@ tree (c); mean consumption profiles (d); marginal factors vs average intensity o
 \subsection{Marginal vs average accounting}
 Marginal accounting changes the size of the effect, not the policy. Trained on average intensity, the tree prescribes
 High 16:00--20:00 and, scored with marginal factors, saves \pct{0.87}; trained on marginal factors it saves \pct{0.90}.
-Scored with average intensity the saving is \pct{0.76}: the storage-adjusted evening margin is dirtier than the evening
-average. Pumped storage decides the sign of this difference --- counting storage as zero-carbon, as NESO's intensity
-does, makes the peak look clean and shrinks the saving to \pct{0.65}. The carbon-only rule is the policy most exposed:
-it goes from \pct{+0.18} under average intensity to \pct{+1.68} under marginal factors.
+Scored with average intensity the marginal-trained tree saves \pct{0.79} (the average-trained tree \pct{0.76}): the
+storage-adjusted evening margin is dirtier than the evening average. Pumped storage decides the sign of this
+difference --- counting storage as zero-carbon, as NESO's intensity does, makes the peak look clean and shrinks the
+saving to \pct{0.65}. For the carbon-only rule, what matters is the signal that steers it, not how it is scored: steered
+by marginal factors it raises emissions by \pct{1.68} (marginal scoring) or \pct{1.72} (average scoring); steered by
+average intensity, by only \pct{0.26} or \pct{0.18}.
 
 \subsection{Rolling evaluation}\label{sec:rolling}
 Because 61 winter days are a narrow test, we repeat the whole protocol on four 2-month windows, each with the
@@ -359,7 +378,7 @@ Mean & $-0.37\%$ & & $-0.59\%$ & & $-0.62\%$ & $+1.65\%$ \\
 \end{tabular}
 \end{table}
 
-\subsection{Sensitivity}
+\subsection{Sensitivity}\label{sec:sens}
 Table~\ref{tab:sens} varies the price constraint and the simulator. About 22\% of the main saving comes from spending
 a larger budget than the 2013 tariff did in Nov--Dec: price-matched, the tree saves \pct{0.71} with a bill change of
 only \pct{+0.6}. Capping the average price \emph{paid} instead of the time-average limits the bill increase to 4.0\%
@@ -407,12 +426,15 @@ where the search is exact.
 % ===================================================================================================================
 \section{Discussion and Limitations}
 
-The pipeline answers the research question with a qualified yes: a one-split tree, readable by any regulator, cuts
-estimated household emissions by about 1\% at the same time-average price as the 2013 tariff, which is close to what
-any policy over this menu can achieve given how the trial households responded. Three lessons stand out.
+The pipeline answers the research question with a qualified yes, though the policy it finds is barely carbon-aware: a
+one-split tree, readable by any regulator, cuts simulated household emissions by \pct{0.71} at the 2013 tariff's own
+test-period price (\pct{0.90} with the Jan--Oct price target), which is close to what any policy over this menu can
+achieve given how the trial households responded. In effect it is a winter evening peak price, rationed by the budget.
+Three lessons stand out.
 \emph{First}, demand response, not carbon timing, drives the result: the households' main lever is cutting evening
-use, and CI-forecast features enter only one of the eight selected trees (the depth-3 Sep--Oct tree). \emph{Second}, how emissions are counted matters more for
-carbon-only rules than for demand-aware policies; at the 2013 margin, pricing by intensity alone backfires.
+use (consumption falls 0.79\% for a 0.90\% emissions cut), and CI-forecast features enter only one of the eight selected
+trees (the depth-3 Sep--Oct tree). \emph{Second}, a carbon-only rule that ignores demand response backfires, and more so
+when it is steered by marginal factors, which put High prices at night when there is little use to cut.
 \emph{Third}, the constraint must match the policy goal: a time-average cap lets bills rise by 9\%, and a policy that
 does not see its remaining budget wastes it in summer.
 
@@ -429,8 +451,9 @@ the data.
 \section{Conclusion}
 
 An interpretable prescriptive tree, trained on a validated demand-response simulator and evaluated with marginal
-emission factors, reduces the estimated emissions of 1,032 London households by \pct{0.90} in the test period,
-essentially matching direct optimisation and coming within 0.07 points of perfect hindsight. Making the tree aware of
+emission factors, lowers the simulated emissions of 1,032 London households by \pct{0.90} in the test period
+(\pct{0.71} at the 2013 tariff's own price), matching direct optimisation and statistically indistinguishable from
+perfect hindsight (\pct{0.97}). Making the tree aware of
 its remaining price budget extends this performance across the year (\pct{-0.59} vs a ceiling of \pct{-0.62}). The
 gains are modest and come with higher bills.
 
@@ -445,7 +468,7 @@ today, the gap between clean and dirty hours is likely wider, and carbon timing 
 the package runs, would confirm our solver check.
 
 \paragraph{Reproducibility.} All results are produced by the scripts in \texttt{carbon\_tariff\_pipeline/}
-(about 35 minutes end to end on a laptop), which also generate a detailed HTML report with every table.
+(about 20 minutes end to end on a laptop, plus about 13 minutes for the solver check), which also generate a detailed HTML report with every table.
 
 % ===================================================================================================================
 \section*{Contributions}
