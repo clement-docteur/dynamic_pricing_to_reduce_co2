@@ -10,20 +10,33 @@ This folder holds Person B's work in one place:
 |---|---|
 | `dr.py` | All the code: data loading, `ResponseModel` (baseline), `CVAEEnsemble`, prediction format helpers |
 | `run.py` | Fits the models, writes `outputs/predictions.csv.gz` and `outputs/metrics.json`, prints a summary |
+| `prepare_data.py` | Refreshes `data/` from `CVAE_reproduction/` (not needed to run; see below) |
+| `data/` | All inputs (5.4 MB, committed) |
 | `outputs/predictions.csv.gz` | Predictions of every model, 2013, all clusters (420,480 rows, 4.6 MB) |
 | `outputs/metrics.json` | RMSE and bias per model / split / cluster, simulated tariff effects, baseline coefficients |
 
 ## Run
 
-From the repository root (about 10 seconds):
+From the repository root (about 10 seconds; works on a fresh clone, nothing to download):
 
 ```bash
 python -P demand_response/run.py
 ```
 
-Inputs are read from `CVAE_reproduction/` (household clusters, conditions, trained CVAE checkpoints). Only one is not
-committed: `CVAE_reproduction/data/lcl2013_kwh_filled.npy` (145 MB, see the top-level README). It is needed for the
-flat-tariff control mean. Dependencies: numpy, pandas, duckdb. Torch is not needed (checkpoints are read in pure Python).
+Dependencies: numpy, pandas, duckdb. Torch is not needed (checkpoints are read in pure Python).
+
+## Inputs (`data/`)
+
+`run.py` reads only this folder. The files are copies of, or derived from, outputs of `CVAE_reproduction/`.
+`prepare_data.py` rebuilds them if the reproduction is ever re-run. That script is the only one that reads outside
+this folder.
+
+| File | Contents | Source |
+|---|---|---|
+| `conditions_ours.parquet` | 365 days of 2013: tariff schedule (`low_auth_*`, `high_auth_*`, 0/1 per half-hour), ERA5 temperature (`temp_*`, degC) and calendar | copy of `CVAE_reproduction/data/conditions_ours.parquet` (`scripts/03_conditions.py`) |
+| `power_consump_ours.parquet` | Mean kWh per household for each of the 4 ToU clusters (`consumption_*`), cluster sizes (`n_households`), CVAE conditions | copy of `CVAE_reproduction/data/power_consump_ours.parquet` (`scripts/05_build_trackB_data.py`) |
+| `std_mean_kwh.csv` | Mean kWh of the 1,032 flat-tariff (Std) households, `date` + `kwh_00`..`kwh_47` | computed by `prepare_data.py` from `lcl2013_kwh_filled.npy` (145 MB, not in git; `scripts/01_build_lcl2013.py`) |
+| `cvae_models/B_c{0-3}_no_pos_y_s{00-19}.pt` | 80 CVAEs (20 restarts per cluster) trained on Jan-Aug 2013 | copies of `CVAE_reproduction/outputs/chrono/models/` (`scripts/50_chrono_split.py`) |
 
 ## 1. Demand-response baseline (`dr.ResponseModel`)
 

@@ -30,8 +30,8 @@ import pandas as pd  # noqa: E402
 
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parent
-DATA = PROJECT / "CVAE_reproduction" / "data"
-CVAE_MODELS = PROJECT / "CVAE_reproduction" / "outputs" / "chrono" / "models"
+DATA = HERE / "data"                      # filled by prepare_data.py from CVAE_reproduction/
+CVAE_MODELS = DATA / "cvae_models"
 
 H = 48
 N_CLUSTERS = 4
@@ -81,16 +81,12 @@ class Data:
 
 
 def load_data() -> Data:
-    """Needs CVAE_reproduction/data/lcl2013_kwh_filled.npy (git-ignored; see the top-level README) for the Std mean."""
+    """Reads only demand_response/data/ (see README.md for where each file comes from)."""
     cond = read_parquet(DATA / "conditions_ours.parquet").sort_values("date").reset_index(drop=True)
     pc = read_parquet(DATA / "power_consump_ours.parquet").sort_values(["cluster", "date"])
     y_tou = pc[cols("consumption")].to_numpy(float).reshape(N_CLUSTERS, 365, H)
     sizes = pc.groupby("cluster")["n_households"].first().to_numpy(int)
-
-    kwh = np.load(DATA / "lcl2013_kwh_filled.npy", mmap_mode="r")        # (2064 households, 365*48)
-    sel = read_parquet(DATA / "clusters_run_a.parquet")
-    std_rows = np.sort(sel.loc[sel.group == "Std", "row_in_filled"].to_numpy())
-    y_std = np.asarray(kwh[std_rows], dtype=float).mean(0).reshape(365, H)
+    y_std = pd.read_csv(DATA / "std_mean_kwh.csv").sort_values("date")[cols("kwh")].to_numpy(float)
 
     return Data(dates=pd.DatetimeIndex(cond["date"]), low=cond[cols("low_auth")].to_numpy(float),
                 high=cond[cols("high_auth")].to_numpy(float), temp=cond[cols("temp")].to_numpy(float),
