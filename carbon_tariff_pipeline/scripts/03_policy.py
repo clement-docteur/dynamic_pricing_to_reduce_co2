@@ -71,7 +71,8 @@ ALL = np.arange(365)
 CIZ = np.load(OUT / "ci_forecasts_2013.npz")
 CI, CIF = CIZ["actual"], CIZ["selected"]                 # average CI: realised, and the Step 1 forecast (tree features)
 MEFZ = np.load(OUT / "mef_2013.npz")
-FACTORS = {"marginal": MEFZ["realised"], "marginal_unadjusted": MEFZ["realised_unadjusted"], "average": CI}
+FACTORS = {"marginal": MEFZ["realised"], "marginal_unadjusted": MEFZ["realised_unadjusted"],
+           "marginal_netload": MEFZ["realised_netload"], "average": CI}   # all used to re-score the same schedules
 FAC = FACTORS[METRIC]                                    # emission factor of costs and evaluation (g/kWh)
 FAC_F = {"marginal": MEFZ["forecast"], "average": CIF}[METRIC]   # its decision-time forecast
 CL = hh["cluster"]
