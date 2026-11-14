@@ -14,6 +14,9 @@ All emission effects are model-based estimates.
 - **Results and methodology:** [MVP_REPORT.md](MVP_REPORT.md)
 - **Summary for the team:** [TEAM_HANDOFF.md](TEAM_HANDOFF.md)
 - **Audit of the original implementation:** [IMPLEMENTATION_STATUS.md](IMPLEMENTATION_STATUS.md)
+- **Notebooks:** [project_implementation.ipynb](project_implementation.ipynb) (the pipeline written out in executable
+  cells) and [project_walkthrough.ipynb](project_walkthrough.ipynb) (a read-only tour of the saved results); see
+  section 4.
 
 ## Repository layout
 
@@ -21,7 +24,9 @@ All emission effects are model-based estimates.
 |---|---|
 | `carbon_tariff_pipeline/` | Clement's pipeline (`scripts/01`–`06`, `lib/`), plus the MVP scripts `07`–`12` (IAI trees, outputs, reproduction check, pacing, affordability, final summary). Committed outputs in `outputs/` and `figures/` are Clement's originals. |
 | `CVAE_reproduction/` | Clement's reproduction of Brégère & Bessa's CVAE simulator: data build, clustering and trained checkpoints. |
-| `run_mvp.py` | Single entry point for the whole MVP. |
+| `run_mvp.py` | Single entry point for the whole MVP (the canonical pipeline). |
+| `project_implementation.ipynb` | Implementation notebook: preprocessing, forecasting, demand model, tariff optimisation, policy trees, budget-aware trees and bill caps as editable, executable code cells, checked against the pipeline's outputs. |
+| `project_walkthrough.ipynb` | Read-only tour of the saved results, tables and figures. |
 | `tests/run_checks.py` | Automated checks: rule unit tests, preservation, reproduction, constraint compliance and consistency. |
 | `results/` | MVP outputs: `tables/`, `figures/`, `mvp/outputs/`, `pacing/`, `affordability/`, `reproduction/`. `results/processed/` and `results/logs/` are gitignored and regenerated. |
 | `final_report/` | LaTeX report draft. |
@@ -98,3 +103,89 @@ This runs selected stages only; their inputs must already exist.
 
 Clement's original pipeline can still be run as documented in `carbon_tariff_pipeline/README.md`. Set
 `CARBON_OUT=<dir>` to avoid overwriting the committed outputs.
+
+## 4. Notebooks
+
+```bash
+.venv/bin/pip install -r requirements-notebook.txt
+```
+
+This adds the Jupyter kernel and runner (`ipykernel`, `nbformat`, `nbconvert`, `nbclient`) to the project `.venv`. The
+modelling packages come from `requirements.txt`. To work interactively, open a notebook in VS Code or Jupyter, select the
+`.venv` kernel and run all cells from the top.
+
+### `project_implementation.ipynb` — the pipeline in executable cells
+
+The notebook writes out the ML pipeline step by step in ordinary code cells, so each step can be run, edited and
+debugged:
+1. data preprocessing (household selection, gap filling, cluster aggregation, tariff, temperature and carbon intensity);
+2. carbon-intensity forecasting (features, Ridge / Lasso / random forest / XGBoost, hyper-parameter search, monthly
+   refits);
+3. the demand-response regression;
+4. tariff optimisation (98 candidate schedules, menu selection, the day × schedule cost table, the feasibility rule);
+5. Clement's exact policy tree and the IAI Optimal Policy Tree;
+6. budget-aware trees and the pacing rule;
+7. household-bill caps;
+8. the final comparison.
+
+Intermediate objects stay in memory for inspection: household matrices, `ci_frame`, the fitted models, the feature
+matrix `X`, menus, cost tables, trees and the `results` / `final` tables.
+
+**Faithful copies, not the canonical pipeline.** The functions in the notebook are copies of the logic in the `.py`
+modules, with the same specifications, seeds and constraints. The `.py` scripts driven by `run_mvp.py` remain the
+canonical pipeline, and all reported results come from them. Faithfulness is enforced by evidence, not by sharing code:
+- each stage ends with `check(...)` cells that compare the notebook's result with the pipeline's saved outputs, and a
+  mismatch stops the notebook;
+- if a `.py` script changes later, the notebook is not updated automatically, and its checks will flag any difference.
+
+**Two modes.** Review is the default. For Full, set `MODE = "full"` in the first code cell, or set
+`PROJECT_NOTEBOOK_MODE=full`.
+
+| | Review | Full |
+|---|---|---|
+| Preprocessing (selection, gap filling, aggregation, features) | runs | runs |
+| Demand model, menu, exact policy trees, budget-aware and bill-penalised trees | trained live for the Nov–Dec window | trained live for all four rolling windows |
+| Carbon forecaster | refits the selected model for Nov and Dec; earlier out-of-sample forecasts are loaded from the pipeline | full hyper-parameter search and all 12 monthly refits of the four models |
+| IAI Optimal Policy Trees | reads the pipeline's saved IAI fits; selection and evaluation run in the notebook | refits IAI in Julia (temporary folder) |
+| Raw 8.5 GB csv → household matrix | uses the pipeline's matrix | also rebuilds it in a temporary folder and compares |
+| Checks against the pipeline | 54, all match | 138, all match |
+| Runtime (MacBook Pro) | about 20 s | about 5 min |
+
+Neither mode writes to the repository. Full Mode uses temporary folders, and the last cell verifies that no repository
+file changed. Cells are labelled `TRAINING` or `EVALUATION`, and Review Mode prints `[review]` wherever it loads a saved
+artefact instead of training.
+
+Command-line runs:
+
+```bash
+.venv/bin/python -m jupyter nbconvert --to notebook --execute --inplace --ExecutePreprocessor.timeout=-1 project_implementation.ipynb
+```
+
+```bash
+PROJECT_NOTEBOOK_MODE=full .venv/bin/python -m jupyter nbconvert --to notebook --execute --ExecutePreprocessor.timeout=-1 --output-dir /tmp --output project_implementation_full.ipynb project_implementation.ipynb
+```
+
+The first refreshes the Review Mode outputs saved in the notebook. The second writes the Full Mode run to `/tmp`, so the
+committed copy keeps its Review outputs.
+
+**Requirements and limitations.**
+- **Raw data:** both modes read the raw data (the first rows of the LCL csv and the NESO file) from `$CARBON_RAW_DIR`.
+- **Gitignored artefacts:** both modes need the household matrices `CVAE_reproduction/data/lcl2013_kwh.npy` and
+  `lcl2013_kwh_filled.npy`. Review Mode also needs the saved IAI fits under `results/mvp/outputs/iai_*_average_mvp/`.
+  On a fresh clone, run `.venv/bin/python run_mvp.py --reproduce` once to create them.
+- **Julia/IAI:** Full Mode needs Julia with Interpretable AI to refit the IAI trees. Without it, it uses the saved IAI
+  fits in all three IAI sections; only the first IAI section prints a `[review]` note.
+- **What stays in external scripts:**
+  - the one-pass DuckDB conversion of the raw csv (`01_build_lcl2013.py`; called in Full Mode);
+  - Clement's behavioural clustering and ERA5 temperature interpolation (`04_clustering.py`, `03_conditions.py`; their
+    outputs are loaded as data);
+  - the IAI solver (`07_iai_fit.jl`);
+  - the CVAE, which is not retrained;
+  - bootstrap intervals and sensitivity runs (`run_mvp.py` produces them).
+- **Platform:** XGBoost forecasts are platform-dependent (Windows vs macOS). The notebook's checks are against the
+  pipeline run on the same machine.
+
+### `project_walkthrough.ipynb` — results tour
+
+This notebook loads the saved tables and figures and walks through the findings. It trains nothing and runs in a few
+seconds.

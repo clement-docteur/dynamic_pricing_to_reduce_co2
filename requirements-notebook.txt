@@ -1,6 +1,7 @@
-# Optional: run project_walkthrough.ipynb with the project .venv (in addition to requirements.txt).
+# Optional: Jupyter runtime for project_implementation.ipynb and project_walkthrough.ipynb, installed into the
+# project .venv in addition to requirements.txt (which provides the modelling packages). See README section 4.
 #   .venv/bin/pip install -r requirements-notebook.txt
-#   .venv/bin/python -m jupyter nbconvert --to notebook --execute --inplace project_walkthrough.ipynb
+#   .venv/bin/python -m jupyter nbconvert --to notebook --execute --inplace --ExecutePreprocessor.timeout=-1 project_implementation.ipynb
 ipykernel==7.4.0
 nbformat==5.11.1
 nbconvert==7.17.2

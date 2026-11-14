@@ -29,6 +29,25 @@ Clement, this is a short guide to what changed. The full story is in `MVP_REPORT
 | Pacing rule | New `pacing_rule`; original vs pacing, and budget-aware IAI trees. | `lib/policy.py` (additive), `scripts/10_pacing_experiment.py` |
 | Affordability | New `multi_budget_rule`; bill caps of 0/5/10 % (rule only, or penalty + rule). | `lib/policy.py` (additive), `scripts/11_bill_constraint.py` |
 | Summary and tests | Final cross-window table and figure 8; 20 automated checks. | `scripts/12_final_summary.py`, `tests/run_checks.py` |
+| Notebooks | Implementation notebook (the pipeline in executable cells, with Review and Full modes) and a read-only results walkthrough. | `project_implementation.ipynb`, `project_walkthrough.ipynb`, `requirements-notebook.txt` |
+
+## Notebooks
+
+- **`project_implementation.ipynb`.** This is for reading, running and modifying the method step by step.
+  - It covers preprocessing, forecasting, demand model, tariff optimisation, your exact tree, IAI trees, budget-aware
+    trees and bill caps, as ordinary code cells.
+  - The code is a **faithful copy** of the logic in the `.py` modules. The `.py` scripts (via `run_mvp.py`) remain the
+    **canonical pipeline** behind every reported number.
+  - Each stage ends with checks against the pipeline's saved outputs.
+  - **Review Mode** (default) trains the Nov–Dec window live in about 20 s, with 54 checks.
+  - **Full Mode** (`MODE = "full"`) retrains everything for all four windows, including the forecaster grid search, the
+    IAI refits in Julia and the raw-CSV rebuild. It takes about 5 min, with 138 checks.
+  - Both modes matched with 0 mismatches and wrote nothing to the repository.
+  - It needs the gitignored household matrices and saved IAI fits. Run `run_mvp.py --reproduce` once on a fresh clone.
+- **`project_walkthrough.ipynb`.** A read-only tour of the saved tables and figures, useful for the presentation.
+
+If you change a `.py` script, the notebook is **not** updated automatically. Re-run it, and its checks will show any
+difference.
 
 ## Key findings (four rolling windows, deployable targets)
 
@@ -110,3 +129,16 @@ The full run takes about 11 minutes and includes the final summary table and fig
 ```
 
 The last command should report 20/20 checks passed.
+
+Optional: run the implementation notebook. These commands install the Jupyter runtime and run Review Mode in place:
+
+```bash
+.venv/bin/pip install -r requirements-notebook.txt
+```
+
+```bash
+.venv/bin/python -m jupyter nbconvert --to notebook --execute --inplace --ExecutePreprocessor.timeout=-1 project_implementation.ipynb
+```
+
+For Full Mode, set `PROJECT_NOTEBOOK_MODE=full` and write the result elsewhere (`--output-dir /tmp --output
+project_implementation_full.ipynb`, without `--inplace`). The README's section 4 has the details.
