@@ -30,18 +30,14 @@ import numpy as np
 import pandas as pd
 
 # --------------------------------------------------------------------------- paths
-PROJECT = Path(r"C:/Users/cleme/Desktop/MIT/Courses/Fall/Machine Learning/Project/Claude_ML_Project")
+PROJECT = Path(__file__).resolve().parents[2]  # repository root (raw data files live here)
 REPRO = PROJECT / "CVAE_reproduction"
 DATA = REPRO / "data"
 OUT = REPRO / "outputs"
 FIG = OUT / "figures"
-UPSTREAM = Path(r"C:/Users/cleme/AppData/Local/Temp/claude/2f83cc224499e10e/"
-                r"1aa3d082-c193-42de-888f-c8f5d2fbba90/scratchpad/upstream/repo")
-UP_DATA = DATA / "authors"  # copy of the authors' repo data/*.feather (byte-identical; read as data only); the clone above may be gone
+UP_DATA = DATA / "authors"  # copy of the authors' repo data/*.feather (byte-identical; read as data only)
 RAW_CSV = PROJECT / "CC_LCL-FullData.csv"
 TARIFFS_XLSX = PROJECT / "Tariffs.xlsx"
-_SCRATCH = Path(r"C:/Users/cleme/AppData/Local/Temp/claude/2f83cc224499e10e/"
-                r"1aa3d082-c193-42de-888f-c8f5d2fbba90/scratchpad")
 
 # output files of the data build (scripts/01_build_lcl2013.py)
 LONG_PARQUET = DATA / "lcl2013_long.parquet"        # LCLid, group, ts, kwh (deduplicated, on-grid)
@@ -78,13 +74,10 @@ def season_of_day(day_index):
 
 
 def work_dir() -> Path:
-    """Scratch directory for large intermediates: $LCL_WORK, else the session scratchpad,
-    else the system temp dir."""
+    """Scratch directory for large intermediates: $LCL_WORK, else <system temp dir>/lcl_work."""
     env = os.environ.get("LCL_WORK")
     if env:
         p = Path(env)
-    elif _SCRATCH.exists():
-        p = _SCRATCH / "lcl_work"
     else:
         p = Path(tempfile.gettempdir()) / "lcl_work"
     p.mkdir(parents=True, exist_ok=True)
