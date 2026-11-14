@@ -175,6 +175,66 @@ def feasibility_rule(rankings, prices, target):
     return np.array(out), adj
 
 
+def pacing_rule(rankings, prices, target, borrow):
+    """Budget-PACING version of feasibility_rule (added 2026-11-14 for the pacing experiment; feasibility_rule is
+    unchanged). Day k takes the first action in its ranking that satisfies BOTH
+      (1) terminal feasibility, as in feasibility_rule: S_k + p_a + (D-k-1) * p_Normal <= D * T, and
+      (2) a cumulative pace:  S_k + p_a <= (k+1) * T + borrow,
+    where S_k = sum of announced time-average prices of days 0..k-1. `borrow` (p/kWh x days) is how far the cumulative
+    spend may run ahead of an even spend of the target: borrow = 0 is strict "save first, then spend" (an event costing
+    p_a > T is only allowed once earlier cheaper days have banked p_a - T); borrow = inf gives feasibility_rule exactly.
+    Only information known at the announcement is used: past announced prices, k, D, T and the menu prices.
+    The all-Normal day always satisfies (1) and (2) (p_Normal <= T and, by induction, S_k <= k*T + borrow), so the rule
+    never fails. Same interface and return value as feasibility_rule: (actions, n_adjustments)."""
+    P = np.asarray(prices, float)
+    D = len(P)
+    assert (P[:, NORMAL] <= target + 1e-9).all(), "an all-Normal day must always fit the target"
+    S, out, adj = 0.0, [], 0
+    for k in range(D):
+        rank = rankings(k, budget_slack(S, k, D, target, P[k, NORMAL])) if callable(rankings) else rankings[k]
+        for i, a in enumerate(rank):
+            if (S + P[k, a] + (D - k - 1) * P[k, NORMAL] <= D * target + 1e-9
+                    and S + P[k, a] <= (k + 1) * target + borrow + 1e-9):
+                out.append(a)
+                adj += i > 0
+                S += P[k, a]
+                break
+    return np.array(out), adj
+
+
+def multi_budget_rule(rankings, budgets):
+    """Feasibility rule with SEVERAL period-average budgets (added 2026-11-14 for the bill-constraint experiment;
+    feasibility_rule is unchanged). budgets = [(values (D, A), target), ...]: values[k, a] is the per-day quantity
+    of action a on day k that budget j averages over the period (e.g. time-average announced price; predicted
+    consumption-weighted price paid), all known at day k's announcement. Day k takes the first action in its ranking
+    such that, for every budget j, S_j + v_j[k, a] + (D-k-1) * v_j[k, Normal] <= D * T_j (the target stays attainable
+    if all remaining days were all-Normal, as in feasibility_rule). Requires v_j[:, Normal] <= T_j, so the all-Normal
+    day is always admissible and the rule never fails. Callable rankings receive budget 0's slack (as in
+    feasibility_rule). With a single budget it equals feasibility_rule. Returns (actions, n_adjustments,
+    blocked_by) where blocked_by[j] counts the overridden days on which budget j ruled out the first-ranked action."""
+    Vs = [np.asarray(v, float) for v, _ in budgets]
+    Ts = [float(t) for _, t in budgets]
+    D = len(Vs[0])
+    for V, T in zip(Vs, Ts):
+        assert (V[:, NORMAL] <= T + 1e-9).all(), "an all-Normal day must always fit every budget"
+    S = [0.0] * len(Vs)
+    out, adj, blocked = [], 0, [0] * len(Vs)
+    ok = lambda j, k, a: S[j] + Vs[j][k, a] + (D - k - 1) * Vs[j][k, NORMAL] <= D * Ts[j] + 1e-9
+    for k in range(D):
+        rank = rankings(k, budget_slack(S[0], k, D, Ts[0], Vs[0][k, NORMAL])) if callable(rankings) else rankings[k]
+        for i, a in enumerate(rank):
+            if all(ok(j, k, a) for j in range(len(Vs))):
+                if i > 0:
+                    adj += 1
+                    for j in range(len(Vs)):
+                        blocked[j] += not ok(j, k, rank[0])
+                out.append(a)
+                for j in range(len(Vs)):
+                    S[j] += Vs[j][k, a]
+                break
+    return np.array(out), adj, blocked
+
+
 def tune_lambda(choose, prices, target, hi=0.05):
     """Smallest lambda (bisection) such that the mean price of choose(lambda) -> actions is <= target."""
     P = np.asarray(prices, float)

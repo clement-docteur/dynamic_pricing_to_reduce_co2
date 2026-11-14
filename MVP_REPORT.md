@@ -1,145 +1,144 @@
-# MVP Report — Interpretable Carbon-Aware Electricity Pricing
+# Interpretable Carbon-Aware Electricity Pricing — Final Project Report (MVP)
 
-MIT 15.095 project (Clement Docteur, Panle Chen). MVP integration run: 2026-11-14, branch `feature/mvp-integration`,
-macOS (Apple Silicon), Python 3.12, Interpretable AI 3.2.2.
+MIT 15.095 · Clement Docteur and Panle Chen · branch `feature/mvp-integration` · finalised 2026-11-14
 
-**Research question.** Can an interpretable, carbon-aware pricing policy reduce estimated household electricity-related
-emissions relative to the historical time-of-use (TOU) tariff while keeping a comparable average announced price?
+All emission and bill effects in this report are **model-based counterfactual estimates**: demand from a demand-response
+simulator, multiplied by realised grid carbon intensity. They are not measured or causal effects. Unless stated otherwise,
+emissions use **realised average carbon intensity (CI)**, the primary metric. Marginal emission factors are a sensitivity
+analysis. Reduction (%) = 100 × (E_TOU − E_policy) / E_TOU, so positive means fewer emissions than the historical
+time-of-use (TOU) tariff on the same days.
 
-**Short answer (model-based).** On the held-out test window (Nov–Dec 2013, 61 days), a shallow policy tree reduces
-**estimated** emissions by **0.76 %** (exact tree, depth 2; 95 % demand-model bootstrap 0.67–0.85 %). The Interpretable AI
-Optimal Policy Tree (depth 3) reduces them by **0.80 %**. Both stay within the time-average price target of 13.61 p/kWh,
-and both come close to direct optimisation (0.84 %) and to a perfect-hindsight oracle (0.89 %). Three caveats come with
-this:
+## Results at a glance
 
-- **The gain is small, and conservation drives it.** Households use less during evening High blocks; there is very little
-  load shifting into clean hours.
-- **The price budget, not the tree, decides most days.** The feasibility rule overrides the tree on 42–49 of 61 days.
-- **Bills go up.** The mean predicted household bill rises 8–10 %, because a time-average price cap does not cap bills.
+**Three kinds of result are kept separate throughout.**
 
-A carbon-only heuristic that ignores demand response **raises** emissions (−0.29 %, i.e. +0.29 %), because Low-price
-blocks increase consumption. All numbers are model-based counterfactual estimates, not measured or causal effects.
-
----
-
-## 1. How to run
-
-```bash
-/opt/homebrew/bin/python3.12 -m venv .venv && .venv/bin/pip install -r requirements.txt
-.venv/bin/python run_mvp.py                 # full MVP, ~4 min (+ ~1 min to rebuild the household matrix the first time)
-.venv/bin/python run_mvp.py --reproduce     # also re-run Clement's original Steps 2-3 and compare with his committed outputs
-```
-
-Raw data are read from `$CARBON_RAW_DIR`, which defaults to the folder that contains the repository (`../LCL_Data/CC_LCL-FullData.csv`,
-`../df_fuel_ckan.csv`, `../temp UK 2013-14.csv`, `../Tariffs.xlsx`), and are never modified. IAI runs through
-`julia +1.12.6/IAI/3.2.2` (`--julia` to change, `--skip-iai` to skip). Stages, outputs and logs are documented in
-`run_mvp.py`; per-stage logs are in `results/logs/` (gitignored).
-
-| Output | Location |
+| Category | Contents |
 |---|---|
-| Comparison tables (main + all sensitivities) | `results/tables/policy_comparison.md` (CSV versions alongside) |
-| Data-quality summary | `results/tables/data_quality.md` |
-| Demand-model validation | `results/tables/demand_validation.json`, Figure 2 |
-| Sanity / leakage checks (20/20 pass) | `results/tables/sanity_checks.md` |
-| Four required figures | `results/figures/fig1_carbon_forecast.png` … `fig4_policy_tree.png` |
-| MVP pipeline outputs (JSON/NPZ) | `results/mvp/outputs/` |
-| Reproduction of Clement's pipeline | `results/reproduction/reproduction_check.md` |
-| Processed Parquet (gitignored, regenerated) | `results/processed/panel_2013_halfhourly.parquet`, `household_daily_kwh_2013.parquet`, `cost_matrix_day_x_action_mvp.parquet` |
+| **Reproduced** | Clement's pipeline (data build, carbon forecast, demand simulator, exact policy tree, direct optimisation, budget-aware tree, sensitivities), re-run on macOS. Steps 2–3 reproduce exactly (2,738 numbers, 0 mismatches). Clement's committed outputs are unchanged. |
+| **New experiments** | Average CI as the primary metric; leak-free decision features; Interpretable AI (IAI) Optimal Policy Trees; a budget-pacing feasibility rule; budget-aware IAI trees; household-bill caps and penalties. |
+| **Retrospective sensitivity analyses** (use hindsight; not deployable) | Price targets set to the test window's own historical TOU price; bill caps set against the test window's own historical TOU bills; the perfect-hindsight oracle and the hindsight trade-off sweep. |
+
+**Primary candidate policy: the budget-aware IAI Optimal Policy Tree with a +5 % household-bill cap, enforced with a
+training penalty plus the feasibility rule.**
+
+| | May–Jun | Jul–Aug | Sep–Oct | Nov–Dec | **Mean** |
+|---|---|---|---|---|---|
+| Emissions reduction vs historical TOU | 0.23 % | 0.77 % | 0.56 % | 0.78 % | **0.585 %** |
+| Mean household bill change vs historical TOU | −7.6 % | +20.0 % | +7.3 % | +9.6 % | **+7.3 %** |
+| Average announced price (target) | 13.58 (13.63) | 14.07 (14.09) | 13.58 (13.63) | 13.58 (13.61) | 13.70 |
+| Feasibility-rule overrides | 0/61 | 1/62 | 1/61 | 0/61 | 0.5 |
+
+- **Price constraint.** The announced-price target is met in every window.
+- **Bill cap.** Predicted and simulated price paid stay within the +5 % cap in every window. The cap is defined against a
+  **reference price fixed before the test window**: the historical TOU price paid over the training + validation days.
+  It is **not** defined against the historical TOU bill realised in the test window. Against that realised bill, the
+  policy is within +5 % in 1 of 4 windows (Section 7.3).
+- **Comparison.** For reference, Clement's exact tree averages 0.295 % across windows, direct optimisation 0.477 %, the
+  unconstrained budget-aware IAI tree 0.610 % (bills +10.8 %), and the hindsight oracle 0.670 %.
+- **Why this policy.** It is a reasonable trade-off, not a proven optimum. It keeps 96 % of the unconstrained budget-aware
+  tree's mean reduction while cutting the mean bill increase from +10.8 % to +7.3 %. The feasibility rule almost never has
+  to step in. In three of four windows it is a one-split rule a customer could read.
+- **What the evidence does not show.** It does not show that this policy is statistically better than its neighbours:
+  differences of a few hundredths of a percentage point are within model uncertainty.
 
 ---
 
-## 2. What is reproduced vs what is new
+## 1. Research question and motivation
 
-### 2.1 Reproduced (Clement's pipeline, unchanged methodology)
+The research question is whether an interpretable, carbon-aware pricing policy can reduce estimated household
+electricity emissions relative to the historical TOU tariff while keeping a comparable average announced price.
 
-| Item | Result |
-|---|---|
-| Household data rebuild from the 8.5 GB raw CSV (`CVAE_reproduction/scripts/01_build_lcl2013.py`) | Identical: same 1,032 ToU + 1,032 Std households. Cluster means match the committed `power_consump_ours.parquet` to 3.6e-7 kWh, and the build/fill statistics match apart from float rounding at 1e-15. |
-| Step 1 carbon forecast (Ridge, Lasso, RF, 3 persistence baselines) | Identical metrics. |
-| Step 1 XGBoost (the selected model) | Reproduces only approximately: test MAE 27.23 → 27.56, RMSE 34.95 → 35.46 g/kWh; forecasts differ by 2.5 g/kWh on average. The same hyper-parameters are selected. This is platform floating-point behaviour (Apple Silicon vs Windows x86). |
-| Step 1b marginal emission factors | Identical. |
-| Steps 2–3 run on Clement's committed Step-1 forecasts (both emission metrics) | **Exactly reproduced.** 2,738 numbers compared, 0 mismatches; arrays agree to 1e-14 (`results/reproduction/reproduction_check.md`). Clement's headline (marginal factors): tree −0.90 % change, oracle −0.97 %, carbon rule +1.68 %. |
+Grid carbon intensity varies within and across days. Day-ahead dynamic prices — Low 3.99, Normal 11.76 and High
+67.20 p/kWh in the 2013 Low Carbon London (LCL) trial — can change when households consume. The proposal combines three
+steps:
 
-### 2.2 New in the MVP
+1. next-day CI forecasting;
+2. a demand-response simulator;
+3. a shallow Optimal Policy Tree (Lecture 11) that picks each day's schedule from a small menu, under an average-price
+   constraint.
 
-1. **Portability and a single entry point.**
-   - `run_mvp.py` and a pinned `requirements.txt`.
-   - Raw-data paths are relative to the repository instead of Windows paths.
-   - Output folders can be overridden (`CARBON_OUT`, `CARBON_FIG`), so Clement's committed outputs are never overwritten.
-2. **Primary metric switched to average carbon intensity**, as in the proposal. Reduction (%) = 100 × (E_hist − E_policy) / E_hist,
-   with realised NESO average CI for evaluation and the forecast CI for decisions. Marginal emission factors are kept as a
-   sensitivity analysis.
-3. **Temperature leakage fixed.** The policy feature "temperature, day mean" used the *realised* ERA5 temperature of the
-   tariff day, which is not known at the day-ahead announcement (12:00 GMT on d−1). It is replaced by the mean temperature
-   of the 24 h ending 12:00 GMT on d−1 (`03_policy.py --temperature lagged`; Clement's default is unchanged). A perturbation
-   test confirms two things:
-   - the new features of day d do not change when any data after 12:00 GMT on d−1 is perturbed;
-   - the original feature did leak.
-4. **IAI Optimal Policy Trees** (`scripts/07_iai_opt.py`, `07_iai_fit.jl`).
-   - IAI's `OptimalTreePolicyMinimizer` is fitted at depths 1–3 under exactly the same protocol as Clement's exact tree:
-     fit on the training days, choose depth and λ on validation under the feasibility rule, refit on train+val, test once.
-   - Main fold plus the three earlier rolling folds; 312 IAI fits in total.
-5. **The price-matched comparison is reported as a retrospective fairness check** (Section 5.3), not as a deployable policy.
-6. **Deliverables:**
-   - a day × action cost matrix (Parquet);
-   - a data-quality summary;
-   - a held-out demand-model validation against observed consumption;
-   - the four required figures;
-   - 20 automated sanity and leakage checks.
+Household bills were added as a second policy objective (Section 7).
 
----
+## 2. Data and preprocessing
 
-## 3. Data (details: `results/tables/data_quality.md`)
+Details are in `results/tables/data_quality.md`. All raw files are read in place from `$CARBON_RAW_DIR` (by default, the
+folder containing the repository) and are never modified.
 
-- **Low Carbon London.**
-  - 167.9 M rows, 5,566 households (1,123 dynamic-ToU, 4,443 flat Std). Units are kWh per half-hour; timestamps are GMT
-    (no DST gap or duplication).
-  - Eligibility is more than 95 % valid 2013 half-hours. That keeps all **1,032 ToU** households and a seeded random sample
-    of **1,032 Std** households (out of 4,034 eligible), which serve as the control group.
-  - Cleaning: 12 off-grid rows dropped; 63,608 exact duplicate rows (identical values) averaged; 0.062 % of half-hours
-    gap-filled, with nothing left missing.
-  - ToU households are grouped into 4 clusters (sizes 285, 299, 299 and 149), from Clement's NMF + k-medoids reproduction.
-- **NESO.** 2013 has 17,520 half-hours: 48 every day, UTC, no missing CI. Mean CI 475 g/kWh (range 259–622).
-  Data from 2009–2013 is used to train the forecaster.
-- **ERA5.** Hourly 2 m temperature on a 0.25° grid for 2013–14. This is reanalysis (realised weather), not a forecast, so it is
-  used for the demand model's weather adjustment and, lagged, as a policy feature.
-- **Tariff.**
-  - Prices: Low 3.99, Normal 11.76, High 67.20 p/kWh.
-  - The schedule is the authors' slot-aligned 2013 version, which the event study validated. `Tariffs.xlsx` (London clock
-    time) differs from it on 17 days.
-  - Full-year time-average price: 13.472 p/kWh for the schedule used, 13.517 for `Tariffs.xlsx` (the proposal's
-    reference value).
-- **Chronological splits.**
-  - Train: Jan–Aug (243 days, average announced price 13.630).
-  - Validation: Sep–Oct (61 days, 13.520).
-  - Test: Nov–Dec (61 days, 12.795; 7 High-event and 18 Low-event days).
-  - **Price target** = train+val historical average = **13.608 p/kWh**.
+**Low Carbon London smart meters** (`LCL_Data/CC_LCL-FullData.csv`).
+- 167.9 M rows and 5,566 households: 1,123 dynamic-TOU and 4,443 flat-tariff (Std).
+- Units are kWh per half-hour. Timestamps are GMT, with no daylight-saving gaps or duplicates, so every 2013 day has 48
+  half-hours.
+- Cleaning in the 2013 window:
+  - 12 off-grid rows dropped;
+  - 63,608 exact duplicate rows averaged (all had identical values);
+  - 0.062 % of half-hours gap-filled, with nothing left missing.
+- Sample: all **1,032** TOU households with more than 95 % valid 2013 data, plus **1,032** Std households sampled with
+  seed 0 from 4,034 eligible. The Std households are the control group.
+- TOU households fall into 4 behavioural clusters (285, 299, 299 and 149 households), from Clement's NMF + k-medoids
+  reproduction of Brégère & Bessa.
 
----
+**NESO generation mix** (`df_fuel_ckan.csv`). Times are UTC. 2013 has 17,520 half-hours, 48 every day, and no missing
+CI. The 2013 mean CI is 475 g/kWh (range 259–622). The forecaster is trained on 2009–2013.
 
-## 4. Methods (brief)
+**ERA5 temperature** (`temp UK 2013-14.csv`). Hourly reanalysis, which is *realised* weather, not a forecast. It enters
+the demand model's weather adjustment and, lagged, the policy features.
 
-**Step 1 — Carbon-intensity forecast** (`01_ci_forecast.py`, Clement's code).
-- Day-ahead forecast of the 48 half-hourly CI values, made at 12:00 GMT on d−1 (horizon 12–36 h).
-- Features: lagged CI and generation mix up to the cut-off, plus calendar variables. No realised next-day data is used.
-- Models: Ridge, Lasso, RF and XGBoost, against persistence baselines. Hyper-parameters are tuned on Sep–Oct.
-- Monthly expanding refits, so every 2013 day has an out-of-sample forecast.
+**Tariff.**
+- The authors' slot-aligned 2013 schedule, validated by an event study. `Tariffs.xlsx`, which uses London clock time,
+  differs on 17 days.
+- Full-year time-average price: 13.472 p/kWh for the schedule used, 13.517 for `Tariffs.xlsx` (the proposal's
+  reference value).
 
-**Step 2 — Demand-response simulator** (`02_demand_response.py`, Clement's code). This replaces the CVAE as the main simulator.
-- Per cluster, a ridge regression of log(ToU mean / Std mean) on:
-  - half-hour × day-type intercepts;
-  - temperature × time-of-day band;
-  - tariff terms: in-block High/Low effects by band, a 2 h dip before Low, the half-hour after Low, and 2 h before High.
-- The flat-tariff households act as a contemporaneous control, a difference-in-differences design.
-- Counterfactual demand under a schedule z is y(z) = y_obs × exp(m(z) − m(z_hist)). It depends on the **whole** daily
-  schedule, so it captures conservation, pre-event dips and rebounds.
+**Chronological evaluation.**
+- **Main split:** train Jan–Aug (243 days), validation Sep–Oct (61), test Nov–Dec (61).
+- **Rolling evaluation:** four test windows (May–Jun, Jul–Aug, Sep–Oct, Nov–Dec). Each window is validated on the two
+  months before it and trained on everything earlier.
+- **Hyper-parameters, menus, price targets and bill references** use only training and validation days. Each test window
+  is evaluated once.
+
+## 3. Carbon forecasting and demand-response modelling
+
+**Step 1 — day-ahead CI forecast** (Clement's `01_ci_forecast.py`; reproduced).
+- The forecast is made at the 12:00 GMT announcement on day d−1, so the horizon is 12–36 h.
+- Inputs: lagged CI, the lagged generation mix and calendar variables.
+- Models: Ridge, Lasso, random forest (RF) and XGBoost, against persistence baselines. Monthly expanding refits give an
+  out-of-sample forecast for every day of 2013.
+- XGBoost is selected on validation MAE (24.0 g/kWh). On the Nov–Dec test it scores MAE 27.6 / RMSE 35.5, against
+  persistence at 28.4 / 38.6 and RF at 26.0 / 34.3 (Figure 1).
+- The gain over persistence is small. Realised temperature adds nothing.
+- The Mac re-run of XGBoost differs slightly from Clement's Windows run (test MAE 27.56 vs 27.23) because of
+  platform-dependent floating point. All other models reproduce exactly.
+
+**Step 2 — demand-response simulator** (Clement's `02_demand_response.py`; reproduced).
+- Per cluster, a ridge regression of log(TOU mean / Std mean) on half-hour × day-type intercepts, temperature × band, and
+  tariff terms:
+  - in-block High/Low effects by time-of-day band;
+  - a 2 h dip before Low, the half-hour after Low, and 2 h before High.
+- The flat-tariff households are the control (a difference-in-differences design).
+- Counterfactual demand under a whole-day schedule z is y(z) = y_obs · exp(m(z) − m(z_TOU)).
 - Fitted on Jan–Oct; specification chosen on Sep–Oct.
-- The CVAE ensemble (320 trained checkpoints, not retrained) is kept as a sensitivity "world". On chronological hold-out it
-  shows −13 % to −30 % energy bias and wrong-signed tariff effects.
 
-**Step 3 — Candidate schedules, costs and policies** (`03_policy.py`).
-- **Candidate pool:** 150 single-block schedules (High 2–4 h; Low 3 or 6 h).
-- **Menu:** up to 6 schedules selected greedily on *training days only*. The Nov–Dec menu is:
+Held-out Nov–Dec validation (Figure 2; `results/tables/demand_validation.json`):
+
+| Check | Observed | Predicted |
+|---|---|---|
+| Daily-total MAPE | | 1.3 % (bias +0.5 %) |
+| High-price half-hours (kWh) | 0.2465 | 0.2476 |
+| Low-price half-hours (kWh) | 0.2249 | 0.2263 |
+| In-block High effect | −7.7 % [−9.0, −5.9] | −7.5 % |
+| In-block Low effect | +6.5 % [3.5, 9.2] | +7.7 % |
+
+The pattern is clear conservation during High events, extra use during Low events, and modest shifting.
+
+The CVAE of Brégère & Bessa (320 trained checkpoints; **not retrained**) is kept as a sensitivity "world". On the
+chronological split it shows −13 % to −30 % energy bias and the wrong sign for the High-price effect.
+
+## 4. Optimal Policy Tree methodology
+
+**Actions.**
+- Greedy forward selection on *training* days picks a menu of up to 6 daily schedules from about 150 single-block
+  candidates.
+- The Nov–Dec menu:
 
 | Schedule | Time-average price (p/kWh) |
 |---|---|
@@ -149,254 +148,265 @@ Raw data are read from `$CARBON_RAW_DIR`, which defaults to the folder that cont
 | High 18:00–20:00 | 16.38 |
 | High 16:00–20:00 | 21.00 |
 
-- **Cost of schedule z on day d:** C_d(z) = (1/1000) Σ_t CI_dt ŷ_dt(z), in kg CO₂ per household.
-- The day × action matrix is exported to `cost_matrix_day_x_action_mvp.parquet`, with features, emissions, announced price,
-  predicted bill, kWh and peak.
-- Policies compared:
+**Costs.** C_d(z) = (1/1000) Σ_t CI_dt · ŷ_dt(z), in kg CO₂ per household. The day × action matrix, with features,
+emissions, announced price, predicted bill, kWh and peak, is in `results/processed/cost_matrix_day_x_action_mvp.parquet`
+(regenerated by `run_mvp.py`).
 
-| Policy | How it chooses each day's schedule |
-|---|---|
-| A. Historical TOU | The observed 2013 schedule. |
-| B. Carbon heuristic | High on the forecast-dirtiest 3 h, Low on the cleanest window, with as many High slots as fit the target every day. It does not use the demand model. |
-| C. Direct optimisation | Minimises forecast emissions + λ·price for each day, with the feasibility rule applied. |
-| D. Policy tree | A prescriptive tree on decision-time features, minimising realised training costs + λ·price. Exact solver (Clement's `PolicyTree`) or IAI. |
-| Oracle | Perfect hindsight, with an exact price constraint. Not deployable. |
-| Extension: budget-aware tree | Clement's tree with the remaining price budget as an extra feature. |
+**Decision features.** All are known at 12:00 GMT on d−1:
+- forecast-CI summaries (day mean, 16–21 h mean, evening minus night, range, start of the dirtiest 3 h);
+- lagged temperature;
+- a weekend/holiday flag;
+- recent consumption (days d−8 to d−2).
 
-- **Tree features (all available at 12:00 GMT on d−1):**
-  - forecast-CI summaries (day mean, 16–21 h mean, evening minus night, max − min, start of the dirtiest 3 h);
-  - lagged temperature;
-  - weekend/holiday flag;
-  - recent consumption (days d−8 to d−2).
+**Leakage fix (new).** Clement's original feature set used the realised temperature of day d. The MVP replaces it with
+the mean temperature over the 24 h ending 12:00 on d−1 (`03_policy.py --temperature lagged`; Clement's default is
+unchanged). A perturbation test confirms two things: no data after 12:00 on d−1 can change day d's features, and the
+original feature did leak. The leaking feature was never used by Clement's selected tree, so the headline numbers did not
+change.
 
-**Average-price feasibility rule** (proposal §2). Before announcing day k, the rule takes the first action in the policy's
-ranking that keeps the period target attainable, assuming every remaining day is all-Normal. The all-Normal day
-(11.76 ≤ 13.608) is always feasible, so the constraint can always be met. Every policy uses the same target, tolerance
-(1e-9) and rule. Historical TOU is reported at its observed prices.
+**Trees.**
+- **Prescriptive trees:** they minimise the summed model-based cost E + λ·price of the prescribed actions.
+  - Clement's exact solver (`PolicyTree`) is exhaustive at the last level, with 12 quantile thresholds above it.
+  - IAI's `OptimalTreePolicyMinimizer` (new) uses max_depth 1–3, minbucket 10 and cp 0.
+- **Selection:** depth (1–3) and λ are chosen on validation; the tree is refitted on train + validation and tested once.
 
----
+**Average-price feasibility rule** (proposal §2).
+- Day k takes the first action in the tree leaf's ranking that keeps the period target attainable, assuming every
+  remaining day is all-Normal.
+- The all-Normal day (11.76 ≤ target) is always admissible, so the constraint is always met.
+- The *override* count is the number of days on which the rule replaced the tree's first choice.
+- The price target is the historical TOU average over train + validation. For Nov–Dec it is 13.608 p/kWh.
 
-## 5. Results (held-out Nov–Dec 2013; model-based estimates)
+## 5. Baseline results and identified limitations
 
-### 5.1 Carbon forecast (Figure 1)
+### 5.1 Main test window (Nov–Dec 2013, primary metric)
 
-| Model | Val MAE | Test MAE | Test RMSE |
-|---|---|---|---|
-| Persistence (same slot, latest day) | 31.6 | 28.4 | 38.6 |
-| Ridge | 25.8 | 29.5 | 37.8 |
-| Random forest | 24.3 | **26.0** | **34.3** |
-| **XGBoost (selected on validation)** | **24.0** | 27.6 | 35.5 |
+| Policy | Reduction | 95 % demand-model bootstrap | Avg announced price | Mean bill change | Overrides |
+|---|---|---|---|---|---|
+| Historical TOU | — | — | 12.795 (observed) | — | — |
+| Carbon heuristic (no demand model) | **−0.29 %** | [−0.42, −0.16] | 13.606 | +4.7 % | 0 |
+| Direct optimisation | 0.84 % | [0.75, 0.93] | 13.594 | +14.0 % | 43 |
+| Exact policy tree (depth 2) | 0.76 % | [0.67, 0.85] | 13.578 | +8.2 % | 49 |
+| IAI OPT (depth 3, new) | 0.80 % | — | 13.578 | +9.5 % | 42 |
+| Oracle (hindsight) | 0.89 % | [0.80, 0.97] | 13.551 | +14.9 % | — |
 
-Units are g/kWh. On the test period the forecaster beats persistence by only about 3 % in MAE (8 % in RMSE). RF would
-have been slightly better on test, but selection is done on validation, so XGBoost is kept. ERA5 temperature added nothing
-(Clement's weather experiment).
+These come from `results/tables/policy_comparison.md`. Clement's committed average-CI results give the same tree,
+direct-optimisation and oracle numbers. The carbon heuristic differs (−0.18 % vs −0.29 %) because of the XGBoost
+platform difference.
 
-### 5.2 Demand-model validation (Figure 2, `results/tables/demand_validation.json`)
+**Sensitivity.**
+- **Marginal emission factors:** tree 0.90 %, heuristic −1.68 %. The policy ranking is unchanged.
+- **Demand response scaled ×0.5 / ×1.5:** tree 0.42 % / 1.08 %.
+- **CVAE world:** tree 1.17 %, heuristic −2.80 %.
+- **Price target (retrospective, not deployable):** with the target set to the test window's own historical price
+  (12.795), the tree gives 0.61 %. About a fifth of the headline gain comes from the deployable target being 6 % above
+  that price.
 
-The test is out of sample: the model is fitted on Jan–Oct and predicts Nov–Dec ToU consumption from the same day's
-flat-tariff consumption.
+**IAI vs exact solver.** The two are equivalent in practice.
+- At depth 1 their training objectives are identical.
+- At depths 2–3 they differ by at most 0.04 kg on objectives of 700–1,400 kg.
+- In three of four windows they select the identical tree.
+- In Nov–Dec, IAI's +0.03 pp is inside the bootstrap width.
 
-| Metric | Observed | Predicted |
+### 5.2 Limitations identified in the baseline
+
+1. **The effect is small and comes from conservation.** Households use less during evening High blocks. Low blocks
+   increase use, which is why the carbon-only heuristic increases emissions.
+2. **The feasibility rule, not the tree, makes most decisions.**
+   - In Nov–Dec the tree prescribes "High 16:00–20:00" on all 61 days. The rule turns this into events on Nov 1–12 and
+     then 49 Normal days.
+   - The rule overrides the tree on 42–49 of 61 days.
+3. **The fixed trees fail in summer.** In May–Jun they choose night-Low days, which raise use (−0.38 %). In Jul–Aug they
+   never use the price allowance.
+4. **Bills rise by 8–15 %**, because a time-average price cap does not cap bills.
+
+## 6. Budget-aware policy improvements
+
+There are two responses to limitation 2 (`scripts/10_pacing_experiment.py`; `results/pacing/`; Figures 5–6).
+
+**(a) Budget-pacing rule** (new, `lib/policy.pacing_rule`).
+- The rule also requires cumulative announced prices to stay within B (p/kWh × days) of an even spend of the target.
+  B is chosen on validation.
+- It uses only past announced prices, the day index and the target. With B = ∞ it is identical to the original rule
+  (unit-tested).
+- Results:
+  - It spreads events evenly: Nov–Dec High days per quarter go from 12/0/0/0 to 7/6/6/5.
+  - Gains are small where the budget binds. Exact tree +0.05 pp in Nov–Dec (paired bootstrap [+0.02, +0.08]); IAI +0.02.
+  - Nothing changes in summer. Mean across windows: 0.295 → 0.325 %.
+  - It makes the tree's choices *less* decisive: the first choice is followed on only 0–7 % of Sep–Dec days, and a
+    constant (depth-0) policy does as well.
+
+**(b) Remaining budget as a state variable** (Clement's budget-aware tree design, extended here to IAI).
+- The tree sees the remaining price budget per remaining day. It is trained on days × 9 budget levels, with matching
+  Lagrangian costs.
+- **Mean reduction:** budget-aware IAI 0.610 % and exact 0.585 %, against 0.30–0.33 % for the fixed trees. That is 87–91 %
+  of the oracle (0.670 %).
+- **Robustness:** positive in all four windows.
+- **Overrides:** the exact tree is overridden on 0–3 days per window; the IAI tree on 1–17. The rule becomes a safety net.
+- **Pacing on top** adds nothing (−0.008 to +0.002 pp).
+- **Learned rule:** bank budget with cheap night-Low days, then spend it on evening High events.
+- **Cost:** mean bills +10.8 % (IAI), up to +22.7 % in Jul–Aug.
+
+**Decision.** State-dependent (budget-aware) trees, with the original rule as a safety net, are the better design.
+
+## 7. Household affordability constraints
+
+This is a new experiment (`scripts/11_bill_constraint.py`; `results/affordability/`; Figure 7).
+
+### 7.1 Formulation
+
+- **Bill metric at decision time.** π̂(d, a) is the predicted price paid per kWh for schedule a on day d, using Step 3's
+  decision-time demand forecast (days d−15 to d−2 of the same day type, multiplied by the tariff response). Simulated kWh
+  changes are under 1 %, so the price paid tracks the bill.
+- **Cap.** mean_d π̂(d, a_d) ≤ (1 + x) · π_ref, with x ∈ {0, 5, 10} %. π_ref is the historical TOU's mean daily price
+  paid over **train + validation**: a pre-established reference, known before the test window.
+- **Enforcement.** `lib/policy.multi_budget_rule` (new; equals `feasibility_rule` with one budget) enforces the cap
+  online, together with the price target. The all-Normal day fits both budgets, so the rule never fails.
+- **Penalty variant.** The budget-aware tree is retrained on E + μ·π + λ(budget)·price, with μ and depth chosen on
+  validation. This is compared with "rule only", where the existing tree is capped by post-processing.
+
+### 7.2 Results (IAI tree; mean of four windows; exact solver in brackets)
+
+| Policy | Reduction | Mean bill change vs historical TOU | £ per household per window | Overrides |
+|---|---|---|---|---|
+| Unconstrained budget-aware | 0.610 % (0.585) | +10.8 % | +7.19 | 5.0 |
+| Cap +10 %, penalty | 0.614 % (0.594) | +8.9 % | +5.99 | 5.0 |
+| **Cap +5 %, penalty (primary)** | **0.585 %** (0.590) | **+7.3 %** | +4.70 | **0.5** |
+| Cap +5 %, rule only | 0.568 % (0.547) | +8.6 % | +5.52 | 8.0 |
+| Cap 0 %, penalty | 0.438 % (0.525) | +0.4 % | −0.46 | 5.8 |
+| Cap 0 %, rule only | 0.462 % (0.463) | +3.7 % | +2.04 | 12.8 |
+
+### 7.3 Is the constraint satisfied?
+
+The answer depends on which quantity is constrained.
+
+| Quantity | Satisfied? | Notes |
 |---|---|---|
-| Daily total (kWh/household) | 10.56 | 10.62 (MAPE 1.3 %, bias +0.5 %) |
-| High-price half-hours | 0.2465 | 0.2476 (0.2650 without tariff terms) |
-| Low-price half-hours | 0.2249 | 0.2263 (0.2096 without tariff terms) |
-| Normal half-hours | 0.2186 | 0.2197 |
-| Mean daily peak half-hour | 0.360 | 0.359 |
+| (i) Predicted price paid (what the rule controls) | Always: every window, cap and variant | By construction |
+| (ii) Simulated price paid | Primary policy: 4/4 windows. All IAI variants: 21 of 24 cases | The 3 misses are ≤ 0.07 p/kWh, which is forecast error |
+| (iii) Bill vs historical TOU in the same test window | Primary policy: 1/4 windows (May–Jun) | See below |
 
-Half-hour values are kWh per household per half-hour.
+Case (iii) **cannot be guaranteed by any deployable rule**. The benchmark's own price paid moves with the trial's event
+schedule: 15.52, 12.16, 13.34 and 13.00 p/kWh across the four windows, against references of 13.75–14.43. In Jul–Aug the
+historical TOU was unusually cheap, so a policy within +5 % of the reference is +20 % relative to that window's TOU.
 
-Held-out tariff effects (observed vs model):
+With hindsight — caps set against each window's own historical TOU, a retrospective analysis — the caps are met in 4/4
+windows. Mean reductions are then 0.30 / 0.46 / 0.53 % for caps of 0 / 5 / 10 %.
 
-| Effect | Observed | Model |
-|---|---|---|
-| In-block High | −7.7 % [−9.0, −5.9] | −7.5 % |
-| In-block Low | +6.5 % [3.5, 9.2] | +7.7 % |
-| 2 h before Low | −2.5 % | −3.0 % |
-| 2 h before High | +4.2 % | +4.5 % |
+**A rigorous affordability cap must therefore be stated against a pre-committed reference price**, such as the train+val
+TOU average used here or the flat Std tariff of 14.228 p/kWh.
 
-This is consistent with the LCL trial findings: clear conservation during High events, increased use during Low events,
-and only modest shifting. The CVAE does far worse on the in-block High effect (−1.1 %).
+### 7.4 Economic meaning
 
-### 5.3 Main policy comparison (Figure 3; full table in `results/tables/policy_comparison.md`)
+**Trade-off.** Moving from unconstrained to a 0 % cap (penalty) keeps 78–98 % of the reduction in the windows where
+bills rose, and removes £3–8 of an £8–13 per-household bill increase per window. The +5 % cap with penalty costs
+0.025 pp of mean reduction and cuts the mean bill increase by 3.5 pp, with almost no overrides.
 
-| Policy | Emissions (kg/household, 61 days) | **Reduction vs TOU** | 95 % simulator CI | Avg announced price (target 13.608) | Mean bill change | kWh change | Daily peak change | Feasibility overrides |
-|---|---|---|---|---|---|---|---|---|
-| A. Historical TOU | 298.23 | — | — | 12.795 (observed) | — | — | — | — |
-| B. Carbon heuristic | 299.10 | **−0.29 %** | [−0.42, −0.16] | 13.606 | +4.7 % | +0.29 % | +2.0 % | 0 |
-| C. Direct optimisation | 295.72 | **0.84 %** | [0.75, 0.93] | 13.594 | +14.0 % | −0.84 % | −2.5 % | 43 |
-| D. Exact policy tree (depth 2, 4 leaves) | 295.96 | **0.76 %** | [0.67, 0.85] | 13.578 | +8.2 % | −0.76 % | −1.4 % | 49 |
-| D'. IAI Optimal Policy Tree (depth 3, 7 leaves) | 295.86 | **0.80 %** | n/a | 13.578 | +9.5 % | −0.80 % | −1.8 % | 42 |
-| Extension: budget-aware tree (depth 2) | 295.84 | 0.80 % | [0.71, 0.89] | 13.575 | +14.4 % | −0.83 % | −1.9 % | 3 |
-| Reference: oracle (hindsight) | 295.58 | 0.89 % | [0.80, 0.97] | 13.551 | +14.9 % | −0.87 % | −3.1 % | — |
+**Per tonne.**
+- The household transfer per tonne avoided, compared with historical TOU, is about **£4,800–8,600 per tCO₂**, and
+  £16,000–100,000 per tCO₂ at the margin.
+- For comparison, carbon prices are on the order of £50–100/t and appraisal values a few hundred £/t.
+- The 1.4–2.6 kg avoided per household per two months is worth well under £1 at those values.
 
-All proposed policies meet the target. The test-period average price of every proposed policy is at most 13.606 p/kWh,
-against the 13.608 target, so no deviations had to be tolerated.
+**Transfers, not resource costs.** Bill increases are transfers to the supplier. A revenue-neutral lump-sum rebate would
+keep the price signal with zero mean bill change, but bills would still be widely spread. In Nov–Dec the p10/p90 change
+moves from +7 % / +22 % to −31 % / +9 %, and 21 % of households would still pay over 5 % more. Affordability is therefore
+a distributional issue.
 
-**How the trees behave.**
-- Both trees split on decision-time carbon and consumption features: the root of the exact tree is the forecast CI for
-  16:00–21:00 (Figure 4).
-- In the test window the exact tree prescribes "High 16:00–20:00" on all 61 days.
-- The feasibility rule turns this into a **front-loaded** sequence: events on Nov 1–12, until the budget is spent, then 49
-  Normal days.
-- The IAI tree's extra 0.03 percentage points come from prescribing cheaper 2–3 h High blocks on some days. That makes the
-  budget last 19 event days instead of 12, with 42 overrides instead of 49.
-- The budget-aware tree paces the budget (3 overrides, mostly night-Low days plus 16 High days). Its emissions are similar,
-  but bills are higher.
+### 7.5 Interpretability of the primary policy
 
-**Price-matched fairness check (retrospective, not deployable).**
-- The deployable target (13.608) is above the historical TOU price in the test window (12.795), so the proposed policies
-  get about 6 % more price allowance than the baseline.
-- Re-running every policy with the test window's own historical price as the target gives: exact tree 0.61 %, direct
-  optimisation 0.67 %, oracle 0.69 %, carbon heuristic −0.21 %.
-- This uses future information and is reported only as a fairness check. **About a fifth of the headline reduction comes
-  from the higher price allowance.**
+- **Jul–Aug, Sep–Oct, Nov–Dec:** the tree is a single split on the remaining price budget per remaining day:
+  "if budget < 2.5–4 p/kWh above Normal → Normal day, else → evening High block (16/17:00–20:00)".
+- **May–Jun:** 7 leaves, also splitting on the budget, plus temperature, recent consumption and weekend.
 
-### 5.4 Does the IAI Optimal Policy Tree improve on Clement's tree?
+**The policy does not use the day-ahead carbon forecast to time events.** Its carbon benefit comes from the
+model-based costs, which favour evening conservation blocks.
 
-**No, not meaningfully** (`results/tables/policy_comparison.md` → "IAI Optimal Policy Tree vs exact tree").
+## 8. Final results and comparisons
 
-| Test window | Exact tree (selected depth) | IAI OPT (selected depth) | Overrides, exact / IAI |
-|---|---|---|---|
-| May–Jun | −0.38 % (d1) | −0.38 % (d1, identical tree) | 0 / 0 |
-| Jul–Aug | +0.30 % (d1) | +0.30 % (d1, identical) | 0 / 0 |
-| Sep–Oct | +0.50 % (d1) | +0.50 % (d1, identical) | 45 / 45 |
-| **Nov–Dec (main)** | **+0.76 %** (d2) | **+0.80 %** (d3) | **49 / 42** |
+Mean of the four rolling windows. These are deployable policies under each window's own price target
+(`results/tables/final_comparison.md`, Figure 8).
 
-Values are emissions reductions on the test window.
+| Policy | Category | Reduction (mean; range) | Mean bill change | Avg announced price |
+|---|---|---|---|---|
+| Historical TOU | benchmark | 0 | 0 | 13.40 |
+| Carbon heuristic | reproduced | −0.21 % (−0.58 to +0.32) | +5.6 % | 13.73 |
+| Policy tree, exact solver | reproduced (leak-free features) | 0.295 % (−0.38 to +0.76) | −4.3 % | 12.43 |
+| IAI OPT | new | 0.303 % (−0.38 to +0.80) | −4.0 % | 12.43 |
+| Direct optimisation | reproduced | 0.477 % (−0.17 to +0.84) | +3.6 % | 13.19 |
+| Budget-aware IAI OPT, no bill cap | new | 0.610 % (0.26 to 0.87) | +10.8 % | 13.70 |
+| **Budget-aware IAI OPT, +5 % bill cap (primary)** | new | **0.585 % (0.23 to 0.78)** | **+7.3 %** | 13.70 |
+| Oracle (hindsight) | reference | 0.670 % (0.36 to 0.89) | +10.2 % | 13.70 |
 
-- **Training objective.** At depth 1 both solvers find the same, globally optimal, split. At depths 2–3 their training
-  costs differ by at most 0.04 kg on objectives of 700–1,400 kg, and IAI is sometimes better and sometimes worse. Clement's
-  solver is therefore effectively optimal for these problem sizes.
-- **Test results.** In three of four windows the validation-selected trees are identical. In Nov–Dec, IAI's +0.03 pp is
-  well inside the demand-model bootstrap width (about ±0.09 pp). It comes from a deeper (7-leaf) tree that the feasibility
-  rule still overrides on 42 of 61 days.
-- **Depth.** In every window, depths 1–3 differ by at most 0.1 pp on test.
-- **Recommendation.** Present the IAI depth-1/2 tree, which is identical to the exact tree, as the interpretable policy.
-  Present depth 3 as a sensitivity, not as an improvement.
+**Answer to the research question (model-based).**
+- An interpretable policy can reduce estimated household emissions relative to the 2013 TOU at a comparable average
+  announced price.
+- The effect is small: about 0.2–0.8 % of household emissions over two months, or 0.5–2.3 kg CO₂ per household for the
+  primary policy.
+- It comes from evening conservation, not from following day-to-day carbon forecasts.
+- Making the tree budget-aware is what makes it robust across seasons.
+- Holding bills near a pre-set reference costs little carbon. Holding them to the historical TOU's realised bills cannot
+  be guaranteed in advance.
 
-### 5.5 Sensitivity (`results/tables/policy_comparison.md`)
+## 9. Limitations and future work
 
-**Price target** (exact-tree reduction):
+**Limitations.**
+1. **Counterfactual validity.**
+   - The response coefficients are observational (a difference-in-differences against flat-tariff households) and
+     identified only for schedule shapes used in 2013.
+   - There are no fatigue or income effects.
+   - Cluster 3 (149 households) has very large estimated effects (High in the peak band −29 %, Low +41 %).
+2. **Uncertainty.**
+   - Bootstrap intervals cover only demand-model parameters, for Nov–Dec.
+   - Differences of a few hundredths of a pp between policies are not meaningful.
+   - Hyper-parameters (λ, μ, depth, B) are chosen on single 2-month validation windows, which is noisy. For example, the
+     IAI 0 %-cap policy chooses all-Normal days in May–Jun.
+3. **Carbon awareness is weak.** The forecaster barely beats persistence. With perfect CI forecasts, direct
+   optimisation barely changes (0.84 → 0.85 % in Nov–Dec). The selected trees rarely split on carbon features.
+4. **Bills.**
+   - The caps are relative to a train+val reference, not to the realised benchmark.
+   - The bill budget is not a tree feature; the bill state enters only through the penalty and the rule.
+   - Distributional effects are large.
+5. **Scope.** One year (2013, a coal-heavy grid), one city and about 1,000 households. ERA5 temperature is reanalysis,
+   not a forecast. The CVAE was not retrained and is used only as a sensitivity world.
 
-| Target (p/kWh) | Basis | Reduction |
-|---|---|---|
-| 12.795 | Retrospective, price-matched | 0.61 % |
-| 13.517 | Proposal reference | 0.75 % |
-| **13.608** | **Main** | **0.76 %** |
-| 14.228 | Flat Std tariff | 0.88 % |
-| Cap on price *paid* (13.784) | Consumption-weighted instead of time-average | 0.67 % |
+**Future work** (prioritised).
+1. A bill-budget state feature, or a dynamic-programming / rolling-horizon formulation of both budgets.
+2. Multi-window or cross-validated hyper-parameter selection.
+3. Bootstrap uncertainty for every window and policy, including CI-forecast error.
+4. A demand-model robustness check: cluster 3 outliers and comparison with published LCL elasticities.
+5. Pre-committed reference tariffs, such as the flat Std price, and rebate designs for distributional effects.
+6. Update `final_report/main.tex`: average CI as the primary metric, the budget-aware IAI tree, and the affordability
+   results.
 
-A higher price allowance buys more High events and therefore more conservation.
+---
 
-**Demand response** (policies re-trained in each world):
+## Appendix A. Reproduction
 
-| Demand-response world | Tree reduction |
+See `README.md`. In short:
+- `.venv/bin/python run_mvp.py --reproduce` runs every stage (about 11 min).
+- `.venv/bin/python tests/run_checks.py` runs 20 automated checks.
+
+The final re-run reproduced all 108 result tables and JSON/NPZ outputs byte for byte.
+
+## Appendix B. Figures and tables
+
+| File | Content |
 |---|---|
-| Response ×0.5 | 0.42 % |
-| Response ×1.5 | 1.08 % |
-| In-block terms only | 0.77 % |
-| Full model | 1.04 % |
-| CVAE ensemble | 1.17 % (carbon heuristic −2.80 %) |
-
-The conclusion holds in every world: demand-aware policies reduce emissions and the carbon-only rule does not. The
-magnitude scales roughly linearly with the assumed response.
-
-**Emission factor.** With marginal emission factors (Clement's original metric, now with leak-free features), the tree
-gives 0.90 % and the carbon heuristic −1.68 %. Policies optimised for average CI and scored with marginal factors give
-0.87 %. The ranking of policies does not depend on the factor.
-
-**Rolling windows** (each with its own train/val/target):
-
-| Test window | Exact-tree reduction |
-|---|---|
-| May–Jun | −0.38 % |
-| Jul–Aug | +0.30 % |
-| Sep–Oct | +0.50 % |
-| Nov–Dec | +0.76 % |
-
-The fixed tree **increases** emissions in May–Jun. There it chooses night-Low days, which lower prices and bills (−27 %)
-but raise consumption. The budget-aware tree is positive in every window: +0.26, +0.70, +0.58 and +0.80 %.
-
-### 5.6 Clement's committed average-CI results vs this MVP run
-
-The direct-optimisation, tree, budget-aware-tree and oracle reductions are unchanged: 0.841, 0.763, 0.803 and 0.890 %.
-The selected tree depth changes from 1 to 2 when the realised temperature is replaced by the lagged one, but the test
-schedules are the same. The carbon heuristic moves from −0.18 % to −0.29 %, because it uses the re-run XGBoost forecast.
-**The leakage fix therefore did not change the headline numbers.** The leaking feature was not used by Clement's selected
-tree.
-
----
-
-## 6. Verification (`results/tables/sanity_checks.md`, 20/20 pass)
-
-- **Data alignment:** NESO has 48 half-hours on all 365 days of 2013. Tariff, CI, temperature and consumption are aligned on
-  one documented GMT slot convention.
-- **Units:** prices take only the values 3.99, 11.76 and 67.20 p/kWh, and Low and High never overlap. CI is in g/kWh with a
-  2013 mean of 475. Consumption is in kWh per half-hour (mean 0.20). The `Tariffs.xlsx` full-year mean is 13.517.
-- **Predicted consumption** is non-negative and finite for every menu action on every day. The cost-matrix formula
-  reproduces the optimisation costs exactly.
-- **No leakage:**
-  - The splits are chronological and disjoint.
-  - The target uses train+val only; the menu uses training days only; depth and λ are chosen on validation; the test window
-    is used once.
-  - Perturbing anything after 12:00 GMT on d−1 leaves the features of day d unchanged (40 random days).
-  - The original same-day temperature feature is shown to leak.
-- **Price constraint:** every proposed policy's realised average announced price is at or below the target, and the
-  all-Normal day guarantees feasibility.
-- **Reproduction:** Clement's Steps 2–3 reproduce exactly.
-
----
-
-## 7. Limitations
-
-1. **Counterfactuals are model-based, not causal.**
-   - The demand-response coefficients are observational: a difference-in-differences against flat-tariff households in a
-     trial where schedules were not randomised day by day. They are identified only for schedule shapes that occurred in
-     2013.
-   - Candidate schedules are restricted to similar single blocks, but timings never used in the trial (e.g. 16:00–20:00
-     every day) are extrapolations.
-   - Effects are assumed constant across repeated events (no fatigue). Cluster 3 (149 households) has very large estimated
-     effects (High in the peak band −29 %, Low +41 %), which dominate the aggregate response.
-2. **Small effect size.** Under every assumption the estimated reduction is about 0.4–1.2 % of household emissions.
-   Bootstrap intervals cover only demand-model parameter uncertainty, not specification or forecast uncertainty.
-3. **The feasibility rule dominates.**
-   - It is greedy, so it spends the price budget in the first days of the window and then cancels events (42–49 overrides
-     out of 61).
-   - The tree's interpretability is therefore partly cosmetic in Nov–Dec. The budget-aware tree fixes the pacing, but bills
-     rise 14 %.
-4. **Bills.** A time-average announced-price cap does not protect bills: they rise 8–14 % for the demand-aware policies,
-   because High blocks are placed where consumption is high. A cap on the price paid lowers the gain to 0.67 %.
-5. **Price allowance.** The deployable target sits 6 % above the test-window historical price. Price-matched results are
-   about 20 % lower.
-6. **Carbon forecast.** The forecaster is only slightly better than persistence on the test period. Since direct
-   optimisation with a perfect CI forecast performs about the same, forecast accuracy is not the binding constraint.
-7. **Single year, single region**, and 2013 grid conditions (coal-heavy). The ERA5 temperature is reanalysis; operational
-   use would need a real weather forecast.
-8. **CVAE.** It was not retrained. Its chronological-split performance is poor, so it is used only as a sensitivity world,
-   which departs from the proposal's plan.
-
----
-
-## 8. Prioritised remaining work for the final project
-
-1. **Pacing-aware feasibility rule** — the largest lever on both the policy's behaviour and its interpretability. Options:
-   - spread the budget evenly (a per-day allowance), or
-   - make the budget-aware IAI tree the main policy, with the remaining budget as a feature.
-   Re-evaluate bills under the new rule.
-2. **Report rolling-window results as the primary robustness evidence**, and explain the May–Jun failure: the night-Low
-   rebound increases emissions.
-3. **Bill-aware constraint or objective.** Add a constraint on the consumption-weighted price, or a bill-change penalty, to
-   the Lagrangian. Report the emissions–bill trade-off curve.
-4. **Uncertainty.**
-   - Add the bootstrap to the IAI tree.
-   - Propagate CI-forecast error, for example by re-scoring with persistence forecasts.
-   - Add a household-level bootstrap of the clusters.
-5. **Demand-model robustness.**
-   - Check cluster 3's large effects, e.g. by excluding extreme households.
-   - Test effect decay over repeated events.
-   - Compare with published LCL elasticities (Schofield et al. 2015).
-6. **Final report.** Update `final_report/main.tex` so that average CI is the primary metric and marginal factors are a
-   sensitivity, and add the IAI comparison and the price-matched fairness check.
-7. Optionally, rerun the CVAE only if a better-calibrated chronological model becomes available. It is not needed for the
-   conclusions.
+| `results/figures/fig1_carbon_forecast.png` | CI forecast vs realised, model errors |
+| `results/figures/fig2_demand_response.png` | Held-out demand validation, tariff effects, simulated profiles |
+| `results/figures/fig3_policy_comparison.png` | Nov–Dec policy comparison and price compliance |
+| `results/figures/fig4_policy_tree.png` | Fixed IAI and exact trees (Nov–Dec) |
+| `results/figures/fig5_pacing_timeline.png` | Event timing under the original and pacing rules |
+| `results/figures/fig6_pacing_rolling.png` | Pacing vs original rule, four windows |
+| `results/figures/fig7_carbon_vs_bills.png` | Carbon vs bill trade-off, four windows |
+| `results/figures/fig8_final_comparison.png` | Final comparison, four windows |
+| `results/tables/final_comparison.md` | Final cross-window table and primary-policy constraint checks |
+| `results/tables/policy_comparison.md` | Nov–Dec tables, sensitivities, IAI vs exact, committed vs MVP |
+| `results/pacing/pacing_tables.md` | Pacing experiment |
+| `results/affordability/affordability_tables.md` | Affordability experiment |
+| `results/tables/data_quality.md` | Data-quality summary |
+| `results/tables/sanity_checks.md` | 20 sanity and leakage checks |
+| `results/reproduction/reproduction_check.md` | Reproduction of Clement's results |
+| `IMPLEMENTATION_STATUS.md` | Audit of the original repository (before this work) |
+| `TEAM_HANDOFF.md` | Summary for the team |

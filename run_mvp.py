@@ -15,6 +15,11 @@ Stages (in order):
             sensitivity run with marginal emission factors
   iai       Step 4: Interpretable AI Optimal Policy Trees (depths 1-3) vs the exact tree, main fold + rolling folds
   outputs   data-quality summary, processed Parquet, day x action cost matrix, comparison tables, 4 figures, sanity checks
+  pacing    additional experiment: original vs budget-pacing feasibility rule, and remaining budget as a state variable
+            (budget-aware trees), on all four rolling windows (results/pacing/, figures 5-6); needs the iai stage
+  affordability  additional experiment: budget-aware trees with an expected-bill cap (0/5/10 %) or penalty, all four
+            windows (results/affordability/, figure 7); needs the pacing stage
+  summary   final cross-window comparison from the saved outputs (results/tables/final_comparison.md, figure 8)
   reproduce (only with --reproduce) Clement's original configuration on his committed Step-1 inputs + comparison
 
 Raw data are read from $CARBON_RAW_DIR (default: the folder that contains this repository) and never modified.
@@ -38,7 +43,7 @@ RAW = Path(os.environ.get("CARBON_RAW_DIR", ROOT.parent))
 RES = ROOT / "results"
 MVP_OUT = RES / "mvp" / "outputs"
 LOGS = RES / "logs"
-STAGES = ["check", "data", "forecast", "demand", "policy", "iai", "outputs"]
+STAGES = ["check", "data", "forecast", "demand", "policy", "iai", "outputs", "pacing", "affordability", "summary"]
 RAW_FILES = {"LCL smart meters": RAW / "LCL_Data" / "CC_LCL-FullData.csv", "NESO generation mix": RAW / "df_fuel_ckan.csv",
              "ERA5 temperature": RAW / "temp UK 2013-14.csv", "Tariffs": RAW / "Tariffs.xlsx"}
 MVP_FLAGS = ["--temperature", "lagged", "--tag", "mvp"]
@@ -143,6 +148,21 @@ def stage_iai(a):
 
 def stage_outputs(a):
     run("mvp_08_outputs", ["scripts/08_mvp_outputs.py"], env=env_for(MVP_OUT, RES / "figures"))
+
+
+def stage_pacing(a):
+    args = ["scripts/10_pacing_experiment.py", "--julia", a.julia] + (["--skip-iai"] if a.skip_iai else [])
+    run("mvp_10_pacing", args, env=env_for(MVP_OUT, RES / "figures"))
+
+
+def stage_affordability(a):
+    solvers = "exact" if a.skip_iai else "iai,exact"
+    run("mvp_11_bill_constraint", ["scripts/11_bill_constraint.py", "--julia", a.julia, "--solvers", solvers],
+        env=env_for(MVP_OUT, RES / "figures"))
+
+
+def stage_summary(a):
+    run("mvp_12_final_summary", ["scripts/12_final_summary.py"], env=env_for(MVP_OUT, RES / "figures"))
 
 
 def stage_reproduce(a):

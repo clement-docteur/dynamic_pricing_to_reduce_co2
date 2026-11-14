@@ -9,7 +9,10 @@ All P0/P1 items below are done; see `MVP_REPORT.md`. Portable paths, `requiremen
 household matrix rebuilt and verified; Clement's Steps 2-3 reproduce exactly (`results/reproduction/reproduction_check.md`);
 average CI is the primary metric (marginal = sensitivity); temperature leakage fixed (`--temperature lagged`); IAI Optimal
 Policy Trees fitted at depths 1-3 on four folds (`scripts/07_iai_opt.py`); four required figures, data-quality summary,
-cost matrix and 20 sanity checks generated (`scripts/08_mvp_outputs.py`). The audit below is kept as written before the work.
+cost matrix and 20 sanity checks generated (`scripts/08_mvp_outputs.py`). Later additions: pacing rule and budget-aware IAI trees
+(`scripts/10_pacing_experiment.py`), household-bill caps (`scripts/11_bill_constraint.py`), final summary
+(`scripts/12_final_summary.py`) and automated checks (`tests/run_checks.py`); see `TEAM_HANDOFF.md`.
+The audit below is kept as written before the work.
 
 ## TL;DR
 

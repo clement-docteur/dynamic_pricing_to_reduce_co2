@@ -1,0 +1,112 @@
+# Team handoff — MVP integration (branch `feature/mvp-integration`)
+
+Clement, this is a short guide to what changed. The full story is in `MVP_REPORT.md`; reproduction steps are in
+`README.md`. All numbers are model-based estimates, using average carbon intensity (CI) unless stated otherwise.
+
+## What Clement originally implemented (all kept and reproduced)
+
+- **CVAE reproduction (`CVAE_reproduction/`).** LCL 2013 data build, clustering, and CVAE and GAM simulators with 320
+  chronological checkpoints.
+- **Pipeline (`carbon_tariff_pipeline/`).**
+  - Step 1: CI forecast with Ridge, Lasso, RF and XGBoost, plus marginal emission factors.
+  - Step 2: difference-in-differences demand-response simulator, with the CVAE as a sensitivity.
+  - Step 3: menu, exact Optimal Policy Tree, carbon rule, direct optimisation, oracle, feasibility rule, budget-aware
+    tree, sensitivities and rolling windows.
+  - Figures, `report.html` and `final_report/main.tex`.
+- **Reproduction.** Steps 2–3 reproduce **exactly** on macOS: 2,738 numbers, 0 mismatches. Your committed outputs,
+  figures, report and data artefacts are unchanged since `6c22f28`; `tests/run_checks.py` checks this. XGBoost forecasts
+  differ slightly across platforms (test MAE 27.2 vs 27.6 g/kWh).
+
+## What Panle added or changed
+
+| Area | Change | Files |
+|---|---|---|
+| Portability | Repository-relative raw-data paths (`$CARBON_RAW_DIR`), overridable output folders (`CARBON_OUT`, `CARBON_FIG`), pinned `requirements.txt`, single entry point `run_mvp.py`. | `CVAE_reproduction/lib/lcl_data.py`, `scripts/03_conditions.py`, `carbon_tariff_pipeline/lib/common.py` (paths only) |
+| Metric | Average CI as the primary metric (as in the proposal); marginal factors as sensitivity. | `run_mvp.py` (`policy` stage) |
+| Leakage fix | The realised same-day temperature feature is replaced by a lagged value (24 h to 12:00 on d−1). | `03_policy.py --temperature lagged` (opt-in flag; your defaults unchanged) |
+| IAI OPT | IAI `OptimalTreePolicyMinimizer` at depths 1–3, four rolling windows, same protocol as your exact tree. | `scripts/07_iai_opt.py`, `07_iai_fit.jl` |
+| Outputs | Data-quality summary, day × action cost matrix, 20 sanity/leakage checks, figures 1–4. | `scripts/08_mvp_outputs.py`, `09_reproduction_check.py` |
+| Pacing rule | New `pacing_rule`; original vs pacing, and budget-aware IAI trees. | `lib/policy.py` (additive), `scripts/10_pacing_experiment.py` |
+| Affordability | New `multi_budget_rule`; bill caps of 0/5/10 % (rule only, or penalty + rule). | `lib/policy.py` (additive), `scripts/11_bill_constraint.py` |
+| Summary and tests | Final cross-window table and figure 8; 20 automated checks. | `scripts/12_final_summary.py`, `tests/run_checks.py` |
+
+## Key findings (four rolling windows, deployable targets)
+
+| Policy | Mean reduction (range) | Mean bill change | Overrides per window |
+|---|---|---|---|
+| Carbon heuristic | −0.21 % (−0.58 to +0.32) | +5.6 % | 0 |
+| Exact tree (yours, leak-free features) | 0.295 % (−0.38 to +0.76) | −4.3 % | 0–49 |
+| IAI OPT | 0.303 % (−0.38 to +0.80) | −4.0 % | 0–45 |
+| Direct optimisation | 0.477 % | +3.6 % | — |
+| Budget-aware IAI OPT, no bill cap | 0.610 % (0.26 to 0.87) | +10.8 % | 1–17 |
+| **Budget-aware IAI OPT, +5 % bill cap — primary candidate** | **0.585 % (0.23 to 0.78)** | **+7.3 %** | **0–1** |
+| Oracle (hindsight) | 0.670 % | +10.2 % | — |
+
+1. **IAI and your exact solver are equivalent.** Training objectives are identical at depth 1 and differ by ≤ 0.04 kg at
+   depths 2–3. IAI does not meaningfully improve test results.
+2. **The fixed trees are dominated by the feasibility rule.** They are overridden on 42–49 of 61 days in Nov–Dec and fail
+   in May–Jun. Pacing spreads events evenly but adds only about +0.03 pp.
+3. **Remaining budget as a state feature (your budget-aware tree) is the key improvement.** It is positive in all four
+   windows and roughly doubles the mean reduction.
+4. **The +5 % bill cap (penalty + rule)** keeps 96 % of the unconstrained reduction, cuts the mean bill increase from
+   10.8 % to 7.3 %, and almost never needs the rule.
+   - The cap is defined against a **pre-set reference price**: historical TOU price paid over train+val.
+   - Against the test window's *realised* historical TOU bill, it holds in only 1 of 4 windows (Jul–Aug +20 %). This
+     cannot be guaranteed by any deployable rule.
+5. **Carbon impact is small, and it comes from evening conservation, not from following daily CI forecasts.** In three of
+   four windows the primary tree is a single split on the remaining budget. The household transfer is about
+   £4,800–8,600 per tCO₂ avoided.
+
+## Recommended figures and tables for the final report
+
+| Item | Use |
+|---|---|
+| Fig. 1 `fig1_carbon_forecast.png` | Forecast accuracy |
+| Fig. 2 `fig2_demand_response.png` | Simulator validation |
+| Fig. 5 `fig5_pacing_timeline.png` | Why the feasibility rule dominates the fixed trees, and what pacing and budget-aware trees change |
+| Fig. 7 `fig7_carbon_vs_bills.png` | Carbon vs bill trade-off |
+| Fig. 8 `fig8_final_comparison.png` | Headline comparison across windows |
+| Fig. 4 `fig4_policy_tree.png` | Tree diagram; could be swapped for a diagram of the primary one-split tree (text in `MVP_REPORT.md` §7.5) |
+| Table `results/tables/final_comparison.md` | Main results and the primary policy's constraint checks |
+| `MVP_REPORT.md` §5.1 table | Nov–Dec detail with bootstrap |
+| `MVP_REPORT.md` §7.2–7.3 tables | Bill caps |
+| Optional | Sensitivity tables in `results/tables/policy_comparison.md` (marginal factors, demand worlds, price targets) |
+
+## Limitations and decisions to discuss
+
+1. **Primary metric.** Average CI (the proposal) vs marginal factors (your original framing). Results and rankings are
+   similar either way.
+2. **Bill-cap reference.** Train+val TOU price paid (current) vs the flat Std tariff (14.228) vs a revenue-neutral rebate.
+   This determines how "affordability" is defined in the report.
+3. **"Carbon-aware" claim.** The trees barely use the CI forecast. Should the report say so plainly, or should we test
+   carbon-only feature sets?
+4. **Uncertainty.** Bootstraps exist only for Nov–Dec, and hyper-parameter selection relies on single 2-month validation
+   windows. Do we extend this before the final report?
+5. **The demand model drives everything.** Cluster 3's large effects and the absence of fatigue or income effects are
+   worth a robustness paragraph.
+6. **`final_report/main.tex`** still reports the marginal-factor −0.90 % headline and needs updating. There is an
+   untracked `final_report/final_report_overleaf/` folder locally, which was left untouched and not committed.
+
+## Exact reproduction commands
+
+Run these from the repository root. Raw data must be in the parent folder, or set `CARBON_RAW_DIR`.
+
+```bash
+python3.12 -m venv .venv
+```
+
+```bash
+.venv/bin/pip install -r requirements.txt
+```
+
+```bash
+.venv/bin/python run_mvp.py --reproduce
+```
+
+The full run takes about 11 minutes and includes the final summary table and figure 8. Add `--skip-iai` if Interpretable AI is not installed.
+
+```bash
+.venv/bin/python tests/run_checks.py
+```
+
+The last command should report 20/20 checks passed.

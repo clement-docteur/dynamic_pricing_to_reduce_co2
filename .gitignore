@@ -36,3 +36,5 @@ results/cache/
 results/mvp/outputs/iai_opt_*/
 results/logs/
 results/reproduction/figures/
+results/mvp/outputs/iai_budgetaware_*/
+results/mvp/outputs/iai_bill_*/
