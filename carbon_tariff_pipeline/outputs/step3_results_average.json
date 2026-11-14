@@ -1035,6 +1035,10 @@
      "low_slots": 156
     }
    },
+   "matched_tree_event_days": 61,
+   "matched_tree_adjustments": 0,
+   "matched_paced_event_days": 60,
+   "matched_paced_adjustments": 1,
    "matched": {
     "Historical TOU (2013 trial)": {
      "emissions_change_pct": 0.0,
@@ -1299,6 +1303,10 @@
      "low_slots": 132
     }
    },
+   "matched_tree_event_days": 0,
+   "matched_tree_adjustments": 0,
+   "matched_paced_event_days": 62,
+   "matched_paced_adjustments": 0,
    "matched": {
     "Historical TOU (2013 trial)": {
      "emissions_change_pct": 0.0,
@@ -1535,6 +1543,10 @@
      "low_slots": 192
     }
    },
+   "matched_tree_event_days": 15,
+   "matched_tree_adjustments": 34,
+   "matched_paced_event_days": 61,
+   "matched_paced_adjustments": 1,
    "matched": {
     "Historical TOU (2013 trial)": {
      "emissions_change_pct": 0.0,
@@ -1806,6 +1818,10 @@
      "low_slots": 204
     }
    },
+   "matched_tree_event_days": 7,
+   "matched_tree_adjustments": 55,
+   "matched_paced_event_days": 60,
+   "matched_paced_adjustments": 5,
    "matched": {
     "Historical TOU (2013 trial)": {
      "emissions_change_pct": 0.0,

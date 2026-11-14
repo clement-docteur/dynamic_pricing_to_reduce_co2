@@ -59,6 +59,7 @@ import argparse
 import json
 import math
 import os
+import tempfile
 import sys
 import time
 
@@ -71,7 +72,7 @@ import pandas as pd  # noqa: E402
 import torch  # noqa: E402
 import torch.nn.functional as F  # noqa: E402
 
-REPRO = "C:/Users/cleme/Desktop/MIT/Courses/Fall/Machine Learning/Project/Claude_ML_Project/CVAE_reproduction"
+REPRO = os.path.dirname(os.path.dirname(os.path.abspath(__file__))).replace("\\", "/")  # this repo's CVAE_reproduction/
 if REPRO not in sys.path:
     sys.path.insert(0, REPRO)
 from lib.effects import HIGH_WINDOW, LOW_WINDOW, SUPERSEDED_WINDOWS  # noqa: E402  (scenario windows only)
@@ -952,8 +953,7 @@ def main():
     ap.add_argument("--force", action="store_true", help="retrain models that already have results")
     ap.add_argument("--main-grid-only", action="store_true",
                     help="only the specified grid eta {10, 1, 0.1, 0.01} (skip the extension 0.03, 0.003, 0.001)")
-    ap.add_argument("--smoke-dir", default=("C:/Users/cleme/AppData/Local/Temp/claude/2f83cc224499e10e/"
-                                            "1aa3d082-c193-42de-888f-c8f5d2fbba90/scratchpad/verify/v-collapse/smoke"))
+    ap.add_argument("--smoke-dir", default=os.path.join(tempfile.gettempdir(), "lcl_work", "v-collapse-smoke"))
     args = ap.parse_args()
     if args.workers > 4:
         raise SystemExit("max 4 workers (shared machine)")

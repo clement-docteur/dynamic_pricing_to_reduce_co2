@@ -36,13 +36,13 @@ All emission numbers are **model-based counterfactual estimates**: simulated hou
 
 ## Emission-factor sensitivity (emissions reduction, %)
 
-| Policy | Average CI, policies optimised for average CI (primary) | Marginal factors, policies optimised for marginal factors | Average-CI policies scored with marginal factors | Marginal-factor policies scored with average CI |
-|---|---|---|---|---|
-| B. Carbon-based heuristic | -0.290 | -1.676 | -0.380 | -1.724 |
-| C. Direct model-based optimisation | 0.841 | 0.902 | 0.910 | 0.786 |
-| D. Policy tree (exact solver) | 0.763 | 0.902 | 0.867 | 0.786 |
-| Ext. Budget-aware policy tree | 0.803 | 0.935 | 0.891 | 0.843 |
-| Ref. Oracle (perfect hindsight) | 0.890 | 0.969 | 0.945 | 0.875 |
+| Policy | Average CI, policies optimised for average CI (primary) | Marginal factors, policies optimised for marginal factors | Average-CI policies scored with marginal factors | Marginal-factor policies scored with average CI | Average-CI policies scored with net-load marginal factors |
+|---|---|---|---|---|---|
+| B. Carbon-based heuristic | -0.290 | -1.676 | -0.380 | -1.724 | -0.304 |
+| C. Direct model-based optimisation | 0.841 | 0.902 | 0.910 | 0.786 | 0.854 |
+| D. Policy tree (exact solver) | 0.763 | 0.902 | 0.867 | 0.786 | 0.823 |
+| Ext. Budget-aware policy tree | 0.803 | 0.935 | 0.891 | 0.843 | 0.865 |
+| Ref. Oracle (perfect hindsight) | 0.890 | 0.969 | 0.945 | 0.875 | 0.879 |
 
 ## Rolling 2-month test windows (emissions reduction, %; each window has its own train/val/target)
 

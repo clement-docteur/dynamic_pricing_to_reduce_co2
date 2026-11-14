@@ -14,7 +14,7 @@ time-of-use (TOU) tariff on the same days.
 
 | Category | Contents |
 |---|---|
-| **Reproduced** | Clement's pipeline (data build, carbon forecast, demand simulator, exact policy tree, direct optimisation, budget-aware tree, sensitivities), re-run on macOS. Steps 2–3 reproduce exactly (2,738 numbers, 0 mismatches). Clement's committed outputs are unchanged. |
+| **Reproduced** | Clement's pipeline (data build, carbon forecast, demand simulator, exact policy tree, direct optimisation, budget-aware tree, sensitivities), re-run on macOS. Steps 1b, 2 and 3 reproduce exactly: 2,754 numbers in Steps 2–3 and 355 in Step 1b, with 0 mismatches. After merging Clement's latest `main` (`0a2f9af`), every value in his original committed outputs is preserved; his update only adds a net-load marginal-emission variant and a separate `demand_response/` module. |
 | **New experiments** | Average CI as the primary metric; leak-free decision features; Interpretable AI (IAI) Optimal Policy Trees; a budget-pacing feasibility rule; budget-aware IAI trees; household-bill caps and penalties. |
 | **Retrospective sensitivity analyses** (use hindsight; not deployable) | Price targets set to the test window's own historical TOU price; bill caps set against the test window's own historical TOU bills; the perfect-hindsight oracle and the hindsight trade-off sweep. |
 
@@ -196,6 +196,10 @@ platform difference.
 
 **Sensitivity.**
 - **Marginal emission factors:** tree 0.90 %, heuristic −1.68 %. The policy ranking is unchanged.
+- **Clement's net-load marginal factors** (merged from his `main`). These are merit-order factors by season ×
+  net-load decile. They exist only as realised factors, with no decision-time forecast, so they are used to re-score the
+  same average-CI schedules, not to optimise. Re-scored this way: tree 0.82 %, direct optimisation 0.85 %, budget-aware
+  tree 0.87 %, oracle 0.88 %, heuristic −0.30 %. The ranking is again unchanged.
 - **Demand response scaled ×0.5 / ×1.5:** tree 0.42 % / 1.08 %.
 - **CVAE world:** tree 1.17 %, heuristic −2.80 %.
 - **Price target (retrospective, not deployable):** with the target set to the test window's own historical price
@@ -374,20 +378,34 @@ Mean of the four rolling windows. These are deployable policies under each windo
 1. A bill-budget state feature, or a dynamic-programming / rolling-horizon formulation of both budgets.
 2. Multi-window or cross-validated hyper-parameter selection.
 3. Bootstrap uncertainty for every window and policy, including CI-forecast error.
-4. A demand-model robustness check: cluster 3 outliers and comparison with published LCL elasticities.
+4. A demand-model robustness check: cluster 3 outliers, comparison with published LCL elasticities, and comparison with
+   Clement's demand-response baseline in `demand_response/` (merged from his `main`; its predictions use a shared
+   format in `demand_response/outputs/predictions.csv.gz`).
 5. Pre-committed reference tariffs, such as the flat Std price, and rebate designs for distributional effects.
-6. Update `final_report/main.tex`: average CI as the primary metric, the budget-aware IAI tree, and the affordability
-   results.
+6. Update `final_report/main.tex`. Since Clement's latest update it reports the price-matched 0.71 % next to the
+   marginal-factor 0.90 % headline. It still needs average CI as the primary metric, the budget-aware IAI tree and the
+   affordability results.
 
 ---
 
 ## Appendix A. Reproduction
 
 See `README.md`. In short:
-- `.venv/bin/python run_mvp.py --reproduce` runs every stage (about 11 min).
-- `.venv/bin/python tests/run_checks.py` runs 20 automated checks.
+- `.venv/bin/python run_mvp.py --reproduce` runs every stage (about 12 min), including a re-run of Clement's Steps 1
+  and 1b on this machine.
+- `.venv/bin/python tests/run_checks.py` runs 25 automated checks.
 
-The final re-run reproduced all 108 result tables and JSON/NPZ outputs byte for byte.
+**Merge with Clement's `main` (`0a2f9af`).** After the merge, the full pipeline was re-run and every result file was
+compared with a pre-merge backup:
+- 2,018 of 2,032 files are byte-identical.
+- 11 files only gained entries: the net-load factor in `mef_2013.npz` and `step1b_mef.json`, its re-scoring under
+  `scored_with_each_factor` in the Step 3 JSONs, and one new column in `sensitivity_emission_factor.csv`.
+- 3 reports (`reproduction_check.*`, `policy_comparison.md`) changed only in counts and the added column.
+
+**No pre-existing result value changed.** `tests/run_checks.py` encodes this with three reference points:
+- every value of Clement's original outputs (`6c22f28`) is preserved;
+- his latest outputs and code (`0a2f9af`) are untouched by this branch, and his net-load factor reproduces exactly;
+- every value of the pre-merge MVP results (`6c55a54`) is preserved.
 
 ## Appendix B. Figures and tables
 

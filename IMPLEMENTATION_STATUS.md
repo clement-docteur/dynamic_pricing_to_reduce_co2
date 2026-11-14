@@ -12,6 +12,7 @@ Policy Trees fitted at depths 1-3 on four folds (`scripts/07_iai_opt.py`); four 
 cost matrix and 20 sanity checks generated (`scripts/08_mvp_outputs.py`). Later additions: pacing rule and budget-aware IAI trees
 (`scripts/10_pacing_experiment.py`), household-bill caps (`scripts/11_bill_constraint.py`), final summary
 (`scripts/12_final_summary.py`) and automated checks (`tests/run_checks.py`); see `TEAM_HANDOFF.md`.
+Merged with Clement's latest `main` (`0a2f9af`) on 2026-11-14; see `TEAM_HANDOFF.md` → "How the merge was resolved".
 The audit below is kept as written before the work.
 
 ## TL;DR

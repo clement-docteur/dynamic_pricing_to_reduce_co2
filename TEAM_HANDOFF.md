@@ -13,9 +13,27 @@ Clement, this is a short guide to what changed. The full story is in `MVP_REPORT
   - Step 3: menu, exact Optimal Policy Tree, carbon rule, direct optimisation, oracle, feasibility rule, budget-aware
     tree, sensitivities and rolling windows.
   - Figures, `report.html` and `final_report/main.tex`.
-- **Reproduction.** Steps 2–3 reproduce **exactly** on macOS: 2,738 numbers, 0 mismatches. Your committed outputs,
-  figures, report and data artefacts are unchanged since `6c22f28`; `tests/run_checks.py` checks this. XGBoost forecasts
-  differ slightly across platforms (test MAE 27.2 vs 27.6 g/kWh).
+- **Your latest `main` (`0a2f9af`), merged into this branch.** It brings the fresh-clone fix, the net-load
+  (merit-order) marginal-emission variant, `demand_response/` and the toned-down `main.tex`.
+- **Reproduction.** Your Steps 1b (incl. the net-load factor), 2 and 3 reproduce **exactly** on macOS: 0 mismatches.
+  XGBoost forecasts differ slightly across platforms (test MAE 27.2 vs 27.6 g/kWh). `tests/run_checks.py` verifies
+  three things:
+  - every value in your original outputs (`6c22f28`) is still there;
+  - your latest outputs, report, docs and `demand_response/` are untouched by this branch;
+  - your scripts are identical to your `main`, except the MVP's opt-in flags in `03_policy.py` and the raw-data path
+    lookup in `03_conditions.py` / `lcl_data.py`.
+
+## How the merge was resolved
+
+| Conflict | Resolution |
+|---|---|
+| `CVAE_reproduction/lib/lcl_data.py` | Your version, plus a raw-data lookup that accepts both layouts: `$CARBON_RAW_DIR`, then **the repository root (your layout)**, then the folder containing the repository (Panle's, incl. `LCL_Data/`). Your removal of `UPSTREAM` and your temp-folder default for `$LCL_WORK` are kept. |
+| `README.md` | Combined. Your repo map, data sources, run commands, CVAE steps and report section, plus the MVP pipeline, checks and notebooks. |
+| `requirements.txt` | Your `>=` floors, `torch` and Jupyter. `statsmodels` dropped (unused). The MVP's exact macOS versions are listed as a comment. |
+
+The same raw-data lookup was applied to `lib/common.py`, `03_conditions.py`, `run_mvp.py`, `08_mvp_outputs.py` and the
+implementation notebook, so your fresh-clone layout and Panle's layout both work. `03_policy.py` merged automatically:
+your `marginal_netload` re-scoring now also appears in the MVP results, with no existing value changed.
 
 ## What Panle added or changed
 
@@ -28,7 +46,7 @@ Clement, this is a short guide to what changed. The full story is in `MVP_REPORT
 | Outputs | Data-quality summary, day × action cost matrix, 20 sanity/leakage checks, figures 1–4. | `scripts/08_mvp_outputs.py`, `09_reproduction_check.py` |
 | Pacing rule | New `pacing_rule`; original vs pacing, and budget-aware IAI trees. | `lib/policy.py` (additive), `scripts/10_pacing_experiment.py` |
 | Affordability | New `multi_budget_rule`; bill caps of 0/5/10 % (rule only, or penalty + rule). | `lib/policy.py` (additive), `scripts/11_bill_constraint.py` |
-| Summary and tests | Final cross-window table and figure 8; 20 automated checks. | `scripts/12_final_summary.py`, `tests/run_checks.py` |
+| Summary and tests | Final cross-window table and figure 8; 25 automated checks. | `scripts/12_final_summary.py`, `tests/run_checks.py` |
 | Notebooks | Implementation notebook (the pipeline in executable cells, with Review and Full modes) and a read-only results walkthrough. | `project_implementation.ipynb`, `project_walkthrough.ipynb`, `requirements-notebook.txt` |
 
 ## Notebooks
@@ -103,8 +121,13 @@ difference.
    windows. Do we extend this before the final report?
 5. **The demand model drives everything.** Cluster 3's large effects and the absence of fatigue or income effects are
    worth a robustness paragraph.
-6. **`final_report/main.tex`** still reports the marginal-factor −0.90 % headline and needs updating. There is an
+6. **`final_report/main.tex`** now reports the price-matched 0.71 % next to the marginal-factor 0.90 % headline. It still
+   needs average CI as the primary metric, the budget-aware IAI tree and the affordability results. There is an
    untracked `final_report/final_report_overleaf/` folder locally, which was left untouched and not committed.
+7. **Your net-load factor.** The MVP uses it only to re-score schedules (Nov–Dec: tree 0.82 %, direct optimisation
+   0.85 %), because there is no decision-time net-load forecast yet. Should it become the marginal-factor sensitivity of
+   record?
+8. **`demand_response/`** vs the MVP's demand simulator. Do we compare them in the final report?
 
 ## Exact reproduction commands
 
@@ -122,13 +145,13 @@ python3.12 -m venv .venv
 .venv/bin/python run_mvp.py --reproduce
 ```
 
-The full run takes about 11 minutes and includes the final summary table and figure 8. Add `--skip-iai` if Interpretable AI is not installed.
+The full run takes about 12 minutes and includes the final summary table and figure 8. Add `--skip-iai` if Interpretable AI is not installed.
 
 ```bash
 .venv/bin/python tests/run_checks.py
 ```
 
-The last command should report 20/20 checks passed.
+The last command should report 25/25 checks passed.
 
 Optional: run the implementation notebook. These commands install the Jupyter runtime and run Review Mode in place:
 

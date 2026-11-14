@@ -18,7 +18,7 @@ from pathlib import Path
 
 sys.argv = [sys.argv[0], "--metric", "average", "--temperature", "lagged", "--tag", "mvp"]
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from lib.common import (BLUE, DATES_2013, GREEN, GRID, H, INK, INK2, MUTED, ORANGE, OUT, PRICE, PROJECT, RAW_DIR,  # noqa: E402
+from lib.common import (BLUE, DATES_2013, GREEN, GRID, H, INK, INK2, MUTED, ORANGE, OUT, PRICE, PROJECT, raw_file,  # noqa: E402
                         REPRO, SHADE, SPLIT, VIOLET, MAGENTA, AQUA, cols, day_type, hours, load_json, load_neso,
                         make_log, mpl_style, read_parquet, save_json, schedule_price, split_of)
 
@@ -78,8 +78,8 @@ def data_quality():
     neso = load_neso()
     n13 = neso.loc["2013-01-01":"2013-12-31 23:30"]
     per_day = n13.groupby(n13.index.date).size()
-    era = pd.read_csv(RAW_DIR / "temp UK 2013-14.csv", usecols=["time", "latitude", "longitude", "step", "t2m"])
-    xl = pd.read_excel(RAW_DIR / "Tariffs.xlsx")
+    era = pd.read_csv(raw_file("temp UK 2013-14.csv"), usecols=["time", "latitude", "longitude", "step", "t2m"])
+    xl = pd.read_excel(raw_file("Tariffs.xlsx"))
     xl_price = xl["Tariff"].map({"Low": PRICE["L"], "Normal": PRICE["N"], "High": PRICE["H"]})
     low, high, price = S3.LOW_H, S3.HIGH_H, S3.PRICE_H
     sp = split_of(DATES_2013)
@@ -288,6 +288,8 @@ def comparison_tables():
                    "Marginal factors, policies optimised for marginal factors": -RM["results"][p]["emissions_change_pct"],
                    "Average-CI policies scored with marginal factors": -R["scored_with_each_factor"]["marginal"][p],
                    "Marginal-factor policies scored with average CI": -RM["scored_with_each_factor"]["average"][p]})
+        if "marginal_netload" in R["scored_with_each_factor"]:          # Clement's net-load (merit-order) variant, re-scoring only
+            ef[-1]["Average-CI policies scored with net-load marginal factors"] = -R["scored_with_each_factor"]["marginal_netload"][p]
     sens_factor = pd.DataFrame(ef)
 
     # rolling windows

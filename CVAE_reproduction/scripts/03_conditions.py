@@ -38,9 +38,11 @@ from lib import conditions as C  # noqa: E402
 from lib import tariffs as TF  # noqa: E402
 
 DEFAULT_UPSTREAM = REPRO / "data" / "authors"  # copy of the authors' repo data/*.feather (byte-identical; read as data only)
-RAW_DIR = Path(os.environ.get("CARBON_RAW_DIR", PROJECT.parent))   # raw data live outside the repository
-ERA5_CSV = RAW_DIR / "temp UK 2013-14.csv"
-TARIFF_XLSX = RAW_DIR / "Tariffs.xlsx"
+# Raw data: $CARBON_RAW_DIR (if set), then the repository root (Clement's layout), then the folder containing the
+# repository (Panle's layout). Files are only read, never modified.
+RAW_DIRS = ([Path(os.environ["CARBON_RAW_DIR"])] if os.environ.get("CARBON_RAW_DIR") else []) + [PROJECT, PROJECT.parent]
+ERA5_CSV = next((d / "temp UK 2013-14.csv" for d in RAW_DIRS if (d / "temp UK 2013-14.csv").exists()), RAW_DIRS[0] / "temp UK 2013-14.csv")
+TARIFF_XLSX = next((d / "Tariffs.xlsx" for d in RAW_DIRS if (d / "Tariffs.xlsx").exists()), RAW_DIRS[0] / "Tariffs.xlsx")
 OUT_PARQUET = REPRO / "data" / "conditions_ours.parquet"
 OUT_JSON = REPRO / "outputs" / "conditions_checks.json"
 OUT_FIG = REPRO / "outputs" / "figures" / "temperature_check.png"

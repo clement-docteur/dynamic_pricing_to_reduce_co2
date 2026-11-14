@@ -16,31 +16,26 @@
    "max_abs_diff": 0.0,
    "examples": [],
    "keys_only_in_committed": [],
-   "keys_only_in_rerun": []
+   "keys_only_in_rerun": [
+    "/scored_with_each_factor/marginal_netload",
+    "/rolling/5/scored_with_each_factor/marginal_netload",
+    "/rolling/7/scored_with_each_factor/marginal_netload",
+    "/rolling/9/scored_with_each_factor/marginal_netload",
+    "/rolling/11/scored_with_each_factor/marginal_netload"
+   ]
   },
   "results/reproduction/outputs/step3_results_average.json": {
-   "values": 1126,
+   "values": 1142,
    "mismatches": 0,
    "max_abs_diff": 0.0,
    "examples": [],
    "keys_only_in_committed": [],
    "keys_only_in_rerun": [
-    "/rolling/5/matched_tree_event_days",
-    "/rolling/5/matched_tree_adjustments",
-    "/rolling/5/matched_paced_event_days",
-    "/rolling/5/matched_paced_adjustments",
-    "/rolling/7/matched_tree_event_days",
-    "/rolling/7/matched_tree_adjustments",
-    "/rolling/7/matched_paced_event_days",
-    "/rolling/7/matched_paced_adjustments",
-    "/rolling/9/matched_tree_event_days",
-    "/rolling/9/matched_tree_adjustments",
-    "/rolling/9/matched_paced_event_days",
-    "/rolling/9/matched_paced_adjustments",
-    "/rolling/11/matched_tree_event_days",
-    "/rolling/11/matched_tree_adjustments",
-    "/rolling/11/matched_paced_event_days",
-    "/rolling/11/matched_paced_adjustments"
+    "/scored_with_each_factor/marginal_netload",
+    "/rolling/5/scored_with_each_factor/marginal_netload",
+    "/rolling/7/scored_with_each_factor/marginal_netload",
+    "/rolling/9/scored_with_each_factor/marginal_netload",
+    "/rolling/11/scored_with_each_factor/marginal_netload"
    ]
   },
   "results/reproduction/outputs/response_theta.npz": {
@@ -163,7 +158,7 @@
    "keys_only_in_rerun": []
   },
   "results/reproduction/step1_mac/step1b_mef.json": {
-   "values": 292,
+   "values": 355,
    "mismatches": 0,
    "max_abs_diff": 0.0,
    "examples": [],
@@ -182,7 +177,8 @@
    "max_abs_diff_per_array": {
     "realised": 0.0,
     "realised_unadjusted": 0.0,
-    "forecast": 0.0
+    "forecast": 0.0,
+    "realised_netload": 0.0
    }
   }
  }

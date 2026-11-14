@@ -7,6 +7,10 @@ Check whether the paper's findings can be reproduced (a) with the authors' own p
 Report honestly: *reproduced*, *partially reproduced*, *not reproduced*, or *not testable*, with numbers.
 
 ## 1. Locations (absolute; note the spaces, always quote)
+> **Historical.** The absolute paths below are from the original working folder (`Claude_ML_Project`) and a temporary
+> session folder; they do not exist in this repository. `lib/` and `scripts/` now resolve paths relative to the
+> repository (`PROJECT` = repository root). See the top-level `README.md` for where to put the data.
+
 - PROJECT = `C:/Users/cleme/Desktop/MIT/Courses/Fall/Machine Learning/Project/Claude_ML_Project`
 - REPRO   = `$PROJECT/CVAE_reproduction` (`lib/`, `scripts/`, `data/`, `outputs/trackA/`, `outputs/trackB/`, `outputs/figures/`)
 - Paper text (extracted): `C:/Users/cleme/AppData/Local/Temp/claude/2f83cc224499e10e/1aa3d082-c193-42de-888f-c8f5d2fbba90/scratchpad/paper.txt`

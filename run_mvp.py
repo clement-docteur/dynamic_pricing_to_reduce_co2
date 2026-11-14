@@ -20,9 +20,11 @@ Stages (in order):
   affordability  additional experiment: budget-aware trees with an expected-bill cap (0/5/10 %) or penalty, all four
             windows (results/affordability/, figure 7); needs the pacing stage
   summary   final cross-window comparison from the saved outputs (results/tables/final_comparison.md, figure 8)
-  reproduce (only with --reproduce) Clement's original configuration on his committed Step-1 inputs + comparison
+  reproduce (only with --reproduce) re-run Clement's Steps 1 and 1b on this machine (results/reproduction/step1_mac) and his
+            Steps 2-3 on his committed Step-1 inputs (results/reproduction/outputs), then compare with his committed outputs
 
-Raw data are read from $CARBON_RAW_DIR (default: the folder that contains this repository) and never modified.
+Raw data are read from $CARBON_RAW_DIR (if set), else the repository root, else the folder that contains the repository,
+and never modified.
 MVP outputs: results/mvp/outputs (pipeline JSON/NPZ), results/figures, results/tables, results/processed (gitignored),
 results/logs. Clement's committed outputs in carbon_tariff_pipeline/outputs are never overwritten.
 """
@@ -39,13 +41,21 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 PIPE = ROOT / "carbon_tariff_pipeline"
 REPRO = ROOT / "CVAE_reproduction"
-RAW = Path(os.environ.get("CARBON_RAW_DIR", ROOT.parent))
+RAW_DIRS = ([Path(os.environ["CARBON_RAW_DIR"])] if os.environ.get("CARBON_RAW_DIR") else []) + [ROOT, ROOT.parent]
+
+
+def raw_file(*names):
+    """First existing raw-data file among RAW_DIRS x names (else the first candidate)."""
+    return next((d / n for d in RAW_DIRS for n in names if (d / n).exists()), RAW_DIRS[0] / names[0])
+
+
 RES = ROOT / "results"
 MVP_OUT = RES / "mvp" / "outputs"
 LOGS = RES / "logs"
 STAGES = ["check", "data", "forecast", "demand", "policy", "iai", "outputs", "pacing", "affordability", "summary"]
-RAW_FILES = {"LCL smart meters": RAW / "LCL_Data" / "CC_LCL-FullData.csv", "NESO generation mix": RAW / "df_fuel_ckan.csv",
-             "ERA5 temperature": RAW / "temp UK 2013-14.csv", "Tariffs": RAW / "Tariffs.xlsx"}
+RAW_FILES = {"LCL smart meters": raw_file("CC_LCL-FullData.csv", "LCL_Data/CC_LCL-FullData.csv"),
+             "NESO generation mix": raw_file("df_fuel_ckan.csv"), "ERA5 temperature": raw_file("temp UK 2013-14.csv"),
+             "Tariffs": raw_file("Tariffs.xlsx")}
 MVP_FLAGS = ["--temperature", "lagged", "--tag", "mvp"]
 
 
@@ -55,7 +65,7 @@ def say(msg):
 
 def env_for(out_dir, fig_dir):
     e = dict(os.environ)
-    e.update(CARBON_OUT=str(out_dir), CARBON_FIG=str(fig_dir), CARBON_RAW_DIR=str(RAW), PYTHONHASHSEED="0")
+    e.update(CARBON_OUT=str(out_dir), CARBON_FIG=str(fig_dir), PYTHONHASHSEED="0")      # raw data: same lookup in every script
     for v in ("OPENBLAS_NUM_THREADS", "OMP_NUM_THREADS", "MKL_NUM_THREADS"):
         e.setdefault(v, "4")
     return e
@@ -82,7 +92,8 @@ def wait(name, p):
 def stage_check(a):
     bad = [f"{k}: {p}" for k, p in RAW_FILES.items() if not (p.is_file() and os.access(p, os.R_OK))]
     if bad:
-        sys.exit("missing or unreadable raw data (set CARBON_RAW_DIR):\n  " + "\n  ".join(bad))
+        sys.exit("missing or unreadable raw data (put it in $CARBON_RAW_DIR, the repository root or its parent folder):\n  "
+                 + "\n  ".join(bad))
     for k, p in RAW_FILES.items():
         say(f"raw data ok: {k} ({p.stat().st_size / 1e6:,.0f} MB)")
     missing = []
@@ -166,6 +177,11 @@ def stage_summary(a):
 
 
 def stage_reproduce(a):
+    mac1 = RES / "reproduction" / "step1_mac"                # Clement's Steps 1 and 1b re-run here (incl. the net-load factor)
+    mac1.mkdir(parents=True, exist_ok=True)
+    e1 = env_for(mac1, RES / "reproduction" / "figures")
+    run("repro_01_ci_forecast", ["scripts/01_ci_forecast.py"], env=e1)
+    run("repro_01b_marginal_emissions", ["scripts/01b_marginal_emissions.py"], env=e1)
     out = RES / "reproduction" / "outputs"
     out.mkdir(parents=True, exist_ok=True)
     for f in ("step1_metrics.json", "step1b_mef.json", "ci_forecasts_2013.npz", "mef_2013.npz"):

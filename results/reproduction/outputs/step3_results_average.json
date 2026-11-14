@@ -22,6 +22,16 @@
    "Budget-aware policy tree": -0.586582362353994,
    "Budget-aware direct optimisation": -0.6379807960240452
   },
+  "marginal_netload": {
+   "Historical TOU (2013 trial)": 0.0,
+   "Simple carbon-based tariff": 0.18709879681288058,
+   "Optimal policy tree": -0.823405701247289,
+   "Direct optimisation": -0.8536503675769801,
+   "Direct optimisation, perfect carbon forecast": -0.8592531291184515,
+   "Oracle (perfect hindsight)": -0.878669376202621,
+   "Budget-aware policy tree": -0.8654300439691129,
+   "Budget-aware direct optimisation": -0.8834938029325713
+  },
   "average": {
    "Historical TOU (2013 trial)": 0.0,
    "Simple carbon-based tariff": 0.17594937529538762,
@@ -966,6 +976,16 @@
      "Budget-aware policy tree": -0.11056081743832485,
      "Budget-aware direct optimisation": -0.13384836603565722
     },
+    "marginal_netload": {
+     "Historical TOU (2013 trial)": 0.0,
+     "Simple carbon-based tariff": 0.6585525750906297,
+     "Optimal policy tree": 0.47884311816787745,
+     "Direct optimisation": 0.2513027422386068,
+     "Direct optimisation, perfect carbon forecast": 0.3465746972437207,
+     "Oracle (perfect hindsight)": -0.313351743890598,
+     "Budget-aware policy tree": -0.21165652410302052,
+     "Budget-aware direct optimisation": -0.2108821675747314
+    },
     "average": {
      "Historical TOU (2013 trial)": 0.0,
      "Simple carbon-based tariff": 0.5876802535185827,
@@ -1234,6 +1254,16 @@
      "Budget-aware policy tree": -0.40168632848703556,
      "Budget-aware direct optimisation": -0.4992577803420735
     },
+    "marginal_netload": {
+     "Historical TOU (2013 trial)": 0.0,
+     "Simple carbon-based tariff": -0.23263501944057527,
+     "Optimal policy tree": -0.28264451397838297,
+     "Direct optimisation": -0.736453461024864,
+     "Direct optimisation, perfect carbon forecast": -0.749063364911548,
+     "Oracle (perfect hindsight)": -0.7903333896601854,
+     "Budget-aware policy tree": -0.6395143062692138,
+     "Budget-aware direct optimisation": -0.7275273722296366
+    },
     "average": {
      "Historical TOU (2013 trial)": 0.0,
      "Simple carbon-based tariff": -0.3595409589930885,
@@ -1473,6 +1503,16 @@
      "Oracle (perfect hindsight)": -0.3381309985297207,
      "Budget-aware policy tree": -0.30294519899514655,
      "Budget-aware direct optimisation": -0.3367946195084755
+    },
+    "marginal_netload": {
+     "Historical TOU (2013 trial)": 0.0,
+     "Simple carbon-based tariff": 0.39210217874687664,
+     "Optimal policy tree": -0.5122658249724209,
+     "Direct optimisation": -0.4953585014694175,
+     "Direct optimisation, perfect carbon forecast": -0.504051324037598,
+     "Oracle (perfect hindsight)": -0.5376425993577468,
+     "Budget-aware policy tree": -0.5043816629833149,
+     "Budget-aware direct optimisation": -0.5213652291802512
     },
     "average": {
      "Historical TOU (2013 trial)": 0.0,
@@ -1748,6 +1788,16 @@
      "Oracle (perfect hindsight)": -0.6360851325830139,
      "Budget-aware policy tree": -0.586582362353994,
      "Budget-aware direct optimisation": -0.6379807960240452
+    },
+    "marginal_netload": {
+     "Historical TOU (2013 trial)": 0.0,
+     "Simple carbon-based tariff": 0.18709879681288058,
+     "Optimal policy tree": -0.823405701247289,
+     "Direct optimisation": -0.8536503675769801,
+     "Direct optimisation, perfect carbon forecast": -0.8592531291184515,
+     "Oracle (perfect hindsight)": -0.878669376202621,
+     "Budget-aware policy tree": -0.8654300439691129,
+     "Budget-aware direct optimisation": -0.8834938029325713
     },
     "average": {
      "Historical TOU (2013 trial)": 0.0,

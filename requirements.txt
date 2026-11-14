@@ -1,11 +1,19 @@
-# Python 3.12. Versions = the ones the MVP was run with (Nov 2026, macOS arm64).
-numpy==2.5.3
-pandas==3.0.5
-scipy==1.18.1
-scikit-learn==1.9.1
-xgboost==3.4.1
-matplotlib==3.11.2
-statsmodels==0.15.0
-duckdb==2.0.0
-pyarrow==26.0.1
-openpyxl==3.1.5
+# Python >= 3.12; pandas >= 3 is required. Tested with Python 3.14 on Windows (Clement) and Python 3.12.14 on macOS arm64
+# (Panle's MVP run; exact versions listed at the bottom).
+numpy>=2.5.2
+pandas>=3.0.5
+scipy>=1.18.1
+scikit-learn>=1.9.0
+matplotlib>=3.11.1
+duckdb>=2.0.0
+pyarrow>=26.0.1
+openpyxl>=3.1.5
+xgboost>=3.4.1          # carbon_tariff_pipeline step 1
+torch>=2.15.0           # CVAE_reproduction training (CPU build is enough); the main pipeline and run_mvp.py run without it
+
+# notebooks
+jupyterlab>=4.6.3
+ipykernel>=7.3.0
+
+# Exact versions of the MVP run (macOS arm64, Python 3.12.14, without torch): numpy 2.5.3, pandas 3.0.5, scipy 1.18.1,
+# scikit-learn 1.9.1, xgboost 3.4.1, matplotlib 3.11.2, duckdb 2.0.0, pyarrow 26.0.1, openpyxl 3.1.5.

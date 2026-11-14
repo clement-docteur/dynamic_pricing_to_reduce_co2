@@ -30,29 +30,29 @@ import numpy as np
 import pandas as pd
 
 # --------------------------------------------------------------------------- paths
-# Portable paths (MVP integration, 2026-11-14): repository-relative; raw data are looked up in
-# $CARBON_RAW_DIR, else the folder that contains the repository (raw files are never copied or modified).
-REPRO = Path(__file__).resolve().parents[1]
-PROJECT = REPRO.parent                                   # repository root
-RAW_DIR = Path(os.environ.get("CARBON_RAW_DIR", PROJECT.parent))
+# Repository-relative paths (merged: Clement's fresh-clone fix + Panle's MVP integration). Raw data files are looked up
+# in $CARBON_RAW_DIR (if set), then the repository root (Clement's layout), then the folder that contains the repository
+# (Panle's layout); they are only read, never copied or modified.
+PROJECT = Path(__file__).resolve().parents[2]  # repository root
+REPRO = PROJECT / "CVAE_reproduction"
 DATA = REPRO / "data"
 OUT = REPRO / "outputs"
 FIG = OUT / "figures"
-UPSTREAM = Path(os.environ.get("CVAE_UPSTREAM", REPRO / "data" / "authors_upstream_not_present"))
-UP_DATA = DATA / "authors"  # copy of the authors' repo data/*.feather (byte-identical; read as data only); the clone above may be gone
+UP_DATA = DATA / "authors"  # copy of the authors' repo data/*.feather (byte-identical; read as data only)
+RAW_DIRS = ([Path(os.environ["CARBON_RAW_DIR"])] if os.environ.get("CARBON_RAW_DIR") else []) + [PROJECT, PROJECT.parent]
 
 
-def _first_existing(*cands):
-    for c in cands:
-        if Path(c).exists():
-            return Path(c)
-    return Path(cands[0])
+def raw_file(*names) -> Path:
+    """First existing raw-data file among RAW_DIRS x names (else the first candidate, for a clear error message)."""
+    for d in RAW_DIRS:
+        for n in names:
+            if (d / n).exists():
+                return d / n
+    return RAW_DIRS[0] / names[0]
 
 
-RAW_CSV = _first_existing(RAW_DIR / "LCL_Data" / "CC_LCL-FullData.csv", RAW_DIR / "CC_LCL-FullData.csv",
-                          PROJECT / "CC_LCL-FullData.csv")
-TARIFFS_XLSX = _first_existing(RAW_DIR / "Tariffs.xlsx", PROJECT / "Tariffs.xlsx")
-_SCRATCH = DATA / "_scratch"                             # gitignored
+RAW_CSV = raw_file("CC_LCL-FullData.csv", "LCL_Data/CC_LCL-FullData.csv")
+TARIFFS_XLSX = raw_file("Tariffs.xlsx")
 
 # output files of the data build (scripts/01_build_lcl2013.py)
 LONG_PARQUET = DATA / "lcl2013_long.parquet"        # LCLid, group, ts, kwh (deduplicated, on-grid)
@@ -89,12 +89,12 @@ def season_of_day(day_index):
 
 
 def work_dir() -> Path:
-    """Scratch directory for large intermediates: $LCL_WORK, else CVAE_reproduction/data/_scratch (gitignored)."""
+    """Scratch directory for large intermediates: $LCL_WORK, else <system temp dir>/lcl_work."""
     env = os.environ.get("LCL_WORK")
     if env:
         p = Path(env)
     else:
-        p = _SCRATCH / "lcl_work"
+        p = Path(tempfile.gettempdir()) / "lcl_work"
     p.mkdir(parents=True, exist_ok=True)
     return p
 

@@ -35,7 +35,10 @@ PROJECT = Path(__file__).resolve().parents[2]
 PIPE = PROJECT / "carbon_tariff_pipeline"
 REPRO = PROJECT / "CVAE_reproduction"
 OUT = Path(os.environ.get("CARBON_OUT", PIPE / "outputs"))      # MVP: overridable so reruns never overwrite the committed outputs
-RAW_DIR = Path(os.environ.get("CARBON_RAW_DIR", PROJECT.parent))   # raw data live outside the repository
+# Raw data: $CARBON_RAW_DIR (if set), then the repository root (Clement's layout), then the folder containing the
+# repository (Panle's layout). Files are only read, never modified.
+RAW_DIRS = ([Path(os.environ["CARBON_RAW_DIR"])] if os.environ.get("CARBON_RAW_DIR") else []) + [PROJECT, PROJECT.parent]
+RAW_DIR = RAW_DIRS[0]                                    # first search location (kept for backwards compatibility)
 FIG = Path(os.environ.get("CARBON_FIG", PIPE / "figures"))
 
 H = 48
@@ -116,8 +119,17 @@ def load_json(path):
 
 
 # ------------------------------------------------------------------------------------------------ NESO
+def raw_file(*names) -> Path:
+    """First existing raw-data file among RAW_DIRS x names (else the first candidate, for a clear error message)."""
+    for d in RAW_DIRS:
+        for n in names:
+            if (d / n).exists():
+                return d / n
+    return RAW_DIRS[0] / names[0]
+
+
 def load_neso() -> pd.DataFrame:
-    df = pd.read_csv(RAW_DIR / "df_fuel_ckan.csv", parse_dates=["DATETIME"])
+    df = pd.read_csv(raw_file("df_fuel_ckan.csv"), parse_dates=["DATETIME"])
     df = df.sort_values("DATETIME").set_index("DATETIME").loc[:"2014-01-02"]
     assert not df.index.duplicated().any()
     return df
