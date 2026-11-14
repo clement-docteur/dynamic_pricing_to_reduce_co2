@@ -136,8 +136,8 @@ chronological split it shows −13 % to −30 % energy bias and the wrong sign f
 ## 4. Optimal Policy Tree methodology
 
 **Actions.**
-- Greedy forward selection on *training* days picks a menu of up to 6 daily schedules from about 150 single-block
-  candidates.
+- Greedy forward selection on *training* days picks a menu of up to 6 daily schedules from 98 candidate schedules
+  (single High and/or Low blocks).
 - The Nov–Dec menu:
 
 | Schedule | Time-average price (p/kWh) |
