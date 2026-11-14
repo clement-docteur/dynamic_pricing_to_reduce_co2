@@ -24,7 +24,12 @@ each priced with the lambda that would make the policy spend that much on the fi
 Rolling evaluation: the same protocol on four test windows (May-Jun, Jul-Aug, Sep-Oct, Nov-Dec), each with the
 response model refitted on the days before it.
 
-Usage:   python -P scripts/03_policy.py [--metric marginal|average]
+Test mode --metric netload_perfect: costs and evaluation use Step 1b's net-load (merit-order) marginal factors, and
+decisions see them as if known perfectly a day ahead (direct optimisation and the carbon rule use them; the tree's
+carbon features are computed from them instead of the CI forecast). An upper bound on what a day-ahead net-load
+forecast could add; compare with the main run re-scored under 'marginal_netload'.
+
+Usage:   python -P scripts/03_policy.py [--metric marginal|average|netload_perfect]
 Outputs: outputs/step3_results{,_average}.json, outputs/step3_test_schedules{,_average}.npz (inputs of figure 4)
 """
 from __future__ import annotations
@@ -47,16 +52,17 @@ from lib.policy import (NORMAL, POLICIES, PolicyTree, candidate_pool, carbon_rul
                         carbon_rule_schedule, describe, feasibility_rule, make_schedule, pick_near_best, tune_lambda)
 
 _ap = argparse.ArgumentParser()
-_ap.add_argument("--metric", choices=["marginal", "average"], default="marginal")
+_ap.add_argument("--metric", choices=["marginal", "average", "netload_perfect"], default="marginal")
 METRIC = _ap.parse_args().metric
 SUFFIX = "" if METRIC == "marginal" else f"_{METRIC}"
 log, _ = make_log()
 CLIP = np.log(4.0)            # simulated consumption ratios are clipped to [1/4, 4]
 K_MENU = 6
 LAMBDAS = [0.0, 0.002, 0.004, 0.006, 0.007, 0.008, 0.009, 0.010, 0.011, 0.013, 0.016, 0.02, 0.03]   # kg per (p/kWh)
-FEATURES = {"forecast CI, day mean (g/kWh)": "{:.0f} g/kWh", "forecast CI, 16:00-21:00 (g/kWh)": "{:.0f} g/kWh",
-            "forecast CI, evening minus night (g/kWh)": "{:.0f} g/kWh", "forecast CI, max - min (g/kWh)": "{:.0f} g/kWh",
-            "forecast dirtiest 3 h, start hour (GMT)": "{:.1f} h", "temperature, day mean (C)": "{:.1f} &deg;C",
+_SIG = "net-load MEF (perfect)" if METRIC == "netload_perfect" else "forecast CI"   # carbon signal of the tree features
+FEATURES = {f"{_SIG}, day mean (g/kWh)": "{:.0f} g/kWh", f"{_SIG}, 16:00-21:00 (g/kWh)": "{:.0f} g/kWh",
+            f"{_SIG}, evening minus night (g/kWh)": "{:.0f} g/kWh", f"{_SIG}, max - min (g/kWh)": "{:.0f} g/kWh",
+            f"{_SIG}, dirtiest 3 h, start hour (GMT)": "{:.1f} h", "temperature, day mean (C)": "{:.1f} &deg;C",
             "weekend or holiday": "{:.1f}", "recent consumption (kWh/half-hour)": "{:.3f}"}
 NIGHT_LOW = (5, 10)           # Low 02:00-05:00, the menu's night Low block
 SLACK_GRID = [0.0, 0.25, 0.5, 1.0, 1.5, 2.0, 3.0, 5.0, 9.5]     # budget levels (p/kWh above Normal per remaining day)
@@ -73,8 +79,10 @@ CI, CIF = CIZ["actual"], CIZ["selected"]                 # average CI: realised,
 MEFZ = np.load(OUT / "mef_2013.npz")
 FACTORS = {"marginal": MEFZ["realised"], "marginal_unadjusted": MEFZ["realised_unadjusted"],
            "marginal_netload": MEFZ["realised_netload"], "average": CI}   # all used to re-score the same schedules
-FAC = FACTORS[METRIC]                                    # emission factor of costs and evaluation (g/kWh)
-FAC_F = {"marginal": MEFZ["forecast"], "average": CIF}[METRIC]   # its decision-time forecast
+FACTORS_RUN = {**FACTORS, "netload_perfect": MEFZ["realised_netload"]}
+FAC = FACTORS_RUN[METRIC]                                # emission factor of costs and evaluation (g/kWh)
+FAC_F = {"marginal": MEFZ["forecast"], "average": CIF, "netload_perfect": MEFZ["realised_netload"]}[METRIC]   # decision-time
+SIG = MEFZ["realised_netload"] if METRIC == "netload_perfect" else CIF   # carbon signal behind the tree features
 CL = hh["cluster"]
 SIZES, W, YC, YALL = cluster_aggregates(hh)
 DAYTYPE = day_type(DATES_2013)
@@ -83,13 +91,13 @@ THETA = np.load(OUT / "response_theta.npz")
 
 def features():
     temp = load_temps_2013()
-    win = np.stack([np.convolve(r, np.ones(6), "valid") for r in CIF])
+    win = np.stack([np.convolve(r, np.ones(6), "valid") for r in SIG])
     daily = YALL.mean(1)
     f = np.zeros((365, len(FEATURES)))
-    f[:, 0] = CIF.mean(1)
-    f[:, 1] = CIF[:, hours(16, 21)].mean(1)
-    f[:, 2] = f[:, 1] - CIF[:, hours(0, 6)].mean(1)
-    f[:, 3] = CIF.max(1) - CIF.min(1)
+    f[:, 0] = SIG.mean(1)
+    f[:, 1] = SIG[:, hours(16, 21)].mean(1)
+    f[:, 2] = f[:, 1] - SIG[:, hours(0, 6)].mean(1)
+    f[:, 3] = SIG.max(1) - SIG.min(1)
     f[:, 4] = (win.argmax(1) - 1) / 2.0                     # window starting at slot i begins at (i-1)/2 h GMT
     f[:, 5] = temp.mean(1)
     f[:, 6] = DAYTYPE
