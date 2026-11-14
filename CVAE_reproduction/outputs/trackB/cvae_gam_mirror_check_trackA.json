@@ -1,0 +1,137 @@
+{
+ "purpose": "run-time evidence that Track B uses exactly Track A's settings and code paths (re-check after the scenario-window correction, without retraining or refitting)",
+ "scenario_windows": {
+  "Low": {
+   "slots": [
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19
+   ],
+   "clock_gmt": "04:00-09:30"
+  },
+  "High": {
+   "slots": [
+    39,
+    40,
+    41,
+    42,
+    43,
+    44
+   ],
+   "clock_gmt": "19:00-22:00"
+  }
+ },
+ "checks": {
+  "constants_equal_to_trackA_scripts": {
+   "GEN_SEED": true,
+   "N_RESTARTS": true,
+   "N_SAMPLES": true,
+   "LOW_SLOTS": true,
+   "HIGH_SLOTS": true,
+   "SCENARIOS": true,
+   "CLUSTERS": true,
+   "REGIONS": true,
+   "CLAIMED_SIGN": true,
+   "gam.BASE_SEED": true,
+   "gam.N_SAMPLES": true,
+   "gam.PAPER_FIG4": true,
+   "LOW_SLOTS == lib.effects.LOW_WINDOW": true,
+   "HIGH_SLOTS == lib.effects.HIGH_WINDOW": true,
+   "gam_generator.SCENARIOS windows == lib.effects": true
+  },
+  "gam_lib_scenario_order_equals_SCENARIOS": true,
+  "cvae_scenario_cond_equal_trackA_function_on_trackB_conditions": {
+   "Normal": true,
+   "Low": true,
+   "High": true,
+   "AllHigh": true
+  },
+  "cvae_generation_code_reproduces_trackA_arrays_bitwise": {
+   "0": {
+    "samples": true,
+    "Normal": true,
+    "Low": true,
+    "High": true
+   },
+   "1": {
+    "samples": true,
+    "Normal": true,
+    "Low": true,
+    "High": true
+   },
+   "2": {
+    "samples": true,
+    "Normal": true,
+    "Low": true,
+    "High": true
+   },
+   "3": {
+    "samples": true,
+    "Normal": true,
+    "Low": true,
+    "High": true
+   }
+  },
+  "gam_generation_code_on_trackA_stored_gams_reproduces_trackA_arrays_bitwise": {
+   "0": {
+    "samples": true,
+    "Normal": true,
+    "Low": true,
+    "High": true
+   },
+   "1": {
+    "samples": true,
+    "Normal": true,
+    "Low": true,
+    "High": true
+   },
+   "2": {
+    "samples": true,
+    "Normal": true,
+    "Low": true,
+    "High": true
+   },
+   "3": {
+    "samples": true,
+    "Normal": true,
+    "Low": true,
+    "High": true
+   }
+  }
+ },
+ "all_pass_without_retraining": true,
+ "carried_over_from_full_mirror_run": {
+  "checks": {
+   "cvae_training_job_reproduces_trackA_restart": {
+    "cluster": 3,
+    "seed": 31,
+    "test_mse_post_trackA": 5.296956311059018,
+    "test_mse_post_rerun": 5.296956311059018,
+    "max_abs_weight_diff": 0.0,
+    "epoch_loss_identical": true,
+    "runtime_s": 7.701178200004506
+   },
+   "gam_code_reproduces_trackA_cluster3": {
+    "samples_max_abs_diff_kwh": 0.0,
+    "Normal_max_abs_diff_kwh": 0.0,
+    "Low_max_abs_diff_kwh": 0.0,
+    "High_max_abs_diff_kwh": 0.0,
+    "smoothing_g_max_abs_diff": 0.0,
+    "sigma_max_abs_diff": 0.0,
+    "note": "this refit ran with OPENBLAS_NUM_THREADS=1 vs 4 in 11_trackA_gam.py, so rounding-level differences would be acceptable; anything above 1e-8 kWh would not",
+    "fit_seconds": 2.328338623046875
+   }
+  },
+  "all_pass": true,
+  "note": "from the last full 'mirror' stage run (2026-11-12 08:51, scenario windows 9-18 / 39-43 at the time): retraining Track A's selected cluster-3 restart and refitting its GAM are independent of the scenario windows; the GAM refit's scenario-array comparison was made with the old windows"
+ },
+ "all_pass": true
+}

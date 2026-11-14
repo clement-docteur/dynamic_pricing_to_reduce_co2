@@ -1,0 +1,24 @@
+# --- Raw / large input data (download separately, see README) ---
+CC_LCL-FullData.csv
+Small LCL Data/
+df_fuel_ckan.csv
+temp UK 2013-14.*
+
+# --- Large derived arrays (regenerable from the scripts) ---
+CVAE_reproduction/data/lcl2013_kwh.npy
+CVAE_reproduction/data/lcl2013_kwh_filled.npy
+CVAE_reproduction/data/lcl2013_long.parquet
+CVAE_reproduction/outputs/**/*.npy
+
+# --- Third-party papers (not ours to redistribute) ---
+Simulating_Tariff_Impact_in_Electrical_Energy_Consumption_Profiles_With_Conditional_Variational_Autoencoders.pdf
+example of paper from last year.pdf
+
+# --- Python / Jupyter / OS clutter ---
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.DS_Store
+Thumbs.db
+desktop.ini
+~$*

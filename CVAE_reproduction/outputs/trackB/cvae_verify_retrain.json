@@ -1,0 +1,140 @@
+{
+ "definition": "retrain from scratch with lib.cvae_torch.run_restart_job (same job keys as the train stage), compare with the stored restart",
+ "median_runtime_train_s_all_restarts": 11.7900226999991,
+ "restarts": {
+  "c0_s35": {
+   "why": [
+    "runtime_outlier"
+   ],
+   "max_abs_weight_diff": 0.0,
+   "epoch_loss_identical": true,
+   "metrics_identical": {
+    "test_mse_post": true,
+    "test_mse_prior": true,
+    "train_kl_final": true,
+    "test_rmse_mean200_kwh_median": true,
+    "conso_min": true,
+    "conso_max": true
+   },
+   "test_mse_post": 7.492606795724341,
+   "runtime_train_s_stored": 4637.316059199999,
+   "runtime_train_s_retrain": 11.03589450000436,
+   "identical": true
+  },
+  "c0_s42": {
+   "why": [
+    "selected"
+   ],
+   "max_abs_weight_diff": 0.0,
+   "epoch_loss_identical": true,
+   "metrics_identical": {
+    "test_mse_post": true,
+    "test_mse_prior": true,
+    "train_kl_final": true,
+    "test_rmse_mean200_kwh_median": true,
+    "conso_min": true,
+    "conso_max": true
+   },
+   "test_mse_post": 5.994543840209808,
+   "runtime_train_s_stored": 25.16579040000215,
+   "runtime_train_s_retrain": 11.132574499992188,
+   "identical": true
+  },
+  "c1_s26": {
+   "why": [
+    "selected"
+   ],
+   "max_abs_weight_diff": 0.0,
+   "epoch_loss_identical": true,
+   "metrics_identical": {
+    "test_mse_post": true,
+    "test_mse_prior": true,
+    "train_kl_final": true,
+    "test_rmse_mean200_kwh_median": true,
+    "conso_min": true,
+    "conso_max": true
+   },
+   "test_mse_post": 5.737754931175626,
+   "runtime_train_s_stored": 19.15327330000582,
+   "runtime_train_s_retrain": 11.319340399990324,
+   "identical": true
+  },
+  "c1_s35": {
+   "why": [
+    "runtime_outlier"
+   ],
+   "max_abs_weight_diff": 0.0,
+   "epoch_loss_identical": true,
+   "metrics_identical": {
+    "test_mse_post": true,
+    "test_mse_prior": true,
+    "train_kl_final": true,
+    "test_rmse_mean200_kwh_median": true,
+    "conso_min": true,
+    "conso_max": true
+   },
+   "test_mse_post": 6.989037769095429,
+   "runtime_train_s_stored": 4637.552545299994,
+   "runtime_train_s_retrain": 11.130613500004984,
+   "identical": true
+  },
+  "c2_s26": {
+   "why": [
+    "selected"
+   ],
+   "max_abs_weight_diff": 0.0,
+   "epoch_loss_identical": true,
+   "metrics_identical": {
+    "test_mse_post": true,
+    "test_mse_prior": true,
+    "train_kl_final": true,
+    "test_rmse_mean200_kwh_median": true,
+    "conso_min": true,
+    "conso_max": true
+   },
+   "test_mse_post": 6.0191094907761356,
+   "runtime_train_s_stored": 19.130156100000022,
+   "runtime_train_s_retrain": 10.965490000002319,
+   "identical": true
+  },
+  "c2_s35": {
+   "why": [
+    "runtime_outlier"
+   ],
+   "max_abs_weight_diff": 0.0,
+   "epoch_loss_identical": true,
+   "metrics_identical": {
+    "test_mse_post": true,
+    "test_mse_prior": true,
+    "train_kl_final": true,
+    "test_rmse_mean200_kwh_median": true,
+    "conso_min": true,
+    "conso_max": true
+   },
+   "test_mse_post": 7.105115891552956,
+   "runtime_train_s_stored": 4637.484963700001,
+   "runtime_train_s_retrain": 11.157037099997979,
+   "identical": true
+  },
+  "c3_s29": {
+   "why": [
+    "selected"
+   ],
+   "max_abs_weight_diff": 0.0,
+   "epoch_loss_identical": true,
+   "metrics_identical": {
+    "test_mse_post": true,
+    "test_mse_prior": true,
+    "train_kl_final": true,
+    "test_rmse_mean200_kwh_median": true,
+    "conso_min": true,
+    "conso_max": true
+   },
+   "test_mse_post": 5.597171568110051,
+   "runtime_train_s_stored": 10.630006800005503,
+   "runtime_train_s_retrain": 11.004920899998979,
+   "identical": true
+  }
+ },
+ "all_identical": true
+}

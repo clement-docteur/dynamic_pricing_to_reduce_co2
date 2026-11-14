@@ -1,0 +1,808 @@
+{
+ "description": "Causality model (lib/causality.py) fitted on each cluster aggregate of the authors' power_consump_nmf.feather and compared with agreg_profiles_nmf.feather.",
+ "cluster_label_mapping_power_to_agreg": {
+  "0": 1,
+  "1": 3,
+  "2": 0,
+  "3": 2
+ },
+ "mapping_evidence_corr_matrix_rows_power_cols_agreg": [
+  [
+   0.76962,
+   0.999589,
+   0.914157,
+   0.776063
+  ],
+  [
+   0.970269,
+   0.758495,
+   0.959056,
+   0.999841
+  ],
+  [
+   0.999561,
+   0.764562,
+   0.950938,
+   0.965481
+  ],
+  [
+   0.923942,
+   0.945171,
+   0.993198,
+   0.925798
+  ]
+ ],
+ "mapping_note": "agreg_profiles_nmf uses different cluster labels than power_consump_nmf / sum_up_nmf (whose sizes 325/295/229/158 follow the power_consump labels); under the mapping the raw mean profiles correlate ~1.000 with the authors' Normal mean profiles and the levels agree.",
+ "agreg_cluster_sizes_under_mapping": {
+  "1": 325,
+  "3": 295,
+  "0": 229,
+  "2": 158
+ },
+ "best_variant_by_mean_profiles": "all365_avg_all/laml",
+ "variance_column_interpretation": {
+  "Low": "sigma",
+  "Normal": "sigma",
+  "High": "sigma"
+ },
+ "variance_evidence": {
+  "authors_variance_min": 0.001608,
+  "authors_variance_median": 0.038227,
+  "authors_variance_night_median_normal": 0.006098,
+  "my_sigma_night_median_normal": 0.01,
+  "raw_sd_night_median_normal": 0.011714,
+  "my_sigma_median": 0.025028,
+  "my_sigma2_median": 0.000626,
+  "note": "mgcv gaulss(b=0.01) has sd = 0.01 + exp(eta) >= 0.01, yet 'variance' goes down to 0.0016; as sigma^2 of the aggregate it would be ~61x too large. Its size (night ~0.004-0.006, evening peak ~0.06) is what household-level sigma^2 would give (sd ~0.07-0.25 kWh), i.e. the authors' profiles were probably aggregated from per-household causality fits (mean of mu_i, and sigma_i^2), which cannot be checked with the cluster-level data available in Track A."
+ },
+ "variants": {
+  "all365_avg_all/laml": {
+   "with_detected_mapping": {
+    "mean/Low": {
+     "corr": 0.99877,
+     "max_abs_diff": 0.011106,
+     "mean_abs_diff": 0.003236,
+     "mean_signed_diff": 0.000953,
+     "median_ratio": 1.003957
+    },
+    "variance_vs_sigma/Low": {
+     "corr": 0.872984,
+     "max_abs_diff": 0.059083,
+     "mean_abs_diff": 0.018039,
+     "mean_signed_diff": -0.016124,
+     "median_ratio": 0.683325
+    },
+    "variance_vs_sigma2/Low": {
+     "corr": 0.834139,
+     "max_abs_diff": 0.109721,
+     "mean_abs_diff": 0.047009,
+     "mean_signed_diff": -0.047009,
+     "median_ratio": 0.021502
+    },
+    "mean/Normal": {
+     "corr": 0.997833,
+     "max_abs_diff": 0.018145,
+     "mean_abs_diff": 0.003573,
+     "mean_signed_diff": -0.002531,
+     "median_ratio": 0.989238
+    },
+    "variance_vs_sigma/Normal": {
+     "corr": 0.819597,
+     "max_abs_diff": 0.036407,
+     "mean_abs_diff": 0.014151,
+     "mean_signed_diff": -0.01172,
+     "median_ratio": 0.661992
+    },
+    "variance_vs_sigma2/Normal": {
+     "corr": 0.77415,
+     "max_abs_diff": 0.077403,
+     "mean_abs_diff": 0.03459,
+     "mean_signed_diff": -0.03459,
+     "median_ratio": 0.01746
+    },
+    "mean/High": {
+     "corr": 0.994688,
+     "max_abs_diff": 0.029385,
+     "mean_abs_diff": 0.005896,
+     "mean_signed_diff": -0.004827,
+     "median_ratio": 0.976958
+    },
+    "variance_vs_sigma/High": {
+     "corr": 0.729074,
+     "max_abs_diff": 0.037772,
+     "mean_abs_diff": 0.011165,
+     "mean_signed_diff": -0.006681,
+     "median_ratio": 0.818333
+    },
+    "variance_vs_sigma2/High": {
+     "corr": 0.700184,
+     "max_abs_diff": 0.080252,
+     "mean_abs_diff": 0.027372,
+     "mean_signed_diff": -0.027372,
+     "median_ratio": 0.019434
+    },
+    "effect_Low_minus_Normal": {
+     "corr": 0.996391,
+     "max_abs_diff": 0.014499,
+     "mean_abs_diff": 0.00362,
+     "mean_signed_diff": 0.003484,
+     "per_cluster_corr": [
+      0.993648,
+      0.897241,
+      0.944767,
+      0.998143
+     ]
+    },
+    "effect_High_minus_Normal": {
+     "corr": 0.996158,
+     "max_abs_diff": 0.013414,
+     "mean_abs_diff": 0.002667,
+     "mean_signed_diff": -0.002296,
+     "per_cluster_corr": [
+      0.986766,
+      0.979809,
+      0.964815,
+      0.996324
+     ]
+    }
+   },
+   "with_identity_labels": {
+    "mean/Low": {
+     "corr": 0.739369,
+     "max_abs_diff": 0.11834,
+     "mean_abs_diff": 0.045705,
+     "mean_signed_diff": 0.000953,
+     "median_ratio": 0.993956
+    },
+    "mean/Normal": {
+     "corr": 0.685553,
+     "max_abs_diff": 0.114055,
+     "mean_abs_diff": 0.042837,
+     "mean_signed_diff": -0.002531,
+     "median_ratio": 0.979784
+    },
+    "mean/High": {
+     "corr": 0.407341,
+     "max_abs_diff": 0.161492,
+     "mean_abs_diff": 0.061475,
+     "mean_signed_diff": -0.004827,
+     "median_ratio": 0.922057
+    }
+   },
+   "fit_seconds": 1.09,
+   "edf_median": 7.064243,
+   "frac_lambda_on_grid_edge": 0.026042,
+   "frac_sigma_at_floor": 0.121528,
+   "all_converged": true
+  },
+  "train273_avg_train/laml": {
+   "with_detected_mapping": {
+    "mean/Low": {
+     "corr": 0.997063,
+     "max_abs_diff": 0.019809,
+     "mean_abs_diff": 0.004707,
+     "mean_signed_diff": -0.001514,
+     "median_ratio": 0.99042
+    },
+    "variance_vs_sigma/Low": {
+     "corr": 0.897614,
+     "max_abs_diff": 0.057944,
+     "mean_abs_diff": 0.018236,
+     "mean_signed_diff": -0.016572,
+     "median_ratio": 0.664067
+    },
+    "variance_vs_sigma2/Low": {
+     "corr": 0.840058,
+     "max_abs_diff": 0.108895,
+     "mean_abs_diff": 0.047011,
+     "mean_signed_diff": -0.047011,
+     "median_ratio": 0.020115
+    },
+    "mean/Normal": {
+     "corr": 0.997519,
+     "max_abs_diff": 0.0215,
+     "mean_abs_diff": 0.00468,
+     "mean_signed_diff": -0.004301,
+     "median_ratio": 0.979114
+    },
+    "variance_vs_sigma/Normal": {
+     "corr": 0.815878,
+     "max_abs_diff": 0.034182,
+     "mean_abs_diff": 0.014227,
+     "mean_signed_diff": -0.011889,
+     "median_ratio": 0.659155
+    },
+    "variance_vs_sigma2/Normal": {
+     "corr": 0.767572,
+     "max_abs_diff": 0.077207,
+     "mean_abs_diff": 0.034594,
+     "mean_signed_diff": -0.034594,
+     "median_ratio": 0.017668
+    },
+    "mean/High": {
+     "corr": 0.993504,
+     "max_abs_diff": 0.031331,
+     "mean_abs_diff": 0.006984,
+     "mean_signed_diff": -0.00633,
+     "median_ratio": 0.970498
+    },
+    "variance_vs_sigma/High": {
+     "corr": 0.606723,
+     "max_abs_diff": 0.048572,
+     "mean_abs_diff": 0.012415,
+     "mean_signed_diff": -0.008095,
+     "median_ratio": 0.790275
+    },
+    "variance_vs_sigma2/High": {
+     "corr": 0.569801,
+     "max_abs_diff": 0.081096,
+     "mean_abs_diff": 0.027445,
+     "mean_signed_diff": -0.027445,
+     "median_ratio": 0.016721
+    },
+    "effect_Low_minus_Normal": {
+     "corr": 0.988191,
+     "max_abs_diff": 0.020249,
+     "mean_abs_diff": 0.004164,
+     "mean_signed_diff": 0.002787,
+     "per_cluster_corr": [
+      0.90613,
+      0.734763,
+      0.831221,
+      0.98665
+     ]
+    },
+    "effect_High_minus_Normal": {
+     "corr": 0.984581,
+     "max_abs_diff": 0.019208,
+     "mean_abs_diff": 0.003567,
+     "mean_signed_diff": -0.002029,
+     "per_cluster_corr": [
+      0.937851,
+      0.921478,
+      0.845764,
+      0.987107
+     ]
+    }
+   },
+   "with_identity_labels": {
+    "mean/Low": {
+     "corr": 0.73858,
+     "max_abs_diff": 0.121511,
+     "mean_abs_diff": 0.045139,
+     "mean_signed_diff": -0.001514,
+     "median_ratio": 0.986213
+    },
+    "mean/Normal": {
+     "corr": 0.683562,
+     "max_abs_diff": 0.115379,
+     "mean_abs_diff": 0.042618,
+     "mean_signed_diff": -0.004301,
+     "median_ratio": 0.973874
+    },
+    "mean/High": {
+     "corr": 0.404111,
+     "max_abs_diff": 0.158938,
+     "mean_abs_diff": 0.060752,
+     "mean_signed_diff": -0.00633,
+     "median_ratio": 0.92024
+    }
+   },
+   "fit_seconds": 3.25,
+   "edf_median": 7.041116,
+   "frac_lambda_on_grid_edge": 0.026042,
+   "frac_sigma_at_floor": 0.126736,
+   "all_converged": true
+  },
+  "train273_avg_all365/laml": {
+   "with_detected_mapping": {
+    "mean/Low": {
+     "corr": 0.997127,
+     "max_abs_diff": 0.020061,
+     "mean_abs_diff": 0.004583,
+     "mean_signed_diff": -0.000744,
+     "median_ratio": 0.994425
+    },
+    "variance_vs_sigma/Low": {
+     "corr": 0.897614,
+     "max_abs_diff": 0.057944,
+     "mean_abs_diff": 0.018236,
+     "mean_signed_diff": -0.016572,
+     "median_ratio": 0.664067
+    },
+    "variance_vs_sigma2/Low": {
+     "corr": 0.840058,
+     "max_abs_diff": 0.108895,
+     "mean_abs_diff": 0.047011,
+     "mean_signed_diff": -0.047011,
+     "median_ratio": 0.020115
+    },
+    "mean/Normal": {
+     "corr": 0.997555,
+     "max_abs_diff": 0.020078,
+     "mean_abs_diff": 0.004175,
+     "mean_signed_diff": -0.003532,
+     "median_ratio": 0.982847
+    },
+    "variance_vs_sigma/Normal": {
+     "corr": 0.815878,
+     "max_abs_diff": 0.034182,
+     "mean_abs_diff": 0.014227,
+     "mean_signed_diff": -0.011889,
+     "median_ratio": 0.659155
+    },
+    "variance_vs_sigma2/Normal": {
+     "corr": 0.767572,
+     "max_abs_diff": 0.077207,
+     "mean_abs_diff": 0.034594,
+     "mean_signed_diff": -0.034594,
+     "median_ratio": 0.017668
+    },
+    "mean/High": {
+     "corr": 0.993879,
+     "max_abs_diff": 0.030088,
+     "mean_abs_diff": 0.006578,
+     "mean_signed_diff": -0.005561,
+     "median_ratio": 0.973935
+    },
+    "variance_vs_sigma/High": {
+     "corr": 0.606723,
+     "max_abs_diff": 0.048572,
+     "mean_abs_diff": 0.012415,
+     "mean_signed_diff": -0.008095,
+     "median_ratio": 0.790275
+    },
+    "variance_vs_sigma2/High": {
+     "corr": 0.569801,
+     "max_abs_diff": 0.081096,
+     "mean_abs_diff": 0.027445,
+     "mean_signed_diff": -0.027445,
+     "median_ratio": 0.016721
+    },
+    "effect_Low_minus_Normal": {
+     "corr": 0.988191,
+     "max_abs_diff": 0.020249,
+     "mean_abs_diff": 0.004164,
+     "mean_signed_diff": 0.002787,
+     "per_cluster_corr": [
+      0.90613,
+      0.734763,
+      0.831221,
+      0.98665
+     ]
+    },
+    "effect_High_minus_Normal": {
+     "corr": 0.984581,
+     "max_abs_diff": 0.019208,
+     "mean_abs_diff": 0.003567,
+     "mean_signed_diff": -0.002029,
+     "per_cluster_corr": [
+      0.937851,
+      0.921478,
+      0.845764,
+      0.987107
+     ]
+    }
+   },
+   "with_identity_labels": {
+    "mean/Low": {
+     "corr": 0.740674,
+     "max_abs_diff": 0.121586,
+     "mean_abs_diff": 0.045115,
+     "mean_signed_diff": -0.000744,
+     "median_ratio": 0.989823
+    },
+    "mean/Normal": {
+     "corr": 0.685828,
+     "max_abs_diff": 0.115455,
+     "mean_abs_diff": 0.042664,
+     "mean_signed_diff": -0.003532,
+     "median_ratio": 0.978769
+    },
+    "mean/High": {
+     "corr": 0.408174,
+     "max_abs_diff": 0.15743,
+     "mean_abs_diff": 0.060753,
+     "mean_signed_diff": -0.005561,
+     "median_ratio": 0.92254
+    }
+   },
+   "fit_seconds": 4.13,
+   "edf_median": 7.041116,
+   "frac_lambda_on_grid_edge": 0.026042,
+   "frac_sigma_at_floor": 0.126736,
+   "all_converged": true
+  },
+  "all365_avg_all/gcv": {
+   "with_detected_mapping": {
+    "mean/Low": {
+     "corr": 0.99877,
+     "max_abs_diff": 0.011992,
+     "mean_abs_diff": 0.003244,
+     "mean_signed_diff": 0.001019,
+     "median_ratio": 1.003863
+    },
+    "variance_vs_sigma/Low": {
+     "corr": 0.875171,
+     "max_abs_diff": 0.059083,
+     "mean_abs_diff": 0.0182,
+     "mean_signed_diff": -0.016291,
+     "median_ratio": 0.684782
+    },
+    "variance_vs_sigma2/Low": {
+     "corr": 0.836286,
+     "max_abs_diff": 0.109943,
+     "mean_abs_diff": 0.047023,
+     "mean_signed_diff": -0.047023,
+     "median_ratio": 0.021344
+    },
+    "mean/Normal": {
+     "corr": 0.99783,
+     "max_abs_diff": 0.018145,
+     "mean_abs_diff": 0.003577,
+     "mean_signed_diff": -0.002536,
+     "median_ratio": 0.989278
+    },
+    "variance_vs_sigma/Normal": {
+     "corr": 0.817176,
+     "max_abs_diff": 0.036407,
+     "mean_abs_diff": 0.014196,
+     "mean_signed_diff": -0.011769,
+     "median_ratio": 0.660608
+    },
+    "variance_vs_sigma2/Normal": {
+     "corr": 0.771401,
+     "max_abs_diff": 0.077403,
+     "mean_abs_diff": 0.034593,
+     "mean_signed_diff": -0.034593,
+     "median_ratio": 0.017414
+    },
+    "mean/High": {
+     "corr": 0.994733,
+     "max_abs_diff": 0.029232,
+     "mean_abs_diff": 0.005904,
+     "mean_signed_diff": -0.00485,
+     "median_ratio": 0.976608
+    },
+    "variance_vs_sigma/High": {
+     "corr": 0.732618,
+     "max_abs_diff": 0.03821,
+     "mean_abs_diff": 0.011143,
+     "mean_signed_diff": -0.00665,
+     "median_ratio": 0.817622
+    },
+    "variance_vs_sigma2/High": {
+     "corr": 0.705016,
+     "max_abs_diff": 0.080291,
+     "mean_abs_diff": 0.027371,
+     "mean_signed_diff": -0.027371,
+     "median_ratio": 0.019517
+    },
+    "effect_Low_minus_Normal": {
+     "corr": 0.996309,
+     "max_abs_diff": 0.014499,
+     "mean_abs_diff": 0.003694,
+     "mean_signed_diff": 0.003555,
+     "per_cluster_corr": [
+      0.992964,
+      0.898471,
+      0.945498,
+      0.998209
+     ]
+    },
+    "effect_High_minus_Normal": {
+     "corr": 0.99614,
+     "max_abs_diff": 0.013414,
+     "mean_abs_diff": 0.002671,
+     "mean_signed_diff": -0.002314,
+     "per_cluster_corr": [
+      0.986899,
+      0.980605,
+      0.962228,
+      0.996335
+     ]
+    }
+   },
+   "with_identity_labels": {
+    "mean/Low": {
+     "corr": 0.739632,
+     "max_abs_diff": 0.11834,
+     "mean_abs_diff": 0.045694,
+     "mean_signed_diff": 0.001019,
+     "median_ratio": 0.993956
+    },
+    "mean/Normal": {
+     "corr": 0.685503,
+     "max_abs_diff": 0.114055,
+     "mean_abs_diff": 0.04284,
+     "mean_signed_diff": -0.002536,
+     "median_ratio": 0.979805
+    },
+    "mean/High": {
+     "corr": 0.408081,
+     "max_abs_diff": 0.161339,
+     "mean_abs_diff": 0.061435,
+     "mean_signed_diff": -0.00485,
+     "median_ratio": 0.921531
+    }
+   },
+   "fit_seconds": 3.25,
+   "edf_median": 7.957451,
+   "frac_lambda_on_grid_edge": 0.020833,
+   "frac_sigma_at_floor": 0.121528,
+   "all_converged": true
+  },
+  "train273_avg_train/gcv": {
+   "with_detected_mapping": {
+    "mean/Low": {
+     "corr": 0.997041,
+     "max_abs_diff": 0.01971,
+     "mean_abs_diff": 0.004698,
+     "mean_signed_diff": -0.00137,
+     "median_ratio": 0.991594
+    },
+    "variance_vs_sigma/Low": {
+     "corr": 0.899143,
+     "max_abs_diff": 0.057944,
+     "mean_abs_diff": 0.018426,
+     "mean_signed_diff": -0.016777,
+     "median_ratio": 0.659909
+    },
+    "variance_vs_sigma2/Low": {
+     "corr": 0.841837,
+     "max_abs_diff": 0.108899,
+     "mean_abs_diff": 0.047028,
+     "mean_signed_diff": -0.047028,
+     "median_ratio": 0.02007
+    },
+    "mean/Normal": {
+     "corr": 0.997516,
+     "max_abs_diff": 0.0215,
+     "mean_abs_diff": 0.004692,
+     "mean_signed_diff": -0.004316,
+     "median_ratio": 0.97897
+    },
+    "variance_vs_sigma/Normal": {
+     "corr": 0.815239,
+     "max_abs_diff": 0.034296,
+     "mean_abs_diff": 0.014269,
+     "mean_signed_diff": -0.011943,
+     "median_ratio": 0.65535
+    },
+    "variance_vs_sigma2/Normal": {
+     "corr": 0.76631,
+     "max_abs_diff": 0.077217,
+     "mean_abs_diff": 0.034597,
+     "mean_signed_diff": -0.034597,
+     "median_ratio": 0.017478
+    },
+    "mean/High": {
+     "corr": 0.993459,
+     "max_abs_diff": 0.031331,
+     "mean_abs_diff": 0.00694,
+     "mean_signed_diff": -0.006244,
+     "median_ratio": 0.972823
+    },
+    "variance_vs_sigma/High": {
+     "corr": 0.605852,
+     "max_abs_diff": 0.048572,
+     "mean_abs_diff": 0.012406,
+     "mean_signed_diff": -0.008113,
+     "median_ratio": 0.795645
+    },
+    "variance_vs_sigma2/High": {
+     "corr": 0.570975,
+     "max_abs_diff": 0.081096,
+     "mean_abs_diff": 0.027447,
+     "mean_signed_diff": -0.027447,
+     "median_ratio": 0.016615
+    },
+    "effect_Low_minus_Normal": {
+     "corr": 0.987743,
+     "max_abs_diff": 0.020139,
+     "mean_abs_diff": 0.00427,
+     "mean_signed_diff": 0.002946,
+     "per_cluster_corr": [
+      0.901104,
+      0.740089,
+      0.824356,
+      0.986487
+     ]
+    },
+    "effect_High_minus_Normal": {
+     "corr": 0.984399,
+     "max_abs_diff": 0.019208,
+     "mean_abs_diff": 0.003558,
+     "mean_signed_diff": -0.001928,
+     "per_cluster_corr": [
+      0.932156,
+      0.917824,
+      0.840568,
+      0.987032
+     ]
+    }
+   },
+   "with_identity_labels": {
+    "mean/Low": {
+     "corr": 0.739343,
+     "max_abs_diff": 0.121706,
+     "mean_abs_diff": 0.045056,
+     "mean_signed_diff": -0.00137,
+     "median_ratio": 0.986213
+    },
+    "mean/Normal": {
+     "corr": 0.683447,
+     "max_abs_diff": 0.115365,
+     "mean_abs_diff": 0.042631,
+     "mean_signed_diff": -0.004316,
+     "median_ratio": 0.973703
+    },
+    "mean/High": {
+     "corr": 0.404735,
+     "max_abs_diff": 0.158938,
+     "mean_abs_diff": 0.060643,
+     "mean_signed_diff": -0.006244,
+     "median_ratio": 0.92024
+    }
+   },
+   "fit_seconds": 3.05,
+   "edf_median": 7.129819,
+   "frac_lambda_on_grid_edge": 0.020833,
+   "frac_sigma_at_floor": 0.130208,
+   "all_converged": true
+  },
+  "train273_avg_all365/gcv": {
+   "with_detected_mapping": {
+    "mean/Low": {
+     "corr": 0.997106,
+     "max_abs_diff": 0.019973,
+     "mean_abs_diff": 0.004572,
+     "mean_signed_diff": -0.000605,
+     "median_ratio": 0.995411
+    },
+    "variance_vs_sigma/Low": {
+     "corr": 0.899143,
+     "max_abs_diff": 0.057944,
+     "mean_abs_diff": 0.018426,
+     "mean_signed_diff": -0.016777,
+     "median_ratio": 0.659909
+    },
+    "variance_vs_sigma2/Low": {
+     "corr": 0.841837,
+     "max_abs_diff": 0.108899,
+     "mean_abs_diff": 0.047028,
+     "mean_signed_diff": -0.047028,
+     "median_ratio": 0.02007
+    },
+    "mean/Normal": {
+     "corr": 0.997554,
+     "max_abs_diff": 0.020078,
+     "mean_abs_diff": 0.004189,
+     "mean_signed_diff": -0.003551,
+     "median_ratio": 0.982464
+    },
+    "variance_vs_sigma/Normal": {
+     "corr": 0.815239,
+     "max_abs_diff": 0.034296,
+     "mean_abs_diff": 0.014269,
+     "mean_signed_diff": -0.011943,
+     "median_ratio": 0.65535
+    },
+    "variance_vs_sigma2/Normal": {
+     "corr": 0.76631,
+     "max_abs_diff": 0.077217,
+     "mean_abs_diff": 0.034597,
+     "mean_signed_diff": -0.034597,
+     "median_ratio": 0.017478
+    },
+    "mean/High": {
+     "corr": 0.993838,
+     "max_abs_diff": 0.030088,
+     "mean_abs_diff": 0.006532,
+     "mean_signed_diff": -0.005479,
+     "median_ratio": 0.977043
+    },
+    "variance_vs_sigma/High": {
+     "corr": 0.605852,
+     "max_abs_diff": 0.048572,
+     "mean_abs_diff": 0.012406,
+     "mean_signed_diff": -0.008113,
+     "median_ratio": 0.795645
+    },
+    "variance_vs_sigma2/High": {
+     "corr": 0.570975,
+     "max_abs_diff": 0.081096,
+     "mean_abs_diff": 0.027447,
+     "mean_signed_diff": -0.027447,
+     "median_ratio": 0.016615
+    },
+    "effect_Low_minus_Normal": {
+     "corr": 0.987743,
+     "max_abs_diff": 0.020139,
+     "mean_abs_diff": 0.00427,
+     "mean_signed_diff": 0.002946,
+     "per_cluster_corr": [
+      0.901104,
+      0.740089,
+      0.824356,
+      0.986487
+     ]
+    },
+    "effect_High_minus_Normal": {
+     "corr": 0.984399,
+     "max_abs_diff": 0.019208,
+     "mean_abs_diff": 0.003558,
+     "mean_signed_diff": -0.001928,
+     "per_cluster_corr": [
+      0.932156,
+      0.917824,
+      0.840568,
+      0.987032
+     ]
+    }
+   },
+   "with_identity_labels": {
+    "mean/Low": {
+     "corr": 0.741429,
+     "max_abs_diff": 0.121764,
+     "mean_abs_diff": 0.045043,
+     "mean_signed_diff": -0.000605,
+     "median_ratio": 0.989823
+    },
+    "mean/Normal": {
+     "corr": 0.685712,
+     "max_abs_diff": 0.115424,
+     "mean_abs_diff": 0.042676,
+     "mean_signed_diff": -0.003551,
+     "median_ratio": 0.978769
+    },
+    "mean/High": {
+     "corr": 0.408782,
+     "max_abs_diff": 0.15743,
+     "mean_abs_diff": 0.060644,
+     "mean_signed_diff": -0.005479,
+     "median_ratio": 0.92254
+    }
+   },
+   "fit_seconds": 1.1,
+   "edf_median": 7.129819,
+   "frac_lambda_on_grid_edge": 0.020833,
+   "frac_sigma_at_floor": 0.130208,
+   "all_converged": true
+  }
+ },
+ "settings": {
+  "k": 10,
+  "method": "laml",
+  "lambda_mode": "per_series",
+  "grid": [
+   -4.0,
+   -3.5,
+   -3.0,
+   -2.5,
+   -2.0,
+   -1.5,
+   -1.0,
+   -0.5,
+   0.0,
+   0.5,
+   1.0,
+   1.5,
+   2.0,
+   2.5,
+   3.0,
+   3.5,
+   4.0,
+   4.5,
+   5.0,
+   5.5,
+   6.0
+  ],
+  "sd_floor": 0.01,
+  "min_obs": 2,
+  "max_iter": 200,
+  "tol": 0.0,
+  "n_fit_days": 365,
+  "n_avg_days": 365
+ }
+}

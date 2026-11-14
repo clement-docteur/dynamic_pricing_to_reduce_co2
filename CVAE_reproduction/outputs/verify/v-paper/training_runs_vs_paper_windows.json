@@ -1,0 +1,68 @@
+{
+ "High": {
+  "window": [
+   39,
+   44
+  ],
+  "runs_exactly": 1,
+  "days_with_only_this_pattern": 1,
+  "runs_containing": 19,
+  "containing_by_run": {
+   "33-44": 7,
+   "35-46": 6,
+   "21-44": 3,
+   "33-47": 1,
+   "39-44": 1,
+   "35-47": 1
+  }
+ },
+ "High_repro": {
+  "window": [
+   39,
+   43
+  ],
+  "runs_exactly": 0,
+  "days_with_only_this_pattern": 0,
+  "runs_containing": 19,
+  "containing_by_run": {
+   "33-44": 7,
+   "35-46": 6,
+   "21-44": 3,
+   "33-47": 1,
+   "39-44": 1,
+   "35-47": 1
+  }
+ },
+ "Low": {
+  "window": [
+   9,
+   19
+  ],
+  "runs_exactly": 0,
+  "days_with_only_this_pattern": 0,
+  "runs_containing": 12,
+  "containing_by_run": {
+   "9-32": 6,
+   "9-20": 2,
+   "0-32": 2,
+   "0-34": 1,
+   "9-47": 1
+  }
+ },
+ "Low_repro": {
+  "window": [
+   9,
+   18
+  ],
+  "runs_exactly": 0,
+  "days_with_only_this_pattern": 0,
+  "runs_containing": 12,
+  "containing_by_run": {
+   "9-32": 6,
+   "9-20": 2,
+   "0-32": 2,
+   "0-34": 1,
+   "9-47": 1
+  }
+ }
+}

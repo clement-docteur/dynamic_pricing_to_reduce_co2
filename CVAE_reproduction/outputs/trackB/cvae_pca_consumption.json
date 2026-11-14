@@ -1,0 +1,443 @@
+{
+ "claim": "Sec. V-B-2: a PCA on the consumption data: 4 components explain more than 80% of the variance",
+ "data": "power_consump_ours.parquet: 365 daily 48-half-hour profiles per cluster (cluster-mean kWh, our run-(a) clusters relabelled to the authors' 0-3)",
+ "method": "PCA = SVD of the column-centred matrix (sklearn PCA cross-check on raw data); 'uncentred' = share of the total sum of squares (no centring)",
+ "clusters": {
+  "0": {
+   "raw_kWh": {
+    "cum_evr_1_to_8": [
+     0.79941,
+     0.88542,
+     0.92029,
+     0.94226,
+     0.95096,
+     0.95682,
+     0.96151,
+     0.96599
+    ],
+    "cum_evr_at_4": 0.9422604844249604,
+    "n_components_for_80pct": 2,
+    "n_components_for_90pct": 3
+   },
+   "minmax_global_train_minmax (CVAE scaling)": {
+    "cum_evr_1_to_8": [
+     0.79941,
+     0.88542,
+     0.92029,
+     0.94226,
+     0.95096,
+     0.95682,
+     0.96151,
+     0.96599
+    ],
+    "cum_evr_at_4": 0.9422604844249607,
+    "n_components_for_80pct": 2,
+    "n_components_for_90pct": 3
+   },
+   "minmax_per_halfhour": {
+    "cum_evr_1_to_8": [
+     0.71789,
+     0.82315,
+     0.87612,
+     0.91541,
+     0.9354,
+     0.94245,
+     0.94821,
+     0.95335
+    ],
+    "cum_evr_at_4": 0.915407877342378,
+    "n_components_for_80pct": 2,
+    "n_components_for_90pct": 4
+   },
+   "standardized_per_halfhour": {
+    "cum_evr_1_to_8": [
+     0.67107,
+     0.80289,
+     0.85749,
+     0.90592,
+     0.92824,
+     0.93653,
+     0.94337,
+     0.94854
+    ],
+    "cum_evr_at_4": 0.9059173136789822,
+    "n_components_for_80pct": 2,
+    "n_components_for_90pct": 4
+   },
+   "raw_kWh_uncentred": {
+    "cum_evr_1_to_8": [
+     0.98874,
+     0.99338,
+     0.99653,
+     0.99744,
+     0.99799,
+     0.99824,
+     0.99844,
+     0.99862
+    ],
+    "cum_evr_at_4": 0.9974369214279349,
+    "n_components_for_80pct": 1,
+    "n_components_for_90pct": 1
+   },
+   "raw_kWh_train_days_only": {
+    "cum_evr_1_to_8": [
+     0.8071,
+     0.88726,
+     0.9217,
+     0.94348,
+     0.95159,
+     0.95755,
+     0.9623,
+     0.96663
+    ],
+    "cum_evr_at_4": 0.9434797831208276,
+    "n_components_for_80pct": 1,
+    "n_components_for_90pct": 3
+   },
+   "sklearn_PCA_raw_cum_evr_at_4": 0.9422604844249605
+  },
+  "1": {
+   "raw_kWh": {
+    "cum_evr_1_to_8": [
+     0.8007,
+     0.89526,
+     0.93098,
+     0.94534,
+     0.9562,
+     0.96423,
+     0.96947,
+     0.97321
+    ],
+    "cum_evr_at_4": 0.9453434722817674,
+    "n_components_for_80pct": 1,
+    "n_components_for_90pct": 3
+   },
+   "minmax_global_train_minmax (CVAE scaling)": {
+    "cum_evr_1_to_8": [
+     0.8007,
+     0.89526,
+     0.93098,
+     0.94534,
+     0.9562,
+     0.96423,
+     0.96947,
+     0.97321
+    ],
+    "cum_evr_at_4": 0.9453434722817671,
+    "n_components_for_80pct": 1,
+    "n_components_for_90pct": 3
+   },
+   "minmax_per_halfhour": {
+    "cum_evr_1_to_8": [
+     0.71117,
+     0.82339,
+     0.87481,
+     0.91888,
+     0.93607,
+     0.94472,
+     0.95248,
+     0.95806
+    ],
+    "cum_evr_at_4": 0.918884004833133,
+    "n_components_for_80pct": 2,
+    "n_components_for_90pct": 4
+   },
+   "standardized_per_halfhour": {
+    "cum_evr_1_to_8": [
+     0.68063,
+     0.80364,
+     0.8617,
+     0.91211,
+     0.93017,
+     0.93888,
+     0.94595,
+     0.95239
+    ],
+    "cum_evr_at_4": 0.9121082989233971,
+    "n_components_for_80pct": 2,
+    "n_components_for_90pct": 4
+   },
+   "raw_kWh_uncentred": {
+    "cum_evr_1_to_8": [
+     0.98677,
+     0.99167,
+     0.99524,
+     0.997,
+     0.99757,
+     0.99806,
+     0.99837,
+     0.99859
+    ],
+    "cum_evr_at_4": 0.9970032589542759,
+    "n_components_for_80pct": 1,
+    "n_components_for_90pct": 1
+   },
+   "raw_kWh_train_days_only": {
+    "cum_evr_1_to_8": [
+     0.80795,
+     0.89814,
+     0.93278,
+     0.94643,
+     0.95675,
+     0.96492,
+     0.97017,
+     0.97405
+    ],
+    "cum_evr_at_4": 0.9464348925996663,
+    "n_components_for_80pct": 1,
+    "n_components_for_90pct": 3
+   },
+   "sklearn_PCA_raw_cum_evr_at_4": 0.9453434722817673
+  },
+  "2": {
+   "raw_kWh": {
+    "cum_evr_1_to_8": [
+     0.88776,
+     0.92359,
+     0.94707,
+     0.95719,
+     0.96439,
+     0.96939,
+     0.97314,
+     0.976
+    ],
+    "cum_evr_at_4": 0.9571881731571035,
+    "n_components_for_80pct": 1,
+    "n_components_for_90pct": 2
+   },
+   "minmax_global_train_minmax (CVAE scaling)": {
+    "cum_evr_1_to_8": [
+     0.88776,
+     0.92359,
+     0.94707,
+     0.95719,
+     0.96439,
+     0.96939,
+     0.97314,
+     0.976
+    ],
+    "cum_evr_at_4": 0.9571881731571036,
+    "n_components_for_80pct": 1,
+    "n_components_for_90pct": 2
+   },
+   "minmax_per_halfhour": {
+    "cum_evr_1_to_8": [
+     0.87428,
+     0.91536,
+     0.93809,
+     0.95214,
+     0.9606,
+     0.96671,
+     0.97055,
+     0.9733
+    ],
+    "cum_evr_at_4": 0.9521429348708953,
+    "n_components_for_80pct": 1,
+    "n_components_for_90pct": 2
+   },
+   "standardized_per_halfhour": {
+    "cum_evr_1_to_8": [
+     0.86332,
+     0.91266,
+     0.93625,
+     0.94931,
+     0.95834,
+     0.9641,
+     0.9683,
+     0.97147
+    ],
+    "cum_evr_at_4": 0.9493072716883737,
+    "n_components_for_80pct": 1,
+    "n_components_for_90pct": 2
+   },
+   "raw_kWh_uncentred": {
+    "cum_evr_1_to_8": [
+     0.9947,
+     0.99621,
+     0.99755,
+     0.99824,
+     0.99853,
+     0.99875,
+     0.9989,
+     0.99903
+    ],
+    "cum_evr_at_4": 0.9982367685681073,
+    "n_components_for_80pct": 1,
+    "n_components_for_90pct": 1
+   },
+   "raw_kWh_train_days_only": {
+    "cum_evr_1_to_8": [
+     0.89384,
+     0.92823,
+     0.94993,
+     0.95925,
+     0.96573,
+     0.97054,
+     0.97401,
+     0.97691
+    ],
+    "cum_evr_at_4": 0.9592487035052666,
+    "n_components_for_80pct": 1,
+    "n_components_for_90pct": 2
+   },
+   "sklearn_PCA_raw_cum_evr_at_4": 0.9571881731571037
+  },
+  "3": {
+   "raw_kWh": {
+    "cum_evr_1_to_8": [
+     0.58981,
+     0.78212,
+     0.83654,
+     0.86886,
+     0.89185,
+     0.91072,
+     0.92291,
+     0.93341
+    ],
+    "cum_evr_at_4": 0.8688576669207986,
+    "n_components_for_80pct": 3,
+    "n_components_for_90pct": 6
+   },
+   "minmax_global_train_minmax (CVAE scaling)": {
+    "cum_evr_1_to_8": [
+     0.58981,
+     0.78212,
+     0.83654,
+     0.86886,
+     0.89185,
+     0.91072,
+     0.92291,
+     0.93341
+    ],
+    "cum_evr_at_4": 0.8688576669207986,
+    "n_components_for_80pct": 3,
+    "n_components_for_90pct": 6
+   },
+   "minmax_per_halfhour": {
+    "cum_evr_1_to_8": [
+     0.52048,
+     0.65866,
+     0.7533,
+     0.81357,
+     0.84914,
+     0.87036,
+     0.88808,
+     0.90364
+    ],
+    "cum_evr_at_4": 0.8135692302627151,
+    "n_components_for_80pct": 4,
+    "n_components_for_90pct": 8
+   },
+   "standardized_per_halfhour": {
+    "cum_evr_1_to_8": [
+     0.48719,
+     0.62443,
+     0.72749,
+     0.79974,
+     0.84071,
+     0.86417,
+     0.88373,
+     0.89776
+    ],
+    "cum_evr_at_4": 0.7997389616919665,
+    "n_components_for_80pct": 5,
+    "n_components_for_90pct": 9
+   },
+   "raw_kWh_uncentred": {
+    "cum_evr_1_to_8": [
+     0.96625,
+     0.98026,
+     0.98647,
+     0.98964,
+     0.99163,
+     0.99309,
+     0.99418,
+     0.99494
+    ],
+    "cum_evr_at_4": 0.9896360787026804,
+    "n_components_for_80pct": 1,
+    "n_components_for_90pct": 1
+   },
+   "raw_kWh_train_days_only": {
+    "cum_evr_1_to_8": [
+     0.6079,
+     0.77027,
+     0.83152,
+     0.8675,
+     0.89032,
+     0.90991,
+     0.92281,
+     0.93353
+    ],
+    "cum_evr_at_4": 0.8675031283076902,
+    "n_components_for_80pct": 3,
+    "n_components_for_90pct": 6
+   },
+   "sklearn_PCA_raw_cum_evr_at_4": 0.8688576669207986
+  }
+ },
+ "all_clusters_stacked_raw": {
+  "cum_evr_1_to_8": [
+   0.60088,
+   0.77068,
+   0.89133,
+   0.92541,
+   0.9438,
+   0.95531,
+   0.96425,
+   0.9685
+  ],
+  "cum_evr_at_4": 0.9254108850602515,
+  "n_components_for_80pct": 3,
+  "n_components_for_90pct": 4
+ },
+ "extra_temperature_pca_48temps_plus_smooth": {
+  "raw_degC": {
+   "cum_evr_1_to_8": [
+    0.94107,
+    0.97801,
+    0.98892,
+    0.99257,
+    0.99563,
+    0.99769,
+    0.99878,
+    0.9992
+   ],
+   "cum_evr_at_4": 0.992565081203697,
+   "n_components_for_80pct": 1,
+   "n_components_for_90pct": 1
+  },
+  "standardized": {
+   "cum_evr_1_to_8": [
+    0.93462,
+    0.97633,
+    0.98784,
+    0.99197,
+    0.99558,
+    0.99755,
+    0.99878,
+    0.9992
+   ],
+   "cum_evr_at_4": 0.9919740787465144,
+   "n_components_for_80pct": 1,
+   "n_components_for_90pct": 1
+  },
+  "note": "context only (ERA5 temperatures); the temperature PCA claim is checked by the conditions task"
+ },
+ "verdict_inputs": {
+  "cum_evr_at_4_raw_per_cluster": [
+   0.9422604844249604,
+   0.9453434722817674,
+   0.9571881731571035,
+   0.8688576669207986
+  ],
+  "all_above_80pct_raw": true,
+  "cum_evr_at_4_standardized_per_cluster": [
+   0.9059173136789822,
+   0.9121082989233971,
+   0.9493072716883737,
+   0.7997389616919665
+  ],
+  "all_above_80pct_standardized": false
+ }
+}

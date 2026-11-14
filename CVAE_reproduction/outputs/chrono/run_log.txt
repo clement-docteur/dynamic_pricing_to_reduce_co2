@@ -1,0 +1,13 @@
+16:11:28 track A: train 243 / val 61 / test 61 days; test PCA scores outside the training [0, 1] range: 0.00%
+16:11:28 track B: train 243 / val 61 / test 61 days; test PCA scores outside the training [0, 1] range: 0.00%
+16:11:28 training 320 CVAE restarts on 4 workers
+16:35:22 trained in 1434 s
+16:35:25 track A c0: RMSE cvae 0.0652 | no_pos_y 0.0453 | gam 0.0542 | naive 0.0466 | random-split ref cvae 0.0164 gam 0.0139 (n=21)
+16:35:28 track A c1: RMSE cvae 0.0882 | no_pos_y 0.0551 | gam 0.0452 | naive 0.0509 | random-split ref cvae 0.0207 gam 0.0166 (n=21)
+16:35:31 track A c2: RMSE cvae 0.0604 | no_pos_y 0.0280 | gam 0.0469 | naive 0.0418 | random-split ref cvae 0.0165 gam 0.0156 (n=21)
+16:35:35 track A c3: RMSE cvae 0.0612 | no_pos_y 0.0415 | gam 0.0641 | naive 0.0480 | random-split ref cvae 0.0230 gam 0.0207 (n=21)
+16:35:38 track B c0: RMSE cvae 0.0642 | no_pos_y 0.0505 | gam 0.0605 | naive 0.0480 | random-split ref cvae 0.0193 gam 0.0159 (n=21)
+16:35:41 track B c1: RMSE cvae 0.0918 | no_pos_y 0.0555 | gam 0.0492 | naive 0.0528 | random-split ref cvae 0.0235 gam 0.0183 (n=21)
+16:35:44 track B c2: RMSE cvae 0.0629 | no_pos_y 0.0307 | gam 0.0481 | naive 0.0397 | random-split ref cvae 0.0150 gam 0.0129 (n=21)
+16:35:47 track B c3: RMSE cvae 0.0639 | no_pos_y 0.0466 | gam 0.0668 | naive 0.0455 | random-split ref cvae 0.0226 gam 0.0212 (n=21)
+16:35:47 done in 1459 s

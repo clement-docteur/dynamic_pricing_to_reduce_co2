@@ -1,0 +1,709 @@
+{
+ "clusters": {
+  "0": {
+   "fit_seconds": 7.27,
+   "train_rmse_f": {
+    "mean": 0.014201503288216212,
+    "median": 0.013198049159661433
+   },
+   "test_rmse_f": {
+    "mean": 0.015708512847157352,
+    "median": 0.014524836604781183,
+    "euclidean_median": 0.10063101988446894
+   },
+   "test_rmse_f_reml": {
+    "mean": 0.01566107012647419,
+    "median": 0.014366731797136226
+   },
+   "train_rmse_f_reml_mean": 0.014420700062963098,
+   "test_rmse_sample_mean": {
+    "mean": 0.015872229924422655,
+    "median": 0.01441570374985085,
+    "euclidean_median": 0.09987492528641144
+   },
+   "energy_score": {
+    "mean": 0.08219673656812647,
+    "median": 0.07460769970691353,
+    "median_term_mean_dist_to_obs": 0.18703432622000138,
+    "median_term_mean_dist_between_samples": 0.22676738129520418
+   },
+   "variogram_score_p05": {
+    "mean": 4.475616500414743,
+    "median": 4.043104477249672
+   },
+   "sigma_variants_scores": {
+    "causality_all365_days": {
+     "es_median": 0.07506576249018887,
+     "vg_median": 4.039628825783695,
+     "sample_sd_mean": 0.02305393591343332,
+     "sigma_median": 0.023791335529897442
+    },
+    "causality_train_no_sd_floor": {
+     "es_median": 0.07383265898782035,
+     "vg_median": 4.015121128116361,
+     "sample_sd_mean": 0.022262105068581395,
+     "sigma_median": 0.02394353946934305
+    }
+   },
+   "dispersion": {
+    "mean_sample_sd": 0.022872993696393982,
+    "rms_test_residual_y_minus_f": 0.01669707808454954,
+    "ratio_sample_sd_to_rms_residual": 1.3698800221554486,
+    "train_std_resid_sd_mean": 0.5875279959877004,
+    "train_std_resid_sd_range": [
+     0.34435253787931475,
+     0.9135374628826114
+    ]
+   },
+   "roughness_mean_abs_first_diff": {
+    "samples": 0.018151070710087067,
+    "observed_test": 0.014641906317280925,
+    "f_test": 0.011708743899351582
+   },
+   "lag1_corr_across_halfhours": {
+    "samples_minus_f": 0.7185124637169678,
+    "observed_residuals": 0.7296779783083249
+   },
+   "frac_negative_samples": 0.0,
+   "sigma": {
+    "median_LNH": [
+     0.029483215718145064,
+     0.023389835436137017,
+     0.021073642167952523
+    ],
+    "n_fallback": 0,
+    "frac_at_floor_0p01": 0.2013888888888889
+   },
+   "xi_missing": {
+    "low": 0,
+    "high": 0
+   },
+   "smoothing_median": {
+    "g_tau_tbar_kappa": [
+     0.799682029144598,
+     -0.32441388420166667,
+     -1.8051808302324797
+    ],
+    "edf_tau_tbar_kappa": [
+     3.1289711040570087,
+     5.090195368794482,
+     8.263955342736406
+    ],
+    "edf_total": 19.282983835176438
+   },
+   "frac_smoothing_at_bounds": 0.0,
+   "frac_g_on_coarse_grid": 0.006944444444444444,
+   "Sigma_offdiag_lag1_mean": 0.7198707216662753,
+   "jitter_used": 0.0,
+   "scenario_effects": {
+    "Low": {
+     "window_slots": [
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19
+     ],
+     "window_clock_gmt": "04:00-09:30",
+     "mean_effect_in_window_kWh": 0.00624312998379063,
+     "mean_effect_in_window_pct": 3.5166305306993753,
+     "xi_in_window": [
+      0.0006661207376637557,
+      0.0011498217064606353,
+      0.0009554635880511808,
+      0.0025368634179155913,
+      0.007840545614264366,
+      0.005086132127265497,
+      0.008355874291675558,
+      0.009065906657061862,
+      0.009832978962655559,
+      0.008899958958589027,
+      0.014521577937536612
+     ],
+     "xi_missing_in_window": 0,
+     "n_window_slots_with_expected_sign": 11,
+     "max_abs_mean_diff_outside_window_kWh": 0.0,
+     "max_abs_sample_diff_outside_window_kWh": 0.0,
+     "sample_sd_ratio_in_window": 1.215524900259417
+    },
+    "High": {
+     "window_slots": [
+      39,
+      40,
+      41,
+      42,
+      43,
+      44
+     ],
+     "window_clock_gmt": "19:00-22:00",
+     "mean_effect_in_window_kWh": -0.007097086463248534,
+     "mean_effect_in_window_pct": -2.8502041101514646,
+     "xi_in_window": [
+      -0.011092652018200033,
+      -0.008236834580432173,
+      -0.005923112180839407,
+      -0.006804521557868315,
+      -0.0066155990168987044,
+      -0.003890987446587141
+     ],
+     "xi_missing_in_window": 0,
+     "n_window_slots_with_expected_sign": 6,
+     "max_abs_mean_diff_outside_window_kWh": 0.0,
+     "max_abs_sample_diff_outside_window_kWh": 0.0,
+     "sample_sd_ratio_in_window": 1.1326418199280806
+    }
+   }
+  },
+  "1": {
+   "fit_seconds": 11.03,
+   "train_rmse_f": {
+    "mean": 0.015382383331721207,
+    "median": 0.014192619401801693
+   },
+   "test_rmse_f": {
+    "mean": 0.01780592063361843,
+    "median": 0.01721298532619285,
+    "euclidean_median": 0.11925506053961424
+   },
+   "test_rmse_f_reml": {
+    "mean": 0.017872477544476684,
+    "median": 0.01699122648656977
+   },
+   "train_rmse_f_reml_mean": 0.015598014777156385,
+   "test_rmse_sample_mean": {
+    "mean": 0.01794792453379633,
+    "median": 0.017066765897673735,
+    "euclidean_median": 0.11824202262261907
+   },
+   "energy_score": {
+    "mean": 0.09528208517502407,
+    "median": 0.08894000852650477,
+    "median_term_mean_dist_to_obs": 0.22585387367027893,
+    "median_term_mean_dist_between_samples": 0.2727171647315085
+   },
+   "variogram_score_p05": {
+    "mean": 4.640108644050562,
+    "median": 4.110973452685732
+   },
+   "sigma_variants_scores": {
+    "causality_all365_days": {
+     "es_median": 0.08883694784096112,
+     "vg_median": 4.120026274390527,
+     "sample_sd_mean": 0.02742705100401337,
+     "sigma_median": 0.028500798361455394
+    },
+    "causality_train_no_sd_floor": {
+     "es_median": 0.08884466226953427,
+     "vg_median": 4.086971936909755,
+     "sample_sd_mean": 0.026741943063166358,
+     "sigma_median": 0.02806209728049184
+    }
+   },
+   "dispersion": {
+    "mean_sample_sd": 0.027268887156562553,
+    "rms_test_residual_y_minus_f": 0.01902747890350053,
+    "ratio_sample_sd_to_rms_residual": 1.4331319085864724,
+    "train_std_resid_sd_mean": 0.5663451820971311,
+    "train_std_resid_sd_range": [
+     0.37061087682676025,
+     0.798212188204885
+    ]
+   },
+   "roughness_mean_abs_first_diff": {
+    "samples": 0.020388175065032838,
+    "observed_test": 0.016378930227379587,
+    "f_test": 0.014053439339364194
+   },
+   "lag1_corr_across_halfhours": {
+    "samples_minus_f": 0.7624064339907026,
+    "observed_residuals": 0.7933941809606015
+   },
+   "frac_negative_samples": 1.1322463768115942e-05,
+   "sigma": {
+    "median_LNH": [
+     0.040285720687301435,
+     0.02663110718354709,
+     0.024975564065582295
+    ],
+    "n_fallback": 0,
+    "frac_at_floor_0p01": 0.1736111111111111
+   },
+   "xi_missing": {
+    "low": 0,
+    "high": 0
+   },
+   "smoothing_median": {
+    "g_tau_tbar_kappa": [
+     0.3012368918901773,
+     -0.020390090693340027,
+     -1.4835154347999715
+    ],
+    "edf_tau_tbar_kappa": [
+     4.397792196197569,
+     4.43749061171614,
+     7.902688976985792
+    ],
+    "edf_total": 20.159306238064318
+   },
+   "frac_smoothing_at_bounds": 0.0,
+   "frac_g_on_coarse_grid": 0.0,
+   "Sigma_offdiag_lag1_mean": 0.7632194312122996,
+   "jitter_used": 0.0,
+   "scenario_effects": {
+    "Low": {
+     "window_slots": [
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19
+     ],
+     "window_clock_gmt": "04:00-09:30",
+     "mean_effect_in_window_kWh": 0.004569650992829885,
+     "mean_effect_in_window_pct": 2.9161304167956956,
+     "xi_in_window": [
+      -0.0008626455209304607,
+      -5.16732074009596e-05,
+      0.00043336396495138874,
+      0.0010580907116882754,
+      0.002752295623820622,
+      0.0039904095767244185,
+      0.006734028899832989,
+      0.01068352703804154,
+      0.011823272952997788,
+      0.00761852310291572,
+      0.0058804518460595645
+     ],
+     "xi_missing_in_window": 0,
+     "n_window_slots_with_expected_sign": 9,
+     "max_abs_mean_diff_outside_window_kWh": 0.0,
+     "max_abs_sample_diff_outside_window_kWh": 0.0,
+     "sample_sd_ratio_in_window": 1.1621413701581094
+    },
+    "High": {
+     "window_slots": [
+      39,
+      40,
+      41,
+      42,
+      43,
+      44
+     ],
+     "window_clock_gmt": "19:00-22:00",
+     "mean_effect_in_window_kWh": -0.011475429922876245,
+     "mean_effect_in_window_pct": -3.30230719570711,
+     "xi_in_window": [
+      -0.01326249786288175,
+      -0.012843684925236243,
+      -0.013522622390697847,
+      -0.011029394727140429,
+      -0.009339033062190638,
+      -0.009031697392600124
+     ],
+     "xi_missing_in_window": 0,
+     "n_window_slots_with_expected_sign": 6,
+     "max_abs_mean_diff_outside_window_kWh": 0.0,
+     "max_abs_sample_diff_outside_window_kWh": 0.0,
+     "sample_sd_ratio_in_window": 0.9008940750226826
+    }
+   }
+  },
+  "2": {
+   "fit_seconds": 6.62,
+   "train_rmse_f": {
+    "mean": 0.012214601579388735,
+    "median": 0.01124587221548769
+   },
+   "test_rmse_f": {
+    "mean": 0.014022724189782431,
+    "median": 0.012916801256808972,
+    "euclidean_median": 0.08949022419225067
+   },
+   "test_rmse_f_reml": {
+    "mean": 0.013953344552791909,
+    "median": 0.012834435795616897
+   },
+   "train_rmse_f_reml_mean": 0.012339673364245796,
+   "test_rmse_sample_mean": {
+    "mean": 0.014024600159089302,
+    "median": 0.012922984820459478,
+    "euclidean_median": 0.08953306517790872
+   },
+   "energy_score": {
+    "mean": 0.07278989190320459,
+    "median": 0.06797916566895451,
+    "median_term_mean_dist_to_obs": 0.16924507494301633,
+    "median_term_mean_dist_between_samples": 0.20320768176303433
+   },
+   "variogram_score_p05": {
+    "mean": 4.099254899752873,
+    "median": 3.6223713198967555
+   },
+   "sigma_variants_scores": {
+    "causality_all365_days": {
+     "es_median": 0.0684380023119911,
+     "vg_median": 3.6761606579202812,
+     "sample_sd_mean": 0.02178327937867189,
+     "sigma_median": 0.020873943820045572
+    },
+    "causality_train_no_sd_floor": {
+     "es_median": 0.06796730624877803,
+     "vg_median": 3.6221622445259816,
+     "sample_sd_mean": 0.021195864366756145,
+     "sigma_median": 0.02150814804407296
+    }
+   },
+   "dispersion": {
+    "mean_sample_sd": 0.021200166421018376,
+    "rms_test_residual_y_minus_f": 0.014834701107735106,
+    "ratio_sample_sd_to_rms_residual": 1.4290929265817287,
+    "train_std_resid_sd_mean": 0.6087218447649225,
+    "train_std_resid_sd_range": [
+     0.39144031788065226,
+     0.7713083823111552
+    ]
+   },
+   "roughness_mean_abs_first_diff": {
+    "samples": 0.013977377215245222,
+    "observed_test": 0.01054804264687943,
+    "f_test": 0.007694566925041298
+   },
+   "lag1_corr_across_halfhours": {
+    "samples_minus_f": 0.7477337032317266,
+    "observed_residuals": 0.77122960106843
+   },
+   "frac_negative_samples": 0.0,
+   "sigma": {
+    "median_LNH": [
+     0.030056171517215305,
+     0.019303702198484193,
+     0.019667121793206028
+    ],
+    "n_fallback": 0,
+    "frac_at_floor_0p01": 0.0625
+   },
+   "xi_missing": {
+    "low": 0,
+    "high": 0
+   },
+   "smoothing_median": {
+    "g_tau_tbar_kappa": [
+     0.6437810181726074,
+     0.036724981116068936,
+     -1.7114133512432343
+    ],
+    "edf_tau_tbar_kappa": [
+     3.569047035386818,
+     4.043445431988183,
+     8.19478045964275
+    ],
+    "edf_total": 19.335377398220928
+   },
+   "frac_smoothing_at_bounds": 0.0,
+   "frac_g_on_coarse_grid": 0.0,
+   "Sigma_offdiag_lag1_mean": 0.7487682154643305,
+   "jitter_used": 0.0,
+   "scenario_effects": {
+    "Low": {
+     "window_slots": [
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19
+     ],
+     "window_clock_gmt": "04:00-09:30",
+     "mean_effect_in_window_kWh": 0.004925853672822165,
+     "mean_effect_in_window_pct": 2.8009440184135994,
+     "xi_in_window": [
+      -0.0014979087779913303,
+      -0.00027939157911416324,
+      0.0024111451761429925,
+      0.003088780159814397,
+      0.004453718029710507,
+      0.003838009230168943,
+      0.00585961712374361,
+      0.008345190370339095,
+      0.006927962796317466,
+      0.008704066404893074,
+      0.012408931968040937
+     ],
+     "xi_missing_in_window": 0,
+     "n_window_slots_with_expected_sign": 9,
+     "max_abs_mean_diff_outside_window_kWh": 0.0,
+     "max_abs_sample_diff_outside_window_kWh": 0.0,
+     "sample_sd_ratio_in_window": 1.206417035253144
+    },
+    "High": {
+     "window_slots": [
+      39,
+      40,
+      41,
+      42,
+      43,
+      44
+     ],
+     "window_clock_gmt": "19:00-22:00",
+     "mean_effect_in_window_kWh": -0.01129631358045703,
+     "mean_effect_in_window_pct": -3.7638877837529403,
+     "xi_in_window": [
+      -0.01236161216872883,
+      -0.011200849829546111,
+      -0.0091937938447601,
+      -0.009824219144297375,
+      -0.01153248846512872,
+      -0.013697376229656333
+     ],
+     "xi_missing_in_window": 0,
+     "n_window_slots_with_expected_sign": 6,
+     "max_abs_mean_diff_outside_window_kWh": 0.0,
+     "max_abs_sample_diff_outside_window_kWh": 0.0,
+     "sample_sd_ratio_in_window": 0.9416368345775887
+    }
+   }
+  },
+  "3": {
+   "fit_seconds": 6.63,
+   "train_rmse_f": {
+    "mean": 0.019911313304223716,
+    "median": 0.01691573726739866
+   },
+   "test_rmse_f": {
+    "mean": 0.021140688269462016,
+    "median": 0.018712550380337298,
+    "euclidean_median": 0.12964435199174607
+   },
+   "test_rmse_f_reml": {
+    "mean": 0.020939432125251057,
+    "median": 0.01852837842016278
+   },
+   "train_rmse_f_reml_mean": 0.020149217487456978,
+   "test_rmse_sample_mean": {
+    "mean": 0.021147236334052587,
+    "median": 0.018847095647305172,
+    "euclidean_median": 0.1305765089449712
+   },
+   "energy_score": {
+    "mean": 0.10711370160298629,
+    "median": 0.09447148607211954,
+    "median_term_mean_dist_to_obs": 0.21459501597120606,
+    "median_term_mean_dist_between_samples": 0.24155601505992014
+   },
+   "variogram_score_p05": {
+    "mean": 7.010422918054304,
+    "median": 6.054761657784631
+   },
+   "sigma_variants_scores": {
+    "causality_all365_days": {
+     "es_median": 0.09458959320155225,
+     "vg_median": 6.053160636860553,
+     "sample_sd_mean": 0.02679761679183427,
+     "sigma_median": 0.026896759858935256
+    },
+    "causality_train_no_sd_floor": {
+     "es_median": 0.09434884454392607,
+     "vg_median": 6.038742746765436,
+     "sample_sd_mean": 0.026491202022211655,
+     "sigma_median": 0.02699842017278978
+    }
+   },
+   "dispersion": {
+    "mean_sample_sd": 0.026771549461771293,
+    "rms_test_residual_y_minus_f": 0.023235206873400725,
+    "ratio_sample_sd_to_rms_residual": 1.1521975942645433,
+    "train_std_resid_sd_mean": 0.7201414655757623,
+    "train_std_resid_sd_range": [
+     0.526917269236225,
+     0.9405102157283755
+    ]
+   },
+   "roughness_mean_abs_first_diff": {
+    "samples": 0.020640427836481193,
+    "observed_test": 0.01615399118606545,
+    "f_test": 0.011518249502307601
+   },
+   "lag1_corr_across_halfhours": {
+    "samples_minus_f": 0.6751439898430399,
+    "observed_residuals": 0.706318594129764
+   },
+   "frac_negative_samples": 5.88768115942029e-05,
+   "sigma": {
+    "median_LNH": [
+     0.05604788139096459,
+     0.026090105130006768,
+     0.01905267165422843
+    ],
+    "n_fallback": 0,
+    "frac_at_floor_0p01": 0.1388888888888889
+   },
+   "xi_missing": {
+    "low": 0,
+    "high": 0
+   },
+   "smoothing_median": {
+    "g_tau_tbar_kappa": [
+     1.2909058914660874,
+     0.048876654390967854,
+     -1.4380943454271318
+    ],
+    "edf_tau_tbar_kappa": [
+     2.3645886039746387,
+     4.320822682503106,
+     7.626401855234118
+    ],
+    "edf_total": 18.035891418820636
+   },
+   "frac_smoothing_at_bounds": 0.0,
+   "frac_g_on_coarse_grid": 0.013888888888888888,
+   "Sigma_offdiag_lag1_mean": 0.682160943042799,
+   "jitter_used": 0.0,
+   "scenario_effects": {
+    "Low": {
+     "window_slots": [
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19
+     ],
+     "window_clock_gmt": "04:00-09:30",
+     "mean_effect_in_window_kWh": 0.03959811887268962,
+     "mean_effect_in_window_pct": 31.52657131990316,
+     "xi_in_window": [
+      0.009277492140487745,
+      0.012113924552084931,
+      0.021616285178952255,
+      0.02407651101745377,
+      0.030846531885410727,
+      0.03510347884743614,
+      0.04036567483628481,
+      0.058430069982536165,
+      0.0626131707589172,
+      0.0696281091355597,
+      0.07116577076248054
+     ],
+     "xi_missing_in_window": 0,
+     "n_window_slots_with_expected_sign": 11,
+     "max_abs_mean_diff_outside_window_kWh": 0.0,
+     "max_abs_sample_diff_outside_window_kWh": 0.0,
+     "sample_sd_ratio_in_window": 2.3165148447178803
+    },
+    "High": {
+     "window_slots": [
+      39,
+      40,
+      41,
+      42,
+      43,
+      44
+     ],
+     "window_clock_gmt": "19:00-22:00",
+     "mean_effect_in_window_kWh": -0.04701474753954566,
+     "mean_effect_in_window_pct": -19.08228271357182,
+     "xi_in_window": [
+      -0.05227371534561229,
+      -0.05125734434470153,
+      -0.05014024037636461,
+      -0.046025510764181043,
+      -0.04274507285333809,
+      -0.039891790409699285
+     ],
+     "xi_missing_in_window": 0,
+     "n_window_slots_with_expected_sign": 6,
+     "max_abs_mean_diff_outside_window_kWh": 0.0,
+     "max_abs_sample_diff_outside_window_kWh": 0.0,
+     "sample_sd_ratio_in_window": 1.5268310200669564
+    }
+   }
+  }
+ },
+ "settings": {
+  "gam": {
+   "k": 10,
+   "basis": "natural cubic regression spline (mgcv cr analogue), centred",
+   "smoothing": "GCV (mgcv default GCV.Cp), grid -6..6 step 2 per smooth + L-BFGS-B",
+   "terms": "b0 + s(temp_hh) + s(temp_smooth) + s(pos_y) + work_day + low_hh + high_hh",
+   "fit_days": "train_ours (273 days = the authors' train dates)"
+  },
+  "sigma": "causality model (LAML, per-series lambda, sd floor 0.01) on the cluster's 273 training days; NaN -> sigma(Normal)",
+  "Sigma": "np.corrcoef of standardized training residuals (eqs. 37-40); Cholesky",
+  "seeds": {
+   "base": 20200727,
+   "scheme": "SeedSequence([base, cluster]).spawn(2): [samples, scenarios]; the three scenarios share one stream (common random numbers)"
+  },
+  "n_samples": 200,
+  "test_days": "92, ascending dates",
+  "scenarios": "Normal = all dummies 0; Low = low slots 9-19 = 04:00-09:30 GMT; High = high slots 39-44 = 19:00-22:00 GMT (lib.effects windows, REPRO_SPEC section 7; phases 1-2 used 9-18 / 39-43)",
+  "sigma_variant_scores": "ES/VG medians with sigma replaced by the causality fit on all 365 days and by the train fit without the 0.01 sd floor; same random stream. (Track A's variants based on the authors' agreg_profiles 'variance' column do not apply to our clusters.)",
+  "blas_threads": "1",
+  "scenario_entries_regenerated": "2026-11-12 14:15: scenario arrays and 'scenario_effects' regenerated from the stored models (30_trackB_models.py --stage gamscen, no refit); every other entry is from the 'gam' stage run"
+ },
+ "paper_fig4_approx_medians": {
+  "rmse_gam": [
+   0.015,
+   0.016,
+   0.015,
+   0.018
+  ],
+  "rmse_cvae": [
+   0.02,
+   0.022,
+   0.018,
+   0.025
+  ],
+  "es_gam": [
+   0.155,
+   0.15,
+   0.175,
+   0.135
+  ],
+  "es_cvae": [
+   0.15,
+   0.145,
+   0.17,
+   0.13
+  ],
+  "vg_gam": [
+   4,
+   4,
+   5,
+   5
+  ],
+  "vg_cvae": [
+   6,
+   7,
+   7,
+   10
+  ]
+ },
+ "cluster_sizes": {
+  "0": 285,
+  "1": 299,
+  "2": 299,
+  "3": 149
+ }
+}

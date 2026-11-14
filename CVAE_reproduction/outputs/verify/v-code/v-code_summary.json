@@ -1,0 +1,143 @@
+{
+ "verifier": "v-code (implementation fidelity)",
+ "cvae_port": {
+  "static_review": "layers 150->15 relu->8 [mu|logscale], 106->15 relu->48; scale=exp(logscale)=std; z=mu+exp(ls)*eps; KL diag-Gaussian vs N(0,I); loss=SSE(48)+10*KL per sample (paper eq.7: eta on KL); float64; Glorot-uniform kernels, zero biases; Keras Adam (eps 1e-7 on uncorrected sqrt(v)); batch 1, file order (= ascending date, all 4 clusters), 50 epochs; one scalar train min/max per cluster; 102 conditions in upstream order; generation z~N(0,I4) then *(max-min)+min",
+  "numeric_forward_loss_c3_selected": "my numpy implementation vs lib on 6 train days: max |dloss| 8.3e-17, |dKL| 5.9e-18, |dxhat| 0",
+  "selection_metric": "upstream repo has NO selection step: cvae_generate.ipynb saves all 50 decoders only; compute_mse is called only in optimize_architecture.ipynb (grid search), compute_mse_test never. scripts/10 uses compute_mse (posterior z). Same argmin as compute_mse_test in all 4 clusters (Spearman 1.0; |post-prior| <= 0.0022).",
+  "collapse_selected_models": "KL 4.2e-6 (c3), posterior std 0.9997-1.0003, encoder hidden layer dead (0/15 units active on any training day, all 4 clusters); all 200 restarts KL <= 1.3e-5",
+  "independent_trainer_c3_eta_sweep": {
+   "eta10": 7.8e-07,
+   "eta10_no_bias_correction": 1.7e-06,
+   "eta1": 5.2e-06,
+   "eta0.1": 8.5e-05,
+   "eta0.01": "1.51 nats, posterior std 0.79, spread/skill 0.52"
+  },
+  "independent_trainer_c3_10_restarts_eta10": "compute_mse 5.55-6.32 (median 5.97) vs port 50 restarts 5.30-6.42 (median 5.78), MWU p=0.47; RMSE(mean200) median 0.0262 vs 0.0257 kWh (p=0.73); KL <= 3.5e-6",
+  "ppca_threshold": "SSE + eta*KL == Gaussian decoder with sigma^2 = eta/2 = 5 (scaled units); top eigenvalue of residual covariance 0.031 (conditional, c3), 0.27 (unconditional) -> collapse is the optimum",
+  "latent_scale_remedy": "sigma_z = 3: spread/skill 0.27-0.30; sigma_z = 10: 1.38-1.41 but RMSE(mean) 0.019->0.031 (c0), 0.0235->0.032 (c3)"
+ },
+ "gam": {
+  "sigma_mine_vs_saved": "r >= 0.9992, median ratio 0.996-1.001 (Normal), all clusters",
+  "floor_0.01_binding_cells": "21/15/3.5/13% (c0-c3); removing it lowers RMS sigma on test cells by 0.0-1.0%",
+  "sigma_over_test_resid_rms_saved_f": [
+   1.468,
+   1.551,
+   1.368,
+   1.391
+  ],
+  "sigma_over_test_resid_rms_my_f": [
+   1.398,
+   1.462,
+   1.3,
+   1.359
+  ],
+  "sigma_over_causality_model_test_resid": [
+   0.929,
+   0.955,
+   0.878,
+   1.002
+  ],
+  "train_vs_test_resid_rms_my_f": [
+   [
+    0.0148,
+    0.0168
+   ],
+   [
+    0.0168,
+    0.0192
+   ],
+   [
+    0.0148,
+    0.0171
+   ],
+   [
+    0.0207,
+    0.021
+   ]
+  ],
+  "spread_skill_rms": [
+   1.451,
+   1.539,
+   1.369,
+   1.389
+  ],
+  "cov90": [
+   0.973,
+   0.972,
+   0.96,
+   0.962
+  ]
+ },
+ "scores": {
+  "loop_vs_lib_max_abs_diff": "<= 4.6e-16 (RMSE, ES split, ES U), <= 5e-14 (VG), 10 days of c0, both models",
+  "medians_mine_all_days": {
+   "rmse_rootmean_cvae": [
+    0.0191,
+    0.0223,
+    0.0181,
+    0.0235
+   ],
+   "rmse_rootmean_gam": [
+    0.0142,
+    0.0162,
+    0.0148,
+    0.0187
+   ],
+   "rmse_euclid_cvae": [
+    0.132,
+    0.154,
+    0.125,
+    0.163
+   ],
+   "rmse_euclid_gam": [
+    0.098,
+    0.112,
+    0.103,
+    0.129
+   ],
+   "es_split_cvae": [
+    0.125,
+    0.147,
+    0.113,
+    0.153
+   ],
+   "es_split_gam": [
+    0.074,
+    0.084,
+    0.076,
+    0.094
+   ],
+   "es_u_cvae": [
+    0.125,
+    0.145,
+    0.112,
+    0.152
+   ],
+   "es_u_gam": [
+    0.073,
+    0.084,
+    0.074,
+    0.093
+   ],
+   "vg_ordered_cvae": [
+    5.63,
+    6.61,
+    6.62,
+    9.02
+   ],
+   "vg_ordered_gam": [
+    3.76,
+    3.97,
+    4.79,
+    5.81
+   ]
+  },
+  "vs_scores_long_csv_max_abs_diff": 3.8e-13
+ },
+ "effects": {
+  "windows": "Low 9-18, High 39-43, pre4 35-38, post4 44-47 (pre2 37-38, post2 44-45)",
+  "pct_base": "100*mean(scen-Normal)/mean(Normal) over the same slots and days; my recomputation equals effects_summary.json (e.g. CVAE c3 Low +50.27%, High -25.10%, pre4 -25.30%, post4 -21.93%)",
+  "regeneration_c3": "4 test days (incl. 3 with real Low/High events) regenerated with my numpy decoder and my condition vectors: max |diff| = 0 for High, Low, Normal and real-condition samples; keeping the real events would differ by 0.031 kWh",
+  "gam_outside_window_maxabs": 0.0
+ }
+}

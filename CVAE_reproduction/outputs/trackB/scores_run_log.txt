@@ -1,0 +1,20 @@
+[08:57:43] [trackB] 4 clusters x 92 test days (2013-01-01 .. 2013-12-28); dates matches C:/Users/cleme/Desktop/MIT/Courses/Fall/Machine Learning/Project/Claude_ML_Project/CVAE_reproduction/outputs/trackB/test_dates.csv (92 days)
+[08:57:44] [trackB] cvae c0: N=200 medians RMSE 0.0195 kWh (Euclid 0.1348), ES 0.1234 (U 0.1244), VG 5.82 [1.1s]
+[08:57:45] [trackB] cvae c1: N=200 medians RMSE 0.0246 kWh (Euclid 0.1703), ES 0.1624 (U 0.1624), VG 6.97 [1.1s]
+[08:57:46] [trackB] cvae c2: N=200 medians RMSE 0.0173 kWh (Euclid 0.1200), ES 0.1073 (U 0.1074), VG 5.31 [1.1s]
+[08:57:47] [trackB] cvae c3: N=200 medians RMSE 0.0244 kWh (Euclid 0.1689), ES 0.1622 (U 0.1623), VG 9.77 [1.1s]
+[08:57:48] [trackB] gam c0: N=200 medians RMSE 0.0144 kWh (Euclid 0.0999), ES 0.0746 (U 0.0752), VG 4.04 [1.1s]
+[08:57:50] [trackB] gam c1: N=200 medians RMSE 0.0171 kWh (Euclid 0.1182), ES 0.0889 (U 0.0886), VG 4.11 [1.1s]
+[08:57:51] [trackB] gam c2: N=200 medians RMSE 0.0129 kWh (Euclid 0.0895), ES 0.0680 (U 0.0677), VG 3.62 [1.0s]
+[08:57:52] [trackB] gam c3: N=200 medians RMSE 0.0188 kWh (Euclid 0.1306), ES 0.0945 (U 0.0949), VG 6.05 [1.2s]
+[08:57:53] [trackB] wrote scores_long.csv (736 rows) and scores_summary.json
+[08:57:53] [trackB] 13% check: closest = {'name': 'median_over_all_cluster_days:rel_to_cvae', 'value_pct': 23.056403165925502}; within 2 pp: []
+[08:57:53] [trackB] ES variants ranked: ['v2_sq_spread', 'v3_quarter_spread', 'v4_first_term', 'v9_euclid_rmse', 'v14_obs_prev_day']; all 8 cells within 10%: []
+[08:57:53] [trackB] verdict cvae_too_little_variance: True
+[08:57:53] [trackB] verdict gam_too_much_variance: True
+[08:57:53] [trackB] verdict cvae_consecutive_halfhours_very_correlated: True
+[08:57:53] [trackB] verdict gam_erratic: True
+[08:57:53] [trackB] verdict profile_lag1_autocorrelation: {'cvae_samples': [0.9799939049091977, 0.9774114482749439, 0.9825391440584138, 0.9771031218796526], 'gam_samples': [0.9562819922467312, 0.9591383115313173, 0.9466851472526703, 0.9272887936258074], 'observed': [0.9705041952893912, 0.9706465421874974, 0.9667151663887392, 0.9511705034363682]}
+[08:57:53] [trackB] verdict real_behaviour_in_between: {'variance_holds': True, 'roughness_holds': True, 'profile_lag1_holds': True, 'lag1_strictly_between_holds': True, 'lag1_values': {'cvae_generated': [0.9155044914131464, 0.9224841580259602, 0.9413435560125419, 0.877664931177428], 'gam_generated': [0.7189488838963012, 0.7627397961101888, 0.7483221533506504, 0.6798150080885793], 'observed_residual_vs_gam_mean': [0.7262992092668906, 0.8002930903498129, 0.7757563238771396, 0.7198077588336557]}, 'note': "variance: spread/skill CVAE < 1 < GAM; roughness: samples/observed CVAE < 1 < GAM; lag-1: observed residual correlation strictly between the two generators' across-sample values"}
+[08:57:54] [trackB] figures written to C:/Users/cleme/Desktop/MIT/Courses/Fall/Machine Learning/Project/Claude_ML_Project/CVAE_reproduction/outputs/figures
+[08:57:54] [trackB] done in 11.3s

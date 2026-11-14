@@ -1,0 +1,729 @@
+{
+ "clusters": {
+  "0": {
+   "fit_seconds": 4.73,
+   "train_rmse_f": {
+    "mean": 0.013279,
+    "median": 0.012238
+   },
+   "test_rmse_f": {
+    "mean": 0.015023,
+    "median": 0.014457,
+    "euclidean_median": 0.100158
+   },
+   "test_rmse_f_reml": {
+    "mean": 0.015084,
+    "median": 0.014374
+   },
+   "train_rmse_f_reml_mean": 0.013479,
+   "test_rmse_sample_mean": {
+    "mean": 0.015172,
+    "median": 0.014212,
+    "euclidean_median": 0.098465
+   },
+   "energy_score": {
+    "mean": 0.078777,
+    "median": 0.073576,
+    "median_term_mean_dist_to_obs": 0.184208,
+    "median_term_mean_dist_between_samples": 0.224062
+   },
+   "variogram_score_p05": {
+    "mean": 4.17143,
+    "median": 3.756088
+   },
+   "sigma_variants_scores": {
+    "authors_variance_as_sigma": {
+     "es_median": 0.094472,
+     "vg_median": 6.122018,
+     "sample_sd_mean": 0.033761,
+     "sigma_median": 0.037802
+    },
+    "sqrt_authors_variance_as_sigma": {
+     "es_median": 0.363714,
+     "vg_median": 67.6946,
+     "sample_sd_mean": 0.17205,
+     "sigma_median": 0.194422
+    },
+    "causality_all365_days": {
+     "es_median": 0.073772,
+     "vg_median": 3.762278,
+     "sample_sd_mean": 0.022554,
+     "sigma_median": 0.02298
+    },
+    "causality_train_no_sd_floor": {
+     "es_median": 0.073376,
+     "vg_median": 3.7167,
+     "sample_sd_mean": 0.021408,
+     "sigma_median": 0.022316
+    }
+   },
+   "dispersion": {
+    "mean_sample_sd": 0.022155,
+    "rms_test_residual_y_minus_f": 0.015988,
+    "ratio_sample_sd_to_rms_residual": 1.385725,
+    "train_std_resid_sd_mean": 0.566703,
+    "train_std_resid_sd_range": [
+     0.314263,
+     0.892829
+    ]
+   },
+   "roughness_mean_abs_first_diff": {
+    "samples": 0.018158,
+    "observed_test": 0.014704,
+    "f_test": 0.012212
+   },
+   "lag1_corr_across_halfhours": {
+    "samples_minus_f": 0.72484,
+    "observed_residuals": 0.75079
+   },
+   "frac_negative_samples": 0.0,
+   "sigma": {
+    "median_LNH": [
+     0.027053,
+     0.023043,
+     0.018916
+    ],
+    "n_fallback": 0,
+    "frac_at_floor_0p01": 0.208333,
+    "ratio_to_authors_variance_median_LNH": [
+     0.635879,
+     0.678437,
+     0.639979
+    ]
+   },
+   "xi_missing": {
+    "low": 0,
+    "high": 0
+   },
+   "smoothing_median": {
+    "g_tau_tbar_kappa": [
+     0.924527,
+     -0.010174,
+     -1.752419
+    ],
+    "edf_tau_tbar_kappa": [
+     3.034195,
+     4.29433,
+     8.194078
+    ],
+    "edf_total": 19.036759
+   },
+   "frac_smoothing_at_bounds": 0.0,
+   "frac_g_on_coarse_grid": 0.006944,
+   "Sigma_offdiag_lag1_mean": 0.726676,
+   "jitter_used": 0.0,
+   "scenario_effects": {
+    "Low": {
+     "window_slots": [
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18
+     ],
+     "mean_effect_in_window_kWh": 0.006285,
+     "xi_in_window": [
+      0.000582,
+      0.000644,
+      0.001282,
+      0.002534,
+      0.008451,
+      0.005007,
+      0.008651,
+      0.010656,
+      0.013705,
+      0.011521
+     ],
+     "n_window_slots_with_expected_sign": 10,
+     "max_abs_mean_diff_outside_window_kWh": 0.0,
+     "max_abs_sample_diff_outside_window_kWh": 0.0,
+     "sample_sd_ratio_in_window": 1.114128
+    },
+    "High": {
+     "window_slots": [
+      39,
+      40,
+      41,
+      42,
+      43
+     ],
+     "mean_effect_in_window_kWh": -0.00963,
+     "xi_in_window": [
+      -0.01349,
+      -0.010437,
+      -0.005666,
+      -0.009576,
+      -0.009023
+     ],
+     "n_window_slots_with_expected_sign": 5,
+     "max_abs_mean_diff_outside_window_kWh": 0.0,
+     "max_abs_sample_diff_outside_window_kWh": 0.0,
+     "sample_sd_ratio_in_window": 0.734808
+    }
+   }
+  },
+  "1": {
+   "fit_seconds": 13.49,
+   "train_rmse_f": {
+    "mean": 0.014817,
+    "median": 0.013727
+   },
+   "test_rmse_f": {
+    "mean": 0.016955,
+    "median": 0.015881,
+    "euclidean_median": 0.110029
+   },
+   "test_rmse_f_reml": {
+    "mean": 0.016992,
+    "median": 0.016042
+   },
+   "train_rmse_f_reml_mean": 0.015042,
+   "test_rmse_sample_mean": {
+    "mean": 0.017076,
+    "median": 0.016175,
+    "euclidean_median": 0.112066
+   },
+   "energy_score": {
+    "mean": 0.090862,
+    "median": 0.083968,
+    "median_term_mean_dist_to_obs": 0.216012,
+    "median_term_mean_dist_between_samples": 0.264053
+   },
+   "variogram_score_p05": {
+    "mean": 4.469148,
+    "median": 3.973498
+   },
+   "sigma_variants_scores": {
+    "authors_variance_as_sigma": {
+     "es_median": 0.101868,
+     "vg_median": 5.141639,
+     "sample_sd_mean": 0.035711,
+     "sigma_median": 0.035872
+    },
+    "sqrt_authors_variance_as_sigma": {
+     "es_median": 0.375615,
+     "vg_median": 56.669236,
+     "sample_sd_mean": 0.178839,
+     "sigma_median": 0.1894
+    },
+    "causality_all365_days": {
+     "es_median": 0.083858,
+     "vg_median": 4.040807,
+     "sample_sd_mean": 0.026231,
+     "sigma_median": 0.02817
+    },
+    "causality_train_no_sd_floor": {
+     "es_median": 0.083805,
+     "vg_median": 3.953995,
+     "sample_sd_mean": 0.025536,
+     "sigma_median": 0.027446
+    }
+   },
+   "dispersion": {
+    "mean_sample_sd": 0.025989,
+    "rms_test_residual_y_minus_f": 0.018132,
+    "ratio_sample_sd_to_rms_residual": 1.433339,
+    "train_std_resid_sd_mean": 0.57282,
+    "train_std_resid_sd_range": [
+     0.389673,
+     0.76551
+    ]
+   },
+   "roughness_mean_abs_first_diff": {
+    "samples": 0.019028,
+    "observed_test": 0.015291,
+    "f_test": 0.012884
+   },
+   "lag1_corr_across_halfhours": {
+    "samples_minus_f": 0.766427,
+    "observed_residuals": 0.786217
+   },
+   "frac_negative_samples": 0.0,
+   "sigma": {
+    "median_LNH": [
+     0.034411,
+     0.027151,
+     0.023431
+    ],
+    "n_fallback": 0,
+    "frac_at_floor_0p01": 0.152778,
+    "ratio_to_authors_variance_median_LNH": [
+     0.79075,
+     0.745547,
+     0.824869
+    ]
+   },
+   "xi_missing": {
+    "low": 0,
+    "high": 0
+   },
+   "smoothing_median": {
+    "g_tau_tbar_kappa": [
+     0.200469,
+     0.172254,
+     -1.38445
+    ],
+    "edf_tau_tbar_kappa": [
+     4.52201,
+     3.924653,
+     7.621772
+    ],
+    "edf_total": 19.283559
+   },
+   "frac_smoothing_at_bounds": 0.0,
+   "frac_g_on_coarse_grid": 0.006944,
+   "Sigma_offdiag_lag1_mean": 0.767786,
+   "jitter_used": 0.0,
+   "scenario_effects": {
+    "Low": {
+     "window_slots": [
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18
+     ],
+     "mean_effect_in_window_kWh": 0.006688,
+     "xi_in_window": [
+      0.000124,
+      0.001634,
+      0.001635,
+      0.002248,
+      0.004402,
+      0.007472,
+      0.008868,
+      0.013026,
+      0.014398,
+      0.012936
+     ],
+     "n_window_slots_with_expected_sign": 10,
+     "max_abs_mean_diff_outside_window_kWh": 0.0,
+     "max_abs_sample_diff_outside_window_kWh": 0.0,
+     "sample_sd_ratio_in_window": 1.082241
+    },
+    "High": {
+     "window_slots": [
+      39,
+      40,
+      41,
+      42,
+      43
+     ],
+     "mean_effect_in_window_kWh": -0.018985,
+     "xi_in_window": [
+      -0.022547,
+      -0.019006,
+      -0.020945,
+      -0.016124,
+      -0.016524
+     ],
+     "n_window_slots_with_expected_sign": 5,
+     "max_abs_mean_diff_outside_window_kWh": 0.0,
+     "max_abs_sample_diff_outside_window_kWh": 0.0,
+     "sample_sd_ratio_in_window": 0.717093
+    }
+   }
+  },
+  "2": {
+   "fit_seconds": 11.75,
+   "train_rmse_f": {
+    "mean": 0.013147,
+    "median": 0.012098
+   },
+   "test_rmse_f": {
+    "mean": 0.015487,
+    "median": 0.014529,
+    "euclidean_median": 0.100661
+   },
+   "test_rmse_f_reml": {
+    "mean": 0.015442,
+    "median": 0.014464
+   },
+   "train_rmse_f_reml_mean": 0.013288,
+   "test_rmse_sample_mean": {
+    "mean": 0.015518,
+    "median": 0.014812,
+    "euclidean_median": 0.102619
+   },
+   "energy_score": {
+    "mean": 0.078914,
+    "median": 0.076064,
+    "median_term_mean_dist_to_obs": 0.178914,
+    "median_term_mean_dist_between_samples": 0.208596
+   },
+   "variogram_score_p05": {
+    "mean": 5.103717,
+    "median": 4.788839
+   },
+   "sigma_variants_scores": {
+    "authors_variance_as_sigma": {
+     "es_median": 0.097216,
+     "vg_median": 7.695343,
+     "sample_sd_mean": 0.038751,
+     "sigma_median": 0.041677
+    },
+    "sqrt_authors_variance_as_sigma": {
+     "es_median": 0.394404,
+     "vg_median": 102.20741,
+     "sample_sd_mean": 0.194927,
+     "sigma_median": 0.204149
+    },
+    "causality_all365_days": {
+     "es_median": 0.076416,
+     "vg_median": 4.812492,
+     "sample_sd_mean": 0.022383,
+     "sigma_median": 0.023106
+    },
+    "causality_train_no_sd_floor": {
+     "es_median": 0.076123,
+     "vg_median": 4.789784,
+     "sample_sd_mean": 0.021673,
+     "sigma_median": 0.021646
+    }
+   },
+   "dispersion": {
+    "mean_sample_sd": 0.021677,
+    "rms_test_residual_y_minus_f": 0.016191,
+    "ratio_sample_sd_to_rms_residual": 1.338816,
+    "train_std_resid_sd_mean": 0.634957,
+    "train_std_resid_sd_range": [
+     0.422027,
+     0.78627
+    ]
+   },
+   "roughness_mean_abs_first_diff": {
+    "samples": 0.014743,
+    "observed_test": 0.010997,
+    "f_test": 0.007143
+   },
+   "lag1_corr_across_halfhours": {
+    "samples_minus_f": 0.713996,
+    "observed_residuals": 0.73987
+   },
+   "frac_negative_samples": 0.0,
+   "sigma": {
+    "median_LNH": [
+     0.027281,
+     0.020249,
+     0.01817
+    ],
+    "n_fallback": 0,
+    "frac_at_floor_0p01": 0.020833,
+    "ratio_to_authors_variance_median_LNH": [
+     0.578196,
+     0.526411,
+     0.531772
+    ]
+   },
+   "xi_missing": {
+    "low": 0,
+    "high": 0
+   },
+   "smoothing_median": {
+    "g_tau_tbar_kappa": [
+     0.479632,
+     0.079669,
+     -1.767503
+    ],
+    "edf_tau_tbar_kappa": [
+     3.811299,
+     4.078898,
+     8.318478
+    ],
+    "edf_total": 19.598524
+   },
+   "frac_smoothing_at_bounds": 0.0,
+   "frac_g_on_coarse_grid": 0.0,
+   "Sigma_offdiag_lag1_mean": 0.714756,
+   "jitter_used": 0.0,
+   "scenario_effects": {
+    "Low": {
+     "window_slots": [
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18
+     ],
+     "mean_effect_in_window_kWh": 0.004117,
+     "xi_in_window": [
+      -0.001271,
+      -0.001123,
+      0.002095,
+      0.001809,
+      0.003993,
+      0.00268,
+      0.004805,
+      0.008162,
+      0.007141,
+      0.012911
+     ],
+     "n_window_slots_with_expected_sign": 8,
+     "max_abs_mean_diff_outside_window_kWh": 0.0,
+     "max_abs_sample_diff_outside_window_kWh": 0.0,
+     "sample_sd_ratio_in_window": 1.136096
+    },
+    "High": {
+     "window_slots": [
+      39,
+      40,
+      41,
+      42,
+      43
+     ],
+     "mean_effect_in_window_kWh": -0.010831,
+     "xi_in_window": [
+      -0.011164,
+      -0.009744,
+      -0.010517,
+      -0.011109,
+      -0.011648
+     ],
+     "n_window_slots_with_expected_sign": 5,
+     "max_abs_mean_diff_outside_window_kWh": 0.0,
+     "max_abs_sample_diff_outside_window_kWh": 0.0,
+     "sample_sd_ratio_in_window": 0.904902
+    }
+   }
+  },
+  "3": {
+   "fit_seconds": 13.61,
+   "train_rmse_f": {
+    "mean": 0.018656,
+    "median": 0.016447
+   },
+   "test_rmse_f": {
+    "mean": 0.019713,
+    "median": 0.018886,
+    "euclidean_median": 0.130845
+   },
+   "test_rmse_f_reml": {
+    "mean": 0.01952,
+    "median": 0.018255
+   },
+   "train_rmse_f_reml_mean": 0.018949,
+   "test_rmse_sample_mean": {
+    "mean": 0.019681,
+    "median": 0.018678,
+    "euclidean_median": 0.129404
+   },
+   "energy_score": {
+    "mean": 0.099662,
+    "median": 0.09447,
+    "median_term_mean_dist_to_obs": 0.213472,
+    "median_term_mean_dist_between_samples": 0.243079
+   },
+   "variogram_score_p05": {
+    "mean": 6.305372,
+    "median": 5.813014
+   },
+   "sigma_variants_scores": {
+    "authors_variance_as_sigma": {
+     "es_median": 0.106244,
+     "vg_median": 7.488461,
+     "sample_sd_mean": 0.036735,
+     "sigma_median": 0.032097
+    },
+    "sqrt_authors_variance_as_sigma": {
+     "es_median": 0.379928,
+     "vg_median": 78.105614,
+     "sample_sd_mean": 0.180207,
+     "sigma_median": 0.179151
+    },
+    "causality_all365_days": {
+     "es_median": 0.09452,
+     "vg_median": 5.824201,
+     "sample_sd_mean": 0.025959,
+     "sigma_median": 0.027275
+    },
+    "causality_train_no_sd_floor": {
+     "es_median": 0.094297,
+     "vg_median": 5.805144,
+     "sample_sd_mean": 0.025643,
+     "sigma_median": 0.025645
+    }
+   },
+   "dispersion": {
+    "mean_sample_sd": 0.025888,
+    "rms_test_residual_y_minus_f": 0.020543,
+    "ratio_sample_sd_to_rms_residual": 1.260156,
+    "train_std_resid_sd_mean": 0.704965,
+    "train_std_resid_sd_range": [
+     0.535858,
+     0.888933
+    ]
+   },
+   "roughness_mean_abs_first_diff": {
+    "samples": 0.020545,
+    "observed_test": 0.015903,
+    "f_test": 0.011736
+   },
+   "lag1_corr_across_halfhours": {
+    "samples_minus_f": 0.673674,
+    "observed_residuals": 0.669591
+   },
+   "frac_negative_samples": 1.4e-05,
+   "sigma": {
+    "median_LNH": [
+     0.05035,
+     0.026401,
+     0.020278
+    ],
+    "n_fallback": 0,
+    "frac_at_floor_0p01": 0.125,
+    "ratio_to_authors_variance_median_LNH": [
+     0.664067,
+     0.657547,
+     1.342905
+    ]
+   },
+   "xi_missing": {
+    "low": 0,
+    "high": 0
+   },
+   "smoothing_median": {
+    "g_tau_tbar_kappa": [
+     0.859166,
+     0.009231,
+     -1.354729
+    ],
+    "edf_tau_tbar_kappa": [
+     3.088903,
+     4.339535,
+     7.533797
+    ],
+    "edf_total": 18.928254
+   },
+   "frac_smoothing_at_bounds": 0.0,
+   "frac_g_on_coarse_grid": 0.0,
+   "Sigma_offdiag_lag1_mean": 0.680952,
+   "jitter_used": 0.0,
+   "scenario_effects": {
+    "Low": {
+     "window_slots": [
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18
+     ],
+     "mean_effect_in_window_kWh": 0.043566,
+     "xi_in_window": [
+      0.009779,
+      0.012576,
+      0.023497,
+      0.029367,
+      0.037734,
+      0.041806,
+      0.054081,
+      0.072735,
+      0.07027,
+      0.083826
+     ],
+     "n_window_slots_with_expected_sign": 10,
+     "max_abs_mean_diff_outside_window_kWh": 0.0,
+     "max_abs_sample_diff_outside_window_kWh": 0.0,
+     "sample_sd_ratio_in_window": 1.940585
+    },
+    "High": {
+     "window_slots": [
+      39,
+      40,
+      41,
+      42,
+      43
+     ],
+     "mean_effect_in_window_kWh": -0.065885,
+     "xi_in_window": [
+      -0.07251,
+      -0.071066,
+      -0.066505,
+      -0.060992,
+      -0.058293
+     ],
+     "n_window_slots_with_expected_sign": 5,
+     "max_abs_mean_diff_outside_window_kWh": 0.0,
+     "max_abs_sample_diff_outside_window_kWh": 0.0,
+     "sample_sd_ratio_in_window": 0.850233
+    }
+   }
+  }
+ },
+ "settings": {
+  "gam": {
+   "k": 10,
+   "basis": "natural cubic regression spline (mgcv cr analogue), centred",
+   "smoothing": "GCV (mgcv default GCV.Cp), grid -6..6 step 2 per smooth + L-BFGS-B",
+   "terms": "b0 + s(temp_hh) + s(temp_smooth) + s(pos_y) + work_day + low_hh + high_hh",
+   "fit_days": "train_nmf (273 days)"
+  },
+  "sigma": "causality model (LAML, per-series lambda, sd floor 0.01) on the cluster's 273 training days; NaN -> sigma(Normal)",
+  "Sigma": "np.corrcoef of standardized training residuals (eqs. 37-40); Cholesky",
+  "seeds": {
+   "base": 20200727,
+   "scheme": "SeedSequence([base, cluster]).spawn(2): [samples, scenarios]; the three scenarios share one stream (common random numbers)"
+  },
+  "n_samples": 200,
+  "test_days": "92, ascending dates",
+  "scenarios": "spec section 5: Normal = all dummies 0; Low = low slots 9-18; High = high slots 39-43",
+  "sigma_variant_scores": "ES/VG medians with sigma replaced by the authors' 'variance' column (as sigma, and its square root) and by the causality fit on all 365 days; same random stream"
+ },
+ "paper_fig4_approx_medians": {
+  "rmse_gam": [
+   0.015,
+   0.016,
+   0.015,
+   0.018
+  ],
+  "rmse_cvae": [
+   0.02,
+   0.022,
+   0.018,
+   0.025
+  ],
+  "es_gam": [
+   0.155,
+   0.15,
+   0.175,
+   0.135
+  ],
+  "es_cvae": [
+   0.15,
+   0.145,
+   0.17,
+   0.13
+  ],
+  "vg_gam": [
+   4,
+   4,
+   5,
+   5
+  ],
+  "vg_cvae": [
+   6,
+   7,
+   7,
+   10
+  ]
+ }
+}

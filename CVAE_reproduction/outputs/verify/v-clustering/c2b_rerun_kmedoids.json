@@ -1,0 +1,48 @@
+{
+ "c": {
+  "n": 1007,
+  "n_negative_clipped": 33,
+  "nmf_n_iter": 315,
+  "W_maxabs_vs_stored": 0.0,
+  "ari_mine_vs_stored": 1.0,
+  "ari_mine_vs_authors": 0.661682071594731,
+  "my_cost": 258.47260217221344,
+  "my_iters": 6,
+  "my_sizes": [
+   280,
+   216,
+   221,
+   290
+  ],
+  "authors_medoid_cost": 254.13179276698594,
+  "my_cost_on_same_1007": 258.47260217221344,
+  "pct_nearest_own_authors_medoid": 92.9493545183714,
+  "alt_from_authors_medoids": {
+   "ari_vs_authors": 0.8150267391880627,
+   "cost": 254.13179276698594,
+   "iters": 1,
+   "sizes": [
+    318,
+    327,
+    210,
+    152
+   ]
+  }
+ },
+ "a": {
+  "n": 1032,
+  "n_negative_clipped": 35,
+  "nmf_n_iter": 420,
+  "W_maxabs_vs_stored": 2.708944180085382e-14,
+  "ari_mine_vs_stored": 1.0,
+  "ari_mine_vs_authors": 0.5764298601565565,
+  "my_cost": 245.0173391871507,
+  "my_iters": 6,
+  "my_sizes": [
+   299,
+   285,
+   299,
+   149
+  ]
+ }
+}

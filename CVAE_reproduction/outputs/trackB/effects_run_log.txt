@@ -1,0 +1,31 @@
+[14:17:11] [effects] cvae c0: Low in -5.0% [-5.8, -4.1], post4 -7.5%, reb20-31 -8.1%, reb32-47 -6.4% | High in +3.5%, pre2 +3.8%, pre4 +3.6%, post2 +4.8%, post4(45-47) +4.7%, aft24-34 +2.2% | day -6.4% / +3.1%
+[14:17:11] [effects] cvae c1: Low in +2.9% [+1.3, +4.4], post4 -0.2%, reb20-31 -3.7%, reb32-47 -0.7% | High in -5.5%, pre2 -5.2%, pre4 -4.6%, post2 -5.6%, post4(45-47) -5.4%, aft24-34 -4.6% | day -0.8% / -4.2%
+[14:17:11] [effects] cvae c2: Low in -3.6% [-4.4, -2.9], post4 -2.6%, reb20-31 -4.6%, reb32-47 -8.4% | High in -7.4%, pre2 -8.9%, pre4 -8.8%, post2 -8.9%, post4(45-47) -8.8%, aft24-34 -5.0% | day -6.7% / -6.2%
+[14:17:11] [effects] cvae c3: Low in +41.5% [+39.7, +43.2], post4 +2.9%, reb20-31 -2.7%, reb32-47 -9.2% | High in -8.0%, pre2 -7.1%, pre4 -7.1%, post2 -7.3%, post4(45-47) -7.4%, aft24-34 -5.3% | day +1.0% / -4.9%
+[14:17:11] [effects] gam c0: Low in +3.5% [+3.4, +3.6], post4 +0.0%, reb20-31 +0.0%, reb32-47 +0.0% | High in -2.9%, pre2 +0.0%, pre4 +0.0%, post2 +0.0%, post4(45-47) +0.0%, aft24-34 +0.0% | day +0.7% / -0.4%
+[14:17:12] [effects] gam c1: Low in +2.9% [+2.9, +3.0], post4 +0.0%, reb20-31 +0.0%, reb32-47 +0.0% | High in -3.3%, pre2 +0.0%, pre4 +0.0%, post2 +0.0%, post4(45-47) +0.0%, aft24-34 +0.0% | day +0.5% / -0.7%
+[14:17:12] [effects] gam c2: Low in +2.8% [+2.7, +2.9], post4 +0.0%, reb20-31 +0.0%, reb32-47 +0.0% | High in -3.8%, pre2 +0.0%, pre4 +0.0%, post2 +0.0%, post4(45-47) +0.0%, aft24-34 +0.0% | day +0.5% / -0.6%
+[14:17:12] [effects] gam c3: Low in +31.5% [+31.0, +32.1], post4 +0.0%, reb20-31 +0.0%, reb32-47 +0.0% | High in -19.1%, pre2 +0.0%, pre4 +0.0%, post2 +0.0%, post4(45-47) +0.0%, aft24-34 +0.0% | day +5.6% / -3.6%
+[14:17:25] [restarts] c0: 50 restarts re-run
+[14:17:34] [restarts] c1: 50 restarts re-run
+[14:17:43] [restarts] c2: 50 restarts re-run
+[14:17:52] [restarts] c3: 50 restarts re-run
+[14:17:53] [trackB] wrote effects_summary.json, effects_regions.csv
+[14:17:53] [trackB] mechanism patterns: ['paper_High_39_44', 'paper_Low_9_19', 'real_High_35_46', 'real_High_33_44', 'real_High_15_20', 'real_High_21_44', 'real_High_0_4', 'real_Low_0_10', 'real_Low_11_34', 'real_Low_45_47', 'real_Low_9_32', 'real_Low_0_8', 'joint_L11-34+L47-47+H35-46', 'joint_L9-32+L45-47+H33-44', 'joint_L11-14+L21-47+H15-20']
+[14:17:54] [mechanism] CVAE c0: paper High 39-44 in +3.5%, pre4 +3.6%, post4 (45-47) +4.7%; check vs saved arrays {'Normal': 0.0, 'Low': 0.0, 'High': 0.0}
+[14:17:55] [mechanism] CVAE c1: paper High 39-44 in -5.5%, pre4 -4.6%, post4 (45-47) -5.4%; check vs saved arrays {'Normal': 0.0, 'Low': 0.0, 'High': 0.0}
+[14:17:56] [mechanism] CVAE c2: paper High 39-44 in -7.4%, pre4 -8.8%, post4 (45-47) -8.8%; check vs saved arrays {'Normal': 0.0, 'Low': 0.0, 'High': 0.0}
+[14:17:57] [mechanism] CVAE c3: paper High 39-44 in -8.0%, pre4 -7.1%, post4 (45-47) -7.4%; check vs saved arrays {'Normal': 0.0, 'Low': 0.0, 'High': 0.0}
+[14:18:00] [mechanism] data c0: High events 69: in -3.6%, pre4 -0.1% [-2.3  2. ], post4 +3.0% [-0.2  6.6] | Low events 92: in +4.7%, pre4 -2.6%, post4 +0.4%, far post -0.5% [-2.2  1.2]
+[14:18:02] [mechanism] data c1: High events 69: in -3.6%, pre4 +0.2% [-2.4  2.9], post4 +1.5% [-1.   4.2] | Low events 92: in +5.1%, pre4 -1.9%, post4 +1.4%, far post +0.5% [-1.4  2.5]
+[14:18:05] [mechanism] data c2: High events 69: in -2.3%, pre4 +0.5% [-1.2  2.3], post4 +0.7% [-1.6  3. ] | Low events 92: in +3.0%, pre4 -2.2%, post4 +0.3%, far post -0.3% [-1.8  1.3]
+[14:18:07] [mechanism] data c3: High events 69: in -23.8%, pre4 +2.0% [-1.   5.1], post4 +1.2% [-2.  5.] | Low events 92: in +44.9%, pre4 -6.7%, post4 +3.9%, far post -1.0% [-2.7  0.9]
+[14:18:13] [trackB] mechanism verdict overview: {'n_clusters_cvae_side_effect_in_output': 3, 'n_clusters_data_side_effect': 0, 'n_clusters_cvae_side_effect_on_real_event_days': 3, 'n_clusters_cvae_low_rebound': 3, 'n_clusters_cvae_high_rebound': 1, 'n_clusters_data_low_rebound': 0, 'n_clusters_data_high_rebound': 1}
+[14:18:13] [trackB] wrote mechanism_*.json
+[14:18:20] [trackB] figures written
+[14:18:20] [trackB] done in 69.4s
+
+real	1m11.949s
+user	0m0.046s
+sys	0m0.031s
+exit 0

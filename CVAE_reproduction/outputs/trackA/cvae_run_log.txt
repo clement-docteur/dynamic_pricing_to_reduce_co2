@@ -1,0 +1,382 @@
+[20:33:09] === 10_trackA_cvae.py stages=pca,train,collect,select,generate,effects,figures,summary workers=4 restarts=50 epochs=50 clusters=[0, 1, 2, 3]
+[20:33:11] [pca] cluster 0: cum EVR@4 raw 0.9482 | global min-max 0.9482 | per-half-hour min-max 0.9211 | standardized 0.9140 | n for 80% (raw) 1 | uncentred 0.9976
+[20:33:11] [pca] cluster 1: cum EVR@4 raw 0.9450 | global min-max 0.9450 | per-half-hour min-max 0.9195 | standardized 0.9124 | n for 80% (raw) 1 | uncentred 0.9972
+[20:33:11] [pca] cluster 2: cum EVR@4 raw 0.9510 | global min-max 0.9510 | per-half-hour min-max 0.9483 | standardized 0.9453 | n for 80% (raw) 1 | uncentred 0.9979
+[20:33:11] [pca] cluster 3: cum EVR@4 raw 0.8782 | global min-max 0.8782 | per-half-hour min-max 0.8315 | standardized 0.8166 | n for 80% (raw) 3 | uncentred 0.9906
+[20:33:11] [pca] all-clusters stacked raw cum EVR@4 0.9287; temperature PCA cum EVR@3 raw 0.9867
+[20:33:11] --- stage pca done in 1.8s
+[20:33:11] [train] 200 restarts to run with 4 workers (epochs=50)
+[20:33:36] [train]   1/200 c0 s00 test_mse_post 6.6050 prior 6.6051 last-epoch loss 0.1145 train KL 4.44e-06 | 19.6s | wall 26s
+[20:33:36] [train]   2/200 c1 s00 test_mse_post 6.1557 prior 6.1560 last-epoch loss 0.1102 train KL 4.68e-06 | 19.7s | wall 26s
+[20:33:36] [train]   3/200 c3 s00 test_mse_post 5.4141 prior 5.4144 last-epoch loss 0.1085 train KL 1.73e-06 | 19.8s | wall 26s
+[20:33:37] [train]   4/200 c2 s00 test_mse_post 7.0394 prior 7.0393 last-epoch loss 0.1275 train KL 2.53e-07 | 20.2s | wall 26s
+[20:33:56] [train]   5/200 c1 s01 test_mse_post 6.7419 prior 6.7419 last-epoch loss 0.1484 train KL 4.00e-06 | 20.0s | wall 46s
+[20:33:56] [train]   6/200 c0 s01 test_mse_post 7.3199 prior 7.3197 last-epoch loss 0.1354 train KL 6.58e-06 | 20.1s | wall 46s
+[20:33:57] [train]   7/200 c2 s01 test_mse_post 6.9825 prior 6.9825 last-epoch loss 0.1404 train KL 9.67e-07 | 20.0s | wall 46s
+[20:33:58] [train]   8/200 c3 s01 test_mse_post 5.7271 prior 5.7273 last-epoch loss 0.1322 train KL 6.07e-07 | 20.7s | wall 47s
+[20:34:19] [train]   9/200 c1 s02 test_mse_post 6.2008 prior 6.2007 last-epoch loss 0.1082 train KL 2.47e-06 | 22.3s | wall 68s
+[20:34:19] [train]  10/200 c0 s02 test_mse_post 6.9195 prior 6.9197 last-epoch loss 0.1182 train KL 2.65e-06 | 22.4s | wall 68s
+[20:34:19] [train]  11/200 c2 s02 test_mse_post 6.8390 prior 6.8395 last-epoch loss 0.1243 train KL 1.04e-06 | 22.3s | wall 68s
+[20:34:22] [train]  12/200 c3 s02 test_mse_post 5.7691 prior 5.7689 last-epoch loss 0.1060 train KL 1.50e-06 | 23.8s | wall 71s
+[20:34:48] [train]  13/200 c0 s03 test_mse_post 6.7700 prior 6.7699 last-epoch loss 0.1242 train KL 4.00e-06 | 29.0s | wall 97s
+[20:34:48] [train]  14/200 c2 s03 test_mse_post 7.2714 prior 7.2718 last-epoch loss 0.1243 train KL 2.79e-06 | 29.3s | wall 98s
+[20:34:48] [train]  15/200 c1 s03 test_mse_post 5.7643 prior 5.7641 last-epoch loss 0.1093 train KL 3.05e-06 | 29.4s | wall 98s
+[20:34:51] [train]  16/200 c3 s03 test_mse_post 5.7247 prior 5.7246 last-epoch loss 0.1120 train KL 8.54e-07 | 29.3s | wall 100s
+[20:35:10] [train]  17/200 c0 s04 test_mse_post 6.8985 prior 6.8983 last-epoch loss 0.1252 train KL 4.55e-07 | 21.7s | wall 119s
+[20:35:10] [train]  18/200 c2 s04 test_mse_post 7.2932 prior 7.2933 last-epoch loss 0.1325 train KL 2.30e-07 | 21.4s | wall 119s
+[20:35:10] [train]  19/200 c1 s04 test_mse_post 6.8076 prior 6.8074 last-epoch loss 0.1276 train KL 9.13e-07 | 21.5s | wall 119s
+[20:35:11] [train]  20/200 c3 s04 test_mse_post 5.9269 prior 5.9268 last-epoch loss 0.1078 train KL 1.14e-06 | 20.3s | wall 121s
+[20:35:22] [train]  21/200 c0 s05 test_mse_post 6.8487 prior 6.8488 last-epoch loss 0.1197 train KL 7.38e-07 | 12.4s | wall 132s
+[20:35:22] [train]  22/200 c1 s05 test_mse_post 6.0804 prior 6.0803 last-epoch loss 0.1080 train KL 1.32e-06 | 12.3s | wall 132s
+[20:35:22] [train]  23/200 c2 s05 test_mse_post 6.8853 prior 6.8853 last-epoch loss 0.1242 train KL 2.51e-07 | 12.4s | wall 132s
+[20:35:24] [train]  24/200 c3 s05 test_mse_post 5.6561 prior 5.6561 last-epoch loss 0.0998 train KL 2.09e-06 | 12.5s | wall 133s
+[20:35:34] [train]  25/200 c0 s06 test_mse_post 7.2953 prior 7.2951 last-epoch loss 0.1416 train KL 6.14e-06 | 12.1s | wall 144s
+[20:35:35] [train]  26/200 c1 s06 test_mse_post 6.9657 prior 6.9656 last-epoch loss 0.1359 train KL 1.84e-06 | 12.2s | wall 144s
+[20:35:35] [train]  27/200 c2 s06 test_mse_post 7.1917 prior 7.1915 last-epoch loss 0.1467 train KL 3.90e-07 | 12.4s | wall 144s
+[20:35:36] [train]  28/200 c3 s06 test_mse_post 6.2637 prior 6.2637 last-epoch loss 0.1136 train KL 2.27e-06 | 12.5s | wall 146s
+[20:35:45] [train]  29/200 c0 s07 test_mse_post 7.3035 prior 7.3035 last-epoch loss 0.1353 train KL 9.01e-07 | 10.9s | wall 155s
+[20:35:46] [train]  30/200 c1 s07 test_mse_post 6.4364 prior 6.4363 last-epoch loss 0.1145 train KL 5.64e-06 | 10.9s | wall 155s
+[20:35:46] [train]  31/200 c2 s07 test_mse_post 6.7707 prior 6.7706 last-epoch loss 0.1265 train KL 6.10e-07 | 10.9s | wall 155s
+[20:35:48] [train]  32/200 c3 s07 test_mse_post 5.7787 prior 5.7786 last-epoch loss 0.1056 train KL 3.33e-07 | 11.0s | wall 157s
+[20:35:56] [train]  33/200 c1 s08 test_mse_post 6.5457 prior 6.5458 last-epoch loss 0.1146 train KL 7.77e-07 | 10.7s | wall 166s
+[20:35:56] [train]  34/200 c0 s08 test_mse_post 6.1716 prior 6.1715 last-epoch loss 0.1194 train KL 1.13e-06 | 10.9s | wall 166s
+[20:35:57] [train]  35/200 c2 s08 test_mse_post 7.0848 prior 7.0848 last-epoch loss 0.1309 train KL 2.82e-07 | 10.7s | wall 166s
+[20:35:59] [train]  36/200 c3 s08 test_mse_post 5.7491 prior 5.7492 last-epoch loss 0.1111 train KL 1.58e-06 | 10.9s | wall 168s
+[20:36:09] [train]  37/200 c0 s09 test_mse_post 6.8840 prior 6.8840 last-epoch loss 0.1213 train KL 3.61e-06 | 12.5s | wall 178s
+[20:36:09] [train]  38/200 c1 s09 test_mse_post 6.2072 prior 6.2071 last-epoch loss 0.1109 train KL 2.63e-06 | 12.6s | wall 178s
+[20:36:09] [train]  39/200 c2 s09 test_mse_post 6.4405 prior 6.4406 last-epoch loss 0.1210 train KL 3.80e-07 | 12.6s | wall 179s
+[20:36:11] [train]  40/200 c3 s09 test_mse_post 5.9956 prior 5.9955 last-epoch loss 0.0964 train KL 4.11e-06 | 12.9s | wall 181s
+[20:36:20] [train]  41/200 c0 s10 test_mse_post 6.1760 prior 6.1758 last-epoch loss 0.1151 train KL 6.64e-06 | 11.2s | wall 189s
+[20:36:20] [train]  42/200 c1 s10 test_mse_post 5.9521 prior 5.9521 last-epoch loss 0.1037 train KL 2.89e-06 | 11.3s | wall 190s
+[20:36:21] [train]  43/200 c2 s10 test_mse_post 6.6287 prior 6.6286 last-epoch loss 0.1227 train KL 7.18e-07 | 11.1s | wall 190s
+[20:36:23] [train]  44/200 c3 s10 test_mse_post 5.4860 prior 5.4861 last-epoch loss 0.1025 train KL 6.10e-08 | 11.0s | wall 192s
+[20:36:31] [train]  45/200 c0 s11 test_mse_post 6.2953 prior 6.2956 last-epoch loss 0.1173 train KL 7.08e-06 | 10.4s | wall 200s
+[20:36:31] [train]  46/200 c1 s11 test_mse_post 6.0170 prior 6.0175 last-epoch loss 0.1110 train KL 3.15e-06 | 10.4s | wall 200s
+[20:36:31] [train]  47/200 c2 s11 test_mse_post 6.9670 prior 6.9671 last-epoch loss 0.1328 train KL 6.03e-07 | 10.4s | wall 200s
+[20:36:33] [train]  48/200 c3 s11 test_mse_post 5.6645 prior 5.6646 last-epoch loss 0.1087 train KL 4.56e-07 | 10.7s | wall 203s
+[20:36:41] [train]  49/200 c0 s12 test_mse_post 7.0607 prior 7.0607 last-epoch loss 0.1277 train KL 2.24e-06 | 10.5s | wall 210s
+[20:36:41] [train]  50/200 c1 s12 test_mse_post 6.6264 prior 6.6268 last-epoch loss 0.1233 train KL 2.80e-06 | 10.5s | wall 211s
+[20:36:42] [train]  51/200 c2 s12 test_mse_post 6.7014 prior 6.7014 last-epoch loss 0.1300 train KL 6.40e-07 | 10.5s | wall 211s
+[20:36:44] [train]  52/200 c3 s12 test_mse_post 6.1603 prior 6.1604 last-epoch loss 0.1139 train KL 4.42e-06 | 10.6s | wall 213s
+[20:36:52] [train]  53/200 c0 s13 test_mse_post 6.9654 prior 6.9655 last-epoch loss 0.1247 train KL 2.28e-06 | 11.2s | wall 222s
+[20:36:53] [train]  54/200 c1 s13 test_mse_post 7.2863 prior 7.2867 last-epoch loss 0.1425 train KL 1.00e-06 | 11.3s | wall 222s
+[20:36:53] [train]  55/200 c2 s13 test_mse_post 6.7448 prior 6.7450 last-epoch loss 0.1285 train KL 5.04e-06 | 11.3s | wall 222s
+[20:36:56] [train]  56/200 c3 s13 test_mse_post 6.3151 prior 6.3151 last-epoch loss 0.1141 train KL 7.48e-07 | 11.9s | wall 225s
+[20:37:05] [train]  57/200 c0 s14 test_mse_post 7.0398 prior 7.0400 last-epoch loss 0.1234 train KL 1.53e-06 | 12.8s | wall 235s
+[20:37:06] [train]  58/200 c1 s14 test_mse_post 6.5890 prior 6.5891 last-epoch loss 0.1215 train KL 3.04e-06 | 12.8s | wall 235s
+[20:37:06] [train]  59/200 c2 s14 test_mse_post 7.1048 prior 7.1049 last-epoch loss 0.1383 train KL 1.04e-06 | 12.8s | wall 235s
+[20:37:09] [train]  60/200 c3 s14 test_mse_post 5.8045 prior 5.8046 last-epoch loss 0.1084 train KL 8.54e-07 | 13.2s | wall 239s
+[20:37:18] [train]  61/200 c0 s15 test_mse_post 6.6420 prior 6.6415 last-epoch loss 0.1268 train KL 8.20e-06 | 12.7s | wall 247s
+[20:37:18] [train]  62/200 c1 s15 test_mse_post 6.8295 prior 6.8294 last-epoch loss 0.1356 train KL 7.71e-07 | 12.8s | wall 248s
+[20:37:19] [train]  63/200 c2 s15 test_mse_post 6.9387 prior 6.9386 last-epoch loss 0.1282 train KL 4.69e-07 | 12.9s | wall 248s
+[20:37:23] [train]  64/200 c3 s15 test_mse_post 5.5273 prior 5.5272 last-epoch loss 0.1156 train KL 2.12e-07 | 13.8s | wall 252s
+[20:37:34] [train]  65/200 c0 s16 test_mse_post 6.5180 prior 6.5180 last-epoch loss 0.1251 train KL 6.15e-07 | 15.6s | wall 263s
+[20:37:34] [train]  66/200 c1 s16 test_mse_post 6.3746 prior 6.3747 last-epoch loss 0.1260 train KL 3.53e-07 | 15.5s | wall 263s
+[20:37:35] [train]  67/200 c2 s16 test_mse_post 7.3510 prior 7.3511 last-epoch loss 0.1491 train KL 3.21e-07 | 15.8s | wall 264s
+[20:37:41] [train]  68/200 c3 s16 test_mse_post 5.8716 prior 5.8714 last-epoch loss 0.1154 train KL 6.27e-07 | 17.5s | wall 270s
+[20:37:49] [train]  69/200 c0 s17 test_mse_post 7.4198 prior 7.4199 last-epoch loss 0.1386 train KL 3.52e-06 | 14.9s | wall 278s
+[20:37:49] [train]  70/200 c1 s17 test_mse_post 6.0953 prior 6.0952 last-epoch loss 0.1146 train KL 2.06e-06 | 14.9s | wall 278s
+[20:37:49] [train]  71/200 c2 s17 test_mse_post 6.7098 prior 6.7097 last-epoch loss 0.1260 train KL 1.76e-06 | 14.6s | wall 279s
+[20:37:54] [train]  72/200 c3 s17 test_mse_post 5.7514 prior 5.7515 last-epoch loss 0.1087 train KL 1.13e-06 | 13.4s | wall 284s
+[20:38:02] [train]  73/200 c0 s18 test_mse_post 6.7455 prior 6.7455 last-epoch loss 0.1250 train KL 4.73e-07 | 12.9s | wall 291s
+[20:38:02] [train]  74/200 c1 s18 test_mse_post 5.9020 prior 5.9020 last-epoch loss 0.1100 train KL 1.50e-06 | 13.1s | wall 292s
+[20:38:02] [train]  75/200 c2 s18 test_mse_post 6.7596 prior 6.7596 last-epoch loss 0.1329 train KL 2.02e-06 | 13.0s | wall 292s
+[20:38:08] [train]  76/200 c3 s18 test_mse_post 5.5918 prior 5.5916 last-epoch loss 0.1211 train KL 5.94e-07 | 13.8s | wall 297s
+[20:38:16] [train]  77/200 c0 s19 test_mse_post 7.3350 prior 7.3351 last-epoch loss 0.1382 train KL 4.68e-06 | 14.6s | wall 306s
+[20:38:17] [train]  78/200 c1 s19 test_mse_post 7.1258 prior 7.1261 last-epoch loss 0.1389 train KL 6.03e-06 | 14.6s | wall 306s
+[20:38:17] [train]  79/200 c2 s19 test_mse_post 7.4182 prior 7.4183 last-epoch loss 0.1444 train KL 6.02e-07 | 14.6s | wall 306s
+[20:38:34] [train]  80/200 c3 s19 test_mse_post 6.0362 prior 6.0362 last-epoch loss 0.1359 train KL 1.09e-06 | 25.4s | wall 323s
+[20:38:51] [train]  81/200 c0 s20 test_mse_post 6.5808 prior 6.5806 last-epoch loss 0.1124 train KL 4.13e-06 | 34.0s | wall 340s
+[20:38:53] [train]  82/200 c1 s20 test_mse_post 7.0794 prior 7.0793 last-epoch loss 0.1497 train KL 4.80e-06 | 35.6s | wall 342s
+[20:38:53] [train]  83/200 c2 s20 test_mse_post 6.3959 prior 6.3961 last-epoch loss 0.1241 train KL 1.27e-06 | 36.1s | wall 343s
+[20:39:11] [train]  84/200 c3 s20 test_mse_post 5.9427 prior 5.9428 last-epoch loss 0.1120 train KL 1.55e-07 | 36.9s | wall 360s
+[20:39:27] [train]  85/200 c0 s21 test_mse_post 6.6623 prior 6.6623 last-epoch loss 0.1243 train KL 2.58e-06 | 36.2s | wall 376s
+[20:39:28] [train]  86/200 c1 s21 test_mse_post 6.5118 prior 6.5119 last-epoch loss 0.1262 train KL 3.46e-06 | 34.8s | wall 377s
+[20:39:28] [train]  87/200 c2 s21 test_mse_post 7.3670 prior 7.3666 last-epoch loss 0.1254 train KL 4.05e-07 | 34.5s | wall 377s
+[20:39:33] [train]  88/200 c3 s21 test_mse_post 6.2753 prior 6.2753 last-epoch loss 0.1173 train KL 9.57e-07 | 22.2s | wall 382s
+[20:39:41] [train]  89/200 c0 s22 test_mse_post 6.3948 prior 6.3949 last-epoch loss 0.1218 train KL 3.76e-06 | 13.8s | wall 390s
+[20:39:42] [train]  90/200 c1 s22 test_mse_post 6.7968 prior 6.7968 last-epoch loss 0.1445 train KL 1.74e-06 | 13.8s | wall 391s
+[20:39:42] [train]  91/200 c2 s22 test_mse_post 7.3306 prior 7.3306 last-epoch loss 0.1266 train KL 7.15e-07 | 13.9s | wall 391s
+[20:39:51] [train]  92/200 c3 s22 test_mse_post 6.2570 prior 6.2570 last-epoch loss 0.1162 train KL 9.74e-07 | 17.5s | wall 400s
+[20:39:57] [train]  93/200 c0 s23 test_mse_post 6.9781 prior 6.9783 last-epoch loss 0.1188 train KL 1.82e-06 | 15.7s | wall 406s
+[20:39:57] [train]  94/200 c1 s23 test_mse_post 5.9379 prior 5.9382 last-epoch loss 0.1113 train KL 7.08e-06 | 15.4s | wall 406s
+[20:39:57] [train]  95/200 c2 s23 test_mse_post 6.6614 prior 6.6615 last-epoch loss 0.1232 train KL 3.12e-07 | 15.2s | wall 406s
+[20:40:03] [train]  96/200 c3 s23 test_mse_post 5.6686 prior 5.6688 last-epoch loss 0.1014 train KL 1.49e-06 | 12.3s | wall 412s
+[20:40:09] [train]  97/200 c0 s24 test_mse_post 6.5276 prior 6.5278 last-epoch loss 0.1184 train KL 7.41e-07 | 12.0s | wall 418s
+[20:40:09] [train]  98/200 c1 s24 test_mse_post 6.1268 prior 6.1270 last-epoch loss 0.1085 train KL 1.03e-06 | 12.1s | wall 418s
+[20:40:09] [train]  99/200 c2 s24 test_mse_post 6.8837 prior 6.8849 last-epoch loss 0.1252 train KL 1.34e-07 | 12.0s | wall 419s
+[20:40:15] [train] 100/200 c3 s24 test_mse_post 5.4649 prior 5.4655 last-epoch loss 0.1025 train KL 1.68e-06 | 12.1s | wall 425s
+[20:40:20] [train] 101/200 c0 s25 test_mse_post 6.8302 prior 6.8302 last-epoch loss 0.1315 train KL 3.13e-06 | 11.6s | wall 430s
+[20:40:21] [train] 102/200 c2 s25 test_mse_post 6.2042 prior 6.2041 last-epoch loss 0.1197 train KL 2.73e-06 | 11.6s | wall 430s
+[20:40:21] [train] 103/200 c1 s25 test_mse_post 5.9360 prior 5.9361 last-epoch loss 0.1216 train KL 1.04e-06 | 11.7s | wall 430s
+[20:40:28] [train] 104/200 c3 s25 test_mse_post 5.3007 prior 5.3005 last-epoch loss 0.1112 train KL 2.88e-07 | 12.1s | wall 437s
+[20:40:33] [train] 105/200 c0 s26 test_mse_post 6.0183 prior 6.0184 last-epoch loss 0.1110 train KL 2.12e-07 | 12.2s | wall 442s
+[20:40:33] [train] 106/200 c1 s26 test_mse_post 5.8143 prior 5.8138 last-epoch loss 0.1010 train KL 2.76e-07 | 12.2s | wall 442s
+[20:40:33] [train] 107/200 c2 s26 test_mse_post 6.5016 prior 6.5026 last-epoch loss 0.1169 train KL 6.25e-07 | 12.2s | wall 443s
+[20:40:42] [train] 108/200 c3 s26 test_mse_post 5.8305 prior 5.8308 last-epoch loss 0.1055 train KL 2.07e-07 | 14.2s | wall 451s
+[20:40:50] [train] 109/200 c0 s27 test_mse_post 6.3169 prior 6.3174 last-epoch loss 0.1171 train KL 9.26e-06 | 16.9s | wall 459s
+[20:40:50] [train] 110/200 c1 s27 test_mse_post 6.7786 prior 6.7796 last-epoch loss 0.1252 train KL 5.53e-06 | 17.2s | wall 460s
+[20:40:50] [train] 111/200 c2 s27 test_mse_post 7.1566 prior 7.1567 last-epoch loss 0.1253 train KL 6.63e-07 | 17.1s | wall 460s
+[20:41:03] [train] 112/200 c3 s27 test_mse_post 5.7309 prior 5.7313 last-epoch loss 0.1090 train KL 6.07e-07 | 20.6s | wall 472s
+[20:41:08] [train] 113/200 c0 s28 test_mse_post 7.0613 prior 7.0617 last-epoch loss 0.1274 train KL 7.07e-06 | 18.3s | wall 477s
+[20:41:08] [train] 114/200 c2 s28 test_mse_post 6.8581 prior 6.8579 last-epoch loss 0.1349 train KL 2.36e-06 | 17.9s | wall 478s
+[20:41:08] [train] 115/200 c1 s28 test_mse_post 6.1953 prior 6.1953 last-epoch loss 0.1166 train KL 5.92e-06 | 17.9s | wall 478s
+[20:41:17] [train] 116/200 c3 s28 test_mse_post 5.4910 prior 5.4911 last-epoch loss 0.1122 train KL 9.91e-07 | 14.0s | wall 486s
+[20:41:21] [train] 117/200 c0 s29 test_mse_post 6.6471 prior 6.6474 last-epoch loss 0.1162 train KL 9.03e-07 | 13.3s | wall 491s
+[20:41:22] [train] 118/200 c1 s29 test_mse_post 6.2100 prior 6.2101 last-epoch loss 0.1061 train KL 1.46e-06 | 13.3s | wall 491s
+[20:41:22] [train] 119/200 c2 s29 test_mse_post 7.1386 prior 7.1386 last-epoch loss 0.1240 train KL 3.78e-07 | 13.4s | wall 491s
+[20:41:29] [train] 120/200 c3 s29 test_mse_post 5.7391 prior 5.7392 last-epoch loss 0.1114 train KL 5.74e-07 | 12.6s | wall 499s
+[20:41:34] [train] 121/200 c0 s30 test_mse_post 7.1373 prior 7.1366 last-epoch loss 0.1332 train KL 7.04e-06 | 12.1s | wall 503s
+[20:41:34] [train] 122/200 c1 s30 test_mse_post 6.2697 prior 6.2699 last-epoch loss 0.1056 train KL 6.85e-06 | 12.1s | wall 503s
+[20:41:34] [train] 123/200 c2 s30 test_mse_post 7.3357 prior 7.3357 last-epoch loss 0.1265 train KL 1.09e-06 | 12.1s | wall 503s
+[20:41:43] [train] 124/200 c3 s30 test_mse_post 5.9864 prior 5.9866 last-epoch loss 0.1129 train KL 2.92e-06 | 14.0s | wall 513s
+[20:41:48] [train] 125/200 c0 s31 test_mse_post 6.4764 prior 6.4765 last-epoch loss 0.1105 train KL 1.02e-06 | 14.0s | wall 517s
+[20:41:48] [train] 126/200 c1 s31 test_mse_post 6.0281 prior 6.0281 last-epoch loss 0.1062 train KL 1.51e-06 | 13.9s | wall 517s
+[20:41:48] [train] 127/200 c2 s31 test_mse_post 6.9285 prior 6.9263 last-epoch loss 0.1219 train KL 4.26e-07 | 13.9s | wall 517s
+[20:41:58] [train] 128/200 c3 s31 test_mse_post 5.2970 prior 5.2968 last-epoch loss 0.0984 train KL 4.22e-06 | 14.1s | wall 527s
+[20:42:02] [train] 129/200 c0 s32 test_mse_post 7.4082 prior 7.4082 last-epoch loss 0.1339 train KL 3.09e-06 | 13.8s | wall 531s
+[20:42:02] [train] 130/200 c2 s32 test_mse_post 6.9527 prior 6.9527 last-epoch loss 0.1208 train KL 1.33e-06 | 13.8s | wall 531s
+[20:42:02] [train] 131/200 c1 s32 test_mse_post 5.7606 prior 5.7609 last-epoch loss 0.1055 train KL 5.79e-06 | 13.8s | wall 531s
+[20:42:09] [train] 132/200 c3 s32 test_mse_post 5.8968 prior 5.8963 last-epoch loss 0.1002 train KL 1.15e-06 | 11.8s | wall 539s
+[20:42:13] [train] 133/200 c0 s33 test_mse_post 6.7910 prior 6.7911 last-epoch loss 0.1164 train KL 9.97e-06 | 11.6s | wall 543s
+[20:42:14] [train] 134/200 c1 s33 test_mse_post 6.6052 prior 6.6054 last-epoch loss 0.1168 train KL 1.83e-06 | 11.7s | wall 543s
+[20:42:14] [train] 135/200 c2 s33 test_mse_post 6.9547 prior 6.9547 last-epoch loss 0.1183 train KL 6.39e-07 | 11.7s | wall 543s
+[20:42:22] [train] 136/200 c3 s33 test_mse_post 6.1672 prior 6.1671 last-epoch loss 0.1000 train KL 3.91e-06 | 12.9s | wall 552s
+[20:42:25] [train] 137/200 c0 s34 test_mse_post 7.3496 prior 7.3492 last-epoch loss 0.1362 train KL 6.66e-07 | 12.1s | wall 555s
+[20:42:26] [train] 138/200 c2 s34 test_mse_post 6.9288 prior 6.9288 last-epoch loss 0.1251 train KL 1.78e-07 | 12.1s | wall 555s
+[20:42:26] [train] 139/200 c1 s34 test_mse_post 6.8514 prior 6.8506 last-epoch loss 0.1511 train KL 1.48e-06 | 12.2s | wall 555s
+[20:42:34] [train] 140/200 c3 s34 test_mse_post 6.1832 prior 6.1833 last-epoch loss 0.1116 train KL 1.25e-06 | 11.3s | wall 563s
+[20:42:37] [train] 141/200 c0 s35 test_mse_post 7.2839 prior 7.2839 last-epoch loss 0.1386 train KL 1.90e-06 | 11.1s | wall 566s
+[20:42:37] [train] 142/200 c1 s35 test_mse_post 6.9196 prior 6.9202 last-epoch loss 0.1296 train KL 2.94e-06 | 11.2s | wall 566s
+[20:42:37] [train] 143/200 c2 s35 test_mse_post 7.2295 prior 7.2294 last-epoch loss 0.1310 train KL 9.16e-07 | 11.2s | wall 566s
+[20:42:46] [train] 144/200 c3 s35 test_mse_post 6.0297 prior 6.0300 last-epoch loss 0.1217 train KL 3.11e-06 | 11.8s | wall 575s
+[20:42:48] [train] 145/200 c0 s36 test_mse_post 6.5685 prior 6.5686 last-epoch loss 0.1162 train KL 1.06e-05 | 11.6s | wall 578s
+[20:42:49] [train] 146/200 c2 s36 test_mse_post 6.7495 prior 6.7495 last-epoch loss 0.1223 train KL 8.54e-07 | 11.7s | wall 578s
+[20:42:49] [train] 147/200 c1 s36 test_mse_post 6.1586 prior 6.1587 last-epoch loss 0.1047 train KL 5.27e-06 | 11.8s | wall 578s
+[20:42:59] [train] 148/200 c3 s36 test_mse_post 6.2394 prior 6.2395 last-epoch loss 0.1244 train KL 2.77e-06 | 12.8s | wall 588s
+[20:43:01] [train] 149/200 c0 s37 test_mse_post 6.8792 prior 6.8793 last-epoch loss 0.1279 train KL 2.31e-06 | 12.4s | wall 590s
+[20:43:01] [train] 150/200 c1 s37 test_mse_post 6.7907 prior 6.7907 last-epoch loss 0.1287 train KL 4.95e-07 | 12.3s | wall 591s
+[20:43:01] [train] 151/200 c2 s37 test_mse_post 6.7638 prior 6.7640 last-epoch loss 0.1257 train KL 1.40e-06 | 12.3s | wall 591s
+[20:43:17] [train] 152/200 c3 s37 test_mse_post 5.7300 prior 5.7300 last-epoch loss 0.1112 train KL 2.12e-06 | 18.8s | wall 607s
+[20:43:22] [train] 153/200 c0 s38 test_mse_post 7.1572 prior 7.1575 last-epoch loss 0.1296 train KL 7.13e-06 | 20.7s | wall 611s
+[20:43:23] [train] 154/200 c1 s38 test_mse_post 6.1571 prior 6.1575 last-epoch loss 0.1130 train KL 7.99e-06 | 21.2s | wall 612s
+[20:43:23] [train] 155/200 c2 s38 test_mse_post 7.0426 prior 7.0427 last-epoch loss 0.1328 train KL 1.93e-07 | 21.2s | wall 612s
+[20:43:45] [train] 156/200 c3 s38 test_mse_post 5.4886 prior 5.4887 last-epoch loss 0.1095 train KL 2.69e-06 | 27.1s | wall 634s
+[20:43:48] [train] 157/200 c0 s39 test_mse_post 6.3290 prior 6.3290 last-epoch loss 0.1172 train KL 8.99e-07 | 26.7s | wall 638s
+[20:43:49] [train] 158/200 c2 s39 test_mse_post 6.6497 prior 6.6498 last-epoch loss 0.1255 train KL 4.51e-07 | 26.6s | wall 639s
+[20:43:50] [train] 159/200 c1 s39 test_mse_post 6.1423 prior 6.1424 last-epoch loss 0.1088 train KL 2.58e-07 | 26.8s | wall 639s
+[20:44:12] [train] 160/200 c3 s39 test_mse_post 5.7670 prior 5.7672 last-epoch loss 0.1080 train KL 2.20e-07 | 26.9s | wall 661s
+[20:44:17] [train] 161/200 c0 s40 test_mse_post 5.9504 prior 5.9504 last-epoch loss 0.1146 train KL 2.18e-06 | 28.7s | wall 666s
+[20:44:19] [train] 162/200 c1 s40 test_mse_post 6.0604 prior 6.0607 last-epoch loss 0.1098 train KL 2.36e-06 | 29.6s | wall 668s
+[20:44:19] [train] 163/200 c2 s40 test_mse_post 6.8428 prior 6.8430 last-epoch loss 0.1256 train KL 2.57e-07 | 29.7s | wall 669s
+[20:44:44] [train] 164/200 c3 s40 test_mse_post 5.7307 prior 5.7304 last-epoch loss 0.1134 train KL 8.84e-07 | 31.9s | wall 693s
+[20:44:49] [train] 165/200 c0 s41 test_mse_post 6.8331 prior 6.8336 last-epoch loss 0.1271 train KL 8.16e-06 | 31.5s | wall 698s
+[20:44:52] [train] 166/200 c1 s41 test_mse_post 7.2391 prior 7.2393 last-epoch loss 0.1439 train KL 3.98e-06 | 32.2s | wall 701s
+[20:44:54] [train] 167/200 c2 s41 test_mse_post 6.8718 prior 6.8721 last-epoch loss 0.1332 train KL 6.21e-07 | 33.3s | wall 703s
+[20:45:54] [train] 168/200 c3 s41 test_mse_post 6.2864 prior 6.2860 last-epoch loss 0.1166 train KL 6.43e-06 | 70.4s | wall 764s
+[20:46:02] [train] 169/200 c0 s42 test_mse_post 6.3233 prior 6.3236 last-epoch loss 0.1070 train KL 6.30e-07 | 72.5s | wall 771s
+[20:46:04] [train] 170/200 c1 s42 test_mse_post 6.7888 prior 6.7887 last-epoch loss 0.1394 train KL 2.59e-06 | 71.8s | wall 773s
+[20:46:05] [train] 171/200 c2 s42 test_mse_post 6.6797 prior 6.6793 last-epoch loss 0.1205 train KL 3.39e-07 | 70.3s | wall 774s
+[20:46:23] [train] 172/200 c3 s42 test_mse_post 5.5279 prior 5.5279 last-epoch loss 0.1099 train KL 1.83e-06 | 28.6s | wall 792s
+[20:46:25] [train] 173/200 c0 s43 test_mse_post 6.5512 prior 6.5511 last-epoch loss 0.1199 train KL 1.28e-05 | 22.8s | wall 794s
+[20:46:25] [train] 174/200 c1 s43 test_mse_post 6.4478 prior 6.4475 last-epoch loss 0.1337 train KL 4.95e-06 | 21.2s | wall 794s
+[20:46:25] [train] 175/200 c2 s43 test_mse_post 6.8924 prior 6.8928 last-epoch loss 0.1304 train KL 1.20e-06 | 20.5s | wall 795s
+[20:46:52] [train] 176/200 c3 s43 test_mse_post 6.2146 prior 6.2146 last-epoch loss 0.1180 train KL 4.07e-06 | 28.7s | wall 821s
+[20:46:55] [train] 177/200 c0 s44 test_mse_post 6.4710 prior 6.4712 last-epoch loss 0.1155 train KL 1.71e-06 | 30.4s | wall 825s
+[20:46:56] [train] 178/200 c1 s44 test_mse_post 6.4798 prior 6.4801 last-epoch loss 0.1222 train KL 2.60e-06 | 30.8s | wall 825s
+[20:46:57] [train] 179/200 c2 s44 test_mse_post 6.8774 prior 6.8775 last-epoch loss 0.1423 train KL 1.02e-06 | 31.2s | wall 826s
+[20:47:28] [train] 180/200 c3 s44 test_mse_post 6.4215 prior 6.4218 last-epoch loss 0.1267 train KL 6.70e-07 | 36.1s | wall 858s
+[20:47:31] [train] 181/200 c0 s45 test_mse_post 7.2137 prior 7.2135 last-epoch loss 0.1475 train KL 1.01e-06 | 35.4s | wall 860s
+[20:47:31] [train] 182/200 c1 s45 test_mse_post 5.9226 prior 5.9221 last-epoch loss 0.1094 train KL 2.91e-06 | 35.2s | wall 861s
+[20:47:33] [train] 183/200 c2 s45 test_mse_post 6.9994 prior 7.0000 last-epoch loss 0.1357 train KL 4.48e-07 | 35.7s | wall 862s
+[20:48:06] [train] 184/200 c3 s45 test_mse_post 5.8905 prior 5.8905 last-epoch loss 0.1027 train KL 1.51e-06 | 37.8s | wall 896s
+[20:48:08] [train] 185/200 c0 s46 test_mse_post 7.2437 prior 7.2438 last-epoch loss 0.1384 train KL 3.32e-06 | 37.0s | wall 897s
+[20:48:08] [train] 186/200 c1 s46 test_mse_post 6.4252 prior 6.4251 last-epoch loss 0.1219 train KL 8.44e-07 | 36.6s | wall 898s
+[20:48:10] [train] 187/200 c2 s46 test_mse_post 6.9565 prior 6.9566 last-epoch loss 0.1237 train KL 9.08e-07 | 37.0s | wall 899s
+[20:48:50] [train] 188/200 c3 s46 test_mse_post 6.1490 prior 6.1489 last-epoch loss 0.1147 train KL 1.58e-06 | 43.1s | wall 939s
+[20:48:51] [train] 189/200 c1 s47 test_mse_post 6.3324 prior 6.3324 last-epoch loss 0.1158 train KL 9.68e-07 | 42.6s | wall 940s
+[20:48:51] [train] 190/200 c0 s47 test_mse_post 6.2215 prior 6.2219 last-epoch loss 0.1157 train KL 7.57e-06 | 43.0s | wall 940s
+[20:48:53] [train] 191/200 c2 s47 test_mse_post 6.8406 prior 6.8405 last-epoch loss 0.1288 train KL 1.42e-07 | 42.7s | wall 942s
+[20:49:16] [train] 192/200 c3 s47 test_mse_post 5.7734 prior 5.7733 last-epoch loss 0.1112 train KL 9.55e-07 | 25.7s | wall 965s
+[20:49:16] [train] 193/200 c0 s48 test_mse_post 6.5268 prior 6.5268 last-epoch loss 0.1215 train KL 1.72e-06 | 24.4s | wall 965s
+[20:49:16] [train] 194/200 c1 s48 test_mse_post 6.2051 prior 6.2050 last-epoch loss 0.1205 train KL 1.07e-06 | 24.8s | wall 966s
+[20:49:19] [train] 195/200 c2 s48 test_mse_post 7.1299 prior 7.1300 last-epoch loss 0.1268 train KL 6.12e-07 | 25.9s | wall 968s
+[20:50:06] [train] 196/200 c0 s49 test_mse_post 6.5967 prior 6.5966 last-epoch loss 0.1218 train KL 1.59e-06 | 50.4s | wall 1016s
+[20:50:07] [train] 197/200 c1 s49 test_mse_post 6.8547 prior 6.8543 last-epoch loss 0.1278 train KL 5.96e-06 | 50.5s | wall 1016s
+[20:50:07] [train] 198/200 c3 s48 test_mse_post 5.5563 prior 5.5562 last-epoch loss 0.1074 train KL 4.50e-07 | 51.4s | wall 1016s
+[20:50:08] [train] 199/200 c2 s49 test_mse_post 7.2888 prior 7.2886 last-epoch loss 0.1357 train KL 6.47e-07 | 49.4s | wall 1018s
+[20:50:27] [train] 200/200 c3 s49 test_mse_post 6.1083 prior 6.1082 last-epoch loss 0.1225 train KL 1.19e-06 | 20.9s | wall 1037s
+[20:50:28] [train] done: 200 restarts in 1037s wall
+[20:50:28] --- stage train done in 1037.5s
+[20:50:28] [collect] 200 restarts -> cvae_restarts.csv
+[20:50:28] --- stage collect done in 0.3s
+[20:50:29] [select] c0: seed 40 test MSE 5.9504 (median 6.7805, worst 7.4198, best-vs-median 12.2%); metric noise sd 0.0401 vs between-restart sd 0.3916; avg20 rank 1; RMSE(mean200) 0.0191 kWh (median restart 0.0215); train KL 2.18e-06
+[20:50:29] [select] c1: seed 32 test MSE 5.7606 (median 6.3535, worst 7.2863, best-vs-median 9.3%); metric noise sd 0.0351 vs between-restart sd 0.4068; avg20 rank 1; RMSE(mean200) 0.0223 kWh (median restart 0.0242); train KL 5.79e-06
+[20:50:29] [select] c2: seed 25 test MSE 6.2042 (median 6.9286, worst 7.4182, best-vs-median 10.5%); metric noise sd 0.0568 vs between-restart sd 0.2681; avg20 rank 1; RMSE(mean200) 0.0179 kWh (median restart 0.0185); train KL 2.73e-06
+[20:50:29] [select] c3: seed 31 test MSE 5.2970 (median 5.7760, worst 6.4215, best-vs-median 8.3%); metric noise sd 0.0252 vs between-restart sd 0.2879; avg20 rank 2; RMSE(mean200) 0.0235 kWh (median restart 0.0257); train KL 4.22e-06
+[20:50:29] --- stage select done in 0.1s
+[20:50:29] [generate] test days 2013-01-01 .. 2013-12-28; 52 of 92 test days have an all-Normal real tariff; conditions identical across clusters
+[20:50:29] [generate] c0 seed 40: samples mean 0.1997 kWh vs obs 0.2032; RMSE(mean of 200) median over days 0.0191 kWh (mean 0.0223); mean across-sample sd 0.0016 kWh; scenario means N/L/H 0.2030/0.1941/0.2057
+[20:50:29] [generate] c1 seed 32: samples mean 0.1942 kWh vs obs 0.2008; RMSE(mean of 200) median over days 0.0223 kWh (mean 0.0265); mean across-sample sd 0.0023 kWh; scenario means N/L/H 0.1981/0.2026/0.1816
+[20:50:29] [generate] c2 seed 25: samples mean 0.2271 kWh vs obs 0.2278; RMSE(mean of 200) median over days 0.0181 kWh (mean 0.0209); mean across-sample sd 0.0023 kWh; scenario means N/L/H 0.2293/0.2222/0.2226
+[20:50:29] [generate] c3 seed 31: samples mean 0.1681 kWh vs obs 0.1721; RMSE(mean of 200) median over days 0.0235 kWh (mean 0.0274); mean across-sample sd 0.0023 kWh; scenario means N/L/H 0.1681/0.1798/0.1514
+[20:50:29] --- stage generate done in 0.6s
+[20:50:29] [effects] c0: Low in-window -0.0041 kWh (-2.4%), afternoon/evening -0.0129 (-5.1%), day energy -4.4% | High in-window +0.0105 (+3.8%), before +0.0181, after +0.0113, afternoon +0.0010, day energy +1.3% | AllHigh energy ratio 0.836
+[20:50:29] [effects] c1: Low in-window +0.0072 kWh (+4.9%), afternoon/evening +0.0049 (+1.9%), day energy +2.3% | High in-window -0.0329 (-9.3%), before -0.0365, after -0.0351, afternoon -0.0147, day energy -8.3% | AllHigh energy ratio 0.770
+[20:50:29] [effects] c2: Low in-window -0.0109 kWh (-5.7%), afternoon/evening -0.0091 (-3.5%), day energy -3.1% | High in-window -0.0128 (-4.3%), before -0.0110, after -0.0121, afternoon -0.0074, day energy -3.0% | AllHigh energy ratio 0.968
+[20:50:29] [effects] c3: Low in-window +0.0635 kWh (+50.3%), afternoon/evening -0.0031 (-1.4%), day energy +7.0% | High in-window -0.0655 (-25.1%), before -0.0715, after -0.0449, afternoon -0.0094, day energy -9.9% | AllHigh energy ratio 0.735
+[20:50:29] --- stage effects done in 0.3s
+[20:50:34] [figures] wrote C:/Users/cleme/Desktop/MIT/Courses/Fall/Machine Learning/Project/Claude_ML_Project/CVAE_reproduction/outputs/figures/trackA_cvae_fig5_cluster3.png
+[20:50:34] [figures] wrote C:/Users/cleme/Desktop/MIT/Courses/Fall/Machine Learning/Project/Claude_ML_Project/CVAE_reproduction/outputs/figures/trackA_cvae_fig6_cluster3_day1.png
+[20:50:34] [figures] wrote C:/Users/cleme/Desktop/MIT/Courses/Fall/Machine Learning/Project/Claude_ML_Project/CVAE_reproduction/outputs/figures/trackA_cvae_fig8_scenario_means.png
+[20:50:34] [figures] wrote C:/Users/cleme/Desktop/MIT/Courses/Fall/Machine Learning/Project/Claude_ML_Project/CVAE_reproduction/outputs/figures/trackA_cvae_scenario_effects.png
+[20:50:34] [figures] wrote C:/Users/cleme/Desktop/MIT/Courses/Fall/Machine Learning/Project/Claude_ML_Project/CVAE_reproduction/outputs/figures/trackA_cvae_restarts.png
+[20:50:34] --- stage figures done in 4.6s
+[20:50:34] [summary] wrote cvae_summary.json
+[20:50:34] --- stage summary done in 0.0s
+[20:54:57] === 10_trackA_cvae.py stages=robust workers=4 restarts=50 epochs=50 clusters=[0, 1, 2, 3]
+[20:55:15] [robust] c0: Low in-window >0 in 72% of restarts (median +2.7%), High in-window <0 in 48% (median +0.3%), High before <0 56%, after <0 44%, Low aft/eve <0 68%, High afternoon >0 72%
+[20:55:15] [robust] c1: Low in-window >0 in 60% of restarts (median +0.5%), High in-window <0 in 76% (median -6.7%), High before <0 70%, after <0 68%, Low aft/eve <0 62%, High afternoon >0 50%
+[20:55:15] [robust] c2: Low in-window >0 in 26% of restarts (median -5.1%), High in-window <0 in 70% (median -2.5%), High before <0 72%, after <0 68%, Low aft/eve <0 82%, High afternoon >0 34%
+[20:55:15] [robust] c3: Low in-window >0 in 100% of restarts (median +42.0%), High in-window <0 in 88% (median -15.9%), High before <0 90%, after <0 86%, Low aft/eve <0 78%, High afternoon >0 34%
+[20:55:15] --- stage robust done in 17.9s
+[20:56:42] === 10_trackA_cvae.py stages=quirks workers=4 restarts=50 epochs=50 clusters=[0, 1, 2, 3]
+[20:56:42] [quirks] 80 upstream-quirk restarts to run with 4 workers
+[20:57:07] [quirks]   1/80 c1 s00 test_mse_post 6.2146 | 20.9s | wall 25s
+[20:57:07] [quirks]   2/80 c0 s00 test_mse_post 6.9551 | 21.0s | wall 25s
+[20:57:07] [quirks]   3/80 c2 s00 test_mse_post 7.1009 | 20.9s | wall 25s
+[20:57:08] [quirks]   4/80 c3 s00 test_mse_post 5.9439 | 21.2s | wall 25s
+[20:57:27] [quirks]   5/80 c0 s01 test_mse_post 7.1782 | 19.8s | wall 45s
+[20:57:27] [quirks]   6/80 c1 s01 test_mse_post 5.8389 | 19.9s | wall 45s
+[20:57:27] [quirks]   7/80 c2 s01 test_mse_post 6.7316 | 19.9s | wall 45s
+[20:57:28] [quirks]   8/80 c3 s01 test_mse_post 5.8523 | 19.9s | wall 45s
+[20:57:48] [quirks]   9/80 c0 s02 test_mse_post 7.1127 | 20.5s | wall 65s
+[20:57:48] [quirks]  10/80 c1 s02 test_mse_post 5.6902 | 20.7s | wall 66s
+[20:57:48] [quirks]  11/80 c2 s02 test_mse_post 6.9569 | 20.8s | wall 66s
+[20:57:49] [quirks]  12/80 c3 s02 test_mse_post 5.6223 | 20.9s | wall 66s
+[20:58:08] [quirks]  13/80 c0 s03 test_mse_post 6.3729 | 20.4s | wall 86s
+[20:58:09] [quirks]  14/80 c1 s03 test_mse_post 6.1934 | 20.5s | wall 86s
+[20:58:09] [quirks]  15/80 c2 s03 test_mse_post 7.1012 | 20.6s | wall 87s
+[20:58:09] [quirks]  16/80 c3 s03 test_mse_post 5.6552 | 20.5s | wall 87s
+[20:58:28] [quirks]  17/80 c0 s04 test_mse_post 6.3813 | 20.0s | wall 106s
+[20:58:29] [quirks]  18/80 c1 s04 test_mse_post 5.8636 | 20.0s | wall 106s
+[20:58:29] [quirks]  19/80 c2 s04 test_mse_post 6.7234 | 20.2s | wall 107s
+[20:58:30] [quirks]  20/80 c3 s04 test_mse_post 5.7227 | 20.1s | wall 107s
+[20:58:48] [quirks]  21/80 c0 s05 test_mse_post 6.7318 | 19.7s | wall 126s
+[20:58:49] [quirks]  22/80 c1 s05 test_mse_post 5.8480 | 19.7s | wall 126s
+[20:58:49] [quirks]  23/80 c2 s05 test_mse_post 6.9811 | 19.9s | wall 127s
+[20:58:50] [quirks]  24/80 c3 s05 test_mse_post 5.4865 | 20.1s | wall 128s
+[20:59:08] [quirks]  25/80 c0 s06 test_mse_post 6.6604 | 20.2s | wall 146s
+[20:59:09] [quirks]  26/80 c1 s06 test_mse_post 6.3856 | 20.2s | wall 147s
+[20:59:10] [quirks]  27/80 c2 s06 test_mse_post 6.9088 | 20.2s | wall 147s
+[20:59:10] [quirks]  28/80 c3 s06 test_mse_post 5.6835 | 20.2s | wall 148s
+[20:59:28] [quirks]  29/80 c0 s07 test_mse_post 6.2954 | 19.3s | wall 165s
+[20:59:29] [quirks]  30/80 c1 s07 test_mse_post 6.2972 | 19.4s | wall 166s
+[20:59:29] [quirks]  31/80 c2 s07 test_mse_post 6.5999 | 19.6s | wall 167s
+[20:59:30] [quirks]  32/80 c3 s07 test_mse_post 6.0347 | 19.6s | wall 168s
+[20:59:49] [quirks]  33/80 c0 s08 test_mse_post 6.4756 | 21.4s | wall 187s
+[20:59:51] [quirks]  34/80 c1 s08 test_mse_post 5.9960 | 21.9s | wall 188s
+[20:59:51] [quirks]  35/80 c2 s08 test_mse_post 7.0784 | 21.8s | wall 189s
+[20:59:52] [quirks]  36/80 c3 s08 test_mse_post 5.2698 | 22.0s | wall 190s
+[21:00:10] [quirks]  37/80 c0 s09 test_mse_post 6.2751 | 20.7s | wall 208s
+[21:00:11] [quirks]  38/80 c1 s09 test_mse_post 5.8512 | 20.7s | wall 209s
+[21:00:12] [quirks]  39/80 c2 s09 test_mse_post 6.5174 | 20.8s | wall 210s
+[21:00:13] [quirks]  40/80 c3 s09 test_mse_post 5.5077 | 20.9s | wall 211s
+[21:00:30] [quirks]  41/80 c0 s10 test_mse_post 7.0838 | 20.0s | wall 228s
+[21:00:31] [quirks]  42/80 c1 s10 test_mse_post 5.8357 | 19.9s | wall 229s
+[21:00:33] [quirks]  43/80 c2 s10 test_mse_post 6.7688 | 20.7s | wall 231s
+[21:00:36] [quirks]  44/80 c3 s10 test_mse_post 5.6411 | 22.8s | wall 234s
+[21:00:54] [quirks]  45/80 c0 s11 test_mse_post 7.0609 | 23.6s | wall 252s
+[21:00:55] [quirks]  46/80 c1 s11 test_mse_post 5.8121 | 23.9s | wall 253s
+[21:00:56] [quirks]  47/80 c2 s11 test_mse_post 6.8612 | 23.3s | wall 254s
+[21:00:58] [quirks]  48/80 c3 s11 test_mse_post 5.4496 | 21.3s | wall 255s
+[21:01:15] [quirks]  49/80 c0 s12 test_mse_post 6.5517 | 20.4s | wall 272s
+[21:01:16] [quirks]  50/80 c1 s12 test_mse_post 5.9009 | 20.2s | wall 273s
+[21:01:17] [quirks]  51/80 c2 s12 test_mse_post 6.5193 | 20.2s | wall 274s
+[21:01:18] [quirks]  52/80 c3 s12 test_mse_post 5.5548 | 20.2s | wall 275s
+[21:01:35] [quirks]  53/80 c0 s13 test_mse_post 6.2311 | 20.3s | wall 293s
+[21:01:36] [quirks]  54/80 c1 s13 test_mse_post 5.9844 | 20.4s | wall 294s
+[21:01:37] [quirks]  55/80 c2 s13 test_mse_post 6.5752 | 20.5s | wall 295s
+[21:01:38] [quirks]  56/80 c3 s13 test_mse_post 5.7202 | 20.6s | wall 296s
+[21:01:55] [quirks]  57/80 c0 s14 test_mse_post 6.9599 | 19.9s | wall 313s
+[21:01:56] [quirks]  58/80 c1 s14 test_mse_post 6.1725 | 19.9s | wall 314s
+[21:01:57] [quirks]  59/80 c2 s14 test_mse_post 6.7994 | 19.7s | wall 315s
+[21:01:59] [quirks]  60/80 c3 s14 test_mse_post 5.3945 | 20.1s | wall 316s
+[21:02:14] [quirks]  61/80 c0 s15 test_mse_post 6.7925 | 18.7s | wall 331s
+[21:02:15] [quirks]  62/80 c1 s15 test_mse_post 5.9268 | 18.8s | wall 333s
+[21:02:16] [quirks]  63/80 c2 s15 test_mse_post 6.8411 | 18.8s | wall 334s
+[21:02:18] [quirks]  64/80 c3 s15 test_mse_post 5.7645 | 19.2s | wall 336s
+[21:02:33] [quirks]  65/80 c0 s16 test_mse_post 6.9140 | 18.9s | wall 350s
+[21:02:34] [quirks]  66/80 c1 s16 test_mse_post 5.7819 | 18.9s | wall 352s
+[21:02:35] [quirks]  67/80 c2 s16 test_mse_post 6.6655 | 18.7s | wall 352s
+[21:02:37] [quirks]  68/80 c3 s16 test_mse_post 5.5706 | 18.9s | wall 355s
+[21:02:52] [quirks]  69/80 c0 s17 test_mse_post 7.0989 | 19.2s | wall 370s
+[21:02:53] [quirks]  70/80 c1 s17 test_mse_post 6.1725 | 19.3s | wall 371s
+[21:02:54] [quirks]  71/80 c2 s17 test_mse_post 6.7890 | 19.2s | wall 372s
+[21:02:57] [quirks]  72/80 c3 s17 test_mse_post 5.6116 | 19.4s | wall 374s
+[21:03:11] [quirks]  73/80 c0 s18 test_mse_post 7.5852 | 18.5s | wall 388s
+[21:03:12] [quirks]  74/80 c1 s18 test_mse_post 5.6958 | 18.6s | wall 390s
+[21:03:13] [quirks]  75/80 c2 s18 test_mse_post 6.9104 | 18.5s | wall 390s
+[21:03:15] [quirks]  76/80 c3 s18 test_mse_post 5.7163 | 18.7s | wall 393s
+[21:03:29] [quirks]  77/80 c0 s19 test_mse_post 6.6622 | 18.5s | wall 407s
+[21:03:31] [quirks]  78/80 c1 s19 test_mse_post 5.6754 | 18.6s | wall 408s
+[21:03:31] [quirks]  79/80 c2 s19 test_mse_post 6.5566 | 18.4s | wall 409s
+[21:03:34] [quirks]  80/80 c3 s19 test_mse_post 5.5861 | 18.4s | wall 412s
+[21:03:38] [quirks] c0: quirk best/median 6.2311/6.7622 (sd 0.367) vs main first-20 6.1716/6.8913 (sd 0.380); seed0 main 6.6050 vs quirk 6.9551; quirk-best Low in-window +3.1% High in-window +3.0%
+[21:03:39] [quirks] c1: quirk best/median 5.6754/5.8822 (sd 0.212) vs main first-20 5.7643/6.4055 (sd 0.430); seed0 main 6.1557 vs quirk 6.2146; quirk-best Low in-window -3.0% High in-window -15.4%
+[21:03:41] [quirks] c2: quirk best/median 6.5174/6.7942 (sd 0.190) vs main first-20 6.4405/6.9529 (sd 0.264); seed0 main 7.0394 vs quirk 7.1009; quirk-best Low in-window -8.2% High in-window +2.0%
+[21:03:42] [quirks] c3: quirk best/median 5.2698/5.6317 (sd 0.181) vs main first-20 5.4141/5.7602 (sd 0.245); seed0 main 5.4141 vs quirk 5.9439; quirk-best Low in-window +16.4% High in-window -17.4%
+[21:03:42] --- stage quirks done in 419.9s
+[21:04:22] === 10_trackA_cvae.py stages=figures,summary workers=4 restarts=50 epochs=50 clusters=[0, 1, 2, 3]
+[21:04:27] [figures] wrote C:/Users/cleme/Desktop/MIT/Courses/Fall/Machine Learning/Project/Claude_ML_Project/CVAE_reproduction/outputs/figures/trackA_cvae_fig5_cluster3.png
+[21:04:27] [figures] wrote C:/Users/cleme/Desktop/MIT/Courses/Fall/Machine Learning/Project/Claude_ML_Project/CVAE_reproduction/outputs/figures/trackA_cvae_fig6_cluster3_day1.png
+[21:04:27] [figures] wrote C:/Users/cleme/Desktop/MIT/Courses/Fall/Machine Learning/Project/Claude_ML_Project/CVAE_reproduction/outputs/figures/trackA_cvae_fig8_scenario_means.png
+[21:04:27] [figures] wrote C:/Users/cleme/Desktop/MIT/Courses/Fall/Machine Learning/Project/Claude_ML_Project/CVAE_reproduction/outputs/figures/trackA_cvae_scenario_effects.png
+[21:04:27] [figures] wrote C:/Users/cleme/Desktop/MIT/Courses/Fall/Machine Learning/Project/Claude_ML_Project/CVAE_reproduction/outputs/figures/trackA_cvae_restarts.png
+[21:04:27] [figures] wrote C:/Users/cleme/Desktop/MIT/Courses/Fall/Machine Learning/Project/Claude_ML_Project/CVAE_reproduction/outputs/figures/trackA_cvae_scenario_effects_restarts.png
+[21:04:27] --- stage figures done in 5.1s
+[21:04:27] [summary] wrote cvae_summary.json
+[21:04:27] --- stage summary done in 0.0s
+[14:13:34] === 10_trackA_cvae.py stages=generate,effects,robust,quirks,figures,summary workers=4 restarts=50 epochs=50 clusters=[0, 1, 2, 3] no_train=True; scenario windows Low slots 9-19 = 04:00-09:30 GMT, High slots 39-44 = 19:00-22:00 GMT
+[14:13:34] [generate] test days 2013-01-01 .. 2013-12-28; 52 of 92 test days have an all-Normal real tariff; conditions identical across clusters
+[14:13:34] [generate] scenarios: Low = low slots 9-19 = 04:00-09:30 GMT, High = high slots 39-44 = 19:00-22:00 GMT
+[14:13:34] [generate] c0 seed 40: samples mean 0.1997 kWh vs obs 0.2032; RMSE(mean of 200) median over days 0.0191 kWh (mean 0.0223); mean across-sample sd 0.0016 kWh; scenario means N/L/H 0.2030/0.1923/0.2051; files vs stored: {'samples': 'unchanged', 'Normal': 'unchanged', 'Low': 'changed', 'High': 'changed'}
+[14:13:34] [generate] c1 seed 32: samples mean 0.1942 kWh vs obs 0.2008; RMSE(mean of 200) median over days 0.0223 kWh (mean 0.0265); mean across-sample sd 0.0023 kWh; scenario means N/L/H 0.1981/0.2001/0.1860; files vs stored: {'samples': 'unchanged', 'Normal': 'unchanged', 'Low': 'changed', 'High': 'changed'}
+[14:13:34] [generate] c2 seed 25: samples mean 0.2271 kWh vs obs 0.2278; RMSE(mean of 200) median over days 0.0181 kWh (mean 0.0209); mean across-sample sd 0.0023 kWh; scenario means N/L/H 0.2293/0.2188/0.2190; files vs stored: {'samples': 'unchanged', 'Normal': 'unchanged', 'Low': 'changed', 'High': 'changed'}
+[14:13:35] [generate] c3 seed 31: samples mean 0.1681 kWh vs obs 0.1721; RMSE(mean of 200) median over days 0.0235 kWh (mean 0.0274); mean across-sample sd 0.0023 kWh; scenario means N/L/H 0.1681/0.1766/0.1461; files vs stored: {'samples': 'unchanged', 'Normal': 'unchanged', 'Low': 'changed', 'High': 'changed'}
+[14:13:35] --- stage generate done in 0.9s
+[14:13:35] [effects] c0: Low in-window -0.0036 kWh (-2.0%), afternoon/evening -0.0168 (-6.7%), day energy -5.3% | High in-window -0.0009 (-0.3%), before -0.0040, after +0.0008, afternoon +0.0033, day energy +1.1% | AllHigh energy ratio 0.836
+[14:13:35] [effects] c1: Low in-window +0.0072 kWh (+4.8%), afternoon/evening +0.0013 (+0.5%), day energy +1.0% | High in-window -0.0381 (-11.0%), before -0.0348, after -0.0307, afternoon +0.0009, day energy -6.1% | AllHigh energy ratio 0.770
+[14:13:35] [effects] c2: Low in-window -0.0099 kWh (-5.1%), afternoon/evening -0.0137 (-5.3%), day energy -4.6% | High in-window -0.0167 (-5.7%), before -0.0126, after -0.0156, afternoon -0.0095, day energy -4.5% | AllHigh energy ratio 0.968
+[14:13:35] [effects] c3: Low in-window +0.0820 kWh (+62.4%), afternoon/evening -0.0207 (-9.6%), day energy +5.1% | High in-window -0.0604 (-23.8%), before -0.0673, after -0.0416, afternoon -0.0173, day energy -13.1% | AllHigh energy ratio 0.735
+[14:13:35] --- stage effects done in 0.4s
+[14:13:59] [robust] c0: Low in-window >0 in 68% of restarts (median +1.8%), High in-window <0 in 86% (median -3.0%), High before <0 86%, after <0 66%, Low aft/eve <0 80%, High afternoon >0 52%
+[14:13:59] [robust] c1: Low in-window >0 in 46% of restarts (median -0.9%), High in-window <0 in 90% (median -8.8%), High before <0 90%, after <0 86%, Low aft/eve <0 78%, High afternoon >0 52%
+[14:14:00] [robust] c2: Low in-window >0 in 18% of restarts (median -5.3%), High in-window <0 in 94% (median -5.5%), High before <0 94%, after <0 94%, Low aft/eve <0 90%, High afternoon >0 12%
+[14:14:00] [robust] c3: Low in-window >0 in 100% of restarts (median +44.3%), High in-window <0 in 94% (median -20.4%), High before <0 94%, after <0 94%, Low aft/eve <0 82%, High afternoon >0 16%
+[14:14:00] --- stage robust done in 24.5s
+[14:14:00] [quirks] 0 upstream-quirk restarts to run with 4 workers
+[14:14:02] [quirks] c0: quirk best/median 6.2311/6.7622 (sd 0.367) vs main first-20 6.1716/6.8913 (sd 0.380); seed0 main 6.6050 vs quirk 6.9551; quirk-best Low in-window +1.3% High in-window -5.2%
+[14:14:04] [quirks] c1: quirk best/median 5.6754/5.8822 (sd 0.212) vs main first-20 5.7643/6.4055 (sd 0.430); seed0 main 6.1557 vs quirk 6.2146; quirk-best Low in-window -2.0% High in-window -20.4%
+[14:14:06] [quirks] c2: quirk best/median 6.5174/6.7942 (sd 0.190) vs main first-20 6.4405/6.9529 (sd 0.264); seed0 main 7.0394 vs quirk 7.1009; quirk-best Low in-window -7.9% High in-window -3.8%
+[14:14:08] [quirks] c3: quirk best/median 5.2698/5.6317 (sd 0.181) vs main first-20 5.4141/5.7602 (sd 0.245); seed0 main 5.4141 vs quirk 5.9439; quirk-best Low in-window +25.3% High in-window -27.7%
+[14:14:08] --- stage quirks done in 8.2s
+[14:14:17] [figures] wrote C:/Users/cleme/Desktop/MIT/Courses/Fall/Machine Learning/Project/Claude_ML_Project/CVAE_reproduction/outputs/figures/trackA_cvae_fig5_cluster3.png
+[14:14:17] [figures] wrote C:/Users/cleme/Desktop/MIT/Courses/Fall/Machine Learning/Project/Claude_ML_Project/CVAE_reproduction/outputs/figures/trackA_cvae_fig5_cluster2.png
+[14:14:17] [figures] wrote C:/Users/cleme/Desktop/MIT/Courses/Fall/Machine Learning/Project/Claude_ML_Project/CVAE_reproduction/outputs/figures/trackA_cvae_fig6_cluster3_day1.png
+[14:14:17] [figures] wrote C:/Users/cleme/Desktop/MIT/Courses/Fall/Machine Learning/Project/Claude_ML_Project/CVAE_reproduction/outputs/figures/trackA_cvae_fig8_scenario_means.png
+[14:14:17] [figures] wrote C:/Users/cleme/Desktop/MIT/Courses/Fall/Machine Learning/Project/Claude_ML_Project/CVAE_reproduction/outputs/figures/trackA_cvae_scenario_effects.png
+[14:14:17] [figures] wrote C:/Users/cleme/Desktop/MIT/Courses/Fall/Machine Learning/Project/Claude_ML_Project/CVAE_reproduction/outputs/figures/trackA_cvae_restarts.png
+[14:14:17] [figures] wrote C:/Users/cleme/Desktop/MIT/Courses/Fall/Machine Learning/Project/Claude_ML_Project/CVAE_reproduction/outputs/figures/trackA_cvae_scenario_effects_restarts.png
+[14:14:17] --- stage figures done in 8.9s
+[14:14:17] [summary] wrote cvae_summary.json
+[14:14:17] --- stage summary done in 0.0s
+[14:22:40] === 10_trackA_cvae.py stages=figures workers=4 restarts=50 epochs=50 clusters=[0, 1, 2, 3] no_train=True; scenario windows Low slots 9-19 = 04:00-09:30 GMT, High slots 39-44 = 19:00-22:00 GMT
+[14:22:46] [figures] wrote C:/Users/cleme/Desktop/MIT/Courses/Fall/Machine Learning/Project/Claude_ML_Project/CVAE_reproduction/outputs/figures/trackA_cvae_fig5_cluster3.png
+[14:22:46] [figures] wrote C:/Users/cleme/Desktop/MIT/Courses/Fall/Machine Learning/Project/Claude_ML_Project/CVAE_reproduction/outputs/figures/trackA_cvae_fig5_cluster2.png
+[14:22:46] [figures] wrote C:/Users/cleme/Desktop/MIT/Courses/Fall/Machine Learning/Project/Claude_ML_Project/CVAE_reproduction/outputs/figures/trackA_cvae_fig6_cluster3_day1.png
+[14:22:46] [figures] wrote C:/Users/cleme/Desktop/MIT/Courses/Fall/Machine Learning/Project/Claude_ML_Project/CVAE_reproduction/outputs/figures/trackA_cvae_fig8_scenario_means.png
+[14:22:46] [figures] wrote C:/Users/cleme/Desktop/MIT/Courses/Fall/Machine Learning/Project/Claude_ML_Project/CVAE_reproduction/outputs/figures/trackA_cvae_scenario_effects.png
+[14:22:46] [figures] wrote C:/Users/cleme/Desktop/MIT/Courses/Fall/Machine Learning/Project/Claude_ML_Project/CVAE_reproduction/outputs/figures/trackA_cvae_restarts.png
+[14:22:46] [figures] wrote C:/Users/cleme/Desktop/MIT/Courses/Fall/Machine Learning/Project/Claude_ML_Project/CVAE_reproduction/outputs/figures/trackA_cvae_scenario_effects_restarts.png
+[14:22:46] --- stage figures done in 6.4s

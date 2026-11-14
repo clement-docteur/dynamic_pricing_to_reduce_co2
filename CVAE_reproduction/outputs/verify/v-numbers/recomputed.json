@@ -1,0 +1,2278 @@
+{
+ "meta": {
+  "verifier": "v-numbers",
+  "method": "independent numpy/scipy recomputation from saved arrays and observed test data; no lib/scores.py, lib/effects.py or scorer scripts; KL from own numpy forward pass of the saved state_dicts (torch only to read the files)",
+  "scripts": [
+   "C:/Users/cleme/AppData/Local/Temp/claude/2f83cc224499e10e/1aa3d082-c193-42de-888f-c8f5d2fbba90/scratchpad/verify/v-numbers/recompute_scores.py",
+   "C:/Users/cleme/AppData/Local/Temp/claude/2f83cc224499e10e/1aa3d082-c193-42de-888f-c8f5d2fbba90/scratchpad/verify/v-numbers/alignment_check.py",
+   "C:/Users/cleme/AppData/Local/Temp/claude/2f83cc224499e10e/1aa3d082-c193-42de-888f-c8f5d2fbba90/scratchpad/verify/v-numbers/kl_check.py",
+   "C:/Users/cleme/AppData/Local/Temp/claude/2f83cc224499e10e/1aa3d082-c193-42de-888f-c8f5d2fbba90/scratchpad/verify/v-numbers/compare.py"
+  ],
+  "full_outputs": [
+   "C:/Users/cleme/AppData/Local/Temp/claude/2f83cc224499e10e/1aa3d082-c193-42de-888f-c8f5d2fbba90/scratchpad/verify/v-numbers/scores_recomputed.json",
+   "C:/Users/cleme/AppData/Local/Temp/claude/2f83cc224499e10e/1aa3d082-c193-42de-888f-c8f5d2fbba90/scratchpad/verify/v-numbers/alignment_checks.json",
+   "C:/Users/cleme/AppData/Local/Temp/claude/2f83cc224499e10e/1aa3d082-c193-42de-888f-c8f5d2fbba90/scratchpad/verify/v-numbers/kl_recomputed.json",
+   "C:/Users/cleme/AppData/Local/Temp/claude/2f83cc224499e10e/1aa3d082-c193-42de-888f-c8f5d2fbba90/scratchpad/verify/v-numbers/encoder_dead_units.json"
+  ],
+  "definitions": {
+   "rmse": "root-mean over 48 half-hours of (mean of 200 samples - obs), median over 92 test days; euclid = sqrt(48) x that",
+   "es": "eq. 14: (2/N) sum_{i<=100} ||X_i-y|| - (1/N) sum_{i<=100} ||X_i-X_{100+i}||, Euclidean, kWh",
+   "vg": "p = 0.5, all ordered pairs h != h'",
+   "spread_skill": "pooled: sqrt(mean per-cell sample variance, ddof=1)/sqrt(mean squared error of sample mean) x sqrt(201/200); per-day median also given",
+   "coverage90": "share of (day, slot) obs inside [q05, q95] of the 200 samples (numpy linear quantiles), pooled; per-day median also given",
+   "effects": "100 x mean over samples and days of (scenario - Normal) / mean of Normal, same slots; CI = percentile bootstrap over days, B = 2000",
+   "kl": "per training day, sum over the 4 latent dims of KL(N(mu, sd^2) || N(0,1)), nats"
+  }
+ },
+ "comparison": {
+  "n_point_comparisons": 820,
+  "n_flagged": 1,
+  "flagged": [
+   {
+    "source": "trackB/effects_summary.json",
+    "name": "cvae_c0 High pre4 ci_excludes_0",
+    "theirs": false,
+    "ours": true,
+    "flag": true
+   }
+  ],
+  "max_rel_diff_point_values": 4.079664631134151e-06,
+  "max_pp_diff_effects": 4.78727159318737e-05,
+  "phase2_key_numbers": [
+   {
+    "name": "A rmse cvae",
+    "theirs": [
+     0.0191,
+     0.0223,
+     0.0181,
+     0.0235
+    ],
+    "ours": [
+     0.019075277551719498,
+     0.022272636505170827,
+     0.01805538099319584,
+     0.02352597551759125
+    ],
+    "rule": "|diff| <= max(5e-05, 1% rel)",
+    "flags": [
+     false,
+     false,
+     false,
+     false
+    ]
+   },
+   {
+    "name": "A rmse gam",
+    "theirs": [
+     0.0142,
+     0.0162,
+     0.0148,
+     0.0187
+    ],
+    "ours": [
+     0.014212245437404328,
+     0.01617530861063256,
+     0.014811777961383474,
+     0.01867786701118873
+    ],
+    "rule": "|diff| <= max(5e-05, 1% rel)",
+    "flags": [
+     false,
+     false,
+     false,
+     false
+    ]
+   },
+   {
+    "name": "B rmse cvae",
+    "theirs": [
+     0.0195,
+     0.0246,
+     0.0173,
+     0.0244
+    ],
+    "ours": [
+     0.01945767507214141,
+     0.02457768490344593,
+     0.01732229714023277,
+     0.024372005918284954
+    ],
+    "rule": "|diff| <= max(5e-05, 1% rel)",
+    "flags": [
+     false,
+     false,
+     false,
+     false
+    ]
+   },
+   {
+    "name": "B rmse gam",
+    "theirs": [
+     0.0144,
+     0.0171,
+     0.0129,
+     0.0188
+    ],
+    "ours": [
+     0.01441570374985085,
+     0.017066765897673735,
+     0.012922984820459478,
+     0.018847095647305172
+    ],
+    "rule": "|diff| <= max(5e-05, 1% rel)",
+    "flags": [
+     false,
+     false,
+     false,
+     false
+    ]
+   },
+   {
+    "name": "A es cvae",
+    "theirs": [
+     0.125,
+     0.147,
+     0.113,
+     0.153
+    ],
+    "ours": [
+     0.1247952038062512,
+     0.14652162158264417,
+     0.11291639458362547,
+     0.15320312216024584
+    ],
+    "rule": "|diff| <= max(0.0005, 1% rel)",
+    "flags": [
+     false,
+     false,
+     false,
+     false
+    ]
+   },
+   {
+    "name": "A es gam",
+    "theirs": [
+     0.074,
+     0.084,
+     0.076,
+     0.094
+    ],
+    "ours": [
+     0.07357573219267782,
+     0.08396793631938423,
+     0.0760636425642019,
+     0.09447030791652165
+    ],
+    "rule": "|diff| <= max(0.0005, 1% rel)",
+    "flags": [
+     false,
+     false,
+     false,
+     false
+    ]
+   },
+   {
+    "name": "B es cvae",
+    "theirs": [
+     0.123,
+     0.162,
+     0.107,
+     0.162
+    ],
+    "ours": [
+     0.12340944134705659,
+     0.16238505246440968,
+     0.1073142920531712,
+     0.16222553917401655
+    ],
+    "rule": "|diff| <= max(0.0005, 1% rel)",
+    "flags": [
+     false,
+     false,
+     false,
+     false
+    ]
+   },
+   {
+    "name": "B es gam",
+    "theirs": [
+     0.075,
+     0.089,
+     0.068,
+     0.094
+    ],
+    "ours": [
+     0.07460769970691353,
+     0.08894000852650479,
+     0.06797916566895454,
+     0.09447148607211954
+    ],
+    "rule": "|diff| <= max(0.0005, 1% rel)",
+    "flags": [
+     false,
+     false,
+     false,
+     false
+    ]
+   },
+   {
+    "name": "A vg cvae",
+    "theirs": [
+     5.63,
+     6.61,
+     6.62,
+     9.02
+    ],
+    "ours": [
+     5.633754361442318,
+     6.612483704689268,
+     6.618129951106971,
+     9.020001587694228
+    ],
+    "rule": "|diff| <= max(0.005, 1% rel)",
+    "flags": [
+     false,
+     false,
+     false,
+     false
+    ]
+   },
+   {
+    "name": "A vg gam",
+    "theirs": [
+     3.76,
+     3.97,
+     4.79,
+     5.81
+    ],
+    "ours": [
+     3.7560883727717203,
+     3.97349783395112,
+     4.788839048145223,
+     5.813013717693636
+    ],
+    "rule": "|diff| <= max(0.005, 1% rel)",
+    "flags": [
+     false,
+     false,
+     false,
+     false
+    ]
+   },
+   {
+    "name": "B vg cvae",
+    "theirs": [
+     5.82,
+     6.97,
+     5.31,
+     9.77
+    ],
+    "ours": [
+     5.819632959343655,
+     6.969996954137129,
+     5.311666736480858,
+     9.772304412867825
+    ],
+    "rule": "|diff| <= max(0.005, 1% rel)",
+    "flags": [
+     false,
+     false,
+     false,
+     false
+    ]
+   },
+   {
+    "name": "B vg gam",
+    "theirs": [
+     4.04,
+     4.11,
+     3.62,
+     6.05
+    ],
+    "ours": [
+     4.043104477249672,
+     4.110973452685732,
+     3.6223713198967555,
+     6.054761657784631
+    ],
+    "rule": "|diff| <= max(0.005, 1% rel)",
+    "flags": [
+     false,
+     false,
+     false,
+     false
+    ]
+   },
+   {
+    "name": "A es ratio cvae/gam",
+    "theirs": [
+     1.7,
+     1.74,
+     1.48,
+     1.62
+    ],
+    "ours": [
+     1.6961462711569275,
+     1.7449710926004889,
+     1.4844989113993303,
+     1.6217066032601823
+    ],
+    "rule": "|diff| <= max(0.005, 1% rel)",
+    "flags": [
+     false,
+     false,
+     false,
+     false
+    ]
+   },
+   {
+    "name": "B es ratio cvae/gam",
+    "theirs": [
+     1.65,
+     1.83,
+     1.58,
+     1.72
+    ],
+    "ours": [
+     1.6541113294184682,
+     1.8257818405315054,
+     1.5786350273225058,
+     1.7171905081515662
+    ],
+    "rule": "|diff| <= max(0.005, 1% rel)",
+    "flags": [
+     false,
+     false,
+     false,
+     false
+    ]
+   },
+   {
+    "name": "A spread/skill cvae",
+    "theirs": [
+     0.079,
+     0.091,
+     0.134,
+     0.094
+    ],
+    "ours": [
+     0.078971982208968,
+     0.09121418899968116,
+     0.13428087074966968,
+     0.09421117103158362
+    ],
+    "rule": "|diff| <= max(0.0005, 1% rel)",
+    "flags": [
+     false,
+     false,
+     false,
+     false
+    ]
+   },
+   {
+    "name": "A spread/skill gam",
+    "theirs": [
+     1.45,
+     1.54,
+     1.37,
+     1.39
+    ],
+    "ours": [
+     1.4541624660759302,
+     1.5430627327784403,
+     1.3722219380360592,
+     1.39260358478627
+    ],
+    "rule": "|diff| <= max(0.005, 1% rel)",
+    "flags": [
+     false,
+     false,
+     false,
+     false
+    ]
+   },
+   {
+    "name": "B spread/skill cvae",
+    "theirs": [
+     0.1,
+     0.12,
+     0.14,
+     0.08
+    ],
+    "ours": [
+     0.1043671518410758,
+     0.12158321278566729,
+     0.13837570817599487,
+     0.07696751034906102
+    ],
+    "rule": "|diff| <= max(0.005, 1% rel)",
+    "flags": [
+     false,
+     false,
+     false,
+     false
+    ]
+   },
+   {
+    "name": "B spread/skill gam",
+    "theirs": [
+     1.44,
+     1.55,
+     1.49,
+     1.3
+    ],
+    "ours": [
+     1.4410392572949686,
+     1.5494900072215532,
+     1.4866774142892316,
+     1.3028372876615264
+    ],
+    "rule": "|diff| <= max(0.005, 1% rel)",
+    "flags": [
+     false,
+     false,
+     false,
+     false
+    ]
+   },
+   {
+    "name": "A cov90 gam",
+    "theirs": [
+     0.97,
+     0.97,
+     0.96,
+     0.96
+    ],
+    "ours": [
+     0.9732789855072463,
+     0.9719202898550725,
+     0.9601449275362319,
+     0.9615036231884058
+    ],
+    "rule": "|diff| <= max(0.005, 1% rel)",
+    "flags": [
+     false,
+     false,
+     false,
+     false
+    ]
+   },
+   {
+    "name": "B cov90 cvae %",
+    "theirs": [
+     11.3,
+     8.7,
+     11.4,
+     7.2
+    ],
+    "ours": [
+     11.254528985507246,
+     8.718297101449275,
+     11.367753623188406,
+     7.178442028985507
+    ],
+    "rule": "|diff| <= max(0.05, 1% rel)",
+    "flags": [
+     false,
+     false,
+     false,
+     false
+    ]
+   },
+   {
+    "name": "B cov90 gam %",
+    "theirs": [
+     97.2,
+     97.7,
+     96.8,
+     94.9
+    ],
+    "ours": [
+     97.23731884057972,
+     97.69021739130434,
+     96.80706521739131,
+     94.90489130434783
+    ],
+    "rule": "|diff| <= max(0.05, 1% rel)",
+    "flags": [
+     false,
+     false,
+     false,
+     false
+    ]
+   },
+   {
+    "name": "A cvae Low %",
+    "theirs": [
+     -2.4,
+     4.9,
+     -5.7,
+     50.3
+    ],
+    "ours": [
+     -2.3534722450747694,
+     4.905143662715401,
+     -5.6609451698012085,
+     50.26720260602415
+    ],
+    "rule": "|diff| <= max(0.05, 1% rel)",
+    "flags": [
+     false,
+     false,
+     false,
+     false
+    ]
+   },
+   {
+    "name": "A cvae High %",
+    "theirs": [
+     3.8,
+     -9.3,
+     -4.3,
+     -25.1
+    ],
+    "ours": [
+     3.8255942703000807,
+     -9.3228034743279,
+     -4.322061336909102,
+     -25.098416019127956
+    ],
+    "rule": "|diff| <= max(0.05, 1% rel)",
+    "flags": [
+     false,
+     false,
+     false,
+     false
+    ]
+   },
+   {
+    "name": "A gam Low %",
+    "theirs": [
+     3.7,
+     4.7,
+     2.2,
+     34.0
+    ],
+    "ours": [
+     3.6945305921735567,
+     4.666490220078045,
+     2.1578299965172234,
+     33.98739990851716
+    ],
+    "rule": "|diff| <= max(0.05, 1% rel)",
+    "flags": [
+     false,
+     false,
+     false,
+     false
+    ]
+   },
+   {
+    "name": "A gam High %",
+    "theirs": [
+     -3.5,
+     -5.4,
+     -3.6,
+     -25.5
+    ],
+    "ours": [
+     -3.53689103925499,
+     -5.366439244201444,
+     -3.6458341708528055,
+     -25.48933690275688
+    ],
+    "rule": "|diff| <= max(0.05, 1% rel)",
+    "flags": [
+     false,
+     false,
+     false,
+     false
+    ]
+   },
+   {
+    "name": "B cvae Low %",
+    "theirs": [
+     -5.9,
+     0.5,
+     -3.3,
+     38.2
+    ],
+    "ours": [
+     -5.87092905212637,
+     0.5308488297566037,
+     -3.325495408873987,
+     38.15977309559359
+    ],
+    "rule": "|diff| <= max(0.05, 1% rel)",
+    "flags": [
+     false,
+     false,
+     false,
+     false
+    ]
+   },
+   {
+    "name": "B cvae High %",
+    "theirs": [
+     -0.2,
+     1.4,
+     -4.7,
+     -2.5
+    ],
+    "ours": [
+     -0.1875692245333345,
+     1.350058170707273,
+     -4.681541832548441,
+     -2.482051940513114
+    ],
+    "rule": "|diff| <= max(0.05, 1% rel)",
+    "flags": [
+     false,
+     false,
+     false,
+     false
+    ]
+   },
+   {
+    "name": "B gam Low %",
+    "theirs": [
+     3.2,
+     2.9,
+     2.4,
+     30.1
+    ],
+    "ours": [
+     3.174690464169994,
+     2.8890435625115916,
+     2.4179043531518536,
+     30.139657369381087
+    ],
+    "rule": "|diff| <= max(0.05, 1% rel)",
+    "flags": [
+     false,
+     false,
+     false,
+     false
+    ]
+   },
+   {
+    "name": "B gam High %",
+    "theirs": [
+     -3.0,
+     -3.4,
+     -3.6,
+     -19.2
+    ],
+    "ours": [
+     -3.002971395549305,
+     -3.3688304974479517,
+     -3.5877440629348722,
+     -19.190138411968874
+    ],
+    "rule": "|diff| <= max(0.05, 1% rel)",
+    "flags": [
+     false,
+     false,
+     false,
+     false
+    ]
+   },
+   {
+    "name": "A cvae pre4 % c1-c3 (c0 +5.2)",
+    "theirs": [
+     5.2,
+     -10.5,
+     -3.8,
+     -25.3
+    ],
+    "ours": [
+     5.153942356544157,
+     -10.529105212792166,
+     -3.8419740994787386,
+     -25.300957176543385
+    ],
+    "rule": "|diff| <= max(0.05, 1% rel)",
+    "flags": [
+     false,
+     false,
+     false,
+     false
+    ]
+   },
+   {
+    "name": "A cvae post4 % (c0 +6.3)",
+    "theirs": [
+     6.3,
+     -12.6,
+     -4.0,
+     -21.9
+    ],
+    "ours": [
+     6.307176961639673,
+     -12.586060297428395,
+     -4.033754421414909,
+     -21.931774312889424
+    ],
+    "rule": "|diff| <= max(0.05, 1% rel)",
+    "flags": [
+     false,
+     false,
+     false,
+     false
+    ]
+   },
+   {
+    "name": "B cvae c3 pre/post %",
+    "theirs": [
+     -0.2,
+     -1.7
+    ],
+    "ours": [
+     -0.3879365034261694,
+     -0.08023082533889735
+    ],
+    "rule": "|diff| <= max(0.05, 1% rel)",
+    "flags": [
+     true,
+     true
+    ]
+   },
+   {
+    "name": "B cvae c2 pre2/post2/in %",
+    "theirs": [
+     -5.2,
+     -5.3,
+     -4.7
+    ],
+    "ours": [
+     -5.2126297433750945,
+     -5.287942448718315,
+     -4.681541832548441
+    ],
+    "rule": "|diff| <= max(0.05, 1% rel)",
+    "flags": [
+     false,
+     false,
+     false
+    ]
+   },
+   {
+    "name": "A rmse13 median rel cvae/gam %",
+    "theirs": [
+     22.5,
+     29.1
+    ],
+    "ours": [
+     22.52620889056212,
+     29.075908856379655
+    ],
+    "rule": "|diff| <= max(0.05, 1% rel)",
+    "flags": [
+     false,
+     false
+    ]
+   },
+   {
+    "name": "B rmse13 median rel cvae/gam %",
+    "theirs": [
+     23.1,
+     30.0
+    ],
+    "ours": [
+     23.056403165925502,
+     29.965330598783453
+    ],
+    "rule": "|diff| <= max(0.05, 1% rel)",
+    "flags": [
+     false,
+     false
+    ]
+   },
+   {
+    "name": "A rmse13 mean of per-cluster medians % (rel cvae/gam)",
+    "theirs": [
+     23.0,
+     29.8
+    ],
+    "ours": [
+     22.973880532953917,
+     29.82609106094561
+    ],
+    "rule": "|diff| <= max(0.05, 1% rel)",
+    "flags": [
+     false,
+     false
+    ]
+   },
+   {
+    "name": "B per-cluster GAM lower %, mean of medians",
+    "theirs": [
+     25.9,
+     30.6,
+     25.4,
+     22.7,
+     26.2
+    ],
+    "ours": [
+     25.912506522988558,
+     30.55991251934035,
+     25.39681824043676,
+     22.669083084518498,
+     26.21859473525978
+    ],
+    "rule": "|diff| <= max(0.05, 1% rel)",
+    "flags": [
+     false,
+     false,
+     false,
+     false,
+     false
+    ]
+   },
+   {
+    "name": "A KL selected (phase 1 'about 1e-6')",
+    "theirs": [
+     1e-06,
+     1e-06,
+     1e-06,
+     1e-06
+    ],
+    "ours": [
+     2.1793349218495672e-06,
+     5.791408656590025e-06,
+     2.7289677396902887e-06,
+     4.216658632138495e-06
+    ],
+    "rule": "same order of magnitude",
+    "flags": [
+     false,
+     false,
+     false,
+     false
+    ]
+   },
+   {
+    "name": "B KL selected 2.4e-7..9.7e-7",
+    "theirs": [
+     9.7e-07,
+     2.4e-07,
+     3e-07,
+     4.5e-07
+    ],
+    "ours": [
+     9.743042372056538e-07,
+     2.3606562602107906e-07,
+     2.9795430523414033e-07,
+     4.537022539744513e-07
+    ],
+    "rule": "|diff| <= max(5e-09, 1% rel)",
+    "flags": [
+     false,
+     false,
+     false,
+     false
+    ]
+   }
+  ]
+ },
+ "trackA": {
+  "day_axis": {
+   "test_dates_csv_equals_sorted_obs_dates_all_clusters": true,
+   "obs_file_order_ascending_all_clusters": true,
+   "cvae_samples_equal_scenNormal_exactly_on_all_normal_days_only": true,
+   "cvae_fingerprint_match_frac_aligned_vs_shift1": [
+    1.0,
+    0.5
+   ],
+   "gam_ratio_mean_over_normal_at_real_low_high_slots_aligned": [
+    [
+     1.0343,
+     0.9646
+    ],
+    [
+     1.0518,
+     0.9577
+    ],
+    [
+     1.0239,
+     0.9655
+    ],
+    [
+     1.338,
+     0.7289
+    ]
+   ],
+   "gam_ratio_mean_over_normal_at_real_low_high_slots_shift_prev": [
+    [
+     1.0037,
+     0.9987
+    ],
+    [
+     1.0056,
+     0.9935
+    ],
+    [
+     1.0043,
+     0.9985
+    ],
+    [
+     1.0322,
+     0.9856
+    ]
+   ],
+   "corr_daily_mean_changes_gam_aligned_prev_next": [
+    [
+     0.762,
+     -0.234,
+     0.075
+    ],
+    [
+     0.818,
+     -0.33,
+     -0.071
+    ],
+    [
+     0.736,
+     -0.186,
+     0.141
+    ],
+    [
+     0.852,
+     -0.405,
+     -0.203
+    ]
+   ],
+   "corr_daily_mean_changes_cvae_aligned_prev_next": [
+    [
+     0.31,
+     -0.141,
+     0.26
+    ],
+    [
+     0.256,
+     -0.242,
+     0.262
+    ],
+    [
+     0.423,
+     -0.08,
+     0.194
+    ],
+    [
+     0.648,
+     -0.304,
+     -0.179
+    ]
+   ],
+   "median_rmse_ratio_obs_shift_prev_next_over_aligned": {
+    "cvae": [
+     1.307,
+     1.229,
+     1.283,
+     1.496,
+     1.181,
+     1.137,
+     1.024,
+     1.355
+    ],
+    "gam": [
+     1.442,
+     1.393,
+     1.259,
+     1.716,
+     1.251,
+     1.246,
+     1.197,
+     1.664
+    ]
+   },
+   "cluster_cross_rmse_diagonal_is_min": {
+    "cvae": true,
+    "gam": true
+   },
+   "cvae_arrays_regenerated_from_selected_decoders_max_abs_kwh": 5.551115123125783e-17
+  },
+  "fig4_medians": {
+   "rmse": {
+    "cvae": [
+     0.019075,
+     0.022273,
+     0.018055,
+     0.023526
+    ],
+    "gam": [
+     0.014212,
+     0.016175,
+     0.014812,
+     0.018678
+    ]
+   },
+   "es": {
+    "cvae": [
+     0.124795,
+     0.146522,
+     0.112916,
+     0.153203
+    ],
+    "gam": [
+     0.073576,
+     0.083968,
+     0.076064,
+     0.09447
+    ]
+   },
+   "vg": {
+    "cvae": [
+     5.633754,
+     6.612484,
+     6.61813,
+     9.020002
+    ],
+    "gam": [
+     3.756088,
+     3.973498,
+     4.788839,
+     5.813014
+    ]
+   }
+  },
+  "fig4_ratio_to_paper": {
+   "rmse": {
+    "cvae": [
+     0.953764,
+     1.012393,
+     1.003077,
+     0.941039
+    ],
+    "gam": [
+     0.947483,
+     1.010957,
+     0.987452,
+     1.037659
+    ]
+   },
+   "es": {
+    "cvae": [
+     0.831968,
+     1.010494,
+     0.664214,
+     1.178486
+    ],
+    "gam": [
+     0.474682,
+     0.559786,
+     0.434649,
+     0.69978
+    ]
+   },
+   "vg": {
+    "cvae": [
+     0.938959,
+     0.944641,
+     0.945447,
+     0.902
+    ],
+    "gam": [
+     0.939022,
+     0.993374,
+     0.957768,
+     1.162603
+    ]
+   }
+  },
+  "rmse_euclid_medians": {
+   "cvae": [
+    0.132157,
+    0.154309,
+    0.125091,
+    0.162993
+   ],
+   "gam": [
+    0.098465,
+    0.112066,
+    0.102619,
+    0.129404
+   ]
+  },
+  "es_ustat_medians": {
+   "cvae": [
+    0.124757,
+    0.145435,
+    0.112204,
+    0.152315
+   ],
+   "gam": [
+    0.073042,
+    0.084266,
+    0.074416,
+    0.092802
+   ]
+  },
+  "es_cvae_over_gam_median_ratio": [
+   1.696146,
+   1.744971,
+   1.484499,
+   1.621707
+  ],
+  "es_frac_days_cvae_lower": [
+   0.021739,
+   0.108696,
+   0.021739,
+   0.0
+  ],
+  "es_wilcoxon_p": [
+   1.91e-16,
+   9.81e-16,
+   1.1e-16,
+   8.15e-17
+  ],
+  "rmse_difference_pct": {
+   "median_over_cluster_days_of_rmse": {
+    "cvae": 0.02064745948451914,
+    "gam": 0.015996369630442177,
+    "rel_cvae_pct": 22.52620889056212,
+    "rel_gam_pct": 29.075908856379655
+   },
+   "median_over_cluster_days_of_paired_rel_diff": {
+    "rel_cvae_pct": 24.376317548482387,
+    "rel_gam_pct": 32.234135561497915
+   },
+   "mean_over_cluster_days_of_paired_rel_diff": {
+    "rel_cvae_pct": 23.073778006008006,
+    "rel_gam_pct": 47.97552545333812
+   },
+   "mean_over_cluster_days_of_rmse": {
+    "rel_cvae_pct": 30.508258812513564,
+    "rel_gam_pct": 43.90199222408788
+   },
+   "pooled_rms": {
+    "rel_cvae_pct": 34.96333817939858,
+    "rel_gam_pct": 53.7594292213863
+   },
+   "per_cluster_median_rel_cvae_pct": [
+    25.493899635954723,
+    27.375869458125027,
+    17.96474432212046,
+    20.60747067758107
+   ],
+   "per_cluster_median_rel_gam_pct": [
+    34.21719766755827,
+    37.69528014155039,
+    21.898809449270207,
+    25.95643551535259
+   ],
+   "mean_of_per_cluster_medians_ratio_of_means": {
+    "rel_cvae_pct": 22.973880532953917,
+    "rel_gam_pct": 29.82609106094561
+   },
+   "mean_of_per_cluster_pct_differences": {
+    "rel_cvae_pct": 22.86049602344532,
+    "rel_gam_pct": 29.941930693432862
+   },
+   "frac_cluster_days_gam_better": 0.8043478260869565,
+   "frac_days_gam_better_per_cluster": [
+    0.8478260869565217,
+    0.8260869565217391,
+    0.7608695652173914,
+    0.782608695652174
+   ],
+   "paper_fig4_medians_implied": {
+    "rel_cvae_pct": 24.70588235294117,
+    "rel_gam_pct": 32.812499999999986
+   }
+  },
+  "spread_skill_pooled": {
+   "cvae": [
+    0.078972,
+    0.091214,
+    0.134281,
+    0.094211
+   ],
+   "gam": [
+    1.454162,
+    1.543063,
+    1.372222,
+    1.392604
+   ]
+  },
+  "spread_skill_perday_median": {
+   "cvae": [
+    0.090496,
+    0.118017,
+    0.097534,
+    0.100824
+   ],
+   "gam": [
+    1.660195,
+    1.754107,
+    1.501965,
+    1.450664
+   ]
+  },
+  "coverage90_pooled": {
+   "cvae": [
+    0.092391,
+    0.112998,
+    0.128397,
+    0.110054
+   ],
+   "gam": [
+    0.973279,
+    0.97192,
+    0.960145,
+    0.961504
+   ]
+  },
+  "coverage90_perday_median": {
+   "cvae": [
+    0.0625,
+    0.09375,
+    0.104167,
+    0.104167
+   ],
+   "gam": [
+    1.0,
+    1.0,
+    0.979167,
+    0.979167
+   ]
+  },
+  "coverage50_pooled": {
+   "cvae": [
+    0.038496,
+    0.051404,
+    0.051857,
+    0.048913
+   ],
+   "gam": [
+    0.730525,
+    0.72577,
+    0.661005,
+    0.650815
+   ]
+  },
+  "pit_var": {
+   "cvae": [
+    0.231798,
+    0.223048,
+    0.224526,
+    0.227411
+   ],
+   "gam": [
+    0.045715,
+    0.045724,
+    0.05523,
+    0.057125
+   ]
+  },
+  "frac_outside_sample_range": {
+   "cvae": [
+    0.842844,
+    0.803216,
+    0.790987,
+    0.806159
+   ],
+   "gam": [
+    0.004755,
+    0.00385,
+    0.002491,
+    0.004755
+   ]
+  },
+  "mean_sample_sd_kwh": {
+   "cvae": [
+    0.001618,
+    0.002327,
+    0.002299,
+    0.002319
+   ],
+   "gam": [
+    0.022155,
+    0.025989,
+    0.021677,
+    0.025888
+   ]
+  },
+  "effects_pct": {
+   "cvae": {
+    "Low_in_9_18": [
+     -2.353472,
+     4.905144,
+     -5.660945,
+     50.267203
+    ],
+    "High_in_39_43": [
+     3.825594,
+     -9.322803,
+     -4.322061,
+     -25.098416
+    ],
+    "High_pre4_35_38": [
+     5.153942,
+     -10.529105,
+     -3.841974,
+     -25.300957
+    ],
+    "High_post4_44_47": [
+     6.307177,
+     -12.58606,
+     -4.033754,
+     -21.931774
+    ],
+    "High_pre2_37_38": [
+     5.678499,
+     -11.233321,
+     -3.877915,
+     -25.995548
+    ],
+    "High_post2_44_45": [
+     5.215377,
+     -11.850446,
+     -4.607296,
+     -22.353465
+    ]
+   },
+   "gam": {
+    "Low_in_9_18": [
+     3.694531,
+     4.66649,
+     2.15783,
+     33.9874
+    ],
+    "High_in_39_43": [
+     -3.536891,
+     -5.366439,
+     -3.645834,
+     -25.489337
+    ],
+    "High_pre4_35_38": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "High_post4_44_47": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "High_pre2_37_38": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "High_post2_44_45": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  "effects_ci95": {
+   "cvae": {
+    "Low_in_9_18": [
+     [
+      -4.096,
+      -0.632
+     ],
+     [
+      4.041,
+      5.715
+     ],
+     [
+      -7.166,
+      -4.064
+     ],
+     [
+      47.339,
+      53.314
+     ]
+    ],
+    "High_in_39_43": [
+     [
+      2.704,
+      4.898
+     ],
+     [
+      -10.469,
+      -8.237
+     ],
+     [
+      -5.081,
+      -3.505
+     ],
+     [
+      -26.912,
+      -23.241
+     ]
+    ],
+    "High_pre4_35_38": [
+     [
+      3.726,
+      6.526
+     ],
+     [
+      -11.972,
+      -9.074
+     ],
+     [
+      -4.554,
+      -3.084
+     ],
+     [
+      -27.307,
+      -23.242
+     ]
+    ],
+    "High_post4_44_47": [
+     [
+      4.538,
+      8.032
+     ],
+     [
+      -14.146,
+      -11.079
+     ],
+     [
+      -4.751,
+      -3.265
+     ],
+     [
+      -23.811,
+      -19.921
+     ]
+    ]
+   },
+   "gam": {
+    "Low_in_9_18": [
+     [
+      3.629,
+      3.762
+     ],
+     [
+      4.579,
+      4.758
+     ],
+     [
+      2.094,
+      2.227
+     ],
+     [
+      33.405,
+      34.608
+     ]
+    ],
+    "High_in_39_43": [
+     [
+      -3.675,
+      -3.407
+     ],
+     [
+      -5.584,
+      -5.169
+     ],
+     [
+      -3.788,
+      -3.516
+     ],
+     [
+      -26.629,
+      -24.442
+     ]
+    ],
+    "High_pre4_35_38": [
+     [
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0
+     ]
+    ],
+    "High_post4_44_47": [
+     [
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0
+     ]
+    ]
+   }
+  },
+  "gam_effect_outside_window_max_abs_kwh": 0.0,
+  "posterior_collapse_selected": {
+   "train_kl_nats_per_day": [
+    2.1793349218495672e-06,
+    5.791408656590025e-06,
+    2.7289677396902887e-06,
+    4.216658632138495e-06
+   ],
+   "posterior_sd_range": [
+    0.9994425806299606,
+    1.0003486180227523
+   ],
+   "posterior_mean_abs_max": 0.0026219747443582218,
+   "encoder_hidden_units_active_on_any_train_day_of_15": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "test_kl_nats_per_day": [
+    0.00010015778560231279,
+    0.0003692504311541804,
+    0.0006467131461619809,
+    0.0005525998465178536
+   ],
+   "latent_unit_change_mean_abs_output_wh": [
+    [
+     1.221,
+     0.468,
+     0.341,
+     0.548
+    ],
+    [
+     0.364,
+     1.744,
+     0.556,
+     0.922
+    ],
+    [
+     0.391,
+     2.032,
+     0.456,
+     0.579
+    ],
+    [
+     0.79,
+     0.984,
+     0.953,
+     1.347
+    ]
+   ],
+   "scaling_equals_train_minmax": true
+  }
+ },
+ "trackB": {
+  "day_axis": {
+   "test_dates_csv_equals_sorted_obs_dates_all_clusters": true,
+   "obs_file_order_ascending_all_clusters": true,
+   "cvae_samples_equal_scenNormal_exactly_on_all_normal_days_only": true,
+   "cvae_fingerprint_match_frac_aligned_vs_shift1": [
+    1.0,
+    0.4782608695652174
+   ],
+   "gam_ratio_mean_over_normal_at_real_low_high_slots_aligned": [
+    [
+     1.0253,
+     0.9628
+    ],
+    [
+     1.0318,
+     0.9627
+    ],
+    [
+     1.0241,
+     0.9629
+    ],
+    [
+     1.3014,
+     0.771
+    ]
+   ],
+   "gam_ratio_mean_over_normal_at_real_low_high_slots_shift_prev": [
+    [
+     1.0029,
+     1.0002
+    ],
+    [
+     1.0037,
+     1.0004
+    ],
+    [
+     1.0052,
+     1.0008
+    ],
+    [
+     1.0259,
+     1.0189
+    ]
+   ],
+   "corr_daily_mean_changes_gam_aligned_prev_next": [
+    [
+     0.698,
+     -0.181,
+     0.117
+    ],
+    [
+     0.814,
+     -0.276,
+     -0.059
+    ],
+    [
+     0.745,
+     -0.222,
+     0.124
+    ],
+    [
+     0.845,
+     -0.384,
+     -0.258
+    ]
+   ],
+   "corr_daily_mean_changes_cvae_aligned_prev_next": [
+    [
+     0.207,
+     -0.001,
+     0.133
+    ],
+    [
+     0.334,
+     -0.134,
+     0.183
+    ],
+    [
+     0.166,
+     -0.147,
+     0.332
+    ],
+    [
+     0.678,
+     -0.361,
+     -0.234
+    ]
+   ],
+   "median_rmse_ratio_obs_shift_prev_next_over_aligned": {
+    "cvae": [
+     1.152,
+     1.171,
+     1.091,
+     1.319,
+     1.128,
+     1.096,
+     0.982,
+     1.345
+    ],
+    "gam": [
+     1.434,
+     1.407,
+     1.309,
+     1.673,
+     1.368,
+     1.216,
+     1.189,
+     1.557
+    ]
+   },
+   "cluster_cross_rmse_diagonal_is_min": {
+    "cvae": true,
+    "gam": true
+   },
+   "cvae_arrays_regenerated_from_selected_decoders_max_abs_kwh": 1.1102230246251565e-16
+  },
+  "fig4_medians": {
+   "rmse": {
+    "cvae": [
+     0.019458,
+     0.024578,
+     0.017322,
+     0.024372
+    ],
+    "gam": [
+     0.014416,
+     0.017067,
+     0.012923,
+     0.018847
+    ]
+   },
+   "es": {
+    "cvae": [
+     0.123409,
+     0.162385,
+     0.107314,
+     0.162226
+    ],
+    "gam": [
+     0.074608,
+     0.08894,
+     0.067979,
+     0.094471
+    ]
+   },
+   "vg": {
+    "cvae": [
+     5.819633,
+     6.969997,
+     5.311667,
+     9.772304
+    ],
+    "gam": [
+     4.043104,
+     4.110973,
+     3.622371,
+     6.054762
+    ]
+   }
+  },
+  "fig4_ratio_to_paper": {
+   "rmse": {
+    "cvae": [
+     0.972884,
+     1.117167,
+     0.96235,
+     0.97488
+    ],
+    "gam": [
+     0.961047,
+     1.066673,
+     0.861532,
+     1.047061
+    ]
+   },
+   "es": {
+    "cvae": [
+     0.82273,
+     1.119897,
+     0.631261,
+     1.247889
+    ],
+    "gam": [
+     0.48134,
+     0.592933,
+     0.388452,
+     0.699789
+    ]
+   },
+   "vg": {
+    "cvae": [
+     0.969939,
+     0.995714,
+     0.75881,
+     0.97723
+    ],
+    "gam": [
+     1.010776,
+     1.027743,
+     0.724474,
+     1.210952
+    ]
+   }
+  },
+  "rmse_euclid_medians": {
+   "cvae": [
+    0.134807,
+    0.170279,
+    0.120012,
+    0.168854
+   ],
+   "gam": [
+    0.099875,
+    0.118242,
+    0.089533,
+    0.130577
+   ]
+  },
+  "es_ustat_medians": {
+   "cvae": [
+    0.124417,
+    0.16244,
+    0.107434,
+    0.162322
+   ],
+   "gam": [
+    0.075168,
+    0.088572,
+    0.06773,
+    0.094886
+   ]
+  },
+  "es_cvae_over_gam_median_ratio": [
+   1.654111,
+   1.825782,
+   1.578635,
+   1.717191
+  ],
+  "es_frac_days_cvae_lower": [
+   0.054348,
+   0.043478,
+   0.054348,
+   0.021739
+  ],
+  "es_wilcoxon_p": [
+   2.91e-16,
+   1.33e-16,
+   5.18e-16,
+   3.64e-16
+  ],
+  "rmse_difference_pct": {
+   "median_over_cluster_days_of_rmse": {
+    "cvae": 0.02108848934844013,
+    "gam": 0.016226242222660517,
+    "rel_cvae_pct": 23.056403165925502,
+    "rel_gam_pct": 29.965330598783453
+   },
+   "median_over_cluster_days_of_paired_rel_diff": {
+    "rel_cvae_pct": 25.26867820028921,
+    "rel_gam_pct": 33.81282820053736
+   },
+   "mean_over_cluster_days_of_paired_rel_diff": {
+    "rel_cvae_pct": 23.81040978874118,
+    "rel_gam_pct": 48.00984831198265
+   },
+   "mean_over_cluster_days_of_rmse": {
+    "rel_cvae_pct": 30.983444384632126,
+    "rel_gam_pct": 44.89277117407039
+   },
+   "pooled_rms": {
+    "rel_cvae_pct": 35.14797243927363,
+    "rel_gam_pct": 54.19718359053871
+   },
+   "per_cluster_median_rel_cvae_pct": [
+    25.912506522988558,
+    30.55991251934035,
+    25.39681824043676,
+    22.669083084518498
+   ],
+   "per_cluster_median_rel_gam_pct": [
+    34.97554756799666,
+    44.00903516697304,
+    34.04254033331654,
+    29.314385486072247
+   ],
+   "mean_of_per_cluster_medians_ratio_of_means": {
+    "rel_cvae_pct": 26.21859473525978,
+    "rel_gam_pct": 35.53550469956897
+   },
+   "mean_of_per_cluster_pct_differences": {
+    "rel_cvae_pct": 26.134580091821043,
+    "rel_gam_pct": 35.58537713858962
+   },
+   "frac_cluster_days_gam_better": 0.8342391304347826,
+   "frac_days_gam_better_per_cluster": [
+    0.8043478260869565,
+    0.8804347826086957,
+    0.8152173913043478,
+    0.8369565217391305
+   ],
+   "paper_fig4_medians_implied": {
+    "rel_cvae_pct": 24.70588235294117,
+    "rel_gam_pct": 32.812499999999986
+   }
+  },
+  "spread_skill_pooled": {
+   "cvae": [
+    0.104367,
+    0.121583,
+    0.138376,
+    0.076968
+   ],
+   "gam": [
+    1.441039,
+    1.54949,
+    1.486677,
+    1.302837
+   ]
+  },
+  "spread_skill_perday_median": {
+   "cvae": [
+    0.07659,
+    0.040461,
+    0.05209,
+    0.054665
+   ],
+   "gam": [
+    1.665578,
+    1.677687,
+    1.682289,
+    1.383161
+   ]
+  },
+  "coverage90_pooled": {
+   "cvae": [
+    0.112545,
+    0.087183,
+    0.113678,
+    0.071784
+   ],
+   "gam": [
+    0.972373,
+    0.976902,
+    0.968071,
+    0.949049
+   ]
+  },
+  "coverage90_perday_median": {
+   "cvae": [
+    0.083333,
+    0.041667,
+    0.041667,
+    0.041667
+   ],
+   "gam": [
+    1.0,
+    1.0,
+    1.0,
+    0.958333
+   ]
+  },
+  "coverage50_pooled": {
+   "cvae": [
+    0.04212,
+    0.040987,
+    0.053668,
+    0.028759
+   ],
+   "gam": [
+    0.721694,
+    0.722147,
+    0.689991,
+    0.643795
+   ]
+  },
+  "pit_var": {
+   "cvae": [
+    0.224803,
+    0.231967,
+    0.223391,
+    0.234831
+   ],
+   "gam": [
+    0.046819,
+    0.045989,
+    0.050046,
+    0.057723
+   ]
+  },
+  "frac_outside_sample_range": {
+   "cvae": [
+    0.815444,
+    0.856431,
+    0.816123,
+    0.87885
+   ],
+   "gam": [
+    0.002944,
+    0.004076,
+    0.002264,
+    0.008152
+   ]
+  },
+  "mean_sample_sd_kwh": {
+   "cvae": [
+    0.001953,
+    0.001965,
+    0.002064,
+    0.001669
+   ],
+   "gam": [
+    0.022873,
+    0.027269,
+    0.0212,
+    0.026772
+   ]
+  },
+  "effects_pct": {
+   "cvae": {
+    "Low_in_9_18": [
+     -5.870929,
+     0.530849,
+     -3.325495,
+     38.159773
+    ],
+    "High_in_39_43": [
+     -0.187569,
+     1.350058,
+     -4.681542,
+     -2.482052
+    ],
+    "High_pre4_35_38": [
+     -0.635555,
+     2.804497,
+     -4.732373,
+     -0.387937
+    ],
+    "High_post4_44_47": [
+     3.302135,
+     4.944334,
+     -5.146047,
+     -0.080231
+    ],
+    "High_pre2_37_38": [
+     -1.076721,
+     2.731255,
+     -5.21263,
+     -0.22334
+    ],
+    "High_post2_44_45": [
+     2.735895,
+     3.762601,
+     -5.287942,
+     -1.673161
+    ]
+   },
+   "gam": {
+    "Low_in_9_18": [
+     3.17469,
+     2.889044,
+     2.417904,
+     30.139657
+    ],
+    "High_in_39_43": [
+     -3.002971,
+     -3.36883,
+     -3.587744,
+     -19.190138
+    ],
+    "High_pre4_35_38": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "High_post4_44_47": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "High_pre2_37_38": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "High_post2_44_45": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  "effects_ci95": {
+   "cvae": {
+    "Low_in_9_18": [
+     [
+      -6.645,
+      -5.08
+     ],
+     [
+      -1.118,
+      2.271
+     ],
+     [
+      -4.279,
+      -2.418
+     ],
+     [
+      36.176,
+      39.952
+     ]
+    ],
+    "High_in_39_43": [
+     [
+      -0.727,
+      0.37
+     ],
+     [
+      -1.06,
+      3.782
+     ],
+     [
+      -6.273,
+      -3.064
+     ],
+     [
+      -4.314,
+      -0.637
+     ]
+    ],
+    "High_pre4_35_38": [
+     [
+      -1.245,
+      -0.001
+     ],
+     [
+      0.935,
+      4.705
+     ],
+     [
+      -6.36,
+      -3.087
+     ],
+     [
+      -2.028,
+      1.201
+     ]
+    ],
+    "High_post4_44_47": [
+     [
+      2.429,
+      4.227
+     ],
+     [
+      2.249,
+      7.711
+     ],
+     [
+      -6.88,
+      -3.403
+     ],
+     [
+      -1.874,
+      1.796
+     ]
+    ]
+   },
+   "gam": {
+    "Low_in_9_18": [
+     [
+      3.119,
+      3.234
+     ],
+     [
+      2.831,
+      2.949
+     ],
+     [
+      2.353,
+      2.488
+     ],
+     [
+      29.576,
+      30.715
+     ]
+    ],
+    "High_in_39_43": [
+     [
+      -3.112,
+      -2.902
+     ],
+     [
+      -3.507,
+      -3.241
+     ],
+     [
+      -3.724,
+      -3.465
+     ],
+     [
+      -20.054,
+      -18.39
+     ]
+    ],
+    "High_pre4_35_38": [
+     [
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0
+     ]
+    ],
+    "High_post4_44_47": [
+     [
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0
+     ]
+    ]
+   }
+  },
+  "gam_effect_outside_window_max_abs_kwh": 0.0,
+  "posterior_collapse_selected": {
+   "train_kl_nats_per_day": [
+    9.743042372056538e-07,
+    2.3606562602107906e-07,
+    2.9795430523414033e-07,
+    4.537022539744513e-07
+   ],
+   "posterior_sd_range": [
+    0.9995660486708338,
+    1.0003073609735325
+   ],
+   "posterior_mean_abs_max": 0.0009508627394272901,
+   "encoder_hidden_units_active_on_any_train_day_of_15": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "test_kl_nats_per_day": [
+    0.0015441096041438809,
+    0.0002779865468018646,
+    0.0003229852935677719,
+    0.0004434691217543359
+   ],
+   "latent_unit_change_mean_abs_output_wh": [
+    [
+     0.907,
+     0.771,
+     0.858,
+     1.096
+    ],
+    [
+     0.716,
+     1.512,
+     0.438,
+     0.626
+    ],
+    [
+     0.646,
+     1.535,
+     0.52,
+     0.62
+    ],
+    [
+     0.671,
+     0.906,
+     0.695,
+     0.613
+    ]
+   ],
+   "scaling_equals_train_minmax": true
+  }
+ }
+}

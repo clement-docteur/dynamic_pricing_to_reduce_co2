@@ -1,0 +1,56 @@
+{
+ "raw": {
+  "V1 f*sum(n_l*b)/sum(w/n_l)": 13432.64463464387,
+  "V1b f*sum(b)/sum(w/n_l^2)": 12805.304473478489,
+  "V1c f*(n/k)*sum(b)/sum(w/n_l)": 13809.221813053218,
+  "V1d f*sum(n_l*b)/(k*sum(w)/n)": 13438.502718186735,
+  "V1e f*sum(n_l*b)/sum(mean_l of ||.||) [same as V1]": 13432.64463464387
+ },
+ "std": {
+  "V1 f*sum(n_l*b)/sum(w/n_l)": 14076.215618291779,
+  "V1b f*sum(b)/sum(w/n_l^2)": 12711.510921644993,
+  "V1c f*(n/k)*sum(b)/sum(w/n_l)": 14090.672643498201,
+  "V1d f*sum(n_l*b)/(k*sum(w)/n)": 14339.424539619375,
+  "V1e f*sum(n_l*b)/sum(mean_l of ||.||) [same as V1]": 14076.215618291779
+ },
+ "special_auth2160": {
+  "V1 f*sum(n_l*b)/sum(w/n_l)": 16054.962639894002,
+  "V1b f*sum(b)/sum(w/n_l^2)": 15315.079227167114,
+  "V1c f*(n/k)*sum(b)/sum(w/n_l)": 17393.078607788502,
+  "V1d f*sum(n_l*b)/(k*sum(w)/n)": 16691.402314941854,
+  "V1e f*sum(n_l*b)/sum(mean_l of ||.||) [same as V1]": 16054.962639894002
+ },
+ "special_loc2448": {
+  "V1 f*sum(n_l*b)/sum(w/n_l)": 15873.205326209163,
+  "V1b f*sum(b)/sum(w/n_l^2)": 15077.092388477735,
+  "V1c f*(n/k)*sum(b)/sum(w/n_l)": 17074.189072571142,
+  "V1d f*sum(n_l*b)/(k*sum(w)/n)": 16463.904956842664,
+  "V1e f*sum(n_l*b)/sum(mean_l of ||.||) [same as V1]": 15873.205326209163
+ },
+ "special_gmt2448": {
+  "V1 f*sum(n_l*b)/sum(w/n_l)": 15794.106601548297,
+  "V1b f*sum(b)/sum(w/n_l^2)": 14959.660921741686,
+  "V1c f*(n/k)*sum(b)/sum(w/n_l)": 16922.267396316092,
+  "V1d f*sum(n_l*b)/(k*sum(w)/n)": 16366.92731327417,
+  "V1e f*sum(n_l*b)/sum(mean_l of ||.||) [same as V1]": 15794.106601548297
+ },
+ "special_auth_renorm": {
+  "V1 f*sum(n_l*b)/sum(w/n_l)": 15651.781761567074,
+  "V1b f*sum(b)/sum(w/n_l^2)": 14833.84447598619,
+  "V1c f*(n/k)*sum(b)/sum(w/n_l)": 16560.594075641297,
+  "V1d f*sum(n_l*b)/(k*sum(w)/n)": 16040.10948346325,
+  "V1e f*sum(n_l*b)/sum(mean_l of ||.||) [same as V1]": 15651.781761567074
+ },
+ "special_raw_auth": {
+  "V1 f*sum(n_l*b)/sum(w/n_l)": 13962.872823962196,
+  "V1b f*sum(b)/sum(w/n_l^2)": 13512.96355855778,
+  "V1c f*(n/k)*sum(b)/sum(w/n_l)": 14792.572241900021,
+  "V1d f*sum(n_l*b)/(k*sum(w)/n)": 14135.90973511077,
+  "V1e f*sum(n_l*b)/sum(mean_l of ||.||) [same as V1]": 13962.872823962196
+ },
+ "V1_vs_paper_rel_diff_pct": [
+  0.004799245412967501,
+  -0.08364836533376607,
+  -0.09357411391411885
+ ]
+}

@@ -1,0 +1,2053 @@
+{
+ "train": {
+  "Low": {
+   "n_days_with": 66,
+   "n_slots": 960,
+   "within_day_runs": [
+    {
+     "start": 0,
+     "end": 10,
+     "length": 11,
+     "count": 10
+    },
+    {
+     "start": 45,
+     "end": 47,
+     "length": 3,
+     "count": 9
+    },
+    {
+     "start": 47,
+     "end": 47,
+     "length": 1,
+     "count": 8
+    },
+    {
+     "start": 9,
+     "end": 32,
+     "length": 24,
+     "count": 6
+    },
+    {
+     "start": 0,
+     "end": 8,
+     "length": 9,
+     "count": 6
+    },
+    {
+     "start": 11,
+     "end": 34,
+     "length": 24,
+     "count": 4
+    },
+    {
+     "start": 21,
+     "end": 26,
+     "length": 6,
+     "count": 3
+    },
+    {
+     "start": 39,
+     "end": 44,
+     "length": 6,
+     "count": 3
+    },
+    {
+     "start": 11,
+     "end": 14,
+     "length": 4,
+     "count": 2
+    },
+    {
+     "start": 21,
+     "end": 47,
+     "length": 27,
+     "count": 2
+    },
+    {
+     "start": 17,
+     "end": 22,
+     "length": 6,
+     "count": 2
+    },
+    {
+     "start": 9,
+     "end": 20,
+     "length": 12,
+     "count": 2
+    },
+    {
+     "start": 0,
+     "end": 32,
+     "length": 33,
+     "count": 2
+    },
+    {
+     "start": 33,
+     "end": 47,
+     "length": 15,
+     "count": 2
+    },
+    {
+     "start": 21,
+     "end": 44,
+     "length": 24,
+     "count": 2
+    },
+    {
+     "start": 29,
+     "end": 34,
+     "length": 6,
+     "count": 1
+    },
+    {
+     "start": 11,
+     "end": 22,
+     "length": 12,
+     "count": 1
+    },
+    {
+     "start": 35,
+     "end": 46,
+     "length": 12,
+     "count": 1
+    },
+    {
+     "start": 11,
+     "end": 47,
+     "length": 37,
+     "count": 1
+    },
+    {
+     "start": 11,
+     "end": 20,
+     "length": 10,
+     "count": 1
+    },
+    {
+     "start": 29,
+     "end": 47,
+     "length": 19,
+     "count": 1
+    },
+    {
+     "start": 11,
+     "end": 16,
+     "length": 6,
+     "count": 1
+    },
+    {
+     "start": 0,
+     "end": 34,
+     "length": 35,
+     "count": 1
+    },
+    {
+     "start": 27,
+     "end": 32,
+     "length": 6,
+     "count": 1
+    },
+    {
+     "start": 21,
+     "end": 32,
+     "length": 12,
+     "count": 1
+    },
+    {
+     "start": 9,
+     "end": 47,
+     "length": 39,
+     "count": 1
+    },
+    {
+     "start": 3,
+     "end": 8,
+     "length": 6,
+     "count": 1
+    },
+    {
+     "start": 9,
+     "end": 14,
+     "length": 6,
+     "count": 1
+    },
+    {
+     "start": 33,
+     "end": 38,
+     "length": 6,
+     "count": 1
+    },
+    {
+     "start": 23,
+     "end": 34,
+     "length": 12,
+     "count": 1
+    },
+    {
+     "start": 35,
+     "end": 40,
+     "length": 6,
+     "count": 1
+    },
+    {
+     "start": 35,
+     "end": 47,
+     "length": 13,
+     "count": 1
+    }
+   ],
+   "n_within_day_runs": 80,
+   "continuous_runs": {
+    "n": 64,
+    "n_crossing_midnight": 16,
+    "length_counts": {
+     "1": 2,
+     "3": 3,
+     "4": 2,
+     "6": 15,
+     "10": 1,
+     "11": 2,
+     "12": 16,
+     "15": 1,
+     "19": 1,
+     "24": 14,
+     "27": 2,
+     "35": 1,
+     "36": 2,
+     "48": 2
+    },
+    "start_slot_counts": {
+     "0": 3,
+     "3": 1,
+     "9": 10,
+     "11": 10,
+     "17": 2,
+     "21": 8,
+     "23": 1,
+     "27": 1,
+     "29": 2,
+     "33": 3,
+     "35": 3,
+     "39": 3,
+     "45": 9,
+     "47": 8
+    }
+   }
+  },
+  "High": {
+   "n_days_with": 52,
+   "n_slots": 526,
+   "within_day_runs": [
+    {
+     "start": 33,
+     "end": 44,
+     "length": 12,
+     "count": 7
+    },
+    {
+     "start": 35,
+     "end": 46,
+     "length": 12,
+     "count": 6
+    },
+    {
+     "start": 15,
+     "end": 20,
+     "length": 6,
+     "count": 4
+    },
+    {
+     "start": 21,
+     "end": 44,
+     "length": 24,
+     "count": 3
+    },
+    {
+     "start": 47,
+     "end": 47,
+     "length": 1,
+     "count": 2
+    },
+    {
+     "start": 0,
+     "end": 4,
+     "length": 5,
+     "count": 2
+    },
+    {
+     "start": 23,
+     "end": 28,
+     "length": 6,
+     "count": 2
+    },
+    {
+     "start": 11,
+     "end": 16,
+     "length": 6,
+     "count": 2
+    },
+    {
+     "start": 0,
+     "end": 10,
+     "length": 11,
+     "count": 2
+    },
+    {
+     "start": 29,
+     "end": 34,
+     "length": 6,
+     "count": 2
+    },
+    {
+     "start": 3,
+     "end": 8,
+     "length": 6,
+     "count": 2
+    },
+    {
+     "start": 45,
+     "end": 47,
+     "length": 3,
+     "count": 2
+    },
+    {
+     "start": 0,
+     "end": 8,
+     "length": 9,
+     "count": 2
+    },
+    {
+     "start": 11,
+     "end": 22,
+     "length": 12,
+     "count": 1
+    },
+    {
+     "start": 21,
+     "end": 28,
+     "length": 8,
+     "count": 1
+    },
+    {
+     "start": 35,
+     "end": 40,
+     "length": 6,
+     "count": 1
+    },
+    {
+     "start": 11,
+     "end": 34,
+     "length": 24,
+     "count": 1
+    },
+    {
+     "start": 21,
+     "end": 26,
+     "length": 6,
+     "count": 1
+    },
+    {
+     "start": 33,
+     "end": 47,
+     "length": 15,
+     "count": 1
+    },
+    {
+     "start": 0,
+     "end": 32,
+     "length": 33,
+     "count": 1
+    },
+    {
+     "start": 33,
+     "end": 38,
+     "length": 6,
+     "count": 1
+    },
+    {
+     "start": 27,
+     "end": 32,
+     "length": 6,
+     "count": 1
+    },
+    {
+     "start": 39,
+     "end": 44,
+     "length": 6,
+     "count": 1
+    },
+    {
+     "start": 21,
+     "end": 32,
+     "length": 12,
+     "count": 1
+    },
+    {
+     "start": 9,
+     "end": 14,
+     "length": 6,
+     "count": 1
+    },
+    {
+     "start": 0,
+     "end": 2,
+     "length": 3,
+     "count": 1
+    },
+    {
+     "start": 9,
+     "end": 20,
+     "length": 12,
+     "count": 1
+    },
+    {
+     "start": 35,
+     "end": 47,
+     "length": 13,
+     "count": 1
+    }
+   ],
+   "n_within_day_runs": 53,
+   "continuous_runs": {
+    "n": 47,
+    "n_crossing_midnight": 6,
+    "length_counts": {
+     "6": 21,
+     "8": 1,
+     "9": 1,
+     "11": 1,
+     "12": 17,
+     "24": 5,
+     "48": 1
+    },
+    "start_slot_counts": {
+     "0": 2,
+     "3": 2,
+     "9": 2,
+     "11": 4,
+     "15": 4,
+     "21": 6,
+     "23": 2,
+     "27": 1,
+     "29": 2,
+     "33": 9,
+     "35": 8,
+     "39": 1,
+     "45": 2,
+     "47": 2
+    }
+   }
+  },
+  "n_days_with_both": 15,
+  "day_patterns": [
+   {
+    "low_runs": [
+     [
+      0,
+      10
+     ]
+    ],
+    "high_runs": [],
+    "count": 10
+   },
+   {
+    "low_runs": [
+     [
+      0,
+      8
+     ]
+    ],
+    "high_runs": [],
+    "count": 6
+   },
+   {
+    "low_runs": [
+     [
+      11,
+      34
+     ],
+     [
+      47,
+      47
+     ]
+    ],
+    "high_runs": [
+     [
+      35,
+      46
+     ]
+    ],
+    "count": 4
+   },
+   {
+    "low_runs": [
+     [
+      9,
+      32
+     ],
+     [
+      45,
+      47
+     ]
+    ],
+    "high_runs": [
+     [
+      33,
+      44
+     ]
+    ],
+    "count": 4
+   },
+   {
+    "low_runs": [
+     [
+      47,
+      47
+     ]
+    ],
+    "high_runs": [],
+    "count": 3
+   },
+   {
+    "low_runs": [
+     [
+      21,
+      26
+     ]
+    ],
+    "high_runs": [],
+    "count": 3
+   },
+   {
+    "low_runs": [
+     [
+      39,
+      44
+     ]
+    ],
+    "high_runs": [],
+    "count": 3
+   },
+   {
+    "low_runs": [],
+    "high_runs": [
+     [
+      21,
+      44
+     ]
+    ],
+    "count": 3
+   },
+   {
+    "low_runs": [],
+    "high_runs": [
+     [
+      47,
+      47
+     ]
+    ],
+    "count": 2
+   },
+   {
+    "low_runs": [],
+    "high_runs": [
+     [
+      0,
+      4
+     ]
+    ],
+    "count": 2
+   },
+   {
+    "low_runs": [],
+    "high_runs": [
+     [
+      23,
+      28
+     ]
+    ],
+    "count": 2
+   },
+   {
+    "low_runs": [
+     [
+      11,
+      14
+     ],
+     [
+      21,
+      47
+     ]
+    ],
+    "high_runs": [
+     [
+      15,
+      20
+     ]
+    ],
+    "count": 2
+   },
+   {
+    "low_runs": [],
+    "high_runs": [
+     [
+      11,
+      16
+     ]
+    ],
+    "count": 2
+   },
+   {
+    "low_runs": [],
+    "high_runs": [
+     [
+      0,
+      10
+     ]
+    ],
+    "count": 2
+   },
+   {
+    "low_runs": [
+     [
+      17,
+      22
+     ]
+    ],
+    "high_runs": [],
+    "count": 2
+   },
+   {
+    "low_runs": [],
+    "high_runs": [
+     [
+      29,
+      34
+     ]
+    ],
+    "count": 2
+   },
+   {
+    "low_runs": [],
+    "high_runs": [
+     [
+      3,
+      8
+     ]
+    ],
+    "count": 2
+   },
+   {
+    "low_runs": [
+     [
+      9,
+      20
+     ]
+    ],
+    "high_runs": [],
+    "count": 2
+   },
+   {
+    "low_runs": [
+     [
+      0,
+      32
+     ],
+     [
+      45,
+      47
+     ]
+    ],
+    "high_runs": [
+     [
+      33,
+      44
+     ]
+    ],
+    "count": 2
+   },
+   {
+    "low_runs": [
+     [
+      33,
+      47
+     ]
+    ],
+    "high_runs": [],
+    "count": 2
+   },
+   {
+    "low_runs": [
+     [
+      9,
+      32
+     ]
+    ],
+    "high_runs": [],
+    "count": 2
+   },
+   {
+    "low_runs": [
+     [
+      45,
+      47
+     ]
+    ],
+    "high_runs": [],
+    "count": 2
+   },
+   {
+    "low_runs": [
+     [
+      21,
+      44
+     ]
+    ],
+    "high_runs": [],
+    "count": 2
+   },
+   {
+    "low_runs": [],
+    "high_runs": [
+     [
+      45,
+      47
+     ]
+    ],
+    "count": 2
+   },
+   {
+    "low_runs": [
+     [
+      29,
+      34
+     ]
+    ],
+    "high_runs": [],
+    "count": 1
+   }
+  ]
+ },
+ "tariff_columns": [
+  "low_00",
+  "high_00"
+ ],
+ "all_days": {
+  "Low": {
+   "n_days_with": 93,
+   "n_slots": 1420,
+   "within_day_runs": [
+    {
+     "start": 47,
+     "end": 47,
+     "length": 1,
+     "count": 15
+    },
+    {
+     "start": 0,
+     "end": 10,
+     "length": 11,
+     "count": 13
+    },
+    {
+     "start": 45,
+     "end": 47,
+     "length": 3,
+     "count": 9
+    },
+    {
+     "start": 0,
+     "end": 8,
+     "length": 9,
+     "count": 9
+    },
+    {
+     "start": 11,
+     "end": 34,
+     "length": 24,
+     "count": 7
+    },
+    {
+     "start": 0,
+     "end": 34,
+     "length": 35,
+     "count": 6
+    },
+    {
+     "start": 9,
+     "end": 32,
+     "length": 24,
+     "count": 6
+    },
+    {
+     "start": 21,
+     "end": 26,
+     "length": 6,
+     "count": 3
+    },
+    {
+     "start": 39,
+     "end": 44,
+     "length": 6,
+     "count": 3
+    },
+    {
+     "start": 11,
+     "end": 14,
+     "length": 4,
+     "count": 2
+    },
+    {
+     "start": 21,
+     "end": 47,
+     "length": 27,
+     "count": 2
+    },
+    {
+     "start": 11,
+     "end": 47,
+     "length": 37,
+     "count": 2
+    },
+    {
+     "start": 17,
+     "end": 22,
+     "length": 6,
+     "count": 2
+    },
+    {
+     "start": 0,
+     "end": 4,
+     "length": 5,
+     "count": 2
+    },
+    {
+     "start": 11,
+     "end": 16,
+     "length": 6,
+     "count": 2
+    },
+    {
+     "start": 9,
+     "end": 20,
+     "length": 12,
+     "count": 2
+    },
+    {
+     "start": 27,
+     "end": 32,
+     "length": 6,
+     "count": 2
+    },
+    {
+     "start": 0,
+     "end": 32,
+     "length": 33,
+     "count": 2
+    },
+    {
+     "start": 33,
+     "end": 47,
+     "length": 15,
+     "count": 2
+    },
+    {
+     "start": 21,
+     "end": 32,
+     "length": 12,
+     "count": 2
+    },
+    {
+     "start": 33,
+     "end": 44,
+     "length": 12,
+     "count": 2
+    },
+    {
+     "start": 3,
+     "end": 8,
+     "length": 6,
+     "count": 2
+    },
+    {
+     "start": 21,
+     "end": 44,
+     "length": 24,
+     "count": 2
+    },
+    {
+     "start": 35,
+     "end": 40,
+     "length": 6,
+     "count": 2
+    },
+    {
+     "start": 29,
+     "end": 34,
+     "length": 6,
+     "count": 1
+    },
+    {
+     "start": 5,
+     "end": 10,
+     "length": 6,
+     "count": 1
+    },
+    {
+     "start": 11,
+     "end": 22,
+     "length": 12,
+     "count": 1
+    },
+    {
+     "start": 23,
+     "end": 46,
+     "length": 24,
+     "count": 1
+    },
+    {
+     "start": 35,
+     "end": 46,
+     "length": 12,
+     "count": 1
+    },
+    {
+     "start": 11,
+     "end": 20,
+     "length": 10,
+     "count": 1
+    },
+    {
+     "start": 29,
+     "end": 47,
+     "length": 19,
+     "count": 1
+    },
+    {
+     "start": 9,
+     "end": 47,
+     "length": 39,
+     "count": 1
+    },
+    {
+     "start": 9,
+     "end": 14,
+     "length": 6,
+     "count": 1
+    },
+    {
+     "start": 15,
+     "end": 20,
+     "length": 6,
+     "count": 1
+    },
+    {
+     "start": 33,
+     "end": 38,
+     "length": 6,
+     "count": 1
+    },
+    {
+     "start": 0,
+     "end": 2,
+     "length": 3,
+     "count": 1
+    },
+    {
+     "start": 23,
+     "end": 34,
+     "length": 12,
+     "count": 1
+    },
+    {
+     "start": 35,
+     "end": 47,
+     "length": 13,
+     "count": 1
+    }
+   ],
+   "n_within_day_runs": 115,
+   "continuous_runs": {
+    "n": 82,
+    "n_crossing_midnight": 33,
+    "length_counts": {
+     "4": 2,
+     "6": 24,
+     "10": 1,
+     "12": 22,
+     "24": 19,
+     "30": 1,
+     "36": 8,
+     "38": 2,
+     "48": 3
+    },
+    "start_slot_counts": {
+     "3": 2,
+     "5": 1,
+     "9": 10,
+     "11": 15,
+     "15": 1,
+     "17": 2,
+     "21": 9,
+     "23": 2,
+     "27": 2,
+     "29": 2,
+     "33": 5,
+     "35": 4,
+     "39": 3,
+     "45": 9,
+     "47": 15
+    }
+   }
+  },
+  "High": {
+   "n_days_with": 73,
+   "n_slots": 740,
+   "within_day_runs": [
+    {
+     "start": 35,
+     "end": 46,
+     "length": 12,
+     "count": 13
+    },
+    {
+     "start": 33,
+     "end": 44,
+     "length": 12,
+     "count": 8
+    },
+    {
+     "start": 15,
+     "end": 20,
+     "length": 6,
+     "count": 5
+    },
+    {
+     "start": 47,
+     "end": 47,
+     "length": 1,
+     "count": 3
+    },
+    {
+     "start": 21,
+     "end": 44,
+     "length": 24,
+     "count": 3
+    },
+    {
+     "start": 21,
+     "end": 32,
+     "length": 12,
+     "count": 3
+    },
+    {
+     "start": 45,
+     "end": 47,
+     "length": 3,
+     "count": 3
+    },
+    {
+     "start": 0,
+     "end": 8,
+     "length": 9,
+     "count": 3
+    },
+    {
+     "start": 0,
+     "end": 4,
+     "length": 5,
+     "count": 2
+    },
+    {
+     "start": 23,
+     "end": 28,
+     "length": 6,
+     "count": 2
+    },
+    {
+     "start": 11,
+     "end": 16,
+     "length": 6,
+     "count": 2
+    },
+    {
+     "start": 0,
+     "end": 10,
+     "length": 11,
+     "count": 2
+    },
+    {
+     "start": 11,
+     "end": 34,
+     "length": 24,
+     "count": 2
+    },
+    {
+     "start": 29,
+     "end": 34,
+     "length": 6,
+     "count": 2
+    },
+    {
+     "start": 39,
+     "end": 44,
+     "length": 6,
+     "count": 2
+    },
+    {
+     "start": 3,
+     "end": 8,
+     "length": 6,
+     "count": 2
+    },
+    {
+     "start": 33,
+     "end": 38,
+     "length": 6,
+     "count": 2
+    },
+    {
+     "start": 33,
+     "end": 47,
+     "length": 15,
+     "count": 2
+    },
+    {
+     "start": 9,
+     "end": 20,
+     "length": 12,
+     "count": 2
+    },
+    {
+     "start": 11,
+     "end": 22,
+     "length": 12,
+     "count": 1
+    },
+    {
+     "start": 21,
+     "end": 28,
+     "length": 8,
+     "count": 1
+    },
+    {
+     "start": 35,
+     "end": 40,
+     "length": 6,
+     "count": 1
+    },
+    {
+     "start": 21,
+     "end": 26,
+     "length": 6,
+     "count": 1
+    },
+    {
+     "start": 0,
+     "end": 32,
+     "length": 33,
+     "count": 1
+    },
+    {
+     "start": 27,
+     "end": 32,
+     "length": 6,
+     "count": 1
+    },
+    {
+     "start": 9,
+     "end": 14,
+     "length": 6,
+     "count": 1
+    },
+    {
+     "start": 0,
+     "end": 2,
+     "length": 3,
+     "count": 1
+    },
+    {
+     "start": 5,
+     "end": 10,
+     "length": 6,
+     "count": 1
+    },
+    {
+     "start": 41,
+     "end": 46,
+     "length": 6,
+     "count": 1
+    },
+    {
+     "start": 35,
+     "end": 47,
+     "length": 13,
+     "count": 1
+    }
+   ],
+   "n_within_day_runs": 74,
+   "continuous_runs": {
+    "n": 65,
+    "n_crossing_midnight": 9,
+    "length_counts": {
+     "6": 26,
+     "8": 1,
+     "12": 30,
+     "24": 7,
+     "48": 1
+    },
+    "start_slot_counts": {
+     "3": 2,
+     "5": 1,
+     "9": 3,
+     "11": 5,
+     "15": 5,
+     "21": 8,
+     "23": 2,
+     "27": 1,
+     "29": 2,
+     "33": 12,
+     "35": 15,
+     "39": 2,
+     "41": 1,
+     "45": 3,
+     "47": 3
+    }
+   }
+  },
+  "n_days_with_both": 23,
+  "day_patterns": [
+   {
+    "low_runs": [
+     [
+      0,
+      10
+     ]
+    ],
+    "high_runs": [],
+    "count": 13
+   },
+   {
+    "low_runs": [
+     [
+      0,
+      8
+     ]
+    ],
+    "high_runs": [],
+    "count": 9
+   },
+   {
+    "low_runs": [
+     [
+      11,
+      34
+     ],
+     [
+      47,
+      47
+     ]
+    ],
+    "high_runs": [
+     [
+      35,
+      46
+     ]
+    ],
+    "count": 6
+   },
+   {
+    "low_runs": [
+     [
+      0,
+      34
+     ],
+     [
+      47,
+      47
+     ]
+    ],
+    "high_runs": [
+     [
+      35,
+      46
+     ]
+    ],
+    "count": 6
+   },
+   {
+    "low_runs": [
+     [
+      9,
+      32
+     ],
+     [
+      45,
+      47
+     ]
+    ],
+    "high_runs": [
+     [
+      33,
+      44
+     ]
+    ],
+    "count": 4
+   },
+   {
+    "low_runs": [],
+    "high_runs": [
+     [
+      47,
+      47
+     ]
+    ],
+    "count": 3
+   },
+   {
+    "low_runs": [
+     [
+      47,
+      47
+     ]
+    ],
+    "high_runs": [],
+    "count": 3
+   },
+   {
+    "low_runs": [
+     [
+      21,
+      26
+     ]
+    ],
+    "high_runs": [],
+    "count": 3
+   },
+   {
+    "low_runs": [
+     [
+      39,
+      44
+     ]
+    ],
+    "high_runs": [],
+    "count": 3
+   },
+   {
+    "low_runs": [],
+    "high_runs": [
+     [
+      21,
+      44
+     ]
+    ],
+    "count": 3
+   },
+   {
+    "low_runs": [],
+    "high_runs": [
+     [
+      21,
+      32
+     ]
+    ],
+    "count": 3
+   },
+   {
+    "low_runs": [],
+    "high_runs": [
+     [
+      45,
+      47
+     ]
+    ],
+    "count": 3
+   },
+   {
+    "low_runs": [],
+    "high_runs": [
+     [
+      0,
+      4
+     ]
+    ],
+    "count": 2
+   },
+   {
+    "low_runs": [],
+    "high_runs": [
+     [
+      23,
+      28
+     ]
+    ],
+    "count": 2
+   },
+   {
+    "low_runs": [
+     [
+      11,
+      14
+     ],
+     [
+      21,
+      47
+     ]
+    ],
+    "high_runs": [
+     [
+      15,
+      20
+     ]
+    ],
+    "count": 2
+   },
+   {
+    "low_runs": [
+     [
+      11,
+      47
+     ]
+    ],
+    "high_runs": [],
+    "count": 2
+   },
+   {
+    "low_runs": [],
+    "high_runs": [
+     [
+      11,
+      16
+     ]
+    ],
+    "count": 2
+   },
+   {
+    "low_runs": [],
+    "high_runs": [
+     [
+      0,
+      10
+     ]
+    ],
+    "count": 2
+   },
+   {
+    "low_runs": [],
+    "high_runs": [
+     [
+      11,
+      34
+     ]
+    ],
+    "count": 2
+   },
+   {
+    "low_runs": [
+     [
+      17,
+      22
+     ]
+    ],
+    "high_runs": [],
+    "count": 2
+   },
+   {
+    "low_runs": [
+     [
+      0,
+      4
+     ]
+    ],
+    "high_runs": [],
+    "count": 2
+   },
+   {
+    "low_runs": [],
+    "high_runs": [
+     [
+      29,
+      34
+     ]
+    ],
+    "count": 2
+   },
+   {
+    "low_runs": [],
+    "high_runs": [
+     [
+      39,
+      44
+     ]
+    ],
+    "count": 2
+   },
+   {
+    "low_runs": [],
+    "high_runs": [
+     [
+      3,
+      8
+     ]
+    ],
+    "count": 2
+   },
+   {
+    "low_runs": [],
+    "high_runs": [
+     [
+      33,
+      44
+     ]
+    ],
+    "count": 2
+   }
+  ]
+ },
+ "test": {
+  "Low": {
+   "n_days_with": 27,
+   "n_slots": 460,
+   "within_day_runs": [
+    {
+     "start": 47,
+     "end": 47,
+     "length": 1,
+     "count": 7
+    },
+    {
+     "start": 0,
+     "end": 34,
+     "length": 35,
+     "count": 5
+    },
+    {
+     "start": 0,
+     "end": 10,
+     "length": 11,
+     "count": 3
+    },
+    {
+     "start": 11,
+     "end": 34,
+     "length": 24,
+     "count": 3
+    },
+    {
+     "start": 0,
+     "end": 8,
+     "length": 9,
+     "count": 3
+    },
+    {
+     "start": 0,
+     "end": 4,
+     "length": 5,
+     "count": 2
+    },
+    {
+     "start": 33,
+     "end": 44,
+     "length": 12,
+     "count": 2
+    },
+    {
+     "start": 5,
+     "end": 10,
+     "length": 6,
+     "count": 1
+    },
+    {
+     "start": 23,
+     "end": 46,
+     "length": 24,
+     "count": 1
+    },
+    {
+     "start": 21,
+     "end": 32,
+     "length": 12,
+     "count": 1
+    },
+    {
+     "start": 3,
+     "end": 8,
+     "length": 6,
+     "count": 1
+    },
+    {
+     "start": 15,
+     "end": 20,
+     "length": 6,
+     "count": 1
+    },
+    {
+     "start": 27,
+     "end": 32,
+     "length": 6,
+     "count": 1
+    },
+    {
+     "start": 0,
+     "end": 2,
+     "length": 3,
+     "count": 1
+    },
+    {
+     "start": 11,
+     "end": 16,
+     "length": 6,
+     "count": 1
+    },
+    {
+     "start": 35,
+     "end": 40,
+     "length": 6,
+     "count": 1
+    },
+    {
+     "start": 11,
+     "end": 47,
+     "length": 37,
+     "count": 1
+    }
+   ],
+   "n_within_day_runs": 35,
+   "continuous_runs": {
+    "n": 33,
+    "n_crossing_midnight": 2,
+    "length_counts": {
+     "1": 5,
+     "3": 1,
+     "5": 1,
+     "6": 7,
+     "9": 3,
+     "11": 3,
+     "12": 3,
+     "24": 4,
+     "35": 4,
+     "36": 1,
+     "37": 1
+    },
+    "start_slot_counts": {
+     "0": 12,
+     "3": 1,
+     "5": 1,
+     "11": 5,
+     "15": 1,
+     "21": 1,
+     "23": 1,
+     "27": 1,
+     "33": 2,
+     "35": 1,
+     "47": 7
+    }
+   }
+  },
+  "High": {
+   "n_days_with": 21,
+   "n_slots": 214,
+   "within_day_runs": [
+    {
+     "start": 35,
+     "end": 46,
+     "length": 12,
+     "count": 7
+    },
+    {
+     "start": 21,
+     "end": 32,
+     "length": 12,
+     "count": 2
+    },
+    {
+     "start": 47,
+     "end": 47,
+     "length": 1,
+     "count": 1
+    },
+    {
+     "start": 39,
+     "end": 44,
+     "length": 6,
+     "count": 1
+    },
+    {
+     "start": 33,
+     "end": 44,
+     "length": 12,
+     "count": 1
+    },
+    {
+     "start": 33,
+     "end": 38,
+     "length": 6,
+     "count": 1
+    },
+    {
+     "start": 9,
+     "end": 20,
+     "length": 12,
+     "count": 1
+    },
+    {
+     "start": 15,
+     "end": 20,
+     "length": 6,
+     "count": 1
+    },
+    {
+     "start": 33,
+     "end": 47,
+     "length": 15,
+     "count": 1
+    },
+    {
+     "start": 45,
+     "end": 47,
+     "length": 3,
+     "count": 1
+    },
+    {
+     "start": 0,
+     "end": 8,
+     "length": 9,
+     "count": 1
+    },
+    {
+     "start": 5,
+     "end": 10,
+     "length": 6,
+     "count": 1
+    },
+    {
+     "start": 11,
+     "end": 34,
+     "length": 24,
+     "count": 1
+    },
+    {
+     "start": 41,
+     "end": 46,
+     "length": 6,
+     "count": 1
+    }
+   ],
+   "n_within_day_runs": 21,
+   "continuous_runs": {
+    "n": 20,
+    "n_crossing_midnight": 1,
+    "length_counts": {
+     "1": 1,
+     "6": 5,
+     "12": 12,
+     "15": 1,
+     "24": 1
+    },
+    "start_slot_counts": {
+     "5": 1,
+     "9": 1,
+     "11": 1,
+     "15": 1,
+     "21": 2,
+     "33": 3,
+     "35": 7,
+     "39": 1,
+     "41": 1,
+     "45": 1,
+     "47": 1
+    }
+   }
+  },
+  "n_days_with_both": 8,
+  "day_patterns": [
+   {
+    "low_runs": [
+     [
+      0,
+      34
+     ],
+     [
+      47,
+      47
+     ]
+    ],
+    "high_runs": [
+     [
+      35,
+      46
+     ]
+    ],
+    "count": 5
+   },
+   {
+    "low_runs": [
+     [
+      0,
+      10
+     ]
+    ],
+    "high_runs": [],
+    "count": 3
+   },
+   {
+    "low_runs": [
+     [
+      0,
+      8
+     ]
+    ],
+    "high_runs": [],
+    "count": 3
+   },
+   {
+    "low_runs": [
+     [
+      0,
+      4
+     ]
+    ],
+    "high_runs": [],
+    "count": 2
+   },
+   {
+    "low_runs": [
+     [
+      11,
+      34
+     ],
+     [
+      47,
+      47
+     ]
+    ],
+    "high_runs": [
+     [
+      35,
+      46
+     ]
+    ],
+    "count": 2
+   },
+   {
+    "low_runs": [
+     [
+      33,
+      44
+     ]
+    ],
+    "high_runs": [],
+    "count": 2
+   },
+   {
+    "low_runs": [],
+    "high_runs": [
+     [
+      21,
+      32
+     ]
+    ],
+    "count": 2
+   },
+   {
+    "low_runs": [
+     [
+      5,
+      10
+     ]
+    ],
+    "high_runs": [],
+    "count": 1
+   },
+   {
+    "low_runs": [
+     [
+      23,
+      46
+     ]
+    ],
+    "high_runs": [],
+    "count": 1
+   },
+   {
+    "low_runs": [],
+    "high_runs": [
+     [
+      47,
+      47
+     ]
+    ],
+    "count": 1
+   },
+   {
+    "low_runs": [],
+    "high_runs": [
+     [
+      39,
+      44
+     ]
+    ],
+    "count": 1
+   },
+   {
+    "low_runs": [],
+    "high_runs": [
+     [
+      33,
+      44
+     ]
+    ],
+    "count": 1
+   },
+   {
+    "low_runs": [],
+    "high_runs": [
+     [
+      33,
+      38
+     ]
+    ],
+    "count": 1
+   },
+   {
+    "low_runs": [
+     [
+      21,
+      32
+     ]
+    ],
+    "high_runs": [],
+    "count": 1
+   },
+   {
+    "low_runs": [],
+    "high_runs": [
+     [
+      9,
+      20
+     ]
+    ],
+    "count": 1
+   },
+   {
+    "low_runs": [
+     [
+      3,
+      8
+     ],
+     [
+      15,
+      20
+     ]
+    ],
+    "high_runs": [],
+    "count": 1
+   },
+   {
+    "low_runs": [
+     [
+      27,
+      32
+     ]
+    ],
+    "high_runs": [],
+    "count": 1
+   },
+   {
+    "low_runs": [],
+    "high_runs": [
+     [
+      15,
+      20
+     ]
+    ],
+    "count": 1
+   },
+   {
+    "low_runs": [],
+    "high_runs": [
+     [
+      33,
+      47
+     ]
+    ],
+    "count": 1
+   },
+   {
+    "low_runs": [
+     [
+      0,
+      2
+     ]
+    ],
+    "high_runs": [],
+    "count": 1
+   },
+   {
+    "low_runs": [],
+    "high_runs": [
+     [
+      45,
+      47
+     ]
+    ],
+    "count": 1
+   },
+   {
+    "low_runs": [],
+    "high_runs": [
+     [
+      0,
+      8
+     ]
+    ],
+    "count": 1
+   },
+   {
+    "low_runs": [
+     [
+      11,
+      16
+     ]
+    ],
+    "high_runs": [
+     [
+      5,
+      10
+     ]
+    ],
+    "count": 1
+   },
+   {
+    "low_runs": [
+     [
+      11,
+      34
+     ]
+    ],
+    "high_runs": [],
+    "count": 1
+   },
+   {
+    "low_runs": [],
+    "high_runs": [
+     [
+      11,
+      34
+     ]
+    ],
+    "count": 1
+   }
+  ]
+ },
+ "train_days_covering_paper_windows": {
+  "High_39_44": 19,
+  "Low_9_19": 12,
+  "High_39_44_days_with_Low_same_day": 11,
+  "Low_9_19_days_with_High_same_day": 7,
+  "High_39_44_days_run_exactly_the_window": 1,
+  "Low_9_19_days_run_exactly_the_window": 0
+ }
+}

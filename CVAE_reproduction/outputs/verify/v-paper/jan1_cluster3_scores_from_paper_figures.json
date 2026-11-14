@@ -1,0 +1,26 @@
+{
+ "CVAE": {
+  "mean_line_index": 0,
+  "mean_line_dist": 9.574147103370259e-05,
+  "n_samples": 10,
+  "rmse_rootmean": 0.03940766972972589,
+  "rmse_euclid": 0.2730243447191173,
+  "es_ustat": 0.25637035601122826,
+  "es_eq14_split": 0.26023624491562497,
+  "vg_ordered": 20.826904501729153,
+  "vg_unordered": 10.413452250864577,
+  "per_slot_sd_rms": 0.0037421105432018254
+ },
+ "GAM": {
+  "mean_line_index": 0,
+  "mean_line_dist": 3.5638591507721113e-06,
+  "n_samples": 10,
+  "rmse_rootmean": 0.03176123257302018,
+  "rmse_euclid": 0.2200482741099301,
+  "es_ustat": 0.1488123837122337,
+  "es_eq14_split": 0.1482895635773351,
+  "vg_ordered": 12.886345342097595,
+  "vg_unordered": 6.4431726710487975,
+  "per_slot_sd_rms": 0.022794681493793743
+ }
+}

@@ -1,0 +1,57 @@
+[
+ {
+  "train_kl_mean": 6.868101132780416e-07,
+  "post_std_mean": 0.9997974407981159,
+  "post_mean_sd_across_days": 0.0,
+  "test_rmse_rootmean_median_kwh": 0.027289749615084215,
+  "test_sample_sd_kwh_mean": 0.0022438253926976457,
+  "spread_over_rmse": 0.06393334214375762,
+  "compute_mse_post": 6.0816763669080345,
+  "seed": 5,
+  "train_s": 20.98497249999491
+ },
+ {
+  "train_kl_mean": 1.9988028143115875e-06,
+  "post_std_mean": 0.9997497832717521,
+  "post_mean_sd_across_days": 0.0,
+  "test_rmse_rootmean_median_kwh": 0.024214325703083295,
+  "test_sample_sd_kwh_mean": 0.002272659464821911,
+  "spread_over_rmse": 0.0705063112661088,
+  "compute_mse_post": 5.5512090567446535,
+  "seed": 6,
+  "train_s": 23.461366100003943
+ },
+ {
+  "train_kl_mean": 1.0741469314042148e-06,
+  "post_std_mean": 0.9999045426410699,
+  "post_mean_sd_across_days": 0.0,
+  "test_rmse_rootmean_median_kwh": 0.027201445327953495,
+  "test_sample_sd_kwh_mean": 0.001980005550044116,
+  "spread_over_rmse": 0.05525275740365633,
+  "compute_mse_post": 6.3212091258406815,
+  "seed": 7,
+  "train_s": 25.774411199992755
+ },
+ {
+  "train_kl_mean": 6.941932779800232e-07,
+  "post_std_mean": 0.9997297403497899,
+  "post_mean_sd_across_days": 0.0,
+  "test_rmse_rootmean_median_kwh": 0.025427713973879634,
+  "test_sample_sd_kwh_mean": 0.002400793943225827,
+  "spread_over_rmse": 0.0740895592305943,
+  "compute_mse_post": 5.873458305500472,
+  "seed": 8,
+  "train_s": 20.584301199996844
+ },
+ {
+  "train_kl_mean": 1.8696712138323369e-06,
+  "post_std_mean": 1.0000103060596122,
+  "post_mean_sd_across_days": 0.0,
+  "test_rmse_rootmean_median_kwh": 0.02720214139830022,
+  "test_sample_sd_kwh_mean": 0.002642122235167761,
+  "spread_over_rmse": 0.07579352344168132,
+  "compute_mse_post": 6.14248218318861,
+  "seed": 9,
+  "train_s": 19.224299299996346
+ }
+]

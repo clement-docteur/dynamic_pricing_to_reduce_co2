@@ -1,0 +1,47 @@
+{
+ "eta10": {
+  "train_kl_mean": 7.76933938857505e-07,
+  "post_std_mean": 1.0000216166176397,
+  "post_mean_sd_across_days": 0.0,
+  "test_rmse_rootmean_median_kwh": 0.02831913650469079,
+  "test_sample_sd_kwh_mean": 0.0018039428261493646,
+  "spread_over_rmse": 0.05172262293140933,
+  "train_s": 25.859062499992433
+ },
+ "eta10_noBC_quirk": {
+  "train_kl_mean": 1.729966392176633e-06,
+  "post_std_mean": 0.9998043313469739,
+  "post_mean_sd_across_days": 0.0,
+  "test_rmse_rootmean_median_kwh": 0.0296076318807168,
+  "test_sample_sd_kwh_mean": 0.001954819719671724,
+  "spread_over_rmse": 0.05581986604213385,
+  "train_s": 19.38746139999421
+ },
+ "eta1": {
+  "train_kl_mean": 5.243858559815355e-06,
+  "post_std_mean": 0.9994001713889462,
+  "post_mean_sd_across_days": 0.0,
+  "test_rmse_rootmean_median_kwh": 0.02936920303026855,
+  "test_sample_sd_kwh_mean": 0.0018244398009496887,
+  "spread_over_rmse": 0.04982992309367658,
+  "train_s": 19.170149199999287
+ },
+ "eta0.1": {
+  "train_kl_mean": 8.45911070218347e-05,
+  "post_std_mean": 0.9968477104159204,
+  "post_mean_sd_across_days": 0.0,
+  "test_rmse_rootmean_median_kwh": 0.028899164164513977,
+  "test_sample_sd_kwh_mean": 0.0017293073376262985,
+  "spread_over_rmse": 0.04794306601766178,
+  "train_s": 16.986295299997437
+ },
+ "eta0.01": {
+  "train_kl_mean": 1.505558472218119,
+  "post_std_mean": 0.7893390175215113,
+  "post_mean_sd_across_days": 0.2425973007138477,
+  "test_rmse_rootmean_median_kwh": 0.030696466746634156,
+  "test_sample_sd_kwh_mean": 0.02021552168608292,
+  "spread_over_rmse": 0.5177325786262986,
+  "train_s": 12.773774600005709
+ }
+}

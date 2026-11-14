@@ -1,0 +1,656 @@
+[09:40:36] === 40_eta_sensitivity.py stages=selftest,smoke workers=4 force=False
+[09:40:36] [selftest] scores vs brute-force loops max |diff| 1.8e-15; calibrated toy spread/skill 1.028, cov90 0.897, cov50 0.505; 10x-too-narrow toy spread/skill 0.103
+[09:40:36] --- stage selftest done in 0.1s
+[09:40:49] [smoke] {'track': 'A', 'cluster': 3, 'eta': 10.0, 'seed': 0, 'runs_dir': 'C:/Users/cleme/AppData/Local/Temp/claude/2f83cc224499e10e/1aa3d082-c193-42de-888f-c8f5d2fbba90/scratchpad/verify/v-collapse/smoke'}: train_kl=1.7299872847661104e-06, active_units=0, spread_skill=0.07691401994889853, coverage90=0.08355978260869565, rmse_median_kwh=0.024289446949527956, es_median=0.16216716489805652, vg_median=9.562689024133855, test_mse_post=5.414141661267273, stored_max_abs_weight_diff=0.0, stored_epoch_loss_identical=True, stored_test_mse_post=5.414141661267273, eff_low_in_pct=33.68123646375568, eff_high_in_pct=-22.4329922345041, runtime_train_s=12.516613200001302
+[09:40:51] [smoke] {'track': 'B', 'cluster': 3, 'eta': 0.01, 'seed': 0, 'runs_dir': 'C:/Users/cleme/AppData/Local/Temp/claude/2f83cc224499e10e/1aa3d082-c193-42de-888f-c8f5d2fbba90/scratchpad/verify/v-collapse/smoke', 'epochs': 3}: train_kl=3.597004976709671, active_units=4, spread_skill=0.6179639161361631, coverage90=0.6637228260869565, rmse_median_kwh=0.047944007859391916, es_median=0.23344238574007709, vg_median=20.169617199466284, test_mse_post=9.218027820372916, eff_low_in_pct=11.244572671706143, eff_high_in_pct=4.707006802947308, runtime_train_s=0.8399441000074148
+[09:40:51] --- stage smoke done in 14.6s
+[09:41:12] === 40_eta_sensitivity.py stages=selftest,stored,train,collect,figure workers=4 force=False
+[09:41:13] [selftest] scores vs brute-force loops max |diff| 1.8e-15; calibrated toy spread/skill 1.028, cov90 0.897, cov50 0.505; 10x-too-narrow toy spread/skill 0.103
+[09:41:13] --- stage selftest done in 0.1s
+[09:41:15] [stored] track A: 200 restarts, train KL max 1.28e-05 (median 1.4e-06), restarts with an active unit 0, max var of posterior mean 0.0e+00, posterior SD 0.9986-1.0017
+[09:41:15] [stored]   A c0 selected s40: spread/skill 0.079 (phase 2 0.079), cov90 0.092 (phase 2 0.092), cov50 0.038, RMSE 0.0191, KL 2.2e-06, active 0
+[09:41:15] [stored]   A c1 selected s32: spread/skill 0.091 (phase 2 0.091), cov90 0.113 (phase 2 0.113), cov50 0.051, RMSE 0.0223, KL 5.8e-06, active 0
+[09:41:15] [stored]   A c2 selected s25: spread/skill 0.134 (phase 2 0.134), cov90 0.128 (phase 2 0.128), cov50 0.052, RMSE 0.0181, KL 2.7e-06, active 0
+[09:41:15] [stored]   A c3 selected s31: spread/skill 0.094 (phase 2 0.094), cov90 0.110 (phase 2 0.110), cov50 0.049, RMSE 0.0235, KL 4.2e-06, active 0
+[09:41:18] [stored] track B: 200 restarts, train KL max 1.02e-05 (median 1.3e-06), restarts with an active unit 0, max var of posterior mean 0.0e+00, posterior SD 0.9987-1.0017
+[09:41:18] [stored]   B c0 selected s42: spread/skill 0.104 (phase 2 0.104), cov90 0.113 (phase 2 0.113), cov50 0.042, RMSE 0.0195, KL 9.7e-07, active 0
+[09:41:18] [stored]   B c1 selected s26: spread/skill 0.122 (phase 2 0.122), cov90 0.087 (phase 2 0.087), cov50 0.041, RMSE 0.0246, KL 2.4e-07, active 0
+[09:41:18] [stored]   B c2 selected s26: spread/skill 0.138 (phase 2 0.138), cov90 0.114 (phase 2 0.114), cov50 0.054, RMSE 0.0173, KL 3.0e-07, active 0
+[09:41:18] [stored]   B c3 selected s29: spread/skill 0.077 (phase 2 0.077), cov90 0.072 (phase 2 0.072), cov50 0.029, RMSE 0.0244, KL 4.5e-07, active 0
+[09:41:18] --- stage stored done in 5.6s
+[09:41:18] [train] 160 models to train with 4 workers x 1 torch thread
+[09:41:39] [train]   1/160 A c2 eta   10 s0: KL 2.53e-07 active 0 | spread/skill 0.118 cov90 0.112 RMSE 0.0190 ES 0.1233 VG 6.68 | stored |dW| 0.0e+00 | 13s, wall 21s
+[09:41:40] [train]   2/160 A c1 eta   10 s0: KL 4.68e-06 active 0 | spread/skill 0.128 cov90 0.126 RMSE 0.0234 ES 0.1522 VG 7.30 | stored |dW| 0.0e+00 | 13s, wall 21s
+[09:41:40] [train]   3/160 A c0 eta   10 s0: KL 4.44e-06 active 0 | spread/skill 0.080 cov90 0.082 RMSE 0.0213 ES 0.1413 VG 6.58 | stored |dW| 0.0e+00 | 14s, wall 22s
+[09:41:40] [train]   4/160 A c3 eta   10 s0: KL 1.73e-06 active 0 | spread/skill 0.077 cov90 0.084 RMSE 0.0243 ES 0.1622 VG 9.56 | stored |dW| 0.0e+00 | 14s, wall 22s
+[09:41:56] [train]   5/160 B c0 eta   10 s0: KL 1.23e-06 active 0 | spread/skill 0.058 cov90 0.055 RMSE 0.0245 ES 0.1618 VG 7.33 | stored |dW| 0.0e+00 | 16s, wall 38s
+[09:41:56] [train]   6/160 B c1 eta   10 s0: KL 1.52e-06 active 0 | spread/skill 0.109 cov90 0.127 RMSE 0.0249 ES 0.1602 VG 7.75 | stored |dW| 0.0e+00 | 16s, wall 38s
+[09:41:57] [train]   7/160 B c2 eta   10 s0: KL 1.03e-06 active 0 | spread/skill 0.100 cov90 0.097 RMSE 0.0180 ES 0.1194 VG 5.95 | stored |dW| 0.0e+00 | 16s, wall 38s
+[09:41:57] [train]   8/160 B c3 eta   10 s0: KL 6.21e-07 active 0 | spread/skill 0.087 cov90 0.102 RMSE 0.0236 ES 0.1559 VG 9.30 | stored |dW| 0.0e+00 | 16s, wall 39s
+[09:42:11] [train]   9/160 A c0 eta    1 s0: KL 9.17e-06 active 0 | spread/skill 0.064 cov90 0.065 RMSE 0.0229 ES 0.1514 VG 6.68 | 14s, wall 53s
+[09:42:11] [train]  10/160 A c1 eta    1 s0: KL 4.10e-05 active 0 | spread/skill 0.102 cov90 0.090 RMSE 0.0237 ES 0.1554 VG 7.41 | 14s, wall 53s
+[09:42:11] [train]  11/160 A c2 eta    1 s0: KL 6.05e-06 active 0 | spread/skill 0.115 cov90 0.106 RMSE 0.0192 ES 0.1269 VG 6.78 | 14s, wall 53s
+[09:42:12] [train]  12/160 A c3 eta    1 s0: KL 2.05e-06 active 0 | spread/skill 0.085 cov90 0.103 RMSE 0.0232 ES 0.1517 VG 9.34 | 14s, wall 54s
+[09:42:26] [train]  13/160 B c1 eta    1 s0: KL 3.78e-05 active 0 | spread/skill 0.098 cov90 0.123 RMSE 0.0247 ES 0.1594 VG 7.42 | 15s, wall 68s
+[09:42:26] [train]  14/160 B c0 eta    1 s0: KL 6.06e-06 active 0 | spread/skill 0.074 cov90 0.068 RMSE 0.0248 ES 0.1617 VG 7.69 | 15s, wall 68s
+[09:42:27] [train]  15/160 B c2 eta    1 s0: KL 4.22e-06 active 0 | spread/skill 0.073 cov90 0.082 RMSE 0.0186 ES 0.1240 VG 6.27 | 15s, wall 69s
+[09:42:27] [train]  16/160 B c3 eta    1 s0: KL 2.36e-06 active 0 | spread/skill 0.071 cov90 0.075 RMSE 0.0261 ES 0.1706 VG 10.40 | 15s, wall 69s
+[09:42:42] [train]  17/160 A c0 eta  0.1 s0: KL 2.00e-04 active 0 | spread/skill 0.079 cov90 0.086 RMSE 0.0209 ES 0.1368 VG 5.93 | 15s, wall 84s
+[09:42:42] [train]  18/160 A c1 eta  0.1 s0: KL 5.35e-05 active 0 | spread/skill 0.073 cov90 0.071 RMSE 0.0249 ES 0.1618 VG 8.25 | 15s, wall 84s
+[09:42:43] [train]  19/160 A c2 eta  0.1 s0: KL 4.04e-05 active 0 | spread/skill 0.094 cov90 0.084 RMSE 0.0182 ES 0.1213 VG 7.59 | 15s, wall 85s
+[09:42:44] [train]  20/160 A c3 eta  0.1 s0: KL 8.66e-06 active 0 | spread/skill 0.096 cov90 0.106 RMSE 0.0229 ES 0.1524 VG 9.71 | 15s, wall 86s
+[09:42:59] [train]  21/160 B c0 eta  0.1 s0: KL 7.58e-05 active 0 | spread/skill 0.073 cov90 0.075 RMSE 0.0208 ES 0.1388 VG 6.66 | 16s, wall 101s
+[09:43:00] [train]  22/160 B c1 eta  0.1 s0: KL 4.34e-05 active 0 | spread/skill 0.091 cov90 0.113 RMSE 0.0246 ES 0.1624 VG 7.86 | 16s, wall 102s
+[09:43:01] [train]  23/160 B c2 eta  0.1 s0: KL 2.12e-05 active 0 | spread/skill 0.085 cov90 0.075 RMSE 0.0188 ES 0.1227 VG 6.10 | 17s, wall 103s
+[09:43:02] [train]  24/160 B c3 eta  0.1 s0: KL 7.20e-05 active 0 | spread/skill 0.076 cov90 0.065 RMSE 0.0272 ES 0.1743 VG 10.44 | 16s, wall 103s
+[09:43:18] [train]  25/160 A c0 eta 0.01 s0: KL 1.49e+00 active 3 | spread/skill 0.591 cov90 0.532 RMSE 0.0278 ES 0.1407 VG 7.90 | 18s, wall 120s
+[09:43:18] [train]  26/160 A c1 eta 0.01 s0: KL 1.72e+00 active 3 | spread/skill 0.686 cov90 0.665 RMSE 0.0310 ES 0.1564 VG 8.25 | 18s, wall 120s
+[09:43:20] [train]  27/160 A c2 eta 0.01 s0: KL 1.73e+00 active 2 | spread/skill 0.563 cov90 0.602 RMSE 0.0282 ES 0.1437 VG 7.58 | 18s, wall 122s
+[09:43:20] [train]  28/160 A c3 eta 0.01 s0: KL 1.37e+00 active 2 | spread/skill 0.599 cov90 0.546 RMSE 0.0302 ES 0.1546 VG 11.37 | 17s, wall 122s
+[09:43:37] [train]  29/160 B c0 eta 0.01 s0: KL 1.44e+00 active 3 | spread/skill 0.601 cov90 0.536 RMSE 0.0296 ES 0.1486 VG 8.86 | 18s, wall 139s
+[09:43:37] [train]  30/160 B c1 eta 0.01 s0: KL 1.60e+00 active 2 | spread/skill 0.628 cov90 0.635 RMSE 0.0337 ES 0.1673 VG 9.62 | 18s, wall 139s
+[09:43:39] [train]  31/160 B c2 eta 0.01 s0: KL 1.83e+00 active 2 | spread/skill 0.556 cov90 0.610 RMSE 0.0256 ES 0.1311 VG 6.97 | 17s, wall 140s
+[09:43:39] [train]  32/160 B c3 eta 0.01 s0: KL 1.47e+00 active 3 | spread/skill 0.510 cov90 0.497 RMSE 0.0299 ES 0.1581 VG 12.38 | 18s, wall 141s
+[09:43:58] [train]  33/160 A c0 eta   10 s1: KL 6.58e-06 active 0 | spread/skill 0.060 cov90 0.060 RMSE 0.0238 ES 0.1578 VG 6.81 | stored |dW| 0.0e+00 | 20s, wall 160s
+[09:43:59] [train]  34/160 A c1 eta   10 s1: KL 4.00e-06 active 0 | spread/skill 0.069 cov90 0.078 RMSE 0.0263 ES 0.1725 VG 7.50 | stored |dW| 0.0e+00 | 20s, wall 160s
+[09:44:00] [train]  35/160 A c2 eta   10 s1: KL 9.67e-07 active 0 | spread/skill 0.059 cov90 0.076 RMSE 0.0184 ES 0.1221 VG 7.00 | stored |dW| 0.0e+00 | 20s, wall 162s
+[09:44:00] [train]  36/160 A c3 eta   10 s1: KL 6.07e-07 active 0 | spread/skill 0.058 cov90 0.040 RMSE 0.0263 ES 0.1777 VG 10.33 | stored |dW| 0.0e+00 | 20s, wall 162s
+[09:44:14] [train]  37/160 B c0 eta   10 s1: KL 5.56e-06 active 0 | spread/skill 0.062 cov90 0.071 RMSE 0.0228 ES 0.1499 VG 7.04 | stored |dW| 0.0e+00 | 15s, wall 176s
+[09:44:14] [train]  38/160 B c1 eta   10 s1: KL 2.52e-06 active 0 | spread/skill 0.063 cov90 0.069 RMSE 0.0291 ES 0.1918 VG 8.17 | stored |dW| 0.0e+00 | 15s, wall 176s
+[09:44:15] [train]  39/160 B c2 eta   10 s1: KL 3.90e-07 active 0 | spread/skill 0.056 cov90 0.082 RMSE 0.0181 ES 0.1186 VG 5.77 | stored |dW| 0.0e+00 | 15s, wall 177s
+[09:44:16] [train]  40/160 B c3 eta   10 s1: KL 2.26e-07 active 0 | spread/skill 0.051 cov90 0.048 RMSE 0.0279 ES 0.1884 VG 10.83 | stored |dW| 0.0e+00 | 14s, wall 177s
+[09:44:30] [train]  41/160 A c0 eta    1 s1: KL 1.86e-05 active 0 | spread/skill 0.061 cov90 0.059 RMSE 0.0221 ES 0.1458 VG 6.75 | 15s, wall 191s
+[09:44:30] [train]  42/160 A c1 eta    1 s1: KL 2.44e-05 active 0 | spread/skill 0.073 cov90 0.084 RMSE 0.0256 ES 0.1682 VG 7.15 | 15s, wall 191s
+[09:44:31] [train]  43/160 A c2 eta    1 s1: KL 9.52e-06 active 0 | spread/skill 0.062 cov90 0.085 RMSE 0.0178 ES 0.1174 VG 6.78 | 15s, wall 193s
+[09:44:31] [train]  44/160 A c3 eta    1 s1: KL 7.01e-06 active 0 | spread/skill 0.048 cov90 0.050 RMSE 0.0270 ES 0.1815 VG 10.75 | 15s, wall 193s
+[09:44:43] [train]  45/160 B c0 eta    1 s1: KL 8.42e-06 active 0 | spread/skill 0.059 cov90 0.067 RMSE 0.0230 ES 0.1526 VG 6.90 | 13s, wall 205s
+[09:44:43] [train]  46/160 B c1 eta    1 s1: KL 4.02e-06 active 0 | spread/skill 0.073 cov90 0.090 RMSE 0.0260 ES 0.1706 VG 7.78 | 13s, wall 205s
+[09:44:44] [train]  47/160 B c2 eta    1 s1: KL 6.68e-06 active 0 | spread/skill 0.070 cov90 0.086 RMSE 0.0183 ES 0.1193 VG 6.10 | 13s, wall 206s
+[09:44:45] [train]  48/160 B c3 eta    1 s1: KL 3.73e-06 active 0 | spread/skill 0.060 cov90 0.063 RMSE 0.0284 ES 0.1885 VG 11.73 | 13s, wall 206s
+[09:44:59] [train]  49/160 A c0 eta  0.1 s1: KL 1.75e-04 active 0 | spread/skill 0.046 cov90 0.050 RMSE 0.0242 ES 0.1608 VG 7.08 | 15s, wall 220s
+[09:44:59] [train]  50/160 A c1 eta  0.1 s1: KL 5.24e-05 active 0 | spread/skill 0.064 cov90 0.076 RMSE 0.0256 ES 0.1680 VG 8.10 | 15s, wall 221s
+[09:45:00] [train]  51/160 A c2 eta  0.1 s1: KL 2.40e-04 active 0 | spread/skill 0.073 cov90 0.096 RMSE 0.0188 ES 0.1231 VG 6.93 | 15s, wall 222s
+[09:45:00] [train]  52/160 A c3 eta  0.1 s1: KL 9.04e-05 active 0 | spread/skill 0.059 cov90 0.062 RMSE 0.0280 ES 0.1870 VG 10.92 | 15s, wall 222s
+[09:45:12] [train]  53/160 B c0 eta  0.1 s1: KL 1.65e-04 active 0 | spread/skill 0.057 cov90 0.068 RMSE 0.0234 ES 0.1561 VG 7.32 | 12s, wall 233s
+[09:45:12] [train]  54/160 B c1 eta  0.1 s1: KL 6.63e-05 active 0 | spread/skill 0.068 cov90 0.067 RMSE 0.0277 ES 0.1801 VG 7.94 | 12s, wall 234s
+[09:45:14] [train]  55/160 B c3 eta  0.1 s1: KL 6.13e-05 active 0 | spread/skill 0.061 cov90 0.050 RMSE 0.0286 ES 0.1941 VG 12.52 | 13s, wall 236s
+[09:45:14] [train]  56/160 B c2 eta  0.1 s1: KL 9.75e-05 active 0 | spread/skill 0.057 cov90 0.061 RMSE 0.0188 ES 0.1232 VG 5.92 | 13s, wall 236s
+[09:45:27] [train]  57/160 A c0 eta 0.01 s1: KL 1.98e+00 active 2 | spread/skill 0.482 cov90 0.503 RMSE 0.0268 ES 0.1380 VG 8.22 | 15s, wall 249s
+[09:45:28] [train]  58/160 A c1 eta 0.01 s1: KL 1.91e+00 active 2 | spread/skill 0.685 cov90 0.682 RMSE 0.0342 ES 0.1714 VG 9.21 | 15s, wall 249s
+[09:45:30] [train]  59/160 A c3 eta 0.01 s1: KL 1.36e+00 active 2 | spread/skill 0.599 cov90 0.513 RMSE 0.0311 ES 0.1632 VG 11.79 | 15s, wall 251s
+[09:45:30] [train]  60/160 A c2 eta 0.01 s1: KL 2.03e+00 active 2 | spread/skill 0.562 cov90 0.591 RMSE 0.0273 ES 0.1364 VG 7.79 | 15s, wall 252s
+[09:45:46] [train]  61/160 B c0 eta 0.01 s1: KL 1.80e+00 active 2 | spread/skill 0.488 cov90 0.467 RMSE 0.0272 ES 0.1469 VG 8.21 | 18s, wall 268s
+[09:45:47] [train]  62/160 B c1 eta 0.01 s1: KL 1.85e+00 active 1 | spread/skill 0.633 cov90 0.658 RMSE 0.0373 ES 0.1802 VG 9.73 | 18s, wall 268s
+[09:45:49] [train]  63/160 B c2 eta 0.01 s1: KL 2.06e+00 active 2 | spread/skill 0.558 cov90 0.580 RMSE 0.0263 ES 0.1282 VG 7.50 | 18s, wall 271s
+[09:45:49] [train]  64/160 B c3 eta 0.01 s1: KL 1.66e+00 active 3 | spread/skill 0.521 cov90 0.464 RMSE 0.0302 ES 0.1694 VG 12.51 | 18s, wall 271s
+[09:46:07] [train]  65/160 A c1 eta   10 s2: KL 2.47e-06 active 0 | spread/skill 0.114 cov90 0.145 RMSE 0.0234 ES 0.1509 VG 7.62 | stored |dW| 0.0e+00 | 20s, wall 289s
+[09:46:08] [train]  66/160 A c0 eta   10 s2: KL 2.65e-06 active 0 | spread/skill 0.101 cov90 0.108 RMSE 0.0216 ES 0.1361 VG 6.55 | stored |dW| 0.0e+00 | 20s, wall 290s
+[09:46:10] [train]  67/160 A c2 eta   10 s2: KL 1.04e-06 active 0 | spread/skill 0.132 cov90 0.149 RMSE 0.0179 ES 0.1154 VG 6.90 | stored |dW| 0.0e+00 | 20s, wall 291s
+[09:46:10] [train]  68/160 A c3 eta   10 s2: KL 1.50e-06 active 0 | spread/skill 0.119 cov90 0.139 RMSE 0.0252 ES 0.1603 VG 9.81 | stored |dW| 0.0e+00 | 20s, wall 292s
+[09:46:26] [train]  69/160 B c0 eta   10 s2: KL 1.06e-06 active 0 | spread/skill 0.081 cov90 0.086 RMSE 0.0220 ES 0.1415 VG 6.35 | stored |dW| 0.0e+00 | 18s, wall 308s
+[09:46:26] [train]  70/160 B c1 eta   10 s2: KL 2.02e-06 active 0 | spread/skill 0.087 cov90 0.119 RMSE 0.0260 ES 0.1683 VG 7.21 | stored |dW| 0.0e+00 | 17s, wall 308s
+[09:46:28] [train]  71/160 B c2 eta   10 s2: KL 3.19e-06 active 0 | spread/skill 0.101 cov90 0.149 RMSE 0.0173 ES 0.1143 VG 5.81 | stored |dW| 0.0e+00 | 18s, wall 310s
+[09:46:29] [train]  72/160 B c3 eta   10 s2: KL 2.18e-06 active 0 | spread/skill 0.067 cov90 0.075 RMSE 0.0284 ES 0.1848 VG 11.50 | stored |dW| 0.0e+00 | 18s, wall 311s
+[09:46:43] [train]  73/160 A c0 eta    1 s2: KL 7.45e-06 active 0 | spread/skill 0.100 cov90 0.118 RMSE 0.0213 ES 0.1394 VG 6.50 | 16s, wall 324s
+[09:46:43] [train]  74/160 A c1 eta    1 s2: KL 2.65e-05 active 0 | spread/skill 0.117 cov90 0.154 RMSE 0.0224 ES 0.1469 VG 7.04 | 16s, wall 325s
+[09:46:44] [train]  75/160 A c2 eta    1 s2: KL 6.77e-06 active 0 | spread/skill 0.150 cov90 0.153 RMSE 0.0176 ES 0.1126 VG 6.89 | 15s, wall 326s
+[09:46:45] [train]  76/160 A c3 eta    1 s2: KL 5.78e-06 active 0 | spread/skill 0.096 cov90 0.103 RMSE 0.0276 ES 0.1834 VG 10.44 | 15s, wall 327s
+[09:46:59] [train]  77/160 B c0 eta    1 s2: KL 1.72e-05 active 0 | spread/skill 0.095 cov90 0.116 RMSE 0.0196 ES 0.1253 VG 6.40 | 15s, wall 341s
+[09:46:59] [train]  78/160 B c1 eta    1 s2: KL 1.25e-05 active 0 | spread/skill 0.068 cov90 0.090 RMSE 0.0248 ES 0.1589 VG 6.71 | 16s, wall 341s
+[09:47:01] [train]  79/160 B c2 eta    1 s2: KL 4.53e-06 active 0 | spread/skill 0.106 cov90 0.135 RMSE 0.0176 ES 0.1131 VG 6.02 | 16s, wall 342s
+[09:47:01] [train]  80/160 B c3 eta    1 s2: KL 1.07e-05 active 0 | spread/skill 0.064 cov90 0.069 RMSE 0.0291 ES 0.1929 VG 11.02 | 16s, wall 343s
+[09:47:12] [train]  81/160 A c0 eta  0.1 s2: KL 1.11e-04 active 0 | spread/skill 0.106 cov90 0.116 RMSE 0.0227 ES 0.1428 VG 7.08 | 13s, wall 354s
+[09:47:13] [train]  82/160 A c1 eta  0.1 s2: KL 1.55e-04 active 0 | spread/skill 0.095 cov90 0.091 RMSE 0.0251 ES 0.1623 VG 7.80 | 13s, wall 355s
+[09:47:14] [train]  83/160 A c2 eta  0.1 s2: KL 7.60e-05 active 0 | spread/skill 0.130 cov90 0.148 RMSE 0.0176 ES 0.1131 VG 6.94 | 13s, wall 356s
+[09:47:15] [train]  84/160 A c3 eta  0.1 s2: KL 1.22e-04 active 0 | spread/skill 0.118 cov90 0.133 RMSE 0.0263 ES 0.1679 VG 9.80 | 13s, wall 356s
+[09:47:27] [train]  85/160 B c0 eta  0.1 s2: KL 1.01e-04 active 0 | spread/skill 0.091 cov90 0.102 RMSE 0.0225 ES 0.1480 VG 7.92 | 14s, wall 368s
+[09:47:27] [train]  86/160 B c1 eta  0.1 s2: KL 6.92e-05 active 0 | spread/skill 0.094 cov90 0.136 RMSE 0.0241 ES 0.1558 VG 7.23 | 14s, wall 369s
+[09:47:28] [train]  87/160 B c2 eta  0.1 s2: KL 6.19e-05 active 0 | spread/skill 0.086 cov90 0.099 RMSE 0.0201 ES 0.1287 VG 5.82 | 14s, wall 370s
+[09:47:29] [train]  88/160 B c3 eta  0.1 s2: KL 5.56e-05 active 0 | spread/skill 0.056 cov90 0.057 RMSE 0.0298 ES 0.1989 VG 11.55 | 14s, wall 371s
+[09:47:41] [train]  89/160 A c0 eta 0.01 s2: KL 1.56e+00 active 1 | spread/skill 0.544 cov90 0.504 RMSE 0.0286 ES 0.1487 VG 9.03 | 13s, wall 382s
+[09:47:41] [train]  90/160 A c1 eta 0.01 s2: KL 1.73e+00 active 3 | spread/skill 0.633 cov90 0.656 RMSE 0.0345 ES 0.1772 VG 9.08 | 13s, wall 383s
+[09:47:44] [train]  91/160 A c2 eta 0.01 s2: KL 1.96e+00 active 2 | spread/skill 0.622 cov90 0.655 RMSE 0.0281 ES 0.1334 VG 7.63 | 14s, wall 386s
+[09:47:45] [train]  92/160 A c3 eta 0.01 s2: KL 1.25e+00 active 1 | spread/skill 0.568 cov90 0.517 RMSE 0.0308 ES 0.1606 VG 11.42 | 15s, wall 387s
+[09:47:59] [train]  93/160 B c0 eta 0.01 s2: KL 1.68e+00 active 2 | spread/skill 0.580 cov90 0.550 RMSE 0.0298 ES 0.1483 VG 9.26 | 18s, wall 401s
+[09:48:00] [train]  94/160 B c1 eta 0.01 s2: KL 1.80e+00 active 2 | spread/skill 0.610 cov90 0.662 RMSE 0.0331 ES 0.1712 VG 9.14 | 18s, wall 402s
+[09:48:02] [train]  95/160 B c2 eta 0.01 s2: KL 1.90e+00 active 2 | spread/skill 0.603 cov90 0.658 RMSE 0.0283 ES 0.1323 VG 7.18 | 18s, wall 404s
+[09:48:03] [train]  96/160 B c3 eta 0.01 s2: KL 1.26e+00 active 1 | spread/skill 0.522 cov90 0.486 RMSE 0.0316 ES 0.1618 VG 12.80 | 17s, wall 405s
+[09:48:16] [train]  97/160 A c0 eta   10 s3: KL 4.00e-06 active 0 | spread/skill 0.079 cov90 0.083 RMSE 0.0202 ES 0.1291 VG 6.30 | stored |dW| 0.0e+00 | 15s, wall 418s
+[09:48:16] [train]  98/160 A c1 eta   10 s3: KL 3.05e-06 active 0 | spread/skill 0.060 cov90 0.062 RMSE 0.0225 ES 0.1532 VG 6.62 | stored |dW| 0.0e+00 | 16s, wall 418s
+[09:48:18] [train]  99/160 A c2 eta   10 s3: KL 2.79e-06 active 0 | spread/skill 0.112 cov90 0.134 RMSE 0.0192 ES 0.1205 VG 6.74 | stored |dW| 0.0e+00 | 15s, wall 420s
+[09:48:19] [train] 100/160 A c3 eta   10 s3: KL 8.54e-07 active 0 | spread/skill 0.074 cov90 0.076 RMSE 0.0261 ES 0.1717 VG 9.80 | stored |dW| 0.0e+00 | 15s, wall 421s
+[09:48:32] [train] 101/160 B c0 eta   10 s3: KL 2.76e-06 active 0 | spread/skill 0.061 cov90 0.077 RMSE 0.0202 ES 0.1308 VG 6.58 | stored |dW| 0.0e+00 | 15s, wall 434s
+[09:48:33] [train] 102/160 B c1 eta   10 s3: KL 1.07e-06 active 0 | spread/skill 0.064 cov90 0.064 RMSE 0.0250 ES 0.1657 VG 6.95 | stored |dW| 0.0e+00 | 16s, wall 434s
+[09:48:34] [train] 103/160 B c2 eta   10 s3: KL 5.68e-07 active 0 | spread/skill 0.088 cov90 0.124 RMSE 0.0175 ES 0.1162 VG 5.47 | stored |dW| 0.0e+00 | 16s, wall 436s
+[09:48:35] [train] 104/160 B c3 eta   10 s3: KL 7.69e-08 active 0 | spread/skill 0.051 cov90 0.056 RMSE 0.0270 ES 0.1755 VG 10.78 | stored |dW| 0.0e+00 | 16s, wall 437s
+[09:48:48] [train] 105/160 A c0 eta    1 s3: KL 1.40e-05 active 0 | spread/skill 0.071 cov90 0.077 RMSE 0.0200 ES 0.1328 VG 6.00 | 16s, wall 450s
+[09:48:49] [train] 106/160 A c1 eta    1 s3: KL 3.05e-05 active 0 | spread/skill 0.065 cov90 0.081 RMSE 0.0222 ES 0.1478 VG 7.06 | 16s, wall 451s
+[09:48:51] [train] 107/160 A c2 eta    1 s3: KL 3.45e-06 active 0 | spread/skill 0.119 cov90 0.140 RMSE 0.0190 ES 0.1183 VG 6.66 | 16s, wall 453s
+[09:48:52] [train] 108/160 A c3 eta    1 s3: KL 2.32e-06 active 0 | spread/skill 0.074 cov90 0.070 RMSE 0.0263 ES 0.1744 VG 10.11 | 16s, wall 454s
+[09:49:04] [train] 109/160 B c0 eta    1 s3: KL 5.95e-06 active 0 | spread/skill 0.067 cov90 0.088 RMSE 0.0201 ES 0.1308 VG 6.75 | 14s, wall 465s
+[09:49:04] [train] 110/160 B c1 eta    1 s3: KL 5.50e-06 active 0 | spread/skill 0.062 cov90 0.069 RMSE 0.0238 ES 0.1591 VG 6.90 | 14s, wall 466s
+[09:49:06] [train] 111/160 B c2 eta    1 s3: KL 6.25e-06 active 0 | spread/skill 0.090 cov90 0.110 RMSE 0.0176 ES 0.1147 VG 5.48 | 14s, wall 468s
+[09:49:07] [train] 112/160 B c3 eta    1 s3: KL 2.41e-06 active 0 | spread/skill 0.063 cov90 0.072 RMSE 0.0271 ES 0.1746 VG 10.80 | 14s, wall 469s
+[09:49:18] [train] 113/160 A c0 eta  0.1 s3: KL 5.57e-05 active 0 | spread/skill 0.069 cov90 0.078 RMSE 0.0216 ES 0.1440 VG 6.58 | 14s, wall 480s
+[09:49:19] [train] 114/160 A c1 eta  0.1 s3: KL 6.23e-05 active 0 | spread/skill 0.052 cov90 0.056 RMSE 0.0227 ES 0.1516 VG 6.28 | 14s, wall 481s
+[09:49:21] [train] 115/160 A c2 eta  0.1 s3: KL 1.72e-04 active 0 | spread/skill 0.110 cov90 0.135 RMSE 0.0186 ES 0.1148 VG 6.66 | 14s, wall 482s
+[09:49:22] [train] 116/160 A c3 eta  0.1 s3: KL 3.25e-05 active 0 | spread/skill 0.067 cov90 0.057 RMSE 0.0265 ES 0.1743 VG 10.07 | 14s, wall 484s
+[09:49:35] [train] 117/160 B c0 eta  0.1 s3: KL 9.60e-05 active 0 | spread/skill 0.067 cov90 0.078 RMSE 0.0208 ES 0.1400 VG 7.42 | 15s, wall 496s
+[09:49:35] [train] 118/160 B c1 eta  0.1 s3: KL 7.77e-05 active 0 | spread/skill 0.067 cov90 0.065 RMSE 0.0260 ES 0.1706 VG 7.43 | 15s, wall 497s
+[09:49:37] [train] 119/160 B c2 eta  0.1 s3: KL 9.65e-05 active 0 | spread/skill 0.098 cov90 0.123 RMSE 0.0177 ES 0.1150 VG 5.79 | 15s, wall 498s
+[09:49:38] [train] 120/160 B c3 eta  0.1 s3: KL 2.20e-05 active 0 | spread/skill 0.070 cov90 0.080 RMSE 0.0263 ES 0.1742 VG 11.19 | 15s, wall 500s
+[09:49:52] [train] 121/160 A c1 eta 0.01 s3: KL 2.14e+00 active 2 | spread/skill 0.586 cov90 0.605 RMSE 0.0336 ES 0.1669 VG 8.39 | 16s, wall 514s
+[09:49:52] [train] 122/160 A c0 eta 0.01 s3: KL 1.57e+00 active 1 | spread/skill 0.606 cov90 0.548 RMSE 0.0294 ES 0.1461 VG 7.88 | 16s, wall 514s
+[09:49:55] [train] 123/160 A c2 eta 0.01 s3: KL 1.80e+00 active 2 | spread/skill 0.581 cov90 0.583 RMSE 0.0280 ES 0.1337 VG 7.60 | 17s, wall 516s
+[09:49:58] [train] 124/160 A c3 eta 0.01 s3: KL 1.05e+00 active 1 | spread/skill 0.429 cov90 0.389 RMSE 0.0282 ES 0.1614 VG 11.33 | 18s, wall 519s
+[09:50:12] [train] 125/160 B c0 eta 0.01 s3: KL 1.69e+00 active 1 | spread/skill 0.614 cov90 0.556 RMSE 0.0326 ES 0.1611 VG 8.72 | 19s, wall 534s
+[09:50:12] [train] 126/160 B c1 eta 0.01 s3: KL 1.61e+00 active 1 | spread/skill 0.623 cov90 0.618 RMSE 0.0323 ES 0.1592 VG 9.06 | 19s, wall 534s
+[09:50:14] [train] 127/160 B c2 eta 0.01 s3: KL 1.93e+00 active 1 | spread/skill 0.577 cov90 0.630 RMSE 0.0292 ES 0.1382 VG 7.33 | 19s, wall 536s
+[09:50:16] [train] 128/160 B c3 eta 0.01 s3: KL 6.92e-01 active 1 | spread/skill 0.249 cov90 0.248 RMSE 0.0269 ES 0.1688 VG 10.79 | 18s, wall 538s
+[09:50:31] [train] 129/160 A c0 eta   10 s4: KL 4.55e-07 active 0 | spread/skill 0.064 cov90 0.071 RMSE 0.0222 ES 0.1466 VG 6.49 | stored |dW| 0.0e+00 | 18s, wall 553s
+[09:50:31] [train] 130/160 A c1 eta   10 s4: KL 9.13e-07 active 0 | spread/skill 0.046 cov90 0.049 RMSE 0.0256 ES 0.1724 VG 7.34 | stored |dW| 0.0e+00 | 18s, wall 553s
+[09:50:34] [train] 131/160 A c2 eta   10 s4: KL 2.30e-07 active 0 | spread/skill 0.073 cov90 0.076 RMSE 0.0175 ES 0.1165 VG 6.81 | stored |dW| 0.0e+00 | 18s, wall 556s
+[09:50:36] [train] 132/160 A c3 eta   10 s4: KL 1.14e-06 active 0 | spread/skill 0.065 cov90 0.078 RMSE 0.0264 ES 0.1720 VG 10.19 | stored |dW| 0.0e+00 | 19s, wall 558s
+[09:50:52] [train] 133/160 B c0 eta   10 s4: KL 1.67e-06 active 0 | spread/skill 0.064 cov90 0.075 RMSE 0.0195 ES 0.1281 VG 6.02 | stored |dW| 0.0e+00 | 20s, wall 573s
+[09:50:52] [train] 134/160 B c1 eta   10 s4: KL 1.74e-06 active 0 | spread/skill 0.059 cov90 0.069 RMSE 0.0246 ES 0.1612 VG 7.63 | stored |dW| 0.0e+00 | 20s, wall 574s
+[09:50:55] [train] 135/160 B c2 eta   10 s4: KL 3.93e-07 active 0 | spread/skill 0.063 cov90 0.082 RMSE 0.0175 ES 0.1148 VG 5.65 | stored |dW| 0.0e+00 | 20s, wall 576s
+[09:50:57] [train] 136/160 B c3 eta   10 s4: KL 9.22e-07 active 0 | spread/skill 0.063 cov90 0.078 RMSE 0.0261 ES 0.1715 VG 10.50 | stored |dW| 0.0e+00 | 20s, wall 579s
+[09:51:12] [train] 137/160 A c0 eta    1 s4: KL 8.31e-06 active 0 | spread/skill 0.067 cov90 0.077 RMSE 0.0208 ES 0.1390 VG 6.07 | 19s, wall 594s
+[09:51:12] [train] 138/160 A c1 eta    1 s4: KL 4.06e-06 active 0 | spread/skill 0.048 cov90 0.052 RMSE 0.0259 ES 0.1733 VG 7.72 | 20s, wall 594s
+[09:51:15] [train] 139/160 A c2 eta    1 s4: KL 3.86e-06 active 0 | spread/skill 0.065 cov90 0.060 RMSE 0.0178 ES 0.1187 VG 6.86 | 19s, wall 597s
+[09:51:17] [train] 140/160 A c3 eta    1 s4: KL 1.61e-05 active 0 | spread/skill 0.080 cov90 0.094 RMSE 0.0255 ES 0.1675 VG 10.00 | 18s, wall 599s
+[09:51:32] [train] 141/160 B c0 eta    1 s4: KL 2.96e-06 active 0 | spread/skill 0.059 cov90 0.068 RMSE 0.0207 ES 0.1369 VG 6.35 | 19s, wall 614s
+[09:51:33] [train] 142/160 B c1 eta    1 s4: KL 1.97e-06 active 0 | spread/skill 0.046 cov90 0.047 RMSE 0.0270 ES 0.1820 VG 7.86 | 20s, wall 615s
+[09:51:35] [train] 143/160 B c2 eta    1 s4: KL 3.88e-06 active 0 | spread/skill 0.070 cov90 0.073 RMSE 0.0173 ES 0.1159 VG 5.63 | 20s, wall 617s
+[09:51:38] [train] 144/160 B c3 eta    1 s4: KL 7.86e-06 active 0 | spread/skill 0.061 cov90 0.062 RMSE 0.0253 ES 0.1696 VG 10.37 | 20s, wall 620s
+[09:51:50] [train] 145/160 A c0 eta  0.1 s4: KL 2.58e-04 active 0 | spread/skill 0.052 cov90 0.050 RMSE 0.0230 ES 0.1524 VG 6.53 | 17s, wall 632s
+[09:51:51] [train] 146/160 A c1 eta  0.1 s4: KL 1.30e-04 active 0 | spread/skill 0.049 cov90 0.060 RMSE 0.0274 ES 0.1830 VG 8.33 | 17s, wall 632s
+[09:51:52] [train] 147/160 A c2 eta  0.1 s4: KL 4.51e-05 active 0 | spread/skill 0.079 cov90 0.083 RMSE 0.0175 ES 0.1154 VG 6.85 | 16s, wall 634s
+[09:51:54] [train] 148/160 A c3 eta  0.1 s4: KL 8.11e-05 active 0 | spread/skill 0.073 cov90 0.072 RMSE 0.0264 ES 0.1698 VG 9.52 | 15s, wall 636s
+[09:52:05] [train] 149/160 B c0 eta  0.1 s4: KL 1.28e-04 active 0 | spread/skill 0.062 cov90 0.062 RMSE 0.0234 ES 0.1555 VG 7.51 | 15s, wall 647s
+[09:52:06] [train] 150/160 B c1 eta  0.1 s4: KL 7.19e-05 active 0 | spread/skill 0.059 cov90 0.058 RMSE 0.0291 ES 0.1920 VG 7.91 | 15s, wall 648s
+[09:52:07] [train] 151/160 B c2 eta  0.1 s4: KL 9.75e-05 active 0 | spread/skill 0.062 cov90 0.070 RMSE 0.0200 ES 0.1329 VG 5.87 | 14s, wall 649s
+[09:52:10] [train] 152/160 B c3 eta  0.1 s4: KL 1.86e-05 active 0 | spread/skill 0.068 cov90 0.086 RMSE 0.0238 ES 0.1570 VG 9.69 | 15s, wall 652s
+[09:52:19] [train] 153/160 A c0 eta 0.01 s4: KL 1.91e+00 active 1 | spread/skill 0.689 cov90 0.606 RMSE 0.0269 ES 0.1370 VG 7.93 | 13s, wall 661s
+[09:52:20] [train] 154/160 A c1 eta 0.01 s4: KL 1.42e+00 active 2 | spread/skill 0.527 cov90 0.555 RMSE 0.0312 ES 0.1593 VG 8.39 | 13s, wall 662s
+[09:52:21] [train] 155/160 A c2 eta 0.01 s4: KL 2.02e+00 active 1 | spread/skill 0.582 cov90 0.617 RMSE 0.0275 ES 0.1364 VG 7.61 | 13s, wall 663s
+[09:52:24] [train] 156/160 A c3 eta 0.01 s4: KL 1.50e+00 active 1 | spread/skill 0.584 cov90 0.587 RMSE 0.0315 ES 0.1632 VG 12.16 | 13s, wall 666s
+[09:52:33] [train] 157/160 B c0 eta 0.01 s4: KL 2.01e+00 active 1 | spread/skill 0.695 cov90 0.644 RMSE 0.0295 ES 0.1357 VG 8.59 | 13s, wall 675s
+[09:52:34] [train] 158/160 B c1 eta 0.01 s4: KL 1.64e+00 active 1 | spread/skill 0.563 cov90 0.573 RMSE 0.0355 ES 0.1748 VG 10.19 | 13s, wall 676s
+[09:52:35] [train] 159/160 B c2 eta 0.01 s4: KL 1.89e+00 active 1 | spread/skill 0.585 cov90 0.622 RMSE 0.0290 ES 0.1316 VG 6.77 | 13s, wall 677s
+[09:52:37] [train] 160/160 B c3 eta 0.01 s4: KL 1.55e+00 active 1 | spread/skill 0.553 cov90 0.553 RMSE 0.0333 ES 0.1697 VG 12.73 | 13s, wall 679s
+[09:52:38] [train] done in 680s wall
+[09:52:38] --- stage train done in 679.6s
+[09:52:38] [collect] 160 rows -> C:/Users/cleme/Desktop/MIT/Courses/Fall/Machine Learning/Project/Claude_ML_Project/CVAE_reproduction/outputs/verify/v-collapse/eta_sensitivity.csv
+[09:52:38] [collect] A|eta10: KL 9.7e-07-4.0e-06, active 0-0, spread/skill 0.069-0.112, cov90 0.078-0.112, RMSE 0.0184-0.0261 (+0.0 to +0.0% vs eta 10), ES change +0.0 to +0.0%, agg-post var 1.00-1.00
+[09:52:38] [collect] A|eta1: KL 5.8e-06-2.7e-05, active 0-0, spread/skill 0.067-0.115, cov90 0.077-0.106, RMSE 0.0178-0.0263 (-1.5 to +0.7% vs eta 10), ES change -2.5 to +2.5%, agg-post var 1.00-1.00
+[09:52:38] [collect] A|eta0.1: KL 6.2e-05-1.8e-04, active 0-0, spread/skill 0.064-0.094, cov90 0.071-0.096, RMSE 0.0182-0.0264 (-1.5 to +6.1% vs eta 10), ES change -1.6 to +6.1%, agg-post var 0.98-1.00
+[09:52:38] [collect] A|eta0.01: KL 1.4e+00-2.0e+00, active 1-2, spread/skill 0.581-0.633, cov90 0.517-0.656, RMSE 0.0278-0.0336 (+19.3 to +48.6% vs eta 10), ES change -5.1 to +15.6%, agg-post var 0.70-1.03
+[09:52:38] [collect] B|eta10: KL 5.7e-07-1.7e-06, active 0-0, spread/skill 0.062-0.088, cov90 0.069-0.097, RMSE 0.0175-0.0270 (+0.0 to +0.0% vs eta 10), ES change +0.0 to +0.0%, agg-post var 1.00-1.00
+[09:52:38] [collect] B|eta1: KL 3.7e-06-6.1e-06, active 0-0, spread/skill 0.063-0.073, cov90 0.068-0.090, RMSE 0.0176-0.0271 (-4.5 to +2.0% vs eta 10), ES change -4.0 to +0.6%, agg-post var 1.00-1.00
+[09:52:38] [collect] B|eta0.1: KL 5.6e-05-1.0e-04, active 0-0, spread/skill 0.067-0.085, cov90 0.065-0.075, RMSE 0.0188-0.0272 (-1.0 to +4.3% vs eta 10), ES change +1.3 to +4.6%, agg-post var 0.99-1.00
+[09:52:38] [collect] B|eta0.01: KL 1.5e+00-1.9e+00, active 1-2, spread/skill 0.521-0.623, cov90 0.486-0.635, RMSE 0.0283-0.0337 (+11.3 to +63.1% vs eta 10), ES change -3.8 to +14.6%, agg-post var 0.73-1.02
+[09:52:38] [collect] eta 10 vs stored restarts: {'n': 40, 'max_abs_weight_diff': 0.0, 'n_bitwise_identical': 40, 'n_epoch_loss_identical': 40, 'max_abs_test_mse_post_diff': 2.6645352591003757e-15, 'max_abs_diff_spread_skill_vs_phase2_restart_scores': 9.71445146547012e-17, 'max_abs_diff_coverage90_vs_phase2_restart_scores': 9.020562075079397e-17, 'max_abs_diff_rmse_median_kwh_vs_phase2_restart_scores': 9.367506770274758e-17, 'max_abs_diff_es_median_vs_phase2_restart_scores': 1.3877787807814457e-16, 'max_abs_diff_vg_median_vs_phase2_restart_scores': 1.7763568394002505e-15}
+[09:52:38] --- stage collect done in 0.4s
+[09:52:40] [figure] wrote C:/Users/cleme/Desktop/MIT/Courses/Fall/Machine Learning/Project/Claude_ML_Project/CVAE_reproduction/outputs/figures/sensitivity_eta.png
+[09:52:40] --- stage figure done in 1.4s
+[09:52:57] === 40_eta_sensitivity.py stages=train,collect,figure workers=4 force=False
+[09:52:57] [train] 120 models to train with 4 workers x 1 torch thread
+[09:53:17] [train]   1/120 A c3 eta 0.03 s0: KL 6.70e-04 active 0 | spread/skill 0.071 cov90 0.074 RMSE 0.0282 ES 0.1838 VG 11.50 | 12s, wall 20s
+[09:53:17] [train]   2/120 A c1 eta 0.03 s0: KL 2.83e-01 active 1 | spread/skill 0.196 cov90 0.222 RMSE 0.0259 ES 0.1577 VG 7.88 | 12s, wall 21s
+[09:53:17] [train]   3/120 A c2 eta 0.03 s0: KL 7.14e-01 active 1 | spread/skill 0.471 cov90 0.493 RMSE 0.0228 ES 0.1237 VG 7.03 | 12s, wall 21s
+[09:53:17] [train]   4/120 A c0 eta 0.03 s0: KL 1.22e-01 active 1 | spread/skill 0.127 cov90 0.162 RMSE 0.0216 ES 0.1317 VG 6.97 | 12s, wall 21s
+[09:53:30] [train]   5/120 B c0 eta 0.03 s0: KL 4.29e-01 active 1 | spread/skill 0.316 cov90 0.303 RMSE 0.0237 ES 0.1406 VG 7.00 | 12s, wall 33s
+[09:53:30] [train]   6/120 B c1 eta 0.03 s0: KL 2.94e-01 active 1 | spread/skill 0.216 cov90 0.234 RMSE 0.0283 ES 0.1723 VG 8.73 | 12s, wall 33s
+[09:53:30] [train]   7/120 B c2 eta 0.03 s0: KL 7.73e-01 active 1 | spread/skill 0.469 cov90 0.501 RMSE 0.0221 ES 0.1189 VG 5.94 | 12s, wall 33s
+[09:53:30] [train]   8/120 B c3 eta 0.03 s0: KL 2.04e-04 active 0 | spread/skill 0.069 cov90 0.060 RMSE 0.0264 ES 0.1734 VG 10.86 | 12s, wall 33s
+[09:53:42] [train]   9/120 A c0 eta 0.003 s0: KL 4.15e+00 active 4 | spread/skill 0.636 cov90 0.659 RMSE 0.0317 ES 0.1367 VG 8.32 | 12s, wall 45s
+[09:53:42] [train]  10/120 A c1 eta 0.003 s0: KL 4.45e+00 active 4 | spread/skill 0.621 cov90 0.667 RMSE 0.0381 ES 0.1738 VG 9.31 | 12s, wall 45s
+[09:53:42] [train]  11/120 A c2 eta 0.003 s0: KL 3.33e+00 active 4 | spread/skill 0.490 cov90 0.564 RMSE 0.0308 ES 0.1481 VG 8.75 | 12s, wall 45s
+[09:53:43] [train]  12/120 A c3 eta 0.003 s0: KL 2.55e+00 active 4 | spread/skill 0.687 cov90 0.615 RMSE 0.0318 ES 0.1573 VG 11.56 | 12s, wall 46s
+[09:53:54] [train]  13/120 B c0 eta 0.003 s0: KL 4.48e+00 active 4 | spread/skill 0.614 cov90 0.629 RMSE 0.0315 ES 0.1512 VG 9.01 | 12s, wall 58s
+[09:53:55] [train]  14/120 B c1 eta 0.003 s0: KL 3.83e+00 active 4 | spread/skill 0.627 cov90 0.661 RMSE 0.0379 ES 0.1725 VG 9.74 | 12s, wall 58s
+[09:53:55] [train]  15/120 B c2 eta 0.003 s0: KL 4.11e+00 active 3 | spread/skill 0.483 cov90 0.589 RMSE 0.0289 ES 0.1299 VG 7.47 | 12s, wall 58s
+[09:53:55] [train]  16/120 B c3 eta 0.003 s0: KL 3.88e+00 active 3 | spread/skill 0.666 cov90 0.611 RMSE 0.0329 ES 0.1654 VG 12.10 | 12s, wall 58s
+[09:54:07] [train]  17/120 A c0 eta 0.001 s0: KL 7.57e+00 active 4 | spread/skill 0.489 cov90 0.607 RMSE 0.0446 ES 0.2234 VG 12.95 | 12s, wall 70s
+[09:54:07] [train]  18/120 A c1 eta 0.001 s0: KL 6.45e+00 active 4 | spread/skill 0.504 cov90 0.619 RMSE 0.0424 ES 0.2093 VG 11.79 | 12s, wall 70s
+[09:54:07] [train]  19/120 A c2 eta 0.001 s0: KL 6.57e+00 active 4 | spread/skill 0.423 cov90 0.552 RMSE 0.0351 ES 0.1751 VG 8.90 | 12s, wall 70s
+[09:54:08] [train]  20/120 A c3 eta 0.001 s0: KL 5.57e+00 active 4 | spread/skill 0.599 cov90 0.586 RMSE 0.0382 ES 0.1939 VG 12.70 | 12s, wall 71s
+[09:54:19] [train]  21/120 B c0 eta 0.001 s0: KL 8.90e+00 active 4 | spread/skill 0.513 cov90 0.615 RMSE 0.0485 ES 0.2433 VG 12.08 | 12s, wall 82s
+[09:54:19] [train]  22/120 B c1 eta 0.001 s0: KL 6.31e+00 active 4 | spread/skill 0.483 cov90 0.593 RMSE 0.0452 ES 0.2225 VG 13.11 | 12s, wall 83s
+[09:54:20] [train]  23/120 B c2 eta 0.001 s0: KL 7.11e+00 active 4 | spread/skill 0.434 cov90 0.550 RMSE 0.0360 ES 0.1817 VG 7.23 | 12s, wall 83s
+[09:54:20] [train]  24/120 B c3 eta 0.001 s0: KL 6.31e+00 active 4 | spread/skill 0.614 cov90 0.648 RMSE 0.0389 ES 0.1857 VG 13.15 | 12s, wall 83s
+[09:54:31] [train]  25/120 A c0 eta 0.03 s1: KL 1.82e-01 active 1 | spread/skill 0.158 cov90 0.140 RMSE 0.0232 ES 0.1443 VG 6.87 | 11s, wall 94s
+[09:54:31] [train]  26/120 A c1 eta 0.03 s1: KL 7.80e-01 active 1 | spread/skill 0.556 cov90 0.536 RMSE 0.0275 ES 0.1419 VG 7.87 | 11s, wall 94s
+[09:54:31] [train]  27/120 A c2 eta 0.03 s1: KL 8.40e-01 active 1 | spread/skill 0.475 cov90 0.436 RMSE 0.0247 ES 0.1315 VG 7.02 | 11s, wall 95s
+[09:54:32] [train]  28/120 A c3 eta 0.03 s1: KL 3.91e-02 active 1 | spread/skill 0.081 cov90 0.072 RMSE 0.0278 ES 0.1818 VG 11.44 | 11s, wall 95s
+[09:54:44] [train]  29/120 B c0 eta 0.03 s1: KL 5.48e-01 active 2 | spread/skill 0.306 cov90 0.303 RMSE 0.0217 ES 0.1218 VG 6.54 | 12s, wall 107s
+[09:54:44] [train]  30/120 B c1 eta 0.03 s1: KL 6.85e-01 active 1 | spread/skill 0.437 cov90 0.440 RMSE 0.0289 ES 0.1611 VG 8.34 | 12s, wall 107s
+[09:54:44] [train]  31/120 B c2 eta 0.03 s1: KL 9.63e-01 active 1 | spread/skill 0.484 cov90 0.497 RMSE 0.0228 ES 0.1136 VG 6.34 | 12s, wall 107s
+[09:54:45] [train]  32/120 B c3 eta 0.03 s1: KL 2.33e-02 active 1 | spread/skill 0.064 cov90 0.052 RMSE 0.0289 ES 0.1898 VG 12.68 | 12s, wall 108s
+[09:54:56] [train]  33/120 A c0 eta 0.003 s1: KL 5.17e+00 active 3 | spread/skill 0.592 cov90 0.639 RMSE 0.0316 ES 0.1565 VG 9.21 | 12s, wall 119s
+[09:54:56] [train]  34/120 A c2 eta 0.003 s1: KL 5.65e+00 active 3 | spread/skill 0.498 cov90 0.593 RMSE 0.0306 ES 0.1492 VG 8.34 | 12s, wall 119s
+[09:54:56] [train]  35/120 A c1 eta 0.003 s1: KL 4.19e+00 active 4 | spread/skill 0.609 cov90 0.644 RMSE 0.0413 ES 0.1870 VG 10.58 | 12s, wall 119s
+[09:54:57] [train]  36/120 A c3 eta 0.003 s1: KL 4.81e+00 active 3 | spread/skill 0.568 cov90 0.559 RMSE 0.0358 ES 0.1779 VG 12.89 | 12s, wall 120s
+[09:55:09] [train]  37/120 B c0 eta 0.003 s1: KL 4.33e+00 active 3 | spread/skill 0.575 cov90 0.580 RMSE 0.0339 ES 0.1681 VG 10.02 | 12s, wall 132s
+[09:55:09] [train]  38/120 B c1 eta 0.003 s1: KL 4.04e+00 active 4 | spread/skill 0.558 cov90 0.630 RMSE 0.0416 ES 0.2003 VG 10.96 | 12s, wall 132s
+[09:55:09] [train]  39/120 B c2 eta 0.003 s1: KL 5.78e+00 active 4 | spread/skill 0.495 cov90 0.597 RMSE 0.0301 ES 0.1423 VG 8.01 | 12s, wall 133s
+[09:55:11] [train]  40/120 B c3 eta 0.003 s1: KL 4.31e+00 active 4 | spread/skill 0.590 cov90 0.569 RMSE 0.0346 ES 0.1795 VG 12.98 | 13s, wall 134s
+[09:55:22] [train]  41/120 A c0 eta 0.001 s1: KL 8.00e+00 active 4 | spread/skill 0.579 cov90 0.679 RMSE 0.0335 ES 0.1681 VG 9.75 | 12s, wall 145s
+[09:55:22] [train]  42/120 A c1 eta 0.001 s1: KL 7.67e+00 active 4 | spread/skill 0.489 cov90 0.594 RMSE 0.0416 ES 0.2041 VG 11.29 | 12s, wall 145s
+[09:55:22] [train]  43/120 A c2 eta 0.001 s1: KL 8.53e+00 active 4 | spread/skill 0.438 cov90 0.555 RMSE 0.0382 ES 0.1872 VG 9.08 | 12s, wall 145s
+[09:55:23] [train]  44/120 A c3 eta 0.001 s1: KL 7.13e+00 active 4 | spread/skill 0.557 cov90 0.559 RMSE 0.0385 ES 0.1956 VG 12.95 | 12s, wall 146s
+[09:55:35] [train]  45/120 B c0 eta 0.001 s1: KL 8.28e+00 active 4 | spread/skill 0.564 cov90 0.617 RMSE 0.0357 ES 0.1714 VG 10.70 | 12s, wall 158s
+[09:55:35] [train]  46/120 B c1 eta 0.001 s1: KL 7.80e+00 active 4 | spread/skill 0.500 cov90 0.617 RMSE 0.0417 ES 0.2027 VG 12.11 | 12s, wall 158s
+[09:55:35] [train]  47/120 B c2 eta 0.001 s1: KL 8.42e+00 active 4 | spread/skill 0.444 cov90 0.576 RMSE 0.0342 ES 0.1635 VG 8.69 | 12s, wall 158s
+[09:55:36] [train]  48/120 B c3 eta 0.001 s1: KL 7.70e+00 active 4 | spread/skill 0.527 cov90 0.596 RMSE 0.0391 ES 0.1891 VG 13.40 | 12s, wall 159s
+[09:55:47] [train]  49/120 A c0 eta 0.03 s2: KL 4.62e-02 active 1 | spread/skill 0.126 cov90 0.157 RMSE 0.0222 ES 0.1414 VG 6.85 | 12s, wall 170s
+[09:55:47] [train]  50/120 A c1 eta 0.03 s2: KL 5.86e-01 active 1 | spread/skill 0.420 cov90 0.436 RMSE 0.0275 ES 0.1554 VG 8.30 | 12s, wall 170s
+[09:55:47] [train]  51/120 A c2 eta 0.03 s2: KL 7.46e-01 active 1 | spread/skill 0.532 cov90 0.524 RMSE 0.0234 ES 0.1230 VG 7.23 | 12s, wall 171s
+[09:55:48] [train]  52/120 A c3 eta 0.03 s2: KL 5.94e-04 active 0 | spread/skill 0.104 cov90 0.109 RMSE 0.0273 ES 0.1764 VG 9.97 | 12s, wall 171s
+[09:56:01] [train]  53/120 B c1 eta 0.03 s2: KL 5.25e-01 active 1 | spread/skill 0.413 cov90 0.449 RMSE 0.0284 ES 0.1599 VG 8.46 | 12s, wall 184s
+[09:56:01] [train]  54/120 B c0 eta 0.03 s2: KL 3.47e-01 active 1 | spread/skill 0.253 cov90 0.279 RMSE 0.0228 ES 0.1292 VG 6.94 | 12s, wall 184s
+[09:56:01] [train]  55/120 B c2 eta 0.03 s2: KL 9.32e-01 active 1 | spread/skill 0.542 cov90 0.564 RMSE 0.0223 ES 0.1114 VG 6.33 | 13s, wall 184s
+[09:56:02] [train]  56/120 B c3 eta 0.03 s2: KL 8.18e-04 active 0 | spread/skill 0.060 cov90 0.061 RMSE 0.0287 ES 0.1920 VG 11.31 | 13s, wall 185s
+[09:56:14] [train]  57/120 A c2 eta 0.003 s2: KL 4.79e+00 active 4 | spread/skill 0.524 cov90 0.632 RMSE 0.0306 ES 0.1446 VG 7.48 | 13s, wall 197s
+[09:56:14] [train]  58/120 A c0 eta 0.003 s2: KL 4.22e+00 active 3 | spread/skill 0.638 cov90 0.667 RMSE 0.0318 ES 0.1570 VG 8.05 | 13s, wall 197s
+[09:56:14] [train]  59/120 A c1 eta 0.003 s2: KL 4.56e+00 active 3 | spread/skill 0.682 cov90 0.719 RMSE 0.0389 ES 0.1822 VG 9.87 | 13s, wall 197s
+[09:56:15] [train]  60/120 A c3 eta 0.003 s2: KL 3.38e+00 active 4 | spread/skill 0.648 cov90 0.557 RMSE 0.0333 ES 0.1628 VG 12.41 | 12s, wall 198s
+[09:56:27] [train]  61/120 B c1 eta 0.003 s2: KL 4.43e+00 active 2 | spread/skill 0.649 cov90 0.710 RMSE 0.0403 ES 0.1855 VG 10.66 | 12s, wall 211s
+[09:56:27] [train]  62/120 B c0 eta 0.003 s2: KL 4.53e+00 active 3 | spread/skill 0.697 cov90 0.702 RMSE 0.0334 ES 0.1465 VG 8.08 | 13s, wall 211s
+[09:56:28] [train]  63/120 B c2 eta 0.003 s2: KL 4.82e+00 active 3 | spread/skill 0.530 cov90 0.640 RMSE 0.0283 ES 0.1326 VG 6.95 | 13s, wall 211s
+[09:56:29] [train]  64/120 B c3 eta 0.003 s2: KL 2.38e+00 active 4 | spread/skill 0.605 cov90 0.548 RMSE 0.0354 ES 0.1787 VG 13.14 | 13s, wall 212s
+[09:56:40] [train]  65/120 A c0 eta 0.001 s2: KL 6.89e+00 active 4 | spread/skill 0.606 cov90 0.673 RMSE 0.0396 ES 0.1857 VG 10.36 | 12s, wall 223s
+[09:56:40] [train]  66/120 A c2 eta 0.001 s2: KL 7.93e+00 active 4 | spread/skill 0.404 cov90 0.531 RMSE 0.0416 ES 0.2077 VG 8.93 | 12s, wall 223s
+[09:56:40] [train]  67/120 A c1 eta 0.001 s2: KL 6.57e+00 active 4 | spread/skill 0.530 cov90 0.632 RMSE 0.0460 ES 0.2353 VG 12.64 | 12s, wall 224s
+[09:56:42] [train]  68/120 A c3 eta 0.001 s2: KL 6.71e+00 active 4 | spread/skill 0.616 cov90 0.627 RMSE 0.0344 ES 0.1699 VG 12.44 | 12s, wall 225s
+[09:56:53] [train]  69/120 B c0 eta 0.001 s2: KL 6.80e+00 active 4 | spread/skill 0.585 cov90 0.622 RMSE 0.0458 ES 0.2163 VG 10.83 | 12s, wall 236s
+[09:56:53] [train]  70/120 B c1 eta 0.001 s2: KL 6.35e+00 active 4 | spread/skill 0.521 cov90 0.632 RMSE 0.0487 ES 0.2442 VG 14.54 | 12s, wall 236s
+[09:56:53] [train]  71/120 B c2 eta 0.001 s2: KL 6.94e+00 active 4 | spread/skill 0.422 cov90 0.554 RMSE 0.0415 ES 0.1964 VG 8.26 | 12s, wall 236s
+[09:56:54] [train]  72/120 B c3 eta 0.001 s2: KL 6.39e+00 active 4 | spread/skill 0.631 cov90 0.632 RMSE 0.0345 ES 0.1678 VG 12.75 | 12s, wall 237s
+[09:57:06] [train]  73/120 A c0 eta 0.03 s3: KL 2.18e-03 active 0 | spread/skill 0.060 cov90 0.065 RMSE 0.0211 ES 0.1402 VG 6.38 | 12s, wall 249s
+[09:57:06] [train]  74/120 A c1 eta 0.03 s3: KL 3.35e-03 active 0 | spread/skill 0.069 cov90 0.087 RMSE 0.0231 ES 0.1509 VG 6.67 | 12s, wall 249s
+[09:57:06] [train]  75/120 A c2 eta 0.03 s3: KL 3.89e-03 active 0 | spread/skill 0.116 cov90 0.123 RMSE 0.0183 ES 0.1194 VG 6.70 | 12s, wall 249s
+[09:57:07] [train]  76/120 A c3 eta 0.03 s3: KL 2.55e-04 active 0 | spread/skill 0.059 cov90 0.060 RMSE 0.0288 ES 0.1911 VG 10.79 | 12s, wall 250s
+[09:57:18] [train]  77/120 B c0 eta 0.03 s3: KL 8.41e-03 active 0 | spread/skill 0.055 cov90 0.061 RMSE 0.0205 ES 0.1351 VG 6.56 | 12s, wall 261s
+[09:57:18] [train]  78/120 B c1 eta 0.03 s3: KL 3.67e-03 active 0 | spread/skill 0.060 cov90 0.081 RMSE 0.0236 ES 0.1544 VG 6.34 | 12s, wall 261s
+[09:57:18] [train]  79/120 B c2 eta 0.03 s3: KL 3.68e-02 active 1 | spread/skill 0.101 cov90 0.100 RMSE 0.0184 ES 0.1196 VG 5.83 | 12s, wall 262s
+[09:57:20] [train]  80/120 B c3 eta 0.03 s3: KL 2.52e-04 active 0 | spread/skill 0.062 cov90 0.069 RMSE 0.0257 ES 0.1738 VG 10.73 | 12s, wall 263s
+[09:57:30] [train]  81/120 A c0 eta 0.003 s3: KL 4.78e+00 active 4 | spread/skill 0.623 cov90 0.636 RMSE 0.0313 ES 0.1514 VG 7.82 | 12s, wall 274s
+[09:57:31] [train]  82/120 A c2 eta 0.003 s3: KL 4.09e+00 active 3 | spread/skill 0.528 cov90 0.620 RMSE 0.0298 ES 0.1477 VG 7.33 | 12s, wall 274s
+[09:57:31] [train]  83/120 A c1 eta 0.003 s3: KL 4.32e+00 active 3 | spread/skill 0.625 cov90 0.660 RMSE 0.0391 ES 0.1798 VG 9.49 | 12s, wall 274s
+[09:57:32] [train]  84/120 A c3 eta 0.003 s3: KL 2.35e+00 active 3 | spread/skill 0.642 cov90 0.581 RMSE 0.0322 ES 0.1624 VG 12.74 | 12s, wall 276s
+[09:57:43] [train]  85/120 B c0 eta 0.003 s3: KL 5.12e+00 active 4 | spread/skill 0.568 cov90 0.630 RMSE 0.0327 ES 0.1568 VG 8.17 | 11s, wall 286s
+[09:57:43] [train]  86/120 B c1 eta 0.003 s3: KL 3.94e+00 active 4 | spread/skill 0.623 cov90 0.649 RMSE 0.0376 ES 0.1769 VG 9.55 | 11s, wall 286s
+[09:57:43] [train]  87/120 B c2 eta 0.003 s3: KL 2.81e+00 active 4 | spread/skill 0.482 cov90 0.562 RMSE 0.0294 ES 0.1408 VG 6.92 | 11s, wall 286s
+[09:57:44] [train]  88/120 B c3 eta 0.003 s3: KL 2.30e+00 active 4 | spread/skill 0.585 cov90 0.518 RMSE 0.0351 ES 0.1806 VG 14.44 | 11s, wall 288s
+[09:57:55] [train]  89/120 A c0 eta 0.001 s3: KL 7.07e+00 active 4 | spread/skill 0.626 cov90 0.673 RMSE 0.0353 ES 0.1667 VG 8.84 | 12s, wall 298s
+[09:57:55] [train]  90/120 A c1 eta 0.001 s3: KL 6.65e+00 active 4 | spread/skill 0.585 cov90 0.675 RMSE 0.0412 ES 0.1866 VG 10.43 | 12s, wall 299s
+[09:57:55] [train]  91/120 A c2 eta 0.001 s3: KL 6.19e+00 active 4 | spread/skill 0.393 cov90 0.528 RMSE 0.0349 ES 0.1784 VG 8.77 | 12s, wall 299s
+[09:57:58] [train]  92/120 A c3 eta 0.001 s3: KL 5.57e+00 active 4 | spread/skill 0.601 cov90 0.616 RMSE 0.0362 ES 0.1639 VG 12.65 | 13s, wall 301s
+[09:58:09] [train]  93/120 B c2 eta 0.001 s3: KL 5.45e+00 active 4 | spread/skill 0.399 cov90 0.552 RMSE 0.0299 ES 0.1441 VG 6.98 | 13s, wall 312s
+[09:58:09] [train]  94/120 B c0 eta 0.001 s3: KL 7.84e+00 active 4 | spread/skill 0.589 cov90 0.686 RMSE 0.0343 ES 0.1589 VG 8.66 | 13s, wall 313s
+[09:58:10] [train]  95/120 B c1 eta 0.001 s3: KL 5.70e+00 active 4 | spread/skill 0.556 cov90 0.634 RMSE 0.0432 ES 0.1973 VG 10.92 | 13s, wall 313s
+[09:58:11] [train]  96/120 B c3 eta 0.001 s3: KL 5.71e+00 active 4 | spread/skill 0.565 cov90 0.576 RMSE 0.0359 ES 0.1832 VG 13.82 | 13s, wall 314s
+[09:58:22] [train]  97/120 A c1 eta 0.03 s4: KL 2.01e-03 active 0 | spread/skill 0.065 cov90 0.079 RMSE 0.0275 ES 0.1819 VG 8.10 | 12s, wall 325s
+[09:58:22] [train]  98/120 A c0 eta 0.03 s4: KL 3.56e-01 active 1 | spread/skill 0.244 cov90 0.259 RMSE 0.0211 ES 0.1222 VG 6.44 | 12s, wall 325s
+[09:58:22] [train]  99/120 A c2 eta 0.03 s4: KL 8.53e-01 active 1 | spread/skill 0.497 cov90 0.483 RMSE 0.0211 ES 0.1129 VG 6.88 | 12s, wall 326s
+[09:58:24] [train] 100/120 A c3 eta 0.03 s4: KL 1.30e-01 active 1 | spread/skill 0.143 cov90 0.151 RMSE 0.0287 ES 0.1764 VG 10.83 | 12s, wall 327s
+[09:58:34] [train] 101/120 B c1 eta 0.03 s4: KL 3.93e-01 active 1 | spread/skill 0.255 cov90 0.232 RMSE 0.0291 ES 0.1772 VG 8.42 | 11s, wall 337s
+[09:58:34] [train] 102/120 B c0 eta 0.03 s4: KL 7.66e-01 active 1 | spread/skill 0.503 cov90 0.446 RMSE 0.0229 ES 0.1186 VG 6.86 | 12s, wall 337s
+[09:58:35] [train] 103/120 B c2 eta 0.03 s4: KL 9.27e-01 active 1 | spread/skill 0.497 cov90 0.513 RMSE 0.0203 ES 0.1085 VG 5.72 | 12s, wall 338s
+[09:58:36] [train] 104/120 B c3 eta 0.03 s4: KL 5.48e-03 active 0 | spread/skill 0.053 cov90 0.054 RMSE 0.0305 ES 0.2039 VG 12.17 | 12s, wall 339s
+[09:58:47] [train] 105/120 A c0 eta 0.003 s4: KL 2.88e+00 active 3 | spread/skill 0.556 cov90 0.579 RMSE 0.0363 ES 0.1632 VG 9.25 | 12s, wall 350s
+[09:58:47] [train] 106/120 A c1 eta 0.003 s4: KL 4.42e+00 active 3 | spread/skill 0.645 cov90 0.678 RMSE 0.0402 ES 0.1880 VG 10.26 | 12s, wall 350s
+[09:58:48] [train] 107/120 A c2 eta 0.003 s4: KL 3.49e+00 active 1 | spread/skill 0.490 cov90 0.604 RMSE 0.0349 ES 0.1733 VG 8.40 | 12s, wall 351s
+[09:58:49] [train] 108/120 A c3 eta 0.003 s4: KL 2.71e+00 active 1 | spread/skill 0.652 cov90 0.621 RMSE 0.0357 ES 0.1797 VG 13.94 | 12s, wall 352s
+[09:58:59] [train] 109/120 B c0 eta 0.003 s4: KL 2.98e+00 active 2 | spread/skill 0.605 cov90 0.618 RMSE 0.0295 ES 0.1445 VG 9.24 | 12s, wall 362s
+[09:58:59] [train] 110/120 B c1 eta 0.003 s4: KL 3.96e+00 active 4 | spread/skill 0.629 cov90 0.695 RMSE 0.0367 ES 0.1747 VG 9.98 | 12s, wall 362s
+[09:59:00] [train] 111/120 B c2 eta 0.003 s4: KL 4.58e+00 active 3 | spread/skill 0.568 cov90 0.674 RMSE 0.0278 ES 0.1376 VG 6.96 | 12s, wall 363s
+[09:59:01] [train] 112/120 B c3 eta 0.003 s4: KL 2.83e+00 active 2 | spread/skill 0.606 cov90 0.584 RMSE 0.0363 ES 0.1713 VG 13.57 | 12s, wall 364s
+[09:59:12] [train] 113/120 A c0 eta 0.001 s4: KL 6.36e+00 active 4 | spread/skill 0.440 cov90 0.558 RMSE 0.0451 ES 0.2253 VG 11.01 | 12s, wall 375s
+[09:59:12] [train] 114/120 A c1 eta 0.001 s4: KL 6.48e+00 active 4 | spread/skill 0.540 cov90 0.642 RMSE 0.0427 ES 0.2112 VG 11.59 | 12s, wall 375s
+[09:59:13] [train] 115/120 A c2 eta 0.001 s4: KL 5.46e+00 active 4 | spread/skill 0.366 cov90 0.457 RMSE 0.0472 ES 0.2620 VG 9.08 | 12s, wall 376s
+[09:59:14] [train] 116/120 A c3 eta 0.001 s4: KL 3.76e+00 active 4 | spread/skill 0.519 cov90 0.582 RMSE 0.0446 ES 0.2253 VG 15.50 | 12s, wall 377s
+[09:59:24] [train] 117/120 B c0 eta 0.001 s4: KL 6.61e+00 active 4 | spread/skill 0.533 cov90 0.576 RMSE 0.0413 ES 0.1918 VG 10.66 | 12s, wall 387s
+[09:59:24] [train] 118/120 B c1 eta 0.001 s4: KL 6.56e+00 active 4 | spread/skill 0.529 cov90 0.633 RMSE 0.0496 ES 0.2507 VG 13.58 | 12s, wall 387s
+[09:59:26] [train] 119/120 B c2 eta 0.001 s4: KL 7.61e+00 active 3 | spread/skill 0.465 cov90 0.570 RMSE 0.0387 ES 0.2034 VG 7.52 | 12s, wall 389s
+[09:59:26] [train] 120/120 B c3 eta 0.001 s4: KL 3.83e+00 active 3 | spread/skill 0.494 cov90 0.546 RMSE 0.0392 ES 0.1977 VG 14.57 | 12s, wall 389s
+[09:59:27] [train] done in 390s wall
+[09:59:27] --- stage train done in 389.7s
+[09:59:27] [collect] 280 rows -> C:/Users/cleme/Desktop/MIT/Courses/Fall/Machine Learning/Project/Claude_ML_Project/CVAE_reproduction/outputs/verify/v-collapse/eta_sensitivity.csv
+[09:59:27] [collect] A|eta10: KL 9.7e-07-4.0e-06, active 0-0, spread/skill 0.069-0.112, cov90 0.078-0.112, RMSE 0.0184-0.0261 (+0.0 to +0.0% vs eta 10), ES change +0.0 to +0.0%, agg-post var 1.00-1.00
+[09:59:27] [collect] A|eta1: KL 5.8e-06-2.7e-05, active 0-0, spread/skill 0.067-0.115, cov90 0.077-0.106, RMSE 0.0178-0.0263 (-1.5 to +0.7% vs eta 10), ES change -2.5 to +2.5%, agg-post var 1.00-1.00
+[09:59:27] [collect] A|eta0.1: KL 6.2e-05-1.8e-04, active 0-0, spread/skill 0.064-0.094, cov90 0.071-0.096, RMSE 0.0182-0.0264 (-1.5 to +6.1% vs eta 10), ES change -1.6 to +6.1%, agg-post var 0.98-1.00
+[09:59:27] [collect] A|eta0.03: KL 6.7e-04-7.5e-01, active 0-1, spread/skill 0.081-0.475, cov90 0.074-0.483, RMSE 0.0216-0.0282 (+1.6 to +20.6% vs eta 10), ES change -6.8 to +10.0%, agg-post var 0.65-1.01
+[09:59:27] [collect] A|eta0.01: KL 1.4e+00-2.0e+00, active 1-2, spread/skill 0.581-0.633, cov90 0.517-0.656, RMSE 0.0278-0.0336 (+19.3 to +48.6% vs eta 10), ES change -5.1 to +15.6%, agg-post var 0.70-1.03
+[09:59:27] [collect] A|eta0.003: KL 2.7e+00-4.4e+00, active 3-3, spread/skill 0.498-0.648, cov90 0.581-0.667, RMSE 0.0306-0.0391 (+32.3 to +66.1% vs eta 10), ES change +0.1 to +22.6%, agg-post var 0.48-1.12
+[09:59:27] [collect] A|eta0.001: KL 5.6e+00-7.1e+00, active 4-4, spread/skill 0.404-0.599, cov90 0.531-0.673, RMSE 0.0382-0.0424 (+46.5 to +107.5% vs eta 10), ES change +10.1 to +53.3%, agg-post var 0.35-1.31
+[09:59:27] [collect] B|eta10: KL 5.7e-07-1.7e-06, active 0-0, spread/skill 0.062-0.088, cov90 0.069-0.097, RMSE 0.0175-0.0270 (+0.0 to +0.0% vs eta 10), ES change +0.0 to +0.0%, agg-post var 1.00-1.00
+[09:59:27] [collect] B|eta1: KL 3.7e-06-6.1e-06, active 0-0, spread/skill 0.063-0.073, cov90 0.068-0.090, RMSE 0.0176-0.0271 (-4.5 to +2.0% vs eta 10), ES change -4.0 to +0.6%, agg-post var 1.00-1.00
+[09:59:27] [collect] B|eta0.1: KL 5.6e-05-1.0e-04, active 0-0, spread/skill 0.067-0.085, cov90 0.065-0.075, RMSE 0.0188-0.0272 (-1.0 to +4.3% vs eta 10), ES change +1.3 to +4.6%, agg-post var 0.99-1.00
+[09:59:27] [collect] B|eta0.03: KL 8.2e-04-9.3e-01, active 0-1, spread/skill 0.062-0.484, cov90 0.060-0.501, RMSE 0.0221-0.0287 (+1.4 to +23.0% vs eta 10), ES change -8.7 to +3.9%, agg-post var 0.65-1.00
+[09:59:27] [collect] B|eta0.01: KL 1.5e+00-1.9e+00, active 1-2, spread/skill 0.521-0.623, cov90 0.486-0.635, RMSE 0.0283-0.0337 (+11.3 to +63.1% vs eta 10), ES change -3.8 to +14.6%, agg-post var 0.73-1.02
+[09:59:27] [collect] B|eta0.003: KL 2.8e+00-4.6e+00, active 3-4, spread/skill 0.495-0.627, cov90 0.569-0.661, RMSE 0.0289-0.0379 (+29.9 to +63.1% vs eta 10), ES change -0.1 to +19.8%, agg-post var 0.54-1.06
+[09:59:27] [collect] B|eta0.001: KL 6.3e+00-7.8e+00, active 4-4, spread/skill 0.434-0.565, cov90 0.554-0.632, RMSE 0.0360-0.0452 (+40.3 to +100.2% vs eta 10), ES change +4.4 to +52.1%, agg-post var 0.29-1.13
+[09:59:27] [collect] eta 10 vs stored restarts: {'n': 40, 'max_abs_weight_diff': 0.0, 'n_bitwise_identical': 40, 'n_epoch_loss_identical': 40, 'max_abs_test_mse_post_diff': 2.6645352591003757e-15, 'max_abs_diff_spread_skill_vs_phase2_restart_scores': 9.71445146547012e-17, 'max_abs_diff_coverage90_vs_phase2_restart_scores': 9.020562075079397e-17, 'max_abs_diff_rmse_median_kwh_vs_phase2_restart_scores': 9.367506770274758e-17, 'max_abs_diff_es_median_vs_phase2_restart_scores': 1.3877787807814457e-16, 'max_abs_diff_vg_median_vs_phase2_restart_scores': 1.7763568394002505e-15}
+[09:59:27] --- stage collect done in 0.6s
+[09:59:28] [figure] wrote C:/Users/cleme/Desktop/MIT/Courses/Fall/Machine Learning/Project/Claude_ML_Project/CVAE_reproduction/outputs/figures/sensitivity_eta.png
+[09:59:28] --- stage figure done in 1.3s
+=== new full forced run Thu Nov 12 11:39:46 EST 2026
+[11:39:49] === 40_eta_sensitivity.py stages=selftest,stored,train,collect,figure workers=4 force=True
+[11:39:50] [selftest] scores vs brute-force loops max |diff| 1.8e-15; calibrated toy spread/skill 1.028, cov90 0.897, cov50 0.505; 10x-too-narrow toy spread/skill 0.103
+[11:39:50] --- stage selftest done in 0.2s
+[11:39:54] [stored] track A: 200 restarts, train KL max 1.28e-05 (median 1.4e-06), restarts with an active unit 0, max var of posterior mean 0.0e+00, posterior SD 0.9986-1.0017
+[11:39:54] [stored]   A c0 selected s40: spread/skill 0.079 (phase 2 0.079), cov90 0.092 (phase 2 0.092), cov50 0.038, RMSE 0.0191, KL 2.2e-06, active 0
+[11:39:54] [stored]   A c1 selected s32: spread/skill 0.091 (phase 2 0.091), cov90 0.113 (phase 2 0.113), cov50 0.051, RMSE 0.0223, KL 5.8e-06, active 0
+[11:39:54] [stored]   A c2 selected s25: spread/skill 0.134 (phase 2 0.134), cov90 0.128 (phase 2 0.128), cov50 0.052, RMSE 0.0181, KL 2.7e-06, active 0
+[11:39:54] [stored]   A c3 selected s31: spread/skill 0.094 (phase 2 0.094), cov90 0.110 (phase 2 0.110), cov50 0.049, RMSE 0.0235, KL 4.2e-06, active 0
+[11:39:59] [stored] track B: 200 restarts, train KL max 1.02e-05 (median 1.3e-06), restarts with an active unit 0, max var of posterior mean 0.0e+00, posterior SD 0.9987-1.0017
+[11:39:59] [stored]   B c0 selected s42: spread/skill 0.104 (phase 2 0.104), cov90 0.113 (phase 2 0.113), cov50 0.042, RMSE 0.0195, KL 9.7e-07, active 0
+[11:39:59] [stored]   B c1 selected s26: spread/skill 0.122 (phase 2 0.122), cov90 0.087 (phase 2 0.087), cov50 0.041, RMSE 0.0246, KL 2.4e-07, active 0
+[11:39:59] [stored]   B c2 selected s26: spread/skill 0.138 (phase 2 0.138), cov90 0.114 (phase 2 0.114), cov50 0.054, RMSE 0.0173, KL 3.0e-07, active 0
+[11:39:59] [stored]   B c3 selected s29: spread/skill 0.077 (phase 2 0.077), cov90 0.072 (phase 2 0.072), cov50 0.029, RMSE 0.0244, KL 4.5e-07, active 0
+[11:39:59] --- stage stored done in 9.2s
+[11:39:59] [train] 280 models to train with 4 workers x 1 torch thread
+[11:40:24] [train]   1/280 A c3 eta   10 s0: KL 1.73e-06 active 0 | spread/skill 0.077 cov90 0.084 RMSE 0.0243 ES 0.1622 VG 9.56 | stored |dW| 0.0e+00 | 20s, wall 25s
+[11:40:24] [train]   2/280 A c2 eta   10 s0: KL 2.53e-07 active 0 | spread/skill 0.118 cov90 0.112 RMSE 0.0190 ES 0.1233 VG 6.68 | stored |dW| 0.0e+00 | 21s, wall 25s
+[11:40:24] [train]   3/280 A c1 eta   10 s0: KL 4.68e-06 active 0 | spread/skill 0.128 cov90 0.126 RMSE 0.0234 ES 0.1522 VG 7.30 | stored |dW| 0.0e+00 | 21s, wall 25s
+[11:40:24] [train]   4/280 A c0 eta   10 s0: KL 4.44e-06 active 0 | spread/skill 0.080 cov90 0.082 RMSE 0.0213 ES 0.1413 VG 6.58 | stored |dW| 0.0e+00 | 21s, wall 25s
+[11:40:45] [train]   5/280 B c0 eta   10 s0: KL 1.23e-06 active 0 | spread/skill 0.058 cov90 0.055 RMSE 0.0245 ES 0.1618 VG 7.33 | stored |dW| 0.0e+00 | 20s, wall 46s
+[11:40:45] [train]   6/280 B c1 eta   10 s0: KL 1.52e-06 active 0 | spread/skill 0.109 cov90 0.127 RMSE 0.0249 ES 0.1602 VG 7.75 | stored |dW| 0.0e+00 | 20s, wall 47s
+[11:40:45] [train]   7/280 B c2 eta   10 s0: KL 1.03e-06 active 0 | spread/skill 0.100 cov90 0.097 RMSE 0.0180 ES 0.1194 VG 5.95 | stored |dW| 0.0e+00 | 20s, wall 47s
+[11:40:46] [train]   8/280 B c3 eta   10 s0: KL 6.21e-07 active 0 | spread/skill 0.087 cov90 0.102 RMSE 0.0236 ES 0.1559 VG 9.30 | stored |dW| 0.0e+00 | 21s, wall 47s
+[11:41:09] [train]   9/280 A c0 eta    1 s0: KL 9.17e-06 active 0 | spread/skill 0.064 cov90 0.065 RMSE 0.0229 ES 0.1514 VG 6.68 | 23s, wall 70s
+[11:41:09] [train]  10/280 A c2 eta    1 s0: KL 6.05e-06 active 0 | spread/skill 0.115 cov90 0.106 RMSE 0.0192 ES 0.1269 VG 6.78 | 23s, wall 70s
+[11:41:09] [train]  11/280 A c1 eta    1 s0: KL 4.10e-05 active 0 | spread/skill 0.102 cov90 0.090 RMSE 0.0237 ES 0.1554 VG 7.41 | 23s, wall 70s
+[11:41:10] [train]  12/280 A c3 eta    1 s0: KL 2.05e-06 active 0 | spread/skill 0.085 cov90 0.103 RMSE 0.0232 ES 0.1517 VG 9.34 | 23s, wall 71s
+[11:41:29] [train]  13/280 B c0 eta    1 s0: KL 6.06e-06 active 0 | spread/skill 0.074 cov90 0.068 RMSE 0.0248 ES 0.1617 VG 7.69 | 19s, wall 90s
+[11:41:30] [train]  14/280 B c1 eta    1 s0: KL 3.78e-05 active 0 | spread/skill 0.098 cov90 0.123 RMSE 0.0247 ES 0.1594 VG 7.42 | 19s, wall 91s
+[11:41:30] [train]  15/280 B c2 eta    1 s0: KL 4.22e-06 active 0 | spread/skill 0.073 cov90 0.082 RMSE 0.0186 ES 0.1240 VG 6.27 | 19s, wall 91s
+[11:41:31] [train]  16/280 B c3 eta    1 s0: KL 2.36e-06 active 0 | spread/skill 0.071 cov90 0.075 RMSE 0.0261 ES 0.1706 VG 10.40 | 20s, wall 92s
+[11:41:50] [train]  17/280 A c0 eta  0.1 s0: KL 2.00e-04 active 0 | spread/skill 0.079 cov90 0.086 RMSE 0.0209 ES 0.1368 VG 5.93 | 20s, wall 111s
+[11:41:50] [train]  18/280 A c1 eta  0.1 s0: KL 5.35e-05 active 0 | spread/skill 0.073 cov90 0.071 RMSE 0.0249 ES 0.1618 VG 8.25 | 20s, wall 111s
+[11:41:50] [train]  19/280 A c2 eta  0.1 s0: KL 4.04e-05 active 0 | spread/skill 0.094 cov90 0.084 RMSE 0.0182 ES 0.1213 VG 7.59 | 20s, wall 112s
+[11:41:51] [train]  20/280 A c3 eta  0.1 s0: KL 8.66e-06 active 0 | spread/skill 0.096 cov90 0.106 RMSE 0.0229 ES 0.1524 VG 9.71 | 20s, wall 113s
+[11:42:11] [train]  21/280 B c0 eta  0.1 s0: KL 7.58e-05 active 0 | spread/skill 0.073 cov90 0.075 RMSE 0.0208 ES 0.1388 VG 6.66 | 20s, wall 132s
+[11:42:11] [train]  22/280 B c1 eta  0.1 s0: KL 4.34e-05 active 0 | spread/skill 0.091 cov90 0.113 RMSE 0.0246 ES 0.1624 VG 7.86 | 20s, wall 132s
+[11:42:11] [train]  23/280 B c2 eta  0.1 s0: KL 2.12e-05 active 0 | spread/skill 0.085 cov90 0.075 RMSE 0.0188 ES 0.1227 VG 6.10 | 20s, wall 133s
+[11:42:13] [train]  24/280 B c3 eta  0.1 s0: KL 7.20e-05 active 0 | spread/skill 0.076 cov90 0.065 RMSE 0.0272 ES 0.1743 VG 10.44 | 20s, wall 134s
+[11:42:35] [train]  25/280 A c0 eta 0.01 s0: KL 1.49e+00 active 3 | spread/skill 0.591 cov90 0.532 RMSE 0.0278 ES 0.1407 VG 7.90 | 23s, wall 156s
+[11:42:35] [train]  26/280 A c1 eta 0.01 s0: KL 1.72e+00 active 3 | spread/skill 0.686 cov90 0.665 RMSE 0.0310 ES 0.1564 VG 8.25 | 23s, wall 156s
+[11:42:36] [train]  27/280 A c2 eta 0.01 s0: KL 1.73e+00 active 2 | spread/skill 0.563 cov90 0.602 RMSE 0.0282 ES 0.1437 VG 7.58 | 23s, wall 157s
+[11:42:37] [train]  28/280 A c3 eta 0.01 s0: KL 1.37e+00 active 2 | spread/skill 0.599 cov90 0.546 RMSE 0.0302 ES 0.1546 VG 11.37 | 23s, wall 158s
+[11:42:57] [train]  29/280 B c0 eta 0.01 s0: KL 1.44e+00 active 3 | spread/skill 0.601 cov90 0.536 RMSE 0.0296 ES 0.1486 VG 8.86 | 22s, wall 178s
+[11:42:58] [train]  30/280 B c1 eta 0.01 s0: KL 1.60e+00 active 2 | spread/skill 0.628 cov90 0.635 RMSE 0.0337 ES 0.1673 VG 9.62 | 22s, wall 179s
+[11:42:58] [train]  31/280 B c2 eta 0.01 s0: KL 1.83e+00 active 2 | spread/skill 0.556 cov90 0.610 RMSE 0.0256 ES 0.1311 VG 6.97 | 22s, wall 179s
+[11:43:00] [train]  32/280 B c3 eta 0.01 s0: KL 1.47e+00 active 3 | spread/skill 0.510 cov90 0.497 RMSE 0.0299 ES 0.1581 VG 12.38 | 22s, wall 181s
+[11:43:19] [train]  33/280 A c0 eta   10 s1: KL 6.58e-06 active 0 | spread/skill 0.060 cov90 0.060 RMSE 0.0238 ES 0.1578 VG 6.81 | stored |dW| 0.0e+00 | 20s, wall 200s
+[11:43:19] [train]  34/280 A c1 eta   10 s1: KL 4.00e-06 active 0 | spread/skill 0.069 cov90 0.078 RMSE 0.0263 ES 0.1725 VG 7.50 | stored |dW| 0.0e+00 | 21s, wall 200s
+[11:43:20] [train]  35/280 A c2 eta   10 s1: KL 9.67e-07 active 0 | spread/skill 0.059 cov90 0.076 RMSE 0.0184 ES 0.1221 VG 7.00 | stored |dW| 0.0e+00 | 21s, wall 201s
+[11:43:21] [train]  36/280 A c3 eta   10 s1: KL 6.07e-07 active 0 | spread/skill 0.058 cov90 0.040 RMSE 0.0263 ES 0.1777 VG 10.33 | stored |dW| 0.0e+00 | 21s, wall 202s
+[11:43:40] [train]  37/280 B c0 eta   10 s1: KL 5.56e-06 active 0 | spread/skill 0.062 cov90 0.071 RMSE 0.0228 ES 0.1499 VG 7.04 | stored |dW| 0.0e+00 | 20s, wall 221s
+[11:43:40] [train]  38/280 B c1 eta   10 s1: KL 2.52e-06 active 0 | spread/skill 0.063 cov90 0.069 RMSE 0.0291 ES 0.1918 VG 8.17 | stored |dW| 0.0e+00 | 20s, wall 221s
+[11:43:41] [train]  39/280 B c2 eta   10 s1: KL 3.90e-07 active 0 | spread/skill 0.056 cov90 0.082 RMSE 0.0181 ES 0.1186 VG 5.77 | stored |dW| 0.0e+00 | 20s, wall 222s
+[11:43:43] [train]  40/280 B c3 eta   10 s1: KL 2.26e-07 active 0 | spread/skill 0.051 cov90 0.048 RMSE 0.0279 ES 0.1884 VG 10.83 | stored |dW| 0.0e+00 | 21s, wall 224s
+[11:44:01] [train]  41/280 A c0 eta    1 s1: KL 1.86e-05 active 0 | spread/skill 0.061 cov90 0.059 RMSE 0.0221 ES 0.1458 VG 6.75 | 21s, wall 242s
+[11:44:01] [train]  42/280 A c1 eta    1 s1: KL 2.44e-05 active 0 | spread/skill 0.073 cov90 0.084 RMSE 0.0256 ES 0.1682 VG 7.15 | 20s, wall 243s
+[11:44:03] [train]  43/280 A c2 eta    1 s1: KL 9.52e-06 active 0 | spread/skill 0.062 cov90 0.085 RMSE 0.0178 ES 0.1174 VG 6.78 | 20s, wall 244s
+[11:44:05] [train]  44/280 A c3 eta    1 s1: KL 7.01e-06 active 0 | spread/skill 0.048 cov90 0.050 RMSE 0.0270 ES 0.1815 VG 10.75 | 21s, wall 246s
+[11:44:25] [train]  45/280 B c0 eta    1 s1: KL 8.42e-06 active 0 | spread/skill 0.059 cov90 0.067 RMSE 0.0230 ES 0.1526 VG 6.90 | 23s, wall 267s
+[11:44:26] [train]  46/280 B c1 eta    1 s1: KL 4.02e-06 active 0 | spread/skill 0.073 cov90 0.090 RMSE 0.0260 ES 0.1706 VG 7.78 | 23s, wall 267s
+[11:44:27] [train]  47/280 B c2 eta    1 s1: KL 6.68e-06 active 0 | spread/skill 0.070 cov90 0.086 RMSE 0.0183 ES 0.1193 VG 6.10 | 23s, wall 268s
+[11:44:29] [train]  48/280 B c3 eta    1 s1: KL 3.73e-06 active 0 | spread/skill 0.060 cov90 0.063 RMSE 0.0284 ES 0.1885 VG 11.73 | 23s, wall 270s
+[11:44:50] [train]  49/280 A c0 eta  0.1 s1: KL 1.75e-04 active 0 | spread/skill 0.046 cov90 0.050 RMSE 0.0242 ES 0.1608 VG 7.08 | 23s, wall 291s
+[11:44:50] [train]  50/280 A c1 eta  0.1 s1: KL 5.24e-05 active 0 | spread/skill 0.064 cov90 0.076 RMSE 0.0256 ES 0.1680 VG 8.10 | 23s, wall 291s
+[11:44:51] [train]  51/280 A c2 eta  0.1 s1: KL 2.40e-04 active 0 | spread/skill 0.073 cov90 0.096 RMSE 0.0188 ES 0.1231 VG 6.93 | 23s, wall 292s
+[11:44:54] [train]  52/280 A c3 eta  0.1 s1: KL 9.04e-05 active 0 | spread/skill 0.059 cov90 0.062 RMSE 0.0280 ES 0.1870 VG 10.92 | 23s, wall 295s
+[11:45:14] [train]  53/280 B c0 eta  0.1 s1: KL 1.65e-04 active 0 | spread/skill 0.057 cov90 0.068 RMSE 0.0234 ES 0.1561 VG 7.32 | 22s, wall 315s
+[11:45:14] [train]  54/280 B c1 eta  0.1 s1: KL 6.63e-05 active 0 | spread/skill 0.068 cov90 0.067 RMSE 0.0277 ES 0.1801 VG 7.94 | 23s, wall 315s
+[11:45:16] [train]  55/280 B c2 eta  0.1 s1: KL 9.75e-05 active 0 | spread/skill 0.057 cov90 0.061 RMSE 0.0188 ES 0.1232 VG 5.92 | 23s, wall 317s
+[11:45:19] [train]  56/280 B c3 eta  0.1 s1: KL 6.13e-05 active 0 | spread/skill 0.061 cov90 0.050 RMSE 0.0286 ES 0.1941 VG 12.52 | 23s, wall 320s
+[11:45:36] [train]  57/280 A c0 eta 0.01 s1: KL 1.98e+00 active 2 | spread/skill 0.482 cov90 0.503 RMSE 0.0268 ES 0.1380 VG 8.22 | 21s, wall 337s
+[11:45:36] [train]  58/280 A c1 eta 0.01 s1: KL 1.91e+00 active 2 | spread/skill 0.685 cov90 0.682 RMSE 0.0342 ES 0.1714 VG 9.21 | 21s, wall 337s
+[11:45:38] [train]  59/280 A c2 eta 0.01 s1: KL 2.03e+00 active 2 | spread/skill 0.562 cov90 0.591 RMSE 0.0273 ES 0.1364 VG 7.79 | 21s, wall 339s
+[11:45:40] [train]  60/280 A c3 eta 0.01 s1: KL 1.36e+00 active 2 | spread/skill 0.599 cov90 0.513 RMSE 0.0311 ES 0.1632 VG 11.79 | 21s, wall 342s
+[11:45:57] [train]  61/280 B c0 eta 0.01 s1: KL 1.80e+00 active 2 | spread/skill 0.488 cov90 0.467 RMSE 0.0272 ES 0.1469 VG 8.21 | 20s, wall 358s
+[11:45:57] [train]  62/280 B c1 eta 0.01 s1: KL 1.85e+00 active 1 | spread/skill 0.633 cov90 0.658 RMSE 0.0373 ES 0.1802 VG 9.73 | 20s, wall 359s
+[11:45:59] [train]  63/280 B c2 eta 0.01 s1: KL 2.06e+00 active 2 | spread/skill 0.558 cov90 0.580 RMSE 0.0263 ES 0.1282 VG 7.50 | 20s, wall 360s
+[11:46:02] [train]  64/280 B c3 eta 0.01 s1: KL 1.66e+00 active 3 | spread/skill 0.521 cov90 0.464 RMSE 0.0302 ES 0.1694 VG 12.51 | 20s, wall 363s
+[11:46:18] [train]  65/280 A c0 eta   10 s2: KL 2.65e-06 active 0 | spread/skill 0.101 cov90 0.108 RMSE 0.0216 ES 0.1361 VG 6.55 | stored |dW| 0.0e+00 | 20s, wall 380s
+[11:46:19] [train]  66/280 A c1 eta   10 s2: KL 2.47e-06 active 0 | spread/skill 0.114 cov90 0.145 RMSE 0.0234 ES 0.1509 VG 7.62 | stored |dW| 0.0e+00 | 20s, wall 380s
+[11:46:20] [train]  67/280 A c2 eta   10 s2: KL 1.04e-06 active 0 | spread/skill 0.132 cov90 0.149 RMSE 0.0179 ES 0.1154 VG 6.90 | stored |dW| 0.0e+00 | 20s, wall 381s
+[11:46:23] [train]  68/280 A c3 eta   10 s2: KL 1.50e-06 active 0 | spread/skill 0.119 cov90 0.139 RMSE 0.0252 ES 0.1603 VG 9.81 | stored |dW| 0.0e+00 | 20s, wall 384s
+[11:46:39] [train]  69/280 B c0 eta   10 s2: KL 1.06e-06 active 0 | spread/skill 0.081 cov90 0.086 RMSE 0.0220 ES 0.1415 VG 6.35 | stored |dW| 0.0e+00 | 20s, wall 400s
+[11:46:40] [train]  70/280 B c1 eta   10 s2: KL 2.02e-06 active 0 | spread/skill 0.087 cov90 0.119 RMSE 0.0260 ES 0.1683 VG 7.21 | stored |dW| 0.0e+00 | 20s, wall 401s
+[11:46:41] [train]  71/280 B c2 eta   10 s2: KL 3.19e-06 active 0 | spread/skill 0.101 cov90 0.149 RMSE 0.0173 ES 0.1143 VG 5.81 | stored |dW| 0.0e+00 | 20s, wall 402s
+[11:46:45] [train]  72/280 B c3 eta   10 s2: KL 2.18e-06 active 0 | spread/skill 0.067 cov90 0.075 RMSE 0.0284 ES 0.1848 VG 11.50 | stored |dW| 0.0e+00 | 21s, wall 406s
+[11:47:01] [train]  73/280 A c0 eta    1 s2: KL 7.45e-06 active 0 | spread/skill 0.100 cov90 0.118 RMSE 0.0213 ES 0.1394 VG 6.50 | 21s, wall 423s
+[11:47:02] [train]  74/280 A c1 eta    1 s2: KL 2.65e-05 active 0 | spread/skill 0.117 cov90 0.154 RMSE 0.0224 ES 0.1469 VG 7.04 | 21s, wall 423s
+[11:47:03] [train]  75/280 A c2 eta    1 s2: KL 6.77e-06 active 0 | spread/skill 0.150 cov90 0.153 RMSE 0.0176 ES 0.1126 VG 6.89 | 21s, wall 425s
+[11:47:07] [train]  76/280 A c3 eta    1 s2: KL 5.78e-06 active 0 | spread/skill 0.096 cov90 0.103 RMSE 0.0276 ES 0.1834 VG 10.44 | 21s, wall 428s
+[11:47:22] [train]  77/280 B c0 eta    1 s2: KL 1.72e-05 active 0 | spread/skill 0.095 cov90 0.116 RMSE 0.0196 ES 0.1253 VG 6.40 | 20s, wall 443s
+[11:47:23] [train]  78/280 B c1 eta    1 s2: KL 1.25e-05 active 0 | spread/skill 0.068 cov90 0.090 RMSE 0.0248 ES 0.1589 VG 6.71 | 20s, wall 444s
+[11:47:24] [train]  79/280 B c2 eta    1 s2: KL 4.53e-06 active 0 | spread/skill 0.106 cov90 0.135 RMSE 0.0176 ES 0.1131 VG 6.02 | 20s, wall 446s
+[11:47:28] [train]  80/280 B c3 eta    1 s2: KL 1.07e-05 active 0 | spread/skill 0.064 cov90 0.069 RMSE 0.0291 ES 0.1929 VG 11.02 | 20s, wall 449s
+[11:47:42] [train]  81/280 A c0 eta  0.1 s2: KL 1.11e-04 active 0 | spread/skill 0.106 cov90 0.116 RMSE 0.0227 ES 0.1428 VG 7.08 | 19s, wall 463s
+[11:47:42] [train]  82/280 A c1 eta  0.1 s2: KL 1.55e-04 active 0 | spread/skill 0.095 cov90 0.091 RMSE 0.0251 ES 0.1623 VG 7.80 | 19s, wall 464s
+[11:47:44] [train]  83/280 A c2 eta  0.1 s2: KL 7.60e-05 active 0 | spread/skill 0.130 cov90 0.148 RMSE 0.0176 ES 0.1131 VG 6.94 | 19s, wall 466s
+[11:47:48] [train]  84/280 A c3 eta  0.1 s2: KL 1.22e-04 active 0 | spread/skill 0.118 cov90 0.133 RMSE 0.0263 ES 0.1679 VG 9.80 | 19s, wall 469s
+[11:48:02] [train]  85/280 B c0 eta  0.1 s2: KL 1.01e-04 active 0 | spread/skill 0.091 cov90 0.102 RMSE 0.0225 ES 0.1480 VG 7.92 | 19s, wall 483s
+[11:48:03] [train]  86/280 B c1 eta  0.1 s2: KL 6.92e-05 active 0 | spread/skill 0.094 cov90 0.136 RMSE 0.0241 ES 0.1558 VG 7.23 | 19s, wall 484s
+[11:48:04] [train]  87/280 B c2 eta  0.1 s2: KL 6.19e-05 active 0 | spread/skill 0.086 cov90 0.099 RMSE 0.0201 ES 0.1287 VG 5.82 | 19s, wall 486s
+[11:48:08] [train]  88/280 B c3 eta  0.1 s2: KL 5.56e-05 active 0 | spread/skill 0.056 cov90 0.057 RMSE 0.0298 ES 0.1989 VG 11.55 | 19s, wall 489s
+[11:48:22] [train]  89/280 A c0 eta 0.01 s2: KL 1.56e+00 active 1 | spread/skill 0.544 cov90 0.504 RMSE 0.0286 ES 0.1487 VG 9.03 | 20s, wall 504s
+[11:48:23] [train]  90/280 A c1 eta 0.01 s2: KL 1.73e+00 active 3 | spread/skill 0.633 cov90 0.656 RMSE 0.0345 ES 0.1772 VG 9.08 | 20s, wall 504s
+[11:48:25] [train]  91/280 A c2 eta 0.01 s2: KL 1.96e+00 active 2 | spread/skill 0.622 cov90 0.655 RMSE 0.0281 ES 0.1334 VG 7.63 | 20s, wall 506s
+[11:48:29] [train]  92/280 A c3 eta 0.01 s2: KL 1.25e+00 active 1 | spread/skill 0.568 cov90 0.517 RMSE 0.0308 ES 0.1606 VG 11.42 | 20s, wall 510s
+[11:48:42] [train]  93/280 B c0 eta 0.01 s2: KL 1.68e+00 active 2 | spread/skill 0.580 cov90 0.550 RMSE 0.0298 ES 0.1483 VG 9.26 | 19s, wall 523s
+[11:48:43] [train]  94/280 B c1 eta 0.01 s2: KL 1.80e+00 active 2 | spread/skill 0.610 cov90 0.662 RMSE 0.0331 ES 0.1712 VG 9.14 | 19s, wall 524s
+[11:48:45] [train]  95/280 B c2 eta 0.01 s2: KL 1.90e+00 active 2 | spread/skill 0.603 cov90 0.658 RMSE 0.0283 ES 0.1323 VG 7.18 | 19s, wall 526s
+[11:48:49] [train]  96/280 B c3 eta 0.01 s2: KL 1.26e+00 active 1 | spread/skill 0.522 cov90 0.486 RMSE 0.0316 ES 0.1618 VG 12.80 | 19s, wall 530s
+[11:49:03] [train]  97/280 A c0 eta   10 s3: KL 4.00e-06 active 0 | spread/skill 0.079 cov90 0.083 RMSE 0.0202 ES 0.1291 VG 6.30 | stored |dW| 0.0e+00 | 20s, wall 544s
+[11:49:03] [train]  98/280 A c1 eta   10 s3: KL 3.05e-06 active 0 | spread/skill 0.060 cov90 0.062 RMSE 0.0225 ES 0.1532 VG 6.62 | stored |dW| 0.0e+00 | 20s, wall 545s
+[11:49:05] [train]  99/280 A c2 eta   10 s3: KL 2.79e-06 active 0 | spread/skill 0.112 cov90 0.134 RMSE 0.0192 ES 0.1205 VG 6.74 | stored |dW| 0.0e+00 | 20s, wall 546s
+[11:49:09] [train] 100/280 A c3 eta   10 s3: KL 8.54e-07 active 0 | spread/skill 0.074 cov90 0.076 RMSE 0.0261 ES 0.1717 VG 9.80 | stored |dW| 0.0e+00 | 19s, wall 550s
+[11:49:22] [train] 101/280 B c0 eta   10 s3: KL 2.76e-06 active 0 | spread/skill 0.061 cov90 0.077 RMSE 0.0202 ES 0.1308 VG 6.58 | stored |dW| 0.0e+00 | 19s, wall 563s
+[11:49:23] [train] 102/280 B c1 eta   10 s3: KL 1.07e-06 active 0 | spread/skill 0.064 cov90 0.064 RMSE 0.0250 ES 0.1657 VG 6.95 | stored |dW| 0.0e+00 | 19s, wall 564s
+[11:49:25] [train] 103/280 B c2 eta   10 s3: KL 5.68e-07 active 0 | spread/skill 0.088 cov90 0.124 RMSE 0.0175 ES 0.1162 VG 5.47 | stored |dW| 0.0e+00 | 19s, wall 566s
+[11:49:29] [train] 104/280 B c3 eta   10 s3: KL 7.69e-08 active 0 | spread/skill 0.051 cov90 0.056 RMSE 0.0270 ES 0.1755 VG 10.78 | stored |dW| 0.0e+00 | 19s, wall 570s
+[11:49:42] [train] 105/280 A c0 eta    1 s3: KL 1.40e-05 active 0 | spread/skill 0.071 cov90 0.077 RMSE 0.0200 ES 0.1328 VG 6.00 | 19s, wall 583s
+[11:49:43] [train] 106/280 A c1 eta    1 s3: KL 3.05e-05 active 0 | spread/skill 0.065 cov90 0.081 RMSE 0.0222 ES 0.1478 VG 7.06 | 19s, wall 584s
+[11:49:45] [train] 107/280 A c2 eta    1 s3: KL 3.45e-06 active 0 | spread/skill 0.119 cov90 0.140 RMSE 0.0190 ES 0.1183 VG 6.66 | 19s, wall 586s
+[11:49:49] [train] 108/280 A c3 eta    1 s3: KL 2.32e-06 active 0 | spread/skill 0.074 cov90 0.070 RMSE 0.0263 ES 0.1744 VG 10.11 | 19s, wall 590s
+[11:50:01] [train] 109/280 B c0 eta    1 s3: KL 5.95e-06 active 0 | spread/skill 0.067 cov90 0.088 RMSE 0.0201 ES 0.1308 VG 6.75 | 19s, wall 602s
+[11:50:02] [train] 110/280 B c1 eta    1 s3: KL 5.50e-06 active 0 | spread/skill 0.062 cov90 0.069 RMSE 0.0238 ES 0.1591 VG 6.90 | 19s, wall 603s
+[11:50:04] [train] 111/280 B c2 eta    1 s3: KL 6.25e-06 active 0 | spread/skill 0.090 cov90 0.110 RMSE 0.0176 ES 0.1147 VG 5.48 | 19s, wall 605s
+[11:50:08] [train] 112/280 B c3 eta    1 s3: KL 2.41e-06 active 0 | spread/skill 0.063 cov90 0.072 RMSE 0.0271 ES 0.1746 VG 10.80 | 19s, wall 610s
+[11:50:21] [train] 113/280 A c0 eta  0.1 s3: KL 5.57e-05 active 0 | spread/skill 0.069 cov90 0.078 RMSE 0.0216 ES 0.1440 VG 6.58 | 19s, wall 622s
+[11:50:22] [train] 114/280 A c1 eta  0.1 s3: KL 6.23e-05 active 0 | spread/skill 0.052 cov90 0.056 RMSE 0.0227 ES 0.1516 VG 6.28 | 19s, wall 623s
+[11:50:24] [train] 115/280 A c2 eta  0.1 s3: KL 1.72e-04 active 0 | spread/skill 0.110 cov90 0.135 RMSE 0.0186 ES 0.1148 VG 6.66 | 19s, wall 625s
+[11:50:28] [train] 116/280 A c3 eta  0.1 s3: KL 3.25e-05 active 0 | spread/skill 0.067 cov90 0.057 RMSE 0.0265 ES 0.1743 VG 10.07 | 19s, wall 629s
+[11:50:40] [train] 117/280 B c0 eta  0.1 s3: KL 9.60e-05 active 0 | spread/skill 0.067 cov90 0.078 RMSE 0.0208 ES 0.1400 VG 7.42 | 18s, wall 641s
+[11:50:41] [train] 118/280 B c1 eta  0.1 s3: KL 7.77e-05 active 0 | spread/skill 0.067 cov90 0.065 RMSE 0.0260 ES 0.1706 VG 7.43 | 19s, wall 642s
+[11:50:43] [train] 119/280 B c2 eta  0.1 s3: KL 9.65e-05 active 0 | spread/skill 0.098 cov90 0.123 RMSE 0.0177 ES 0.1150 VG 5.79 | 19s, wall 644s
+[11:50:48] [train] 120/280 B c3 eta  0.1 s3: KL 2.20e-05 active 0 | spread/skill 0.070 cov90 0.080 RMSE 0.0263 ES 0.1742 VG 11.19 | 19s, wall 649s
+[11:50:59] [train] 121/280 A c0 eta 0.01 s3: KL 1.57e+00 active 1 | spread/skill 0.606 cov90 0.548 RMSE 0.0294 ES 0.1461 VG 7.88 | 19s, wall 661s
+[11:51:01] [train] 122/280 A c1 eta 0.01 s3: KL 2.14e+00 active 2 | spread/skill 0.586 cov90 0.605 RMSE 0.0336 ES 0.1669 VG 8.39 | 19s, wall 662s
+[11:51:04] [train] 123/280 A c2 eta 0.01 s3: KL 1.80e+00 active 2 | spread/skill 0.581 cov90 0.583 RMSE 0.0280 ES 0.1337 VG 7.60 | 19s, wall 665s
+[11:51:09] [train] 124/280 A c3 eta 0.01 s3: KL 1.05e+00 active 1 | spread/skill 0.429 cov90 0.389 RMSE 0.0282 ES 0.1614 VG 11.33 | 20s, wall 670s
+[11:51:20] [train] 125/280 B c0 eta 0.01 s3: KL 1.69e+00 active 1 | spread/skill 0.614 cov90 0.556 RMSE 0.0326 ES 0.1611 VG 8.72 | 20s, wall 681s
+[11:51:22] [train] 126/280 B c1 eta 0.01 s3: KL 1.61e+00 active 1 | spread/skill 0.623 cov90 0.618 RMSE 0.0323 ES 0.1592 VG 9.06 | 20s, wall 683s
+[11:51:24] [train] 127/280 B c2 eta 0.01 s3: KL 1.93e+00 active 1 | spread/skill 0.577 cov90 0.630 RMSE 0.0292 ES 0.1382 VG 7.33 | 19s, wall 685s
+[11:51:30] [train] 128/280 B c3 eta 0.01 s3: KL 6.92e-01 active 1 | spread/skill 0.249 cov90 0.248 RMSE 0.0269 ES 0.1688 VG 10.79 | 19s, wall 691s
+[11:51:45] [train] 129/280 A c0 eta   10 s4: KL 4.55e-07 active 0 | spread/skill 0.064 cov90 0.071 RMSE 0.0222 ES 0.1466 VG 6.49 | stored |dW| 0.0e+00 | 23s, wall 706s
+[11:51:47] [train] 130/280 A c1 eta   10 s4: KL 9.13e-07 active 0 | spread/skill 0.046 cov90 0.049 RMSE 0.0256 ES 0.1724 VG 7.34 | stored |dW| 0.0e+00 | 24s, wall 708s
+[11:51:50] [train] 131/280 A c2 eta   10 s4: KL 2.30e-07 active 0 | spread/skill 0.073 cov90 0.076 RMSE 0.0175 ES 0.1165 VG 6.81 | stored |dW| 0.0e+00 | 25s, wall 711s
+[11:51:55] [train] 132/280 A c3 eta   10 s4: KL 1.14e-06 active 0 | spread/skill 0.065 cov90 0.078 RMSE 0.0264 ES 0.1720 VG 10.19 | stored |dW| 0.0e+00 | 24s, wall 716s
+[11:52:06] [train] 133/280 B c0 eta   10 s4: KL 1.67e-06 active 0 | spread/skill 0.064 cov90 0.075 RMSE 0.0195 ES 0.1281 VG 6.02 | stored |dW| 0.0e+00 | 20s, wall 727s
+[11:52:07] [train] 134/280 B c1 eta   10 s4: KL 1.74e-06 active 0 | spread/skill 0.059 cov90 0.069 RMSE 0.0246 ES 0.1612 VG 7.63 | stored |dW| 0.0e+00 | 19s, wall 728s
+[11:52:09] [train] 135/280 B c2 eta   10 s4: KL 3.93e-07 active 0 | spread/skill 0.063 cov90 0.082 RMSE 0.0175 ES 0.1148 VG 5.65 | stored |dW| 0.0e+00 | 19s, wall 731s
+[11:52:15] [train] 136/280 B c3 eta   10 s4: KL 9.22e-07 active 0 | spread/skill 0.063 cov90 0.078 RMSE 0.0261 ES 0.1715 VG 10.50 | stored |dW| 0.0e+00 | 19s, wall 736s
+[11:52:25] [train] 137/280 A c0 eta    1 s4: KL 8.31e-06 active 0 | spread/skill 0.067 cov90 0.077 RMSE 0.0208 ES 0.1390 VG 6.07 | 18s, wall 746s
+[11:52:26] [train] 138/280 A c1 eta    1 s4: KL 4.06e-06 active 0 | spread/skill 0.048 cov90 0.052 RMSE 0.0259 ES 0.1733 VG 7.72 | 18s, wall 748s
+[11:52:29] [train] 139/280 A c2 eta    1 s4: KL 3.86e-06 active 0 | spread/skill 0.065 cov90 0.060 RMSE 0.0178 ES 0.1187 VG 6.86 | 19s, wall 750s
+[11:52:34] [train] 140/280 A c3 eta    1 s4: KL 1.61e-05 active 0 | spread/skill 0.080 cov90 0.094 RMSE 0.0255 ES 0.1675 VG 10.00 | 19s, wall 756s
+[11:52:44] [train] 141/280 B c0 eta    1 s4: KL 2.96e-06 active 0 | spread/skill 0.059 cov90 0.068 RMSE 0.0207 ES 0.1369 VG 6.35 | 18s, wall 765s
+[11:52:46] [train] 142/280 B c1 eta    1 s4: KL 1.97e-06 active 0 | spread/skill 0.046 cov90 0.047 RMSE 0.0270 ES 0.1820 VG 7.86 | 18s, wall 767s
+[11:52:48] [train] 143/280 B c2 eta    1 s4: KL 3.88e-06 active 0 | spread/skill 0.070 cov90 0.073 RMSE 0.0173 ES 0.1159 VG 5.63 | 18s, wall 769s
+[11:52:54] [train] 144/280 B c3 eta    1 s4: KL 7.86e-06 active 0 | spread/skill 0.061 cov90 0.062 RMSE 0.0253 ES 0.1696 VG 10.37 | 19s, wall 775s
+[11:53:06] [train] 145/280 A c0 eta  0.1 s4: KL 2.58e-04 active 0 | spread/skill 0.052 cov90 0.050 RMSE 0.0230 ES 0.1524 VG 6.53 | 21s, wall 787s
+[11:53:07] [train] 146/280 A c1 eta  0.1 s4: KL 1.30e-04 active 0 | spread/skill 0.049 cov90 0.060 RMSE 0.0274 ES 0.1830 VG 8.33 | 21s, wall 788s
+[11:53:08] [train] 147/280 A c2 eta  0.1 s4: KL 4.51e-05 active 0 | spread/skill 0.079 cov90 0.083 RMSE 0.0175 ES 0.1154 VG 6.85 | 20s, wall 790s
+[11:53:11] [train] 148/280 A c3 eta  0.1 s4: KL 8.11e-05 active 0 | spread/skill 0.073 cov90 0.072 RMSE 0.0264 ES 0.1698 VG 9.52 | 16s, wall 792s
+[11:53:16] [train] 149/280 B c0 eta  0.1 s4: KL 1.28e-04 active 0 | spread/skill 0.062 cov90 0.062 RMSE 0.0234 ES 0.1555 VG 7.51 | 10s, wall 797s
+[11:53:17] [train] 150/280 B c1 eta  0.1 s4: KL 7.19e-05 active 0 | spread/skill 0.059 cov90 0.058 RMSE 0.0291 ES 0.1920 VG 7.91 | 9s, wall 798s
+[11:53:18] [train] 151/280 B c2 eta  0.1 s4: KL 9.75e-05 active 0 | spread/skill 0.062 cov90 0.070 RMSE 0.0200 ES 0.1329 VG 5.87 | 9s, wall 799s
+[11:53:21] [train] 152/280 B c3 eta  0.1 s4: KL 1.86e-05 active 0 | spread/skill 0.068 cov90 0.086 RMSE 0.0238 ES 0.1570 VG 9.69 | 9s, wall 802s
+[11:53:25] [train] 153/280 A c0 eta 0.01 s4: KL 1.91e+00 active 1 | spread/skill 0.689 cov90 0.606 RMSE 0.0269 ES 0.1370 VG 7.93 | 8s, wall 806s
+[11:53:27] [train] 154/280 A c1 eta 0.01 s4: KL 1.42e+00 active 2 | spread/skill 0.527 cov90 0.555 RMSE 0.0312 ES 0.1593 VG 8.39 | 8s, wall 808s
+[11:53:29] [train] 155/280 A c2 eta 0.01 s4: KL 2.02e+00 active 1 | spread/skill 0.582 cov90 0.617 RMSE 0.0275 ES 0.1364 VG 7.61 | 10s, wall 810s
+[11:53:32] [train] 156/280 A c3 eta 0.01 s4: KL 1.50e+00 active 1 | spread/skill 0.584 cov90 0.587 RMSE 0.0315 ES 0.1632 VG 12.16 | 10s, wall 813s
+[11:53:39] [train] 157/280 B c0 eta 0.01 s4: KL 2.01e+00 active 1 | spread/skill 0.695 cov90 0.644 RMSE 0.0295 ES 0.1357 VG 8.59 | 13s, wall 820s
+[11:53:41] [train] 158/280 B c1 eta 0.01 s4: KL 1.64e+00 active 1 | spread/skill 0.563 cov90 0.573 RMSE 0.0355 ES 0.1748 VG 10.19 | 13s, wall 822s
+[11:53:43] [train] 159/280 B c2 eta 0.01 s4: KL 1.89e+00 active 1 | spread/skill 0.585 cov90 0.622 RMSE 0.0290 ES 0.1316 VG 6.77 | 14s, wall 825s
+[11:53:50] [train] 160/280 B c3 eta 0.01 s4: KL 1.55e+00 active 1 | spread/skill 0.553 cov90 0.553 RMSE 0.0333 ES 0.1697 VG 12.73 | 18s, wall 832s
+[11:53:59] [train] 161/280 A c0 eta 0.03 s0: KL 1.22e-01 active 1 | spread/skill 0.127 cov90 0.162 RMSE 0.0216 ES 0.1317 VG 6.97 | 19s, wall 840s
+[11:54:01] [train] 162/280 A c1 eta 0.03 s0: KL 2.83e-01 active 1 | spread/skill 0.196 cov90 0.222 RMSE 0.0259 ES 0.1577 VG 7.88 | 19s, wall 842s
+[11:54:04] [train] 163/280 A c2 eta 0.03 s0: KL 7.14e-01 active 1 | spread/skill 0.471 cov90 0.493 RMSE 0.0228 ES 0.1237 VG 7.03 | 19s, wall 845s
+[11:54:13] [train] 164/280 A c3 eta 0.03 s0: KL 6.70e-04 active 0 | spread/skill 0.071 cov90 0.074 RMSE 0.0282 ES 0.1838 VG 11.50 | 21s, wall 854s
+[11:54:21] [train] 165/280 B c0 eta 0.03 s0: KL 4.29e-01 active 1 | spread/skill 0.316 cov90 0.303 RMSE 0.0237 ES 0.1406 VG 7.00 | 22s, wall 863s
+[11:54:23] [train] 166/280 B c1 eta 0.03 s0: KL 2.94e-01 active 1 | spread/skill 0.216 cov90 0.234 RMSE 0.0283 ES 0.1723 VG 8.73 | 22s, wall 865s
+[11:54:26] [train] 167/280 B c2 eta 0.03 s0: KL 7.73e-01 active 1 | spread/skill 0.469 cov90 0.501 RMSE 0.0221 ES 0.1189 VG 5.94 | 22s, wall 867s
+[11:54:34] [train] 168/280 B c3 eta 0.03 s0: KL 2.04e-04 active 0 | spread/skill 0.069 cov90 0.060 RMSE 0.0264 ES 0.1734 VG 10.86 | 20s, wall 875s
+[11:54:42] [train] 169/280 A c0 eta 0.003 s0: KL 4.15e+00 active 4 | spread/skill 0.636 cov90 0.659 RMSE 0.0317 ES 0.1367 VG 8.32 | 20s, wall 883s
+[11:54:45] [train] 170/280 A c1 eta 0.003 s0: KL 4.45e+00 active 4 | spread/skill 0.621 cov90 0.667 RMSE 0.0381 ES 0.1738 VG 9.31 | 20s, wall 886s
+[11:54:47] [train] 171/280 A c2 eta 0.003 s0: KL 3.33e+00 active 4 | spread/skill 0.490 cov90 0.564 RMSE 0.0308 ES 0.1481 VG 8.75 | 20s, wall 889s
+[11:54:55] [train] 172/280 A c3 eta 0.003 s0: KL 2.55e+00 active 4 | spread/skill 0.687 cov90 0.615 RMSE 0.0318 ES 0.1573 VG 11.56 | 20s, wall 896s
+[11:55:02] [train] 173/280 B c0 eta 0.003 s0: KL 4.48e+00 active 4 | spread/skill 0.614 cov90 0.629 RMSE 0.0315 ES 0.1512 VG 9.01 | 19s, wall 904s
+[11:55:04] [train] 174/280 B c1 eta 0.003 s0: KL 3.83e+00 active 4 | spread/skill 0.627 cov90 0.661 RMSE 0.0379 ES 0.1725 VG 9.74 | 19s, wall 906s
+[11:55:06] [train] 175/280 B c2 eta 0.003 s0: KL 4.11e+00 active 3 | spread/skill 0.483 cov90 0.589 RMSE 0.0289 ES 0.1299 VG 7.47 | 18s, wall 907s
+[11:55:14] [train] 176/280 B c3 eta 0.003 s0: KL 3.88e+00 active 3 | spread/skill 0.666 cov90 0.611 RMSE 0.0329 ES 0.1654 VG 12.10 | 18s, wall 915s
+[11:55:20] [train] 177/280 A c0 eta 0.001 s0: KL 7.57e+00 active 4 | spread/skill 0.489 cov90 0.607 RMSE 0.0446 ES 0.2234 VG 12.95 | 16s, wall 921s
+[11:55:22] [train] 178/280 A c1 eta 0.001 s0: KL 6.45e+00 active 4 | spread/skill 0.504 cov90 0.619 RMSE 0.0424 ES 0.2093 VG 11.79 | 16s, wall 923s
+[11:55:25] [train] 179/280 A c2 eta 0.001 s0: KL 6.57e+00 active 4 | spread/skill 0.423 cov90 0.552 RMSE 0.0351 ES 0.1751 VG 8.90 | 17s, wall 926s
+[11:55:33] [train] 180/280 A c3 eta 0.001 s0: KL 5.57e+00 active 4 | spread/skill 0.599 cov90 0.586 RMSE 0.0382 ES 0.1939 VG 12.70 | 17s, wall 934s
+[11:55:39] [train] 181/280 B c0 eta 0.001 s0: KL 8.90e+00 active 4 | spread/skill 0.513 cov90 0.615 RMSE 0.0485 ES 0.2433 VG 12.08 | 19s, wall 941s
+[11:55:43] [train] 182/280 B c1 eta 0.001 s0: KL 6.31e+00 active 4 | spread/skill 0.483 cov90 0.593 RMSE 0.0452 ES 0.2225 VG 13.11 | 19s, wall 944s
+[11:55:45] [train] 183/280 B c2 eta 0.001 s0: KL 7.11e+00 active 4 | spread/skill 0.434 cov90 0.550 RMSE 0.0360 ES 0.1817 VG 7.23 | 20s, wall 947s
+[11:55:54] [train] 184/280 B c3 eta 0.001 s0: KL 6.31e+00 active 4 | spread/skill 0.614 cov90 0.648 RMSE 0.0389 ES 0.1857 VG 13.15 | 20s, wall 955s
+[11:56:02] [train] 185/280 A c0 eta 0.03 s1: KL 1.82e-01 active 1 | spread/skill 0.158 cov90 0.140 RMSE 0.0232 ES 0.1443 VG 6.87 | 21s, wall 963s
+[11:56:04] [train] 186/280 A c1 eta 0.03 s1: KL 7.80e-01 active 1 | spread/skill 0.556 cov90 0.536 RMSE 0.0275 ES 0.1419 VG 7.87 | 21s, wall 965s
+[11:56:07] [train] 187/280 A c2 eta 0.03 s1: KL 8.40e-01 active 1 | spread/skill 0.475 cov90 0.436 RMSE 0.0247 ES 0.1315 VG 7.02 | 21s, wall 968s
+[11:56:14] [train] 188/280 A c3 eta 0.03 s1: KL 3.91e-02 active 1 | spread/skill 0.081 cov90 0.072 RMSE 0.0278 ES 0.1818 VG 11.44 | 19s, wall 975s
+[11:56:21] [train] 189/280 B c0 eta 0.03 s1: KL 5.48e-01 active 2 | spread/skill 0.306 cov90 0.303 RMSE 0.0217 ES 0.1218 VG 6.54 | 18s, wall 982s
+[11:56:23] [train] 190/280 B c1 eta 0.03 s1: KL 6.85e-01 active 1 | spread/skill 0.437 cov90 0.440 RMSE 0.0289 ES 0.1611 VG 8.34 | 18s, wall 984s
+[11:56:26] [train] 191/280 B c2 eta 0.03 s1: KL 9.63e-01 active 1 | spread/skill 0.484 cov90 0.497 RMSE 0.0228 ES 0.1136 VG 6.34 | 18s, wall 987s
+[11:56:33] [train] 192/280 B c3 eta 0.03 s1: KL 2.33e-02 active 1 | spread/skill 0.064 cov90 0.052 RMSE 0.0289 ES 0.1898 VG 12.68 | 18s, wall 994s
+[11:56:39] [train] 193/280 A c0 eta 0.003 s1: KL 5.17e+00 active 3 | spread/skill 0.592 cov90 0.639 RMSE 0.0316 ES 0.1565 VG 9.21 | 18s, wall 1001s
+[11:56:42] [train] 194/280 A c1 eta 0.003 s1: KL 4.19e+00 active 4 | spread/skill 0.609 cov90 0.644 RMSE 0.0413 ES 0.1870 VG 10.58 | 18s, wall 1003s
+[11:56:45] [train] 195/280 A c2 eta 0.003 s1: KL 5.65e+00 active 3 | spread/skill 0.498 cov90 0.593 RMSE 0.0306 ES 0.1492 VG 8.34 | 19s, wall 1007s
+[11:56:54] [train] 196/280 A c3 eta 0.003 s1: KL 4.81e+00 active 3 | spread/skill 0.568 cov90 0.559 RMSE 0.0358 ES 0.1779 VG 12.89 | 20s, wall 1015s
+[11:56:59] [train] 197/280 B c0 eta 0.003 s1: KL 4.33e+00 active 3 | spread/skill 0.575 cov90 0.580 RMSE 0.0339 ES 0.1681 VG 10.02 | 18s, wall 1020s
+[11:57:01] [train] 198/280 B c1 eta 0.003 s1: KL 4.04e+00 active 4 | spread/skill 0.558 cov90 0.630 RMSE 0.0416 ES 0.2003 VG 10.96 | 18s, wall 1022s
+[11:57:04] [train] 199/280 B c2 eta 0.003 s1: KL 5.78e+00 active 4 | spread/skill 0.495 cov90 0.597 RMSE 0.0301 ES 0.1423 VG 8.01 | 17s, wall 1025s
+[11:57:11] [train] 200/280 B c3 eta 0.003 s1: KL 4.31e+00 active 4 | spread/skill 0.590 cov90 0.569 RMSE 0.0346 ES 0.1795 VG 12.98 | 17s, wall 1033s
+[11:57:17] [train] 201/280 A c0 eta 0.001 s1: KL 8.00e+00 active 4 | spread/skill 0.579 cov90 0.679 RMSE 0.0335 ES 0.1681 VG 9.75 | 18s, wall 1038s
+[11:57:20] [train] 202/280 A c1 eta 0.001 s1: KL 7.67e+00 active 4 | spread/skill 0.489 cov90 0.594 RMSE 0.0416 ES 0.2041 VG 11.29 | 18s, wall 1041s
+[11:57:23] [train] 203/280 A c2 eta 0.001 s1: KL 8.53e+00 active 4 | spread/skill 0.438 cov90 0.555 RMSE 0.0382 ES 0.1872 VG 9.08 | 18s, wall 1044s
+[11:57:30] [train] 204/280 A c3 eta 0.001 s1: KL 7.13e+00 active 4 | spread/skill 0.557 cov90 0.559 RMSE 0.0385 ES 0.1956 VG 12.95 | 18s, wall 1051s
+[11:57:36] [train] 205/280 B c0 eta 0.001 s1: KL 8.28e+00 active 4 | spread/skill 0.564 cov90 0.617 RMSE 0.0357 ES 0.1714 VG 10.70 | 18s, wall 1057s
+[11:57:39] [train] 206/280 B c1 eta 0.001 s1: KL 7.80e+00 active 4 | spread/skill 0.500 cov90 0.617 RMSE 0.0417 ES 0.2027 VG 12.11 | 18s, wall 1060s
+[11:57:42] [train] 207/280 B c2 eta 0.001 s1: KL 8.42e+00 active 4 | spread/skill 0.444 cov90 0.576 RMSE 0.0342 ES 0.1635 VG 8.69 | 18s, wall 1063s
+[11:57:50] [train] 208/280 B c3 eta 0.001 s1: KL 7.70e+00 active 4 | spread/skill 0.527 cov90 0.596 RMSE 0.0391 ES 0.1891 VG 13.40 | 19s, wall 1071s
+[11:57:55] [train] 209/280 A c0 eta 0.03 s2: KL 4.62e-02 active 1 | spread/skill 0.126 cov90 0.157 RMSE 0.0222 ES 0.1414 VG 6.85 | 19s, wall 1077s
+[11:57:58] [train] 210/280 A c1 eta 0.03 s2: KL 5.86e-01 active 1 | spread/skill 0.420 cov90 0.436 RMSE 0.0275 ES 0.1554 VG 8.30 | 18s, wall 1079s
+[11:58:01] [train] 211/280 A c2 eta 0.03 s2: KL 7.46e-01 active 1 | spread/skill 0.532 cov90 0.524 RMSE 0.0234 ES 0.1230 VG 7.23 | 18s, wall 1082s
+[11:58:09] [train] 212/280 A c3 eta 0.03 s2: KL 5.94e-04 active 0 | spread/skill 0.104 cov90 0.109 RMSE 0.0273 ES 0.1764 VG 9.97 | 18s, wall 1090s
+[11:58:15] [train] 213/280 B c0 eta 0.03 s2: KL 3.47e-01 active 1 | spread/skill 0.253 cov90 0.279 RMSE 0.0228 ES 0.1292 VG 6.94 | 18s, wall 1096s
+[11:58:17] [train] 214/280 B c1 eta 0.03 s2: KL 5.25e-01 active 1 | spread/skill 0.413 cov90 0.449 RMSE 0.0284 ES 0.1599 VG 8.46 | 19s, wall 1099s
+[11:58:20] [train] 215/280 B c2 eta 0.03 s2: KL 9.32e-01 active 1 | spread/skill 0.542 cov90 0.564 RMSE 0.0223 ES 0.1114 VG 6.33 | 19s, wall 1102s
+[11:58:29] [train] 216/280 B c3 eta 0.03 s2: KL 8.18e-04 active 0 | spread/skill 0.060 cov90 0.061 RMSE 0.0287 ES 0.1920 VG 11.31 | 19s, wall 1110s
+[11:58:35] [train] 217/280 A c0 eta 0.003 s2: KL 4.22e+00 active 3 | spread/skill 0.638 cov90 0.667 RMSE 0.0318 ES 0.1570 VG 8.05 | 19s, wall 1116s
+[11:58:38] [train] 218/280 A c1 eta 0.003 s2: KL 4.56e+00 active 3 | spread/skill 0.682 cov90 0.719 RMSE 0.0389 ES 0.1822 VG 9.87 | 20s, wall 1119s
+[11:58:41] [train] 219/280 A c2 eta 0.003 s2: KL 4.79e+00 active 4 | spread/skill 0.524 cov90 0.632 RMSE 0.0306 ES 0.1446 VG 7.48 | 19s, wall 1122s
+[11:58:45] [train] 220/280 A c3 eta 0.003 s2: KL 3.38e+00 active 4 | spread/skill 0.648 cov90 0.557 RMSE 0.0333 ES 0.1628 VG 12.41 | 15s, wall 1126s
+[11:58:47] [train] 221/280 B c0 eta 0.003 s2: KL 4.53e+00 active 3 | spread/skill 0.697 cov90 0.702 RMSE 0.0334 ES 0.1465 VG 8.08 | 12s, wall 1128s
+[11:58:48] [train] 222/280 B c1 eta 0.003 s2: KL 4.43e+00 active 2 | spread/skill 0.649 cov90 0.710 RMSE 0.0403 ES 0.1855 VG 10.66 | 10s, wall 1130s
+[11:58:50] [train] 223/280 B c2 eta 0.003 s2: KL 4.82e+00 active 3 | spread/skill 0.530 cov90 0.640 RMSE 0.0283 ES 0.1326 VG 6.95 | 9s, wall 1131s
+[11:58:54] [train] 224/280 B c3 eta 0.003 s2: KL 2.38e+00 active 4 | spread/skill 0.605 cov90 0.548 RMSE 0.0354 ES 0.1787 VG 13.14 | 9s, wall 1136s
+[11:58:57] [train] 225/280 A c0 eta 0.001 s2: KL 6.89e+00 active 4 | spread/skill 0.606 cov90 0.673 RMSE 0.0396 ES 0.1857 VG 10.36 | 9s, wall 1138s
+[11:58:58] [train] 226/280 A c1 eta 0.001 s2: KL 6.57e+00 active 4 | spread/skill 0.530 cov90 0.632 RMSE 0.0460 ES 0.2353 VG 12.64 | 9s, wall 1139s
+[11:58:59] [train] 227/280 A c2 eta 0.001 s2: KL 7.93e+00 active 4 | spread/skill 0.404 cov90 0.531 RMSE 0.0416 ES 0.2077 VG 8.93 | 9s, wall 1140s
+[11:59:03] [train] 228/280 A c3 eta 0.001 s2: KL 6.71e+00 active 4 | spread/skill 0.616 cov90 0.627 RMSE 0.0344 ES 0.1699 VG 12.44 | 8s, wall 1145s
+[11:59:06] [train] 229/280 B c0 eta 0.001 s2: KL 6.80e+00 active 4 | spread/skill 0.585 cov90 0.622 RMSE 0.0458 ES 0.2163 VG 10.83 | 8s, wall 1147s
+[11:59:07] [train] 230/280 B c1 eta 0.001 s2: KL 6.35e+00 active 4 | spread/skill 0.521 cov90 0.632 RMSE 0.0487 ES 0.2442 VG 14.54 | 8s, wall 1148s
+[11:59:08] [train] 231/280 B c2 eta 0.001 s2: KL 6.94e+00 active 4 | spread/skill 0.422 cov90 0.554 RMSE 0.0415 ES 0.1964 VG 8.26 | 8s, wall 1149s
+[11:59:12] [train] 232/280 B c3 eta 0.001 s2: KL 6.39e+00 active 4 | spread/skill 0.631 cov90 0.632 RMSE 0.0345 ES 0.1678 VG 12.75 | 8s, wall 1153s
+[11:59:14] [train] 233/280 A c0 eta 0.03 s3: KL 2.18e-03 active 0 | spread/skill 0.060 cov90 0.065 RMSE 0.0211 ES 0.1402 VG 6.38 | 8s, wall 1155s
+[11:59:15] [train] 234/280 A c1 eta 0.03 s3: KL 3.35e-03 active 0 | spread/skill 0.069 cov90 0.087 RMSE 0.0231 ES 0.1509 VG 6.67 | 8s, wall 1157s
+[11:59:17] [train] 235/280 A c2 eta 0.03 s3: KL 3.89e-03 active 0 | spread/skill 0.116 cov90 0.123 RMSE 0.0183 ES 0.1194 VG 6.70 | 8s, wall 1158s
+[11:59:21] [train] 236/280 A c3 eta 0.03 s3: KL 2.55e-04 active 0 | spread/skill 0.059 cov90 0.060 RMSE 0.0288 ES 0.1911 VG 10.79 | 8s, wall 1162s
+[11:59:23] [train] 237/280 B c0 eta 0.03 s3: KL 8.41e-03 active 0 | spread/skill 0.055 cov90 0.061 RMSE 0.0205 ES 0.1351 VG 6.56 | 8s, wall 1164s
+[11:59:24] [train] 238/280 B c1 eta 0.03 s3: KL 3.67e-03 active 0 | spread/skill 0.060 cov90 0.081 RMSE 0.0236 ES 0.1544 VG 6.34 | 8s, wall 1165s
+[11:59:26] [train] 239/280 B c2 eta 0.03 s3: KL 3.68e-02 active 1 | spread/skill 0.101 cov90 0.100 RMSE 0.0184 ES 0.1196 VG 5.83 | 8s, wall 1167s
+[11:59:30] [train] 240/280 B c3 eta 0.03 s3: KL 2.52e-04 active 0 | spread/skill 0.062 cov90 0.069 RMSE 0.0257 ES 0.1738 VG 10.73 | 8s, wall 1171s
+[11:59:32] [train] 241/280 A c0 eta 0.003 s3: KL 4.78e+00 active 4 | spread/skill 0.623 cov90 0.636 RMSE 0.0313 ES 0.1514 VG 7.82 | 8s, wall 1173s
+[11:59:33] [train] 242/280 A c1 eta 0.003 s3: KL 4.32e+00 active 3 | spread/skill 0.625 cov90 0.660 RMSE 0.0391 ES 0.1798 VG 9.49 | 8s, wall 1174s
+[11:59:34] [train] 243/280 A c2 eta 0.003 s3: KL 4.09e+00 active 3 | spread/skill 0.528 cov90 0.620 RMSE 0.0298 ES 0.1477 VG 7.33 | 8s, wall 1175s
+[11:59:39] [train] 244/280 A c3 eta 0.003 s3: KL 2.35e+00 active 3 | spread/skill 0.642 cov90 0.581 RMSE 0.0322 ES 0.1624 VG 12.74 | 8s, wall 1180s
+[11:59:41] [train] 245/280 B c0 eta 0.003 s3: KL 5.12e+00 active 4 | spread/skill 0.568 cov90 0.630 RMSE 0.0327 ES 0.1568 VG 8.17 | 9s, wall 1182s
+[11:59:43] [train] 246/280 B c1 eta 0.003 s3: KL 3.94e+00 active 4 | spread/skill 0.623 cov90 0.649 RMSE 0.0376 ES 0.1769 VG 9.55 | 9s, wall 1184s
+[11:59:45] [train] 247/280 B c2 eta 0.003 s3: KL 2.81e+00 active 4 | spread/skill 0.482 cov90 0.562 RMSE 0.0294 ES 0.1408 VG 6.92 | 10s, wall 1186s
+[11:59:50] [train] 248/280 B c3 eta 0.003 s3: KL 2.30e+00 active 4 | spread/skill 0.585 cov90 0.518 RMSE 0.0351 ES 0.1806 VG 14.44 | 10s, wall 1191s
+[11:59:52] [train] 249/280 A c0 eta 0.001 s3: KL 7.07e+00 active 4 | spread/skill 0.626 cov90 0.673 RMSE 0.0353 ES 0.1667 VG 8.84 | 11s, wall 1194s
+[11:59:55] [train] 250/280 A c1 eta 0.001 s3: KL 6.65e+00 active 4 | spread/skill 0.585 cov90 0.675 RMSE 0.0412 ES 0.1866 VG 10.43 | 11s, wall 1196s
+[11:59:56] [train] 251/280 A c2 eta 0.001 s3: KL 6.19e+00 active 4 | spread/skill 0.393 cov90 0.528 RMSE 0.0349 ES 0.1784 VG 8.77 | 11s, wall 1197s
+[12:00:01] [train] 252/280 A c3 eta 0.001 s3: KL 5.57e+00 active 4 | spread/skill 0.601 cov90 0.616 RMSE 0.0362 ES 0.1639 VG 12.65 | 11s, wall 1202s
+[12:00:04] [train] 253/280 B c0 eta 0.001 s3: KL 7.84e+00 active 4 | spread/skill 0.589 cov90 0.686 RMSE 0.0343 ES 0.1589 VG 8.66 | 11s, wall 1205s
+[12:00:06] [train] 254/280 B c1 eta 0.001 s3: KL 5.70e+00 active 4 | spread/skill 0.556 cov90 0.634 RMSE 0.0432 ES 0.1973 VG 10.92 | 11s, wall 1207s
+[12:00:07] [train] 255/280 B c2 eta 0.001 s3: KL 5.45e+00 active 4 | spread/skill 0.399 cov90 0.552 RMSE 0.0299 ES 0.1441 VG 6.98 | 11s, wall 1208s
+[12:00:11] [train] 256/280 B c3 eta 0.001 s3: KL 5.71e+00 active 4 | spread/skill 0.565 cov90 0.576 RMSE 0.0359 ES 0.1832 VG 13.82 | 10s, wall 1213s
+[12:00:13] [train] 257/280 A c0 eta 0.03 s4: KL 3.56e-01 active 1 | spread/skill 0.244 cov90 0.259 RMSE 0.0211 ES 0.1222 VG 6.44 | 9s, wall 1214s
+[12:00:15] [train] 258/280 A c1 eta 0.03 s4: KL 2.01e-03 active 0 | spread/skill 0.065 cov90 0.079 RMSE 0.0275 ES 0.1819 VG 8.10 | 9s, wall 1216s
+[12:00:16] [train] 259/280 A c2 eta 0.03 s4: KL 8.53e-01 active 1 | spread/skill 0.497 cov90 0.483 RMSE 0.0211 ES 0.1129 VG 6.88 | 9s, wall 1217s
+[12:00:21] [train] 260/280 A c3 eta 0.03 s4: KL 1.30e-01 active 1 | spread/skill 0.143 cov90 0.151 RMSE 0.0287 ES 0.1764 VG 10.83 | 9s, wall 1222s
+[12:00:23] [train] 261/280 B c0 eta 0.03 s4: KL 7.66e-01 active 1 | spread/skill 0.503 cov90 0.446 RMSE 0.0229 ES 0.1186 VG 6.86 | 10s, wall 1225s
+[12:00:26] [train] 262/280 B c1 eta 0.03 s4: KL 3.93e-01 active 1 | spread/skill 0.255 cov90 0.232 RMSE 0.0291 ES 0.1772 VG 8.42 | 11s, wall 1228s
+[12:00:28] [train] 263/280 B c2 eta 0.03 s4: KL 9.27e-01 active 1 | spread/skill 0.497 cov90 0.513 RMSE 0.0203 ES 0.1085 VG 5.72 | 12s, wall 1230s
+[12:00:35] [train] 264/280 B c3 eta 0.03 s4: KL 5.48e-03 active 0 | spread/skill 0.053 cov90 0.054 RMSE 0.0305 ES 0.2039 VG 12.17 | 13s, wall 1236s
+[12:00:37] [train] 265/280 A c0 eta 0.003 s4: KL 2.88e+00 active 3 | spread/skill 0.556 cov90 0.579 RMSE 0.0363 ES 0.1632 VG 9.25 | 13s, wall 1238s
+[12:00:41] [train] 266/280 A c1 eta 0.003 s4: KL 4.42e+00 active 3 | spread/skill 0.645 cov90 0.678 RMSE 0.0402 ES 0.1880 VG 10.26 | 14s, wall 1242s
+[12:00:44] [train] 267/280 A c2 eta 0.003 s4: KL 3.49e+00 active 1 | spread/skill 0.490 cov90 0.604 RMSE 0.0349 ES 0.1733 VG 8.40 | 15s, wall 1246s
+[12:00:57] [train] 268/280 A c3 eta 0.003 s4: KL 2.71e+00 active 1 | spread/skill 0.652 cov90 0.621 RMSE 0.0357 ES 0.1797 VG 13.94 | 22s, wall 1259s
+[12:01:01] [train] 269/280 B c0 eta 0.003 s4: KL 2.98e+00 active 2 | spread/skill 0.605 cov90 0.618 RMSE 0.0295 ES 0.1445 VG 9.24 | 24s, wall 1262s
+[12:01:06] [train] 270/280 B c1 eta 0.003 s4: KL 3.96e+00 active 4 | spread/skill 0.629 cov90 0.695 RMSE 0.0367 ES 0.1747 VG 9.98 | 24s, wall 1267s
+[12:01:10] [train] 271/280 B c2 eta 0.003 s4: KL 4.58e+00 active 3 | spread/skill 0.568 cov90 0.674 RMSE 0.0278 ES 0.1376 VG 6.96 | 24s, wall 1271s
+[12:01:21] [train] 272/280 B c3 eta 0.003 s4: KL 2.83e+00 active 2 | spread/skill 0.606 cov90 0.584 RMSE 0.0363 ES 0.1713 VG 13.57 | 23s, wall 1282s
+[12:01:25] [train] 273/280 A c0 eta 0.001 s4: KL 6.36e+00 active 4 | spread/skill 0.440 cov90 0.558 RMSE 0.0451 ES 0.2253 VG 11.01 | 23s, wall 1286s
+[12:01:30] [train] 274/280 A c1 eta 0.001 s4: KL 6.48e+00 active 4 | spread/skill 0.540 cov90 0.642 RMSE 0.0427 ES 0.2112 VG 11.59 | 23s, wall 1291s
+[12:01:32] [train] 275/280 A c2 eta 0.001 s4: KL 5.46e+00 active 4 | spread/skill 0.366 cov90 0.457 RMSE 0.0472 ES 0.2620 VG 9.08 | 22s, wall 1294s
+[12:01:44] [train] 276/280 A c3 eta 0.001 s4: KL 3.76e+00 active 4 | spread/skill 0.519 cov90 0.582 RMSE 0.0446 ES 0.2253 VG 15.50 | 22s, wall 1305s
+[12:01:47] [train] 277/280 B c0 eta 0.001 s4: KL 6.61e+00 active 4 | spread/skill 0.533 cov90 0.576 RMSE 0.0413 ES 0.1918 VG 10.66 | 21s, wall 1308s
+[12:01:51] [train] 278/280 B c1 eta 0.001 s4: KL 6.56e+00 active 4 | spread/skill 0.529 cov90 0.633 RMSE 0.0496 ES 0.2507 VG 13.58 | 21s, wall 1312s
+[12:01:53] [train] 279/280 B c2 eta 0.001 s4: KL 7.61e+00 active 3 | spread/skill 0.465 cov90 0.570 RMSE 0.0387 ES 0.2034 VG 7.52 | 20s, wall 1315s
+[12:02:03] [train] 280/280 B c3 eta 0.001 s4: KL 3.83e+00 active 3 | spread/skill 0.494 cov90 0.546 RMSE 0.0392 ES 0.1977 VG 14.57 | 18s, wall 1324s
+[12:02:04] [train] done in 1325s wall
+[12:02:04] --- stage train done in 1325.4s
+[12:02:04] [collect] 280 rows -> C:/Users/cleme/Desktop/MIT/Courses/Fall/Machine Learning/Project/Claude_ML_Project/CVAE_reproduction/outputs/verify/v-collapse/eta_sensitivity.csv
+[12:02:05] [collect] A|eta10: KL 9.7e-07-4.0e-06, active 0-0, spread/skill 0.069-0.112, cov90 0.078-0.112, RMSE 0.0184-0.0261 (+0.0 to +0.0% vs eta 10), ES change +0.0 to +0.0%, agg-post var 1.00-1.00
+[12:02:05] [collect] A|eta1: KL 5.8e-06-2.7e-05, active 0-0, spread/skill 0.067-0.115, cov90 0.077-0.106, RMSE 0.0178-0.0263 (-1.5 to +0.7% vs eta 10), ES change -2.5 to +2.5%, agg-post var 1.00-1.00
+[12:02:05] [collect] A|eta0.1: KL 6.2e-05-1.8e-04, active 0-0, spread/skill 0.064-0.094, cov90 0.071-0.096, RMSE 0.0182-0.0264 (-1.5 to +6.1% vs eta 10), ES change -1.6 to +6.1%, agg-post var 0.98-1.00
+[12:02:05] [collect] A|eta0.03: KL 6.7e-04-7.5e-01, active 0-1, spread/skill 0.081-0.475, cov90 0.074-0.483, RMSE 0.0216-0.0282 (+1.6 to +20.6% vs eta 10), ES change -6.8 to +10.0%, agg-post var 0.65-1.01
+[12:02:05] [collect] A|eta0.01: KL 1.4e+00-2.0e+00, active 1-2, spread/skill 0.581-0.633, cov90 0.517-0.656, RMSE 0.0278-0.0336 (+19.3 to +48.6% vs eta 10), ES change -5.1 to +15.6%, agg-post var 0.70-1.03
+[12:02:05] [collect] A|eta0.003: KL 2.7e+00-4.4e+00, active 3-3, spread/skill 0.498-0.648, cov90 0.581-0.667, RMSE 0.0306-0.0391 (+32.3 to +66.1% vs eta 10), ES change +0.1 to +22.6%, agg-post var 0.48-1.12
+[12:02:05] [collect] A|eta0.001: KL 5.6e+00-7.1e+00, active 4-4, spread/skill 0.404-0.599, cov90 0.531-0.673, RMSE 0.0382-0.0424 (+46.5 to +107.5% vs eta 10), ES change +10.1 to +53.3%, agg-post var 0.35-1.31
+[12:02:05] [collect] B|eta10: KL 5.7e-07-1.7e-06, active 0-0, spread/skill 0.062-0.088, cov90 0.069-0.097, RMSE 0.0175-0.0270 (+0.0 to +0.0% vs eta 10), ES change +0.0 to +0.0%, agg-post var 1.00-1.00
+[12:02:05] [collect] B|eta1: KL 3.7e-06-6.1e-06, active 0-0, spread/skill 0.063-0.073, cov90 0.068-0.090, RMSE 0.0176-0.0271 (-4.5 to +2.0% vs eta 10), ES change -4.0 to +0.6%, agg-post var 1.00-1.00
+[12:02:05] [collect] B|eta0.1: KL 5.6e-05-1.0e-04, active 0-0, spread/skill 0.067-0.085, cov90 0.065-0.075, RMSE 0.0188-0.0272 (-1.0 to +4.3% vs eta 10), ES change +1.3 to +4.6%, agg-post var 0.99-1.00
+[12:02:05] [collect] B|eta0.03: KL 8.2e-04-9.3e-01, active 0-1, spread/skill 0.062-0.484, cov90 0.060-0.501, RMSE 0.0221-0.0287 (+1.4 to +23.0% vs eta 10), ES change -8.7 to +3.9%, agg-post var 0.65-1.00
+[12:02:05] [collect] B|eta0.01: KL 1.5e+00-1.9e+00, active 1-2, spread/skill 0.521-0.623, cov90 0.486-0.635, RMSE 0.0283-0.0337 (+11.3 to +63.1% vs eta 10), ES change -3.8 to +14.6%, agg-post var 0.73-1.02
+[12:02:05] [collect] B|eta0.003: KL 2.8e+00-4.6e+00, active 3-4, spread/skill 0.495-0.627, cov90 0.569-0.661, RMSE 0.0289-0.0379 (+29.9 to +63.1% vs eta 10), ES change -0.1 to +19.8%, agg-post var 0.54-1.06
+[12:02:05] [collect] B|eta0.001: KL 6.3e+00-7.8e+00, active 4-4, spread/skill 0.434-0.565, cov90 0.554-0.632, RMSE 0.0360-0.0452 (+40.3 to +100.2% vs eta 10), ES change +4.4 to +52.1%, agg-post var 0.29-1.13
+[12:02:05] [collect] eta 10 vs stored restarts: {'n': 40, 'max_abs_weight_diff': 0.0, 'n_bitwise_identical': 40, 'n_epoch_loss_identical': 40, 'max_abs_test_mse_post_diff': 2.6645352591003757e-15, 'max_abs_diff_spread_skill_vs_phase2_restart_scores': 9.71445146547012e-17, 'max_abs_diff_coverage90_vs_phase2_restart_scores': 9.020562075079397e-17, 'max_abs_diff_rmse_median_kwh_vs_phase2_restart_scores': 9.367506770274758e-17, 'max_abs_diff_es_median_vs_phase2_restart_scores': 1.3877787807814457e-16, 'max_abs_diff_vg_median_vs_phase2_restart_scores': 1.7763568394002505e-15}
+[12:02:05] --- stage collect done in 0.9s
+[12:02:08] [figure] wrote C:/Users/cleme/Desktop/MIT/Courses/Fall/Machine Learning/Project/Claude_ML_Project/CVAE_reproduction/outputs/figures/sensitivity_eta.png
+[12:02:08] --- stage figure done in 2.5s

@@ -1,0 +1,126 @@
+{
+ "0": {
+  "sigma_saved_vs_mine_floor_corr": 0.9999274980519086,
+  "sigma_saved_over_mine_floor_median_LNH": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "frac_cells_floor_binding_mine": 0.20833333333333334,
+  "rms_sigma_saved_on_test_cells": 0.023473422085969427,
+  "rms_sigma_mine_on_test_cells": 0.023471942583114264,
+  "rms_sigma_mine_nofloor_on_test_cells": 0.023227212039708057,
+  "rms_test_resid_saved_f": 0.015987987784602097,
+  "rms_test_resid_my_f": 0.016795029166516255,
+  "rms_train_resid_my_f": 0.014834648068971315,
+  "corr_saved_f_my_f_test": 0.9980527474844492,
+  "samples_sd_mean": 0.022154949070662813,
+  "samples_rms_sd": 0.023475604244693762,
+  "rms_err_of_sample_mean": 0.016184037633966405,
+  "sample_mean_vs_saved_f_maxabs": 0.01097985515494282,
+  "ratio_sigma_saved_over_test_resid": 1.4681911446402587,
+  "ratio_sigma_mine_over_test_resid_my_f": 1.3975529515548308,
+  "ratio_sigma_mine_nofloor_over_test_resid_my_f": 1.382981345814835,
+  "spread_skill_rms": 1.4505406361280395,
+  "per_slot_ratio_sigmaN_over_testRMS_N_median_min_max": [
+   1.5425409092022928,
+   1.0066570901908332,
+   2.319485818329207
+  ],
+  "rms_test_resid_causality_model_mine": 0.025258266833030476,
+  "sigma_mine_floor_on_test_over_caus_test_resid": 0.9292776396050968
+ },
+ "1": {
+  "sigma_saved_vs_mine_floor_corr": 0.9998906818405456,
+  "sigma_saved_over_mine_floor_median_LNH": [
+   1.0,
+   1.0005001672662979,
+   1.0012000558421388
+  ],
+  "frac_cells_floor_binding_mine": 0.1527777777777778,
+  "rms_sigma_saved_on_test_cells": 0.028121941110131346,
+  "rms_sigma_mine_on_test_cells": 0.028006045082010992,
+  "rms_sigma_mine_nofloor_on_test_cells": 0.027876372733548403,
+  "rms_test_resid_saved_f": 0.018131593178031955,
+  "rms_test_resid_my_f": 0.019160988064130496,
+  "rms_train_resid_my_f": 0.01676195847396721,
+  "corr_saved_f_my_f_test": 0.9974480986836652,
+  "samples_sd_mean": 0.025988727562594245,
+  "samples_rms_sd": 0.02812028833715384,
+  "rms_err_of_sample_mean": 0.01826918685952673,
+  "sample_mean_vs_saved_f_maxabs": 0.009708362473411114,
+  "ratio_sigma_saved_over_test_resid": 1.5509911806428345,
+  "ratio_sigma_mine_over_test_resid_my_f": 1.4616180015496436,
+  "ratio_sigma_mine_nofloor_over_test_resid_my_f": 1.4548504826707327,
+  "spread_skill_rms": 1.5392194821462517,
+  "per_slot_ratio_sigmaN_over_testRMS_N_median_min_max": [
+   1.5198824223911997,
+   1.0930146531997926,
+   2.1680050978431256
+  ],
+  "rms_test_resid_causality_model_mine": 0.029319573528038132,
+  "sigma_mine_floor_on_test_over_caus_test_resid": 0.9551996059979856
+ },
+ "2": {
+  "sigma_saved_vs_mine_floor_corr": 0.9992299208555719,
+  "sigma_saved_over_mine_floor_median_LNH": [
+   0.9959463533848827,
+   0.9960676951984806,
+   1.0064250224286182
+  ],
+  "frac_cells_floor_binding_mine": 0.034722222222222224,
+  "rms_sigma_saved_on_test_cells": 0.022152312374862138,
+  "rms_sigma_mine_on_test_cells": 0.02226473183120624,
+  "rms_sigma_mine_nofloor_on_test_cells": 0.022262973454130454,
+  "rms_test_resid_saved_f": 0.01619086044191937,
+  "rms_test_resid_my_f": 0.017130213001733535,
+  "rms_train_resid_my_f": 0.014806789785486945,
+  "corr_saved_f_my_f_test": 0.9951009656246839,
+  "samples_sd_mean": 0.02167657634216578,
+  "samples_rms_sd": 0.022205011642639817,
+  "rms_err_of_sample_mean": 0.016222197253223408,
+  "sample_mean_vs_saved_f_maxabs": 0.006388954342085557,
+  "ratio_sigma_saved_over_test_resid": 1.3681985867476267,
+  "ratio_sigma_mine_over_test_resid_my_f": 1.2997346751586278,
+  "ratio_sigma_mine_nofloor_over_test_resid_my_f": 1.2996320274521687,
+  "spread_skill_rms": 1.3688041944026788,
+  "per_slot_ratio_sigmaN_over_testRMS_N_median_min_max": [
+   1.372069249535011,
+   1.0247839485733587,
+   1.8629166853515964
+  ],
+  "rms_test_resid_causality_model_mine": 0.025360116279151843,
+  "sigma_mine_floor_on_test_over_caus_test_resid": 0.8779428132792013
+ },
+ "3": {
+  "sigma_saved_vs_mine_floor_corr": 0.9996447697608584,
+  "sigma_saved_over_mine_floor_median_LNH": [
+   0.9993638700518765,
+   1.0006294996486464,
+   1.0
+  ],
+  "frac_cells_floor_binding_mine": 0.13194444444444445,
+  "rms_sigma_saved_on_test_cells": 0.028576514001278044,
+  "rms_sigma_mine_on_test_cells": 0.028568244518087874,
+  "rms_sigma_mine_nofloor_on_test_cells": 0.028493091849964423,
+  "rms_test_resid_saved_f": 0.020543237366846274,
+  "rms_test_resid_my_f": 0.02102644497622821,
+  "rms_train_resid_my_f": 0.020671250299524043,
+  "corr_saved_f_my_f_test": 0.9969394098284393,
+  "samples_sd_mean": 0.025887678356384444,
+  "samples_rms_sd": 0.02846205591353493,
+  "rms_err_of_sample_mean": 0.020489048457706303,
+  "sample_mean_vs_saved_f_maxabs": 0.012117092883806135,
+  "ratio_sigma_saved_over_test_resid": 1.391042389813218,
+  "ratio_sigma_mine_over_test_resid_my_f": 1.3586816292714325,
+  "ratio_sigma_mine_nofloor_over_test_resid_my_f": 1.3551074317212326,
+  "spread_skill_rms": 1.389135077321262,
+  "per_slot_ratio_sigmaN_over_testRMS_N_median_min_max": [
+   1.4121294468338814,
+   0.8950620337690522,
+   1.827406397138459
+  ],
+  "rms_test_resid_causality_model_mine": 0.02850433444359506,
+  "sigma_mine_floor_on_test_over_caus_test_resid": 1.0022421177599947
+ }
+}

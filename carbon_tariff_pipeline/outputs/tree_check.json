@@ -1,0 +1,589 @@
+{
+ "fine_depth3_quantiles": 24,
+ "min_leaf": 10,
+ "iai_cases": 0,
+ "n_cases": 24,
+ "iai_settings": "OptimalTreePolicyMinimizer(max_depth=depth, minbucket=10, cp=0, random_seed=1)",
+ "folds": {
+  "5": {
+   "label": "May-Jun",
+   "chosen_depth": {
+    "fixed": 1,
+    "paced": 2
+   },
+   "fits": {
+    "fixed": {
+     "1": {
+      "rows": 120,
+      "single_action_cost": 709.3498869113783,
+      "per_row_best_cost": 708.9909597228102,
+      "cost": {
+       "step3": 709.0597888070974,
+       "fine": 709.0597888070974
+      },
+      "leaves": {
+       "step3": 2,
+       "fine": 2
+      },
+      "agree_with_step3_pct": {
+       "step3": 100.0,
+       "fine": 100.0
+      }
+     },
+     "2": {
+      "rows": 120,
+      "single_action_cost": 709.3498869113783,
+      "per_row_best_cost": 708.9909597228102,
+      "cost": {
+       "step3": 709.0389435993542,
+       "fine": 709.0389435993542
+      },
+      "leaves": {
+       "step3": 4,
+       "fine": 4
+      },
+      "agree_with_step3_pct": {
+       "step3": 100.0,
+       "fine": 100.0
+      }
+     },
+     "3": {
+      "rows": 120,
+      "single_action_cost": 709.3498869113783,
+      "per_row_best_cost": 708.9909597228102,
+      "cost": {
+       "step3": 709.0227769893575,
+       "fine": 709.0181129457326
+      },
+      "leaves": {
+       "step3": 8,
+       "fine": 7
+      },
+      "agree_with_step3_pct": {
+       "step3": 100.0,
+       "fine": 99.16666666666667
+      }
+     }
+    },
+    "paced": {
+     "1": {
+      "rows": 1080,
+      "single_action_cost": 6373.986671803725,
+      "per_row_best_cost": 6365.23507363776,
+      "cost": {
+       "step3": 6366.426694210457,
+       "fine": 6366.426694210457
+      },
+      "leaves": {
+       "step3": 2,
+       "fine": 2
+      },
+      "agree_with_step3_pct": {
+       "step3": 100.0,
+       "fine": 100.0
+      }
+     },
+     "2": {
+      "rows": 1080,
+      "single_action_cost": 6373.986671803725,
+      "per_row_best_cost": 6365.23507363776,
+      "cost": {
+       "step3": 6365.954545180008,
+       "fine": 6365.91744183268
+      },
+      "leaves": {
+       "step3": 4,
+       "fine": 4
+      },
+      "agree_with_step3_pct": {
+       "step3": 100.0,
+       "fine": 98.88888888888889
+      }
+     },
+     "3": {
+      "rows": 1080,
+      "single_action_cost": 6373.986671803725,
+      "per_row_best_cost": 6365.23507363776,
+      "cost": {
+       "step3": 6365.735161796881,
+       "fine": 6365.709348170354
+      },
+      "leaves": {
+       "step3": 8,
+       "fine": 7
+      },
+      "agree_with_step3_pct": {
+       "step3": 100.0,
+       "fine": 96.38888888888889
+      }
+     }
+    }
+   },
+   "test": {
+    "fixed": {
+     "step3": {
+      "emissions_change_pct": 0.09852166493396633,
+      "bill_change_mean_pct": -23.20267547576669,
+      "event_days": 0,
+      "adjustments": 0
+     },
+     "fine": {
+      "emissions_change_pct": 0.09852166493396633,
+      "bill_change_mean_pct": -23.20267547576669,
+      "event_days": 0,
+      "adjustments": 0
+     }
+    },
+    "paced": {
+     "step3": {
+      "emissions_change_pct": -0.310499444234794,
+      "bill_change_mean_pct": -8.979504333499033,
+      "event_days": 24,
+      "adjustments": 0
+     },
+     "fine": {
+      "emissions_change_pct": -0.310499444234794,
+      "bill_change_mean_pct": -8.979504333499033,
+      "event_days": 24,
+      "adjustments": 0
+     }
+    }
+   }
+  },
+  "7": {
+   "label": "Jul-Aug",
+   "chosen_depth": {
+    "fixed": 1,
+    "paced": 1
+   },
+   "fits": {
+    "fixed": {
+     "1": {
+      "rows": 181,
+      "single_action_cost": 964.6754593605918,
+      "per_row_best_cost": 964.2779738410533,
+      "cost": {
+       "step3": 964.3668226402829,
+       "fine": 964.3668226402829
+      },
+      "leaves": {
+       "step3": 2,
+       "fine": 2
+      },
+      "agree_with_step3_pct": {
+       "step3": 100.0,
+       "fine": 100.0
+      }
+     },
+     "2": {
+      "rows": 181,
+      "single_action_cost": 964.6754593605918,
+      "per_row_best_cost": 964.2779738410533,
+      "cost": {
+       "step3": 964.3451245687053,
+       "fine": 964.3394273847225
+      },
+      "leaves": {
+       "step3": 4,
+       "fine": 4
+      },
+      "agree_with_step3_pct": {
+       "step3": 100.0,
+       "fine": 98.89502762430939
+      }
+     },
+     "3": {
+      "rows": 181,
+      "single_action_cost": 964.6754593605918,
+      "per_row_best_cost": 964.2779738410533,
+      "cost": {
+       "step3": 964.316566902877,
+       "fine": 964.3091287204791
+      },
+      "leaves": {
+       "step3": 8,
+       "fine": 8
+      },
+      "agree_with_step3_pct": {
+       "step3": 100.0,
+       "fine": 86.1878453038674
+      }
+     }
+    },
+    "paced": {
+     "1": {
+      "rows": 1629,
+      "single_action_cost": 8710.035316375626,
+      "per_row_best_cost": 8694.788422675163,
+      "cost": {
+       "step3": 8697.624327494847,
+       "fine": 8697.624327494847
+      },
+      "leaves": {
+       "step3": 2,
+       "fine": 2
+      },
+      "agree_with_step3_pct": {
+       "step3": 100.0,
+       "fine": 100.0
+      }
+     },
+     "2": {
+      "rows": 1629,
+      "single_action_cost": 8710.035316375626,
+      "per_row_best_cost": 8694.788422675163,
+      "cost": {
+       "step3": 8696.3119518559,
+       "fine": 8696.3119518559
+      },
+      "leaves": {
+       "step3": 4,
+       "fine": 4
+      },
+      "agree_with_step3_pct": {
+       "step3": 100.0,
+       "fine": 100.0
+      }
+     },
+     "3": {
+      "rows": 1629,
+      "single_action_cost": 8710.035316375626,
+      "per_row_best_cost": 8694.788422675163,
+      "cost": {
+       "step3": 8695.725370646667,
+       "fine": 8695.75968668213
+      },
+      "leaves": {
+       "step3": 8,
+       "fine": 7
+      },
+      "agree_with_step3_pct": {
+       "step3": 100.0,
+       "fine": 99.2633517495396
+      }
+     }
+    }
+   },
+   "test": {
+    "fixed": {
+     "step3": {
+      "emissions_change_pct": -0.3171124768861831,
+      "bill_change_mean_pct": -3.6068846944543265,
+      "event_days": 0,
+      "adjustments": 0
+     },
+     "fine": {
+      "emissions_change_pct": -0.3171124768861831,
+      "bill_change_mean_pct": -3.6068846944543265,
+      "event_days": 0,
+      "adjustments": 0
+     }
+    },
+    "paced": {
+     "step3": {
+      "emissions_change_pct": -0.833133014079438,
+      "bill_change_mean_pct": 19.542847339041813,
+      "event_days": 31,
+      "adjustments": 0
+     },
+     "fine": {
+      "emissions_change_pct": -0.833133014079438,
+      "bill_change_mean_pct": 19.542847339041813,
+      "event_days": 31,
+      "adjustments": 0
+     }
+    }
+   }
+  },
+  "9": {
+   "label": "Sep-Oct",
+   "chosen_depth": {
+    "fixed": 3,
+    "paced": 3
+   },
+   "fits": {
+    "fixed": {
+     "1": {
+      "rows": 243,
+      "single_action_cost": 1209.5584882809492,
+      "per_row_best_cost": 1208.8935903206325,
+      "cost": {
+       "step3": 1209.0208883602877,
+       "fine": 1209.0208883602877
+      },
+      "leaves": {
+       "step3": 2,
+       "fine": 2
+      },
+      "agree_with_step3_pct": {
+       "step3": 100.0,
+       "fine": 100.0
+      }
+     },
+     "2": {
+      "rows": 243,
+      "single_action_cost": 1209.5584882809492,
+      "per_row_best_cost": 1208.8935903206325,
+      "cost": {
+       "step3": 1208.92746476803,
+       "fine": 1208.9263945673126
+      },
+      "leaves": {
+       "step3": 4,
+       "fine": 4
+      },
+      "agree_with_step3_pct": {
+       "step3": 100.0,
+       "fine": 98.35390946502058
+      }
+     },
+     "3": {
+      "rows": 243,
+      "single_action_cost": 1209.5584882809492,
+      "per_row_best_cost": 1208.8935903206325,
+      "cost": {
+       "step3": 1208.9156358199248,
+       "fine": 1208.9135526465273
+      },
+      "leaves": {
+       "step3": 8,
+       "fine": 7
+      },
+      "agree_with_step3_pct": {
+       "step3": 100.0,
+       "fine": 94.23868312757202
+      }
+     }
+    },
+    "paced": {
+     "1": {
+      "rows": 2187,
+      "single_action_cost": 10988.687758933276,
+      "per_row_best_cost": 10961.843676416414,
+      "cost": {
+       "step3": 10967.35391412624,
+       "fine": 10967.35391412624
+      },
+      "leaves": {
+       "step3": 2,
+       "fine": 2
+      },
+      "agree_with_step3_pct": {
+       "step3": 100.0,
+       "fine": 100.0
+      }
+     },
+     "2": {
+      "rows": 2187,
+      "single_action_cost": 10988.687758933276,
+      "per_row_best_cost": 10961.843676416414,
+      "cost": {
+       "step3": 10964.568441607706,
+       "fine": 10964.452159621596
+      },
+      "leaves": {
+       "step3": 4,
+       "fine": 4
+      },
+      "agree_with_step3_pct": {
+       "step3": 100.0,
+       "fine": 99.45130315500685
+      }
+     },
+     "3": {
+      "rows": 2187,
+      "single_action_cost": 10988.687758933276,
+      "per_row_best_cost": 10961.843676416414,
+      "cost": {
+       "step3": 10963.130941911762,
+       "fine": 10962.91957525889
+      },
+      "leaves": {
+       "step3": 8,
+       "fine": 8
+      },
+      "agree_with_step3_pct": {
+       "step3": 100.0,
+       "fine": 95.51897576588935
+      }
+     }
+    }
+   },
+   "test": {
+    "fixed": {
+     "step3": {
+      "emissions_change_pct": -0.5734348490700965,
+      "bill_change_mean_pct": 7.030963623346387,
+      "event_days": 24,
+      "adjustments": 17
+     },
+     "fine": {
+      "emissions_change_pct": -0.5548224038232756,
+      "bill_change_mean_pct": 6.230450488251216,
+      "event_days": 24,
+      "adjustments": 23
+     }
+    },
+    "paced": {
+     "step3": {
+      "emissions_change_pct": -0.5971968949180396,
+      "bill_change_mean_pct": 7.725344558043479,
+      "event_days": 24,
+      "adjustments": 1
+     },
+     "fine": {
+      "emissions_change_pct": -0.5971968949180396,
+      "bill_change_mean_pct": 7.725344558043479,
+      "event_days": 24,
+      "adjustments": 1
+     }
+    }
+   }
+  },
+  "11": {
+   "label": "Nov-Dec",
+   "chosen_depth": {
+    "fixed": 1,
+    "paced": 2
+   },
+   "fits": {
+    "fixed": {
+     "1": {
+      "rows": 304,
+      "single_action_cost": 1487.8726981966154,
+      "per_row_best_cost": 1486.8988144004238,
+      "cost": {
+       "step3": 1487.1355970518973,
+       "fine": 1487.1355970518973
+      },
+      "leaves": {
+       "step3": 2,
+       "fine": 2
+      },
+      "agree_with_step3_pct": {
+       "step3": 100.0,
+       "fine": 100.0
+      }
+     },
+     "2": {
+      "rows": 304,
+      "single_action_cost": 1487.8726981966154,
+      "per_row_best_cost": 1486.8988144004238,
+      "cost": {
+       "step3": 1487.0346340401443,
+       "fine": 1487.02795622233
+      },
+      "leaves": {
+       "step3": 4,
+       "fine": 4
+      },
+      "agree_with_step3_pct": {
+       "step3": 100.0,
+       "fine": 99.67105263157895
+      }
+     },
+     "3": {
+      "rows": 304,
+      "single_action_cost": 1487.8726981966154,
+      "per_row_best_cost": 1486.8988144004238,
+      "cost": {
+       "step3": 1487.006916666577,
+       "fine": 1487.0003941678056
+      },
+      "leaves": {
+       "step3": 8,
+       "fine": 8
+      },
+      "agree_with_step3_pct": {
+       "step3": 100.0,
+       "fine": 98.68421052631578
+      }
+     }
+    },
+    "paced": {
+     "1": {
+      "rows": 2736,
+      "single_action_cost": 13481.887556272999,
+      "per_row_best_cost": 13449.721317909898,
+      "cost": {
+       "step3": 13457.553106466923,
+       "fine": 13457.553106466923
+      },
+      "leaves": {
+       "step3": 2,
+       "fine": 2
+      },
+      "agree_with_step3_pct": {
+       "step3": 100.0,
+       "fine": 100.0
+      }
+     },
+     "2": {
+      "rows": 2736,
+      "single_action_cost": 13481.887556272999,
+      "per_row_best_cost": 13449.721317909898,
+      "cost": {
+       "step3": 13452.271943193773,
+       "fine": 13452.077518168277
+      },
+      "leaves": {
+       "step3": 4,
+       "fine": 4
+      },
+      "agree_with_step3_pct": {
+       "step3": 100.0,
+       "fine": 98.9766081871345
+      }
+     },
+     "3": {
+      "rows": 2736,
+      "single_action_cost": 13481.887556272999,
+      "per_row_best_cost": 13449.721317909898,
+      "cost": {
+       "step3": 13451.214871635606,
+       "fine": 13451.210127868551
+      },
+      "leaves": {
+       "step3": 7,
+       "fine": 8
+      },
+      "agree_with_step3_pct": {
+       "step3": 100.0,
+       "fine": 88.23099415204678
+      }
+     }
+    }
+   },
+   "test": {
+    "fixed": {
+     "step3": {
+      "emissions_change_pct": -0.9018947963000084,
+      "bill_change_mean_pct": 9.216469883966871,
+      "event_days": 16,
+      "adjustments": 45
+     },
+     "fine": {
+      "emissions_change_pct": -0.9018947963000084,
+      "bill_change_mean_pct": 9.216469883966871,
+      "event_days": 16,
+      "adjustments": 45
+     }
+    },
+    "paced": {
+     "step3": {
+      "emissions_change_pct": -0.9347694205861736,
+      "bill_change_mean_pct": 14.542855005689702,
+      "event_days": 55,
+      "adjustments": 6
+     },
+     "fine": {
+      "emissions_change_pct": -0.9329795432830902,
+      "bill_change_mean_pct": 14.090651147520973,
+      "event_days": 53,
+      "adjustments": 8
+     }
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,72 @@
+{
+ "purpose": "run-time evidence that Track B uses exactly Track A's settings and code paths",
+ "checks": {
+  "constants_equal_to_trackA_scripts": {
+   "GEN_SEED": true,
+   "N_RESTARTS": true,
+   "N_SAMPLES": true,
+   "LOW_SLOTS": true,
+   "HIGH_SLOTS": true,
+   "SCENARIOS": true,
+   "CLUSTERS": true,
+   "REGIONS": true,
+   "CLAIMED_SIGN": true,
+   "gam.BASE_SEED": true,
+   "gam.N_SAMPLES": true,
+   "gam.PAPER_FIG4": true
+  },
+  "gam_lib_scenario_order_equals_SCENARIOS": true,
+  "cvae_scenario_cond_equal_trackA_function_on_trackB_conditions": {
+   "Normal": true,
+   "Low": true,
+   "High": true,
+   "AllHigh": true
+  },
+  "cvae_generation_code_reproduces_trackA_arrays_bitwise": {
+   "0": {
+    "samples": true,
+    "Normal": true,
+    "Low": true,
+    "High": true
+   },
+   "1": {
+    "samples": true,
+    "Normal": true,
+    "Low": true,
+    "High": true
+   },
+   "2": {
+    "samples": true,
+    "Normal": true,
+    "Low": true,
+    "High": true
+   },
+   "3": {
+    "samples": true,
+    "Normal": true,
+    "Low": true,
+    "High": true
+   }
+  },
+  "cvae_training_job_reproduces_trackA_restart": {
+   "cluster": 3,
+   "seed": 31,
+   "test_mse_post_trackA": 5.296956311059018,
+   "test_mse_post_rerun": 5.296956311059018,
+   "max_abs_weight_diff": 0.0,
+   "epoch_loss_identical": true,
+   "runtime_s": 7.701178200004506
+  },
+  "gam_code_reproduces_trackA_cluster3": {
+   "samples_max_abs_diff_kwh": 0.0,
+   "Normal_max_abs_diff_kwh": 0.0,
+   "Low_max_abs_diff_kwh": 0.0,
+   "High_max_abs_diff_kwh": 0.0,
+   "smoothing_g_max_abs_diff": 0.0,
+   "sigma_max_abs_diff": 0.0,
+   "note": "this refit ran with OPENBLAS_NUM_THREADS=1 vs 4 in 11_trackA_gam.py, so rounding-level differences would be acceptable; anything above 1e-8 kWh would not",
+   "fit_seconds": 2.328338623046875
+  }
+ },
+ "all_pass": true
+}

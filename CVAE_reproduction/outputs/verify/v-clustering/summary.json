@@ -1,0 +1,72 @@
+{
+ "table3_identified_definition": {
+  "formula": "S = (|I|-k)/(k-1) * sum_l |C_l| * ||Y(C_l)-Y(I)||_2  /  sum_l (1/|C_l|) sum_{i in C_l} ||Y(i)-Y(C_l)||_2   (Euclidean norms NOT squared; size-weighted between term; mean within-cluster distance)",
+  "recovered_partition_ToU_raw_std_special": [
+   13432.6,
+   14076.2,
+   16055.0
+  ],
+  "paper_NMF_ToU": [
+   13432,
+   14088,
+   16070
+  ],
+  "rel_diff_pct": [
+   0.005,
+   -0.084,
+   -0.094
+  ],
+  "special_mask": "authors' low_/high_ dummies (2,160 slots); 'loc' xlsx 15,873 (-1.2%), 'gmt' 15,794 (-1.7%)",
+  "random_20_seeds_mean_sd": [
+   [
+    5318,
+    770
+   ],
+   [
+    4969,
+    120
+   ],
+   [
+    5073,
+    150
+   ]
+  ],
+  "random_with_paper_fig2_sizes_248_264_242_253_mean_sd": [
+   [
+    5303,
+    685
+   ],
+   [
+    4952,
+    89
+   ],
+   [
+    5049,
+    127
+   ]
+  ],
+  "paper_Rd_ToU": [
+   4627,
+   4950,
+   5151
+  ],
+  "paper_Rd_percentiles_in_random_with_paper_sizes": [
+   0.14,
+   0.51,
+   0.775
+  ],
+  "null_theory": "(n-k)/(k-1)*sqrt(n(k-1))/k*rho = 4594*rho (rho = RMS/mean distance to centroid >= 1); synthetic Gaussian 4622",
+  "eqs_3_5_as_printed_random": "D1 sklearn 1.03+-0.34 / 1.00+-0.05 / 1.00+-0.06; D2 1.03+-0.34 / 1.005+-0.047 / 1.006+-0.057 (20 seeds)"
+ },
+ "files": [
+  "c1_partition.json",
+  "c2_ari_relabel.json",
+  "c2b_rerun_kmedoids.json",
+  "c4_fig2.json",
+  "t3_core.json",
+  "t3_v1_detail.json",
+  "t3_rd_seed.json",
+  "t3_v1_runs.json"
+ ],
+ "scripts_dir": "C:/Users/cleme/AppData/Local/Temp/claude/2f83cc224499e10e/1aa3d082-c193-42de-888f-c8f5d2fbba90/scratchpad/verify/v-clustering/"
+}

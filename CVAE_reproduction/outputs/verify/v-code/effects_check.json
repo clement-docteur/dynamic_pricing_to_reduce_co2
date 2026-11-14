@@ -1,0 +1,447 @@
+{
+ "lib_windows": {
+  "High_in": [
+   39,
+   40,
+   41,
+   42,
+   43
+  ],
+  "High_pre4": [
+   35,
+   36,
+   37,
+   38
+  ],
+  "High_post4": [
+   44,
+   45,
+   46,
+   47
+  ],
+  "High_pre2": [
+   37,
+   38
+  ],
+  "High_post2": [
+   44,
+   45
+  ],
+  "Low_in": [
+   9,
+   10,
+   11,
+   12,
+   13,
+   14,
+   15,
+   16,
+   17,
+   18
+  ]
+ },
+ "windows_match_task": true,
+ "effects_recomputed": {
+  "cvae_c0": {
+   "Low_in": {
+    "mine_pct": -2.353,
+    "mine_kwh": -0.004079002068152071,
+    "summary_hits": [
+     [
+      "per_model_cluster/cvae_c0/Low/regions/in_window/pct",
+      -2.353
+     ]
+    ]
+   },
+   "High_in": {
+    "mine_pct": 3.826,
+    "mine_kwh": 0.010506031306697406,
+    "summary_hits": [
+     [
+      "per_model_cluster/cvae_c0/High/regions/in_window/pct",
+      3.826
+     ]
+    ]
+   },
+   "High_pre4": {
+    "mine_pct": 5.154,
+    "mine_kwh": 0.016694712802175618,
+    "summary_hits": [
+     [
+      "per_model_cluster/cvae_c0/High/regions/pre4/pct",
+      5.154
+     ]
+    ]
+   },
+   "High_post4": {
+    "mine_pct": 6.307,
+    "mine_kwh": 0.011161798157819562,
+    "summary_hits": [
+     [
+      "per_model_cluster/cvae_c0/High/regions/post4/pct",
+      6.307
+     ]
+    ]
+   }
+  },
+  "cvae_c1": {
+   "Low_in": {
+    "mine_pct": 4.905,
+    "mine_kwh": 0.007189201300722838,
+    "summary_hits": [
+     [
+      "per_model_cluster/cvae_c1/Low/regions/in_window/pct",
+      4.905
+     ]
+    ]
+   },
+   "High_in": {
+    "mine_pct": -9.323,
+    "mine_kwh": -0.032918458028956175,
+    "summary_hits": [
+     [
+      "per_model_cluster/cvae_c1/High/regions/in_window/pct",
+      -9.323
+     ]
+    ]
+   },
+   "High_pre4": {
+    "mine_pct": -10.529,
+    "mine_kwh": -0.03446893607482037,
+    "summary_hits": [
+     [
+      "per_model_cluster/cvae_c1/High/regions/pre4/pct",
+      -10.529
+     ]
+    ]
+   },
+   "High_post4": {
+    "mine_pct": -12.586,
+    "mine_kwh": -0.03298797515119544,
+    "summary_hits": [
+     [
+      "per_model_cluster/cvae_c1/High/regions/post4/pct",
+      -12.586
+     ]
+    ]
+   }
+  },
+  "cvae_c2": {
+   "Low_in": {
+    "mine_pct": -5.661,
+    "mine_kwh": -0.010902387223774571,
+    "summary_hits": [
+     [
+      "per_model_cluster/cvae_c2/Low/regions/in_window/pct",
+      -5.661
+     ]
+    ]
+   },
+   "High_in": {
+    "mine_pct": -4.322,
+    "mine_kwh": -0.012800600499279082,
+    "summary_hits": [
+     [
+      "per_model_cluster/cvae_c2/High/regions/in_window/pct",
+      -4.322
+     ]
+    ]
+   },
+   "High_pre4": {
+    "mine_pct": -3.842,
+    "mine_kwh": -0.010795041026350538,
+    "summary_hits": [
+     [
+      "per_model_cluster/cvae_c2/High/regions/pre4/pct",
+      -3.842
+     ]
+    ]
+   },
+   "High_post4": {
+    "mine_pct": -4.034,
+    "mine_kwh": -0.01098949160287155,
+    "summary_hits": [
+     [
+      "per_model_cluster/cvae_c2/High/regions/post4/pct",
+      -4.034
+     ]
+    ]
+   }
+  },
+  "cvae_c3": {
+   "Low_in": {
+    "mine_pct": 50.267,
+    "mine_kwh": 0.06349856522042575,
+    "summary_hits": [
+     [
+      "per_model_cluster/cvae_c3/Low/regions/in_window/pct",
+      50.267
+     ]
+    ]
+   },
+   "High_in": {
+    "mine_pct": -25.098,
+    "mine_kwh": -0.0654796094562914,
+    "summary_hits": [
+     [
+      "per_model_cluster/cvae_c3/High/regions/in_window/pct",
+      -25.098
+     ]
+    ]
+   },
+   "High_pre4": {
+    "mine_pct": -25.301,
+    "mine_kwh": -0.06992432915786483,
+    "summary_hits": [
+     [
+      "per_model_cluster/cvae_c3/High/regions/pre4/pct",
+      -25.301
+     ]
+    ]
+   },
+   "High_post4": {
+    "mine_pct": -21.932,
+    "mine_kwh": -0.04152770897850832,
+    "summary_hits": [
+     [
+      "per_model_cluster/cvae_c3/High/regions/post4/pct",
+      -21.932
+     ]
+    ]
+   }
+  },
+  "gam_c0": {
+   "Low_in": {
+    "mine_pct": 3.695,
+    "mine_kwh": 0.0062846562925608735,
+    "summary_hits": [
+     [
+      "per_model_cluster/gam_c0/Low/regions/in_window/pct",
+      3.695
+     ]
+    ]
+   },
+   "High_in": {
+    "mine_pct": -3.537,
+    "mine_kwh": -0.009630315118159394,
+    "summary_hits": [
+     [
+      "per_model_cluster/gam_c0/High/regions/in_window/pct",
+      -3.537
+     ]
+    ]
+   },
+   "High_pre4": {
+    "mine_pct": 0.0,
+    "mine_kwh": 0.0,
+    "summary_hits": [
+     [
+      "per_model_cluster/gam_c0/High/regions/pre4/pct",
+      0.0
+     ]
+    ]
+   },
+   "High_post4": {
+    "mine_pct": 0.0,
+    "mine_kwh": 0.0,
+    "summary_hits": [
+     [
+      "per_model_cluster/gam_c0/High/regions/post4/pct",
+      0.0
+     ]
+    ]
+   }
+  },
+  "gam_c1": {
+   "Low_in": {
+    "mine_pct": 4.666,
+    "mine_kwh": 0.006687773705057031,
+    "summary_hits": [
+     [
+      "per_model_cluster/gam_c1/Low/regions/in_window/pct",
+      4.666
+     ]
+    ]
+   },
+   "High_in": {
+    "mine_pct": -5.366,
+    "mine_kwh": -0.018984681162930204,
+    "summary_hits": [
+     [
+      "per_model_cluster/gam_c1/High/regions/in_window/pct",
+      -5.366
+     ]
+    ]
+   },
+   "High_pre4": {
+    "mine_pct": 0.0,
+    "mine_kwh": 0.0,
+    "summary_hits": [
+     [
+      "per_model_cluster/gam_c1/High/regions/pre4/pct",
+      0.0
+     ]
+    ]
+   },
+   "High_post4": {
+    "mine_pct": 0.0,
+    "mine_kwh": 0.0,
+    "summary_hits": [
+     [
+      "per_model_cluster/gam_c1/High/regions/post4/pct",
+      0.0
+     ]
+    ]
+   }
+  },
+  "gam_c2": {
+   "Low_in": {
+    "mine_pct": 2.158,
+    "mine_kwh": 0.004117274430857708,
+    "summary_hits": [
+     [
+      "per_model_cluster/gam_c2/Low/regions/in_window/pct",
+      2.158
+     ]
+    ]
+   },
+   "High_in": {
+    "mine_pct": -3.646,
+    "mine_kwh": -0.010830692480066486,
+    "summary_hits": [
+     [
+      "per_model_cluster/gam_c2/High/regions/in_window/pct",
+      -3.646
+     ]
+    ]
+   },
+   "High_pre4": {
+    "mine_pct": 0.0,
+    "mine_kwh": 0.0,
+    "summary_hits": [
+     [
+      "per_model_cluster/gam_c2/High/regions/pre4/pct",
+      0.0
+     ]
+    ]
+   },
+   "High_post4": {
+    "mine_pct": 0.0,
+    "mine_kwh": 0.0,
+    "summary_hits": [
+     [
+      "per_model_cluster/gam_c2/High/regions/post4/pct",
+      0.0
+     ]
+    ]
+   }
+  },
+  "gam_c3": {
+   "Low_in": {
+    "mine_pct": 33.987,
+    "mine_kwh": 0.043566226636725734,
+    "summary_hits": [
+     [
+      "per_model_cluster/gam_c3/Low/regions/in_window/pct",
+      33.987
+     ]
+    ]
+   },
+   "High_in": {
+    "mine_pct": -25.489,
+    "mine_kwh": -0.06588541365219579,
+    "summary_hits": [
+     [
+      "per_model_cluster/gam_c3/High/regions/in_window/pct",
+      -25.489
+     ]
+    ]
+   },
+   "High_pre4": {
+    "mine_pct": 0.0,
+    "mine_kwh": 0.0,
+    "summary_hits": [
+     [
+      "per_model_cluster/gam_c3/High/regions/pre4/pct",
+      0.0
+     ]
+    ]
+   },
+   "High_post4": {
+    "mine_pct": 0.0,
+    "mine_kwh": 0.0,
+    "summary_hits": [
+     [
+      "per_model_cluster/gam_c3/High/regions/post4/pct",
+      0.0
+     ]
+    ]
+   }
+  }
+ },
+ "regen_c3": [
+  {
+   "day": 0,
+   "date": "2013-01-01",
+   "real_day_has_events": false,
+   "n_real_low_slots": 0,
+   "n_real_high_slots": 0,
+   "maxabs_High_vs_saved": 0.0,
+   "maxabs_Low_vs_saved": 0.0,
+   "maxabs_Normal_vs_saved": 0.0,
+   "maxabs_real_vs_saved_samples": 0.0
+  },
+  {
+   "day": 3,
+   "date": "2013-01-10",
+   "real_day_has_events": true,
+   "n_real_low_slots": 6,
+   "n_real_high_slots": 0,
+   "maxabs_High_vs_saved": 0.0,
+   "maxabs_Low_vs_saved": 0.0,
+   "maxabs_Normal_vs_saved": 0.0,
+   "maxabs_real_vs_saved_samples": 0.0
+  },
+  {
+   "day": 89,
+   "date": "2013-12-19",
+   "real_day_has_events": true,
+   "n_real_low_slots": 37,
+   "n_real_high_slots": 0,
+   "maxabs_High_vs_saved": 0.0,
+   "maxabs_Low_vs_saved": 0.0,
+   "maxabs_Normal_vs_saved": 0.0,
+   "maxabs_real_vs_saved_samples": 0.0
+  },
+  {
+   "day": 45,
+   "date": "2013-07-14",
+   "real_day_has_events": true,
+   "n_real_low_slots": 0,
+   "n_real_high_slots": 12,
+   "maxabs_High_vs_saved": 0.0,
+   "maxabs_Low_vs_saved": 0.0,
+   "maxabs_Normal_vs_saved": 0.0,
+   "maxabs_real_vs_saved_samples": 0.0
+  }
+ ],
+ "regen_c3_if_real_events_kept_maxabs_vs_saved": 0.030999489760127064,
+ "normal_scen_equals_real_samples_on_all_normal_days_maxabs": 0.0,
+ "n_all_normal_test_days": 52,
+ "cvae_c0_maxabs_outside_window_High_Low": [
+  0.09340387164704006,
+  0.09559188250553363
+ ],
+ "cvae_c3_maxabs_outside_window_High_Low": [
+  0.15177092493919483,
+  0.10222675425553024
+ ],
+ "gam_c0_maxabs_outside_window_High_Low": [
+  0.0,
+  0.0
+ ],
+ "gam_c3_maxabs_outside_window_High_Low": [
+  0.0,
+  0.0
+ ]
+}
