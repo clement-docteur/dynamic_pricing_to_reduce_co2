@@ -6,6 +6,7 @@ Low Carbon London (LCL) 2013 dynamic time-of-use trial.
 | Folder / file | What it is |
 |---|---|
 | `carbon_tariff_pipeline/` | Main project: day-ahead carbon-intensity forecast, marginal emission factors, demand-response simulator, optimal policy trees. Results in `carbon_tariff_pipeline/report.html`; details in [its README](carbon_tariff_pipeline/README.md). |
+| `demand_response/` | Demand-response baseline, summary of the CVAE investigation, and all demand predictions in one shared format (`outputs/predictions.csv.gz`). Self-contained; see [its README](demand_response/README.md). |
 | `CVAE_reproduction/` | Reproduction of Brégère & Bessa (2020), *Simulating tariff impact ... with conditional variational autoencoders*. It also builds the household data, clusters and trained CVAEs that the main pipeline uses. Summary notebook: `CVAE_reproduction/CVAE_reproduction.ipynb`; spec: `CVAE_reproduction/REPRO_SPEC.md`. |
 | `final_report/` | LaTeX report (`main.tex` + `figures/`, also zipped for Overleaf). |
 | `EDA_df_fuel_ckan.ipynb` | Exploration of the NESO generation-mix / carbon-intensity data against the LCL tariff schedule. |
