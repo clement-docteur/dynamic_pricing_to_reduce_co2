@@ -48,15 +48,21 @@ from lib.policy import (NORMAL, POLICIES, PolicyTree, candidate_pool, carbon_rul
 
 _ap = argparse.ArgumentParser()
 _ap.add_argument("--metric", choices=["marginal", "average"], default="marginal")
-METRIC = _ap.parse_args().metric
-SUFFIX = "" if METRIC == "marginal" else f"_{METRIC}"
+# MVP integration (2026-11-14): 'lagged' replaces the realised same-day temperature (not known when the tariff is
+# announced at 12:00 GMT on d-1) by the mean temperature of the 24 h ending 12:00 GMT on d-1. Default = original.
+_ap.add_argument("--temperature", choices=["realised", "lagged"], default="realised")
+_ap.add_argument("--tag", default="", help="extra output-file suffix")
+_ARGS = _ap.parse_args()
+METRIC, TEMPERATURE, TAG = _ARGS.metric, _ARGS.temperature, _ARGS.tag
+SUFFIX = ("" if METRIC == "marginal" else f"_{METRIC}") + (f"_{TAG}" if TAG else "")
 log, _ = make_log()
 CLIP = np.log(4.0)            # simulated consumption ratios are clipped to [1/4, 4]
 K_MENU = 6
 LAMBDAS = [0.0, 0.002, 0.004, 0.006, 0.007, 0.008, 0.009, 0.010, 0.011, 0.013, 0.016, 0.02, 0.03]   # kg per (p/kWh)
+TEMP_FEATURE = {"realised": "temperature, day mean (C)", "lagged": "temperature, 24 h to 12:00 on d-1 (C)"}[TEMPERATURE]
 FEATURES = {"forecast CI, day mean (g/kWh)": "{:.0f} g/kWh", "forecast CI, 16:00-21:00 (g/kWh)": "{:.0f} g/kWh",
             "forecast CI, evening minus night (g/kWh)": "{:.0f} g/kWh", "forecast CI, max - min (g/kWh)": "{:.0f} g/kWh",
-            "forecast dirtiest 3 h, start hour (GMT)": "{:.1f} h", "temperature, day mean (C)": "{:.1f} &deg;C",
+            "forecast dirtiest 3 h, start hour (GMT)": "{:.1f} h", TEMP_FEATURE: "{:.1f} &deg;C",
             "weekend or holiday": "{:.1f}", "recent consumption (kWh/half-hour)": "{:.3f}"}
 NIGHT_LOW = (5, 10)           # Low 02:00-05:00, the menu's night Low block
 SLACK_GRID = [0.0, 0.25, 0.5, 1.0, 1.5, 2.0, 3.0, 5.0, 9.5]     # budget levels (p/kWh above Normal per remaining day)
@@ -81,6 +87,19 @@ DAYTYPE = day_type(DATES_2013)
 THETA = np.load(OUT / "response_theta.npz")
 
 
+def lagged_temperature(temp):
+    """Mean temperature of the 48 half-hours ending 12:00 GMT on d-1 (slot 24 of d-1 ends at 12:00), i.e. the
+    information available at the day-ahead announcement. 2013-01-01 has no such data (ERA5 starts 2013-01-01) and
+    takes 2013-01-02's value; 2013-01-02 uses the 25 available half-hours (both are training days)."""
+    flat = temp.ravel()
+    out = np.empty(len(temp))
+    for d in range(len(temp)):
+        end = (d - 1) * H + 24
+        out[d] = flat[max(0, end - 47): end + 1].mean() if end >= 0 else np.nan
+    out[0] = out[1]
+    return out
+
+
 def features():
     temp = load_temps_2013()
     win = np.stack([np.convolve(r, np.ones(6), "valid") for r in CIF])
@@ -91,7 +110,7 @@ def features():
     f[:, 2] = f[:, 1] - CIF[:, hours(0, 6)].mean(1)
     f[:, 3] = CIF.max(1) - CIF.min(1)
     f[:, 4] = (win.argmax(1) - 1) / 2.0                     # window starting at slot i begins at (i-1)/2 h GMT
-    f[:, 5] = temp.mean(1)
+    f[:, 5] = temp.mean(1) if TEMPERATURE == "realised" else lagged_temperature(temp)
     f[:, 6] = DAYTYPE
     f[:, 7] = [daily[max(0, d - 8): max(1, d - 1)].mean() for d in range(365)]   # days d-8..d-2
     return f

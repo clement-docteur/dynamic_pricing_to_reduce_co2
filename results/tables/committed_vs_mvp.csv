@@ -1,0 +1,7 @@
+Policy,"Clement (committed; realised temperature, Windows XGBoost forecast)","MVP (lagged temperature, forecast re-run here)"
+B. Carbon-based heuristic,-0.17594937529538762,-0.289827827164089
+C. Direct model-based optimisation,0.8414123446295642,0.8414123446295642
+D. Policy tree (exact solver),0.76262879887019,0.76262879887019
+Ext. Budget-aware policy tree,0.8030079602470194,0.8030079602470194
+Ref. Oracle (perfect hindsight),0.8898218041518954,0.8898218041518954
+Policy-tree depth,1.0,2.0

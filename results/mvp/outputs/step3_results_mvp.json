@@ -1,0 +1,1921 @@
+{
+ "metric": "marginal",
+ "reference_footprint_kg": 298.23060905804545,
+ "scored_with_each_factor": {
+  "marginal": {
+   "Historical TOU (2013 trial)": 0.0,
+   "Simple carbon-based tariff": 1.6760474066302802,
+   "Optimal policy tree": -0.9018947963000084,
+   "Direct optimisation": -0.9018947963000084,
+   "Direct optimisation, perfect carbon forecast": -0.9018947963000084,
+   "Oracle (perfect hindsight)": -0.9687987379686541,
+   "Budget-aware policy tree": -0.9347694205861736,
+   "Budget-aware direct optimisation": -0.9175901674010963
+  },
+  "marginal_unadjusted": {
+   "Historical TOU (2013 trial)": 0.0,
+   "Simple carbon-based tariff": 1.2068364513303627,
+   "Optimal policy tree": -0.6524551920182339,
+   "Direct optimisation": -0.6524551920182339,
+   "Direct optimisation, perfect carbon forecast": -0.6524551920182339,
+   "Oracle (perfect hindsight)": -0.6682949586736021,
+   "Budget-aware policy tree": -0.6213009311505284,
+   "Budget-aware direct optimisation": -0.6433253184444497
+  },
+  "marginal_netload": {
+   "Historical TOU (2013 trial)": 0.0,
+   "Simple carbon-based tariff": 1.7307995450166436,
+   "Optimal policy tree": -0.8481774839793058,
+   "Direct optimisation": -0.8481774839793058,
+   "Direct optimisation, perfect carbon forecast": -0.8481774839793058,
+   "Oracle (perfect hindsight)": -0.9127692083098884,
+   "Budget-aware policy tree": -0.8821773298794977,
+   "Budget-aware direct optimisation": -0.8625358765941185
+  },
+  "average": {
+   "Historical TOU (2013 trial)": 0.0,
+   "Simple carbon-based tariff": 1.723994269951815,
+   "Optimal policy tree": -0.7856897918992339,
+   "Direct optimisation": -0.7856897918992339,
+   "Direct optimisation, perfect carbon forecast": -0.7856897918992339,
+   "Oracle (perfect hindsight)": -0.8746385494963519,
+   "Budget-aware policy tree": -0.8425646436315105,
+   "Budget-aware direct optimisation": -0.8298550455131908
+  }
+ },
+ "target_price": 13.607631578947368,
+ "historical_mean_price": {
+  "train": 13.629511316872428,
+  "val": 13.520471311475411,
+  "test": 12.795368852459015,
+  "trainval": 13.607631578947368
+ },
+ "historical_price_paid": {
+  "train": 13.8668409751157,
+  "val": 13.42357265174178,
+  "test": 12.98563075709386,
+  "trainval": 13.784274793106817
+ },
+ "split_days": {
+  "train": 243,
+  "val": 61,
+  "test": 61
+ },
+ "n_test_days": 61,
+ "menu": [
+  {
+   "name": "Normal all day",
+   "price": 11.76
+  },
+  {
+   "name": "High 17:00-20:00",
+   "price": 18.69
+  },
+  {
+   "name": "High 18:00-20:00",
+   "price": 16.38
+  },
+  {
+   "name": "Low 02:00-05:00",
+   "price": 10.788749999999999
+  }
+ ],
+ "menu_pool_size": 98,
+ "features": [
+  "forecast CI, day mean (g/kWh)",
+  "forecast CI, 16:00-21:00 (g/kWh)",
+  "forecast CI, evening minus night (g/kWh)",
+  "forecast CI, max - min (g/kWh)",
+  "forecast dirtiest 3 h, start hour (GMT)",
+  "temperature, 24 h to 12:00 on d-1 (C)",
+  "weekend or holiday",
+  "recent consumption (kWh/half-hour)"
+ ],
+ "feature_formats": [
+  "{:.0f} g/kWh",
+  "{:.0f} g/kWh",
+  "{:.0f} g/kWh",
+  "{:.0f} g/kWh",
+  "{:.1f} h",
+  "{:.1f} &deg;C",
+  "{:.1f}",
+  "{:.3f}"
+ ],
+ "depth": 1,
+ "lambda_tree": 0.008,
+ "selection_by_depth": {
+  "1": {
+   "depth": 1,
+   "lambda": 0.008,
+   "val_emissions_kg": 271.6012644131695,
+   "adjustments": 1,
+   "leaves": 2
+  },
+  "2": {
+   "depth": 2,
+   "lambda": 0.008,
+   "val_emissions_kg": 271.6673329253677,
+   "adjustments": 14,
+   "leaves": 4
+  },
+  "3": {
+   "depth": 3,
+   "lambda": 0.008,
+   "val_emissions_kg": 271.6721066849453,
+   "adjustments": 9,
+   "leaves": 8
+  }
+ },
+ "tree": {
+  "leaf": false,
+  "feature": 7,
+  "threshold": 0.1710707294711571,
+  "n": 304,
+  "left": {
+   "leaf": true,
+   "action": 0,
+   "n": 115,
+   "ranking": [
+    0,
+    2,
+    3,
+    1
+   ]
+  },
+  "right": {
+   "leaf": true,
+   "action": 1,
+   "n": 189,
+   "ranking": [
+    1,
+    2,
+    0,
+    3
+   ]
+  }
+ },
+ "tree_prescribed_test_counts": {
+  "High 17:00-20:00": 61
+ },
+ "tree_test_counts": {
+  "High 17:00-20:00": 16,
+  "Normal all day": 45
+ },
+ "tree_event_days": 16,
+ "adjustments": {
+  "tree": 45,
+  "direct": 45,
+  "direct_perfect_ci": 45,
+  "tree_paced": 6,
+  "direct_paced": 5
+ },
+ "paced_depth": 2,
+ "paced_tree": {
+  "leaf": false,
+  "feature": 7,
+  "threshold": 0.22386651690175258,
+  "n": 2736,
+  "left": {
+   "leaf": false,
+   "feature": 8,
+   "threshold": 4.0,
+   "n": 1899,
+   "left": {
+    "leaf": true,
+    "action": 3,
+    "n": 1477,
+    "ranking": [
+     3,
+     0,
+     2,
+     1
+    ]
+   },
+   "right": {
+    "leaf": true,
+    "action": 1,
+    "n": 422,
+    "ranking": [
+     1,
+     2,
+     0,
+     3
+    ]
+   }
+  },
+  "right": {
+   "leaf": false,
+   "feature": 8,
+   "threshold": 1.25,
+   "n": 837,
+   "left": {
+    "leaf": true,
+    "action": 2,
+    "n": 372,
+    "ranking": [
+     2,
+     0,
+     3,
+     1
+    ]
+   },
+   "right": {
+    "leaf": true,
+    "action": 1,
+    "n": 465,
+    "ranking": [
+     1,
+     2,
+     0,
+     3
+    ]
+   }
+  }
+ },
+ "paced_selection_by_depth": {
+  "1": {
+   "depth": 1,
+   "val_emissions_kg": 271.73779763334323,
+   "adjustments": 1,
+   "leaves": 2
+  },
+  "2": {
+   "depth": 2,
+   "val_emissions_kg": 271.657818579793,
+   "adjustments": 1,
+   "leaves": 4
+  },
+  "3": {
+   "depth": 3,
+   "val_emissions_kg": 271.6411544367151,
+   "adjustments": 0,
+   "leaves": 8
+  }
+ },
+ "paced_features": [
+  "forecast CI, day mean (g/kWh)",
+  "forecast CI, 16:00-21:00 (g/kWh)",
+  "forecast CI, evening minus night (g/kWh)",
+  "forecast CI, max - min (g/kWh)",
+  "forecast dirtiest 3 h, start hour (GMT)",
+  "temperature, 24 h to 12:00 on d-1 (C)",
+  "weekend or holiday",
+  "recent consumption (kWh/half-hour)",
+  "remaining budget per remaining day (p/kWh above Normal)"
+ ],
+ "paced_feature_formats": [
+  "{:.0f} g/kWh",
+  "{:.0f} g/kWh",
+  "{:.0f} g/kWh",
+  "{:.0f} g/kWh",
+  "{:.1f} h",
+  "{:.1f} &deg;C",
+  "{:.1f}",
+  "{:.3f}",
+  "{:.2f} p/kWh"
+ ],
+ "paced_prescribed_test_counts": {
+  "Low 02:00-05:00": 34,
+  "High 17:00-20:00": 22,
+  "High 18:00-20:00": 5
+ },
+ "paced_test_counts": {
+  "Low 02:00-05:00": 34,
+  "High 17:00-20:00": 20,
+  "High 18:00-20:00": 1,
+  "Normal all day": 6
+ },
+ "paced_event_days": 55,
+ "slack_grid": [
+  0.0,
+  0.25,
+  0.5,
+  1.0,
+  1.5,
+  2.0,
+  3.0,
+  5.0,
+  9.5
+ ],
+ "slack_lambdas": [
+  0.013262383965775372,
+  0.013060932373628022,
+  0.012758550420403482,
+  0.012169148121029136,
+  0.011278156191110611,
+  0.01068043988198042,
+  0.00951142404228449,
+  0.007267860928550363,
+  0.0
+ ],
+ "results": {
+  "Historical TOU (2013 trial)": {
+   "emissions_change_pct": 0.0,
+   "emissions_change_kg_per_hh": 0.0,
+   "mean_price": 12.795368852459015,
+   "price_paid": 12.98563075709386,
+   "kwh_change_pct": 0.0,
+   "daily_peak_change_pct": 0.0,
+   "bill_change_mean_pct": 0.0,
+   "bill_change_p10_pct": 0.0,
+   "bill_change_median_pct": 0.0,
+   "bill_change_p90_pct": 0.0,
+   "high_slots": 90,
+   "low_slots": 252
+  },
+  "Simple carbon-based tariff": {
+   "emissions_change_pct": 1.6760474066302802,
+   "emissions_change_kg_per_hh": 4.99848638889506,
+   "mean_price": 13.606249999999998,
+   "price_paid": 11.414569577510878,
+   "kwh_change_pct": 1.705331403510213,
+   "daily_peak_change_pct": 0.30350038472535257,
+   "bill_change_mean_pct": -10.599445845898714,
+   "bill_change_p10_pct": -18.974016682109227,
+   "bill_change_median_pct": -11.471445279241937,
+   "bill_change_p90_pct": -0.7839439817911964,
+   "high_slots": 183,
+   "low_slots": 610
+  },
+  "Optimal policy tree": {
+   "emissions_change_pct": -0.9018947963000084,
+   "emissions_change_kg_per_hh": -2.689726344068333,
+   "mean_price": 13.577704918032788,
+   "price_paid": 14.295209584725903,
+   "kwh_change_pct": -0.7888102312621825,
+   "daily_peak_change_pct": -1.9275227717418075,
+   "bill_change_mean_pct": 9.216469883966871,
+   "bill_change_p10_pct": 3.32252640436433,
+   "bill_change_median_pct": 9.46660809279134,
+   "bill_change_p90_pct": 16.08973985108591,
+   "high_slots": 96,
+   "low_slots": 0
+  },
+  "Direct optimisation": {
+   "emissions_change_pct": -0.9018947963000084,
+   "emissions_change_kg_per_hh": -2.689726344068333,
+   "mean_price": 13.577704918032788,
+   "price_paid": 14.295209584725903,
+   "kwh_change_pct": -0.7888102312621825,
+   "daily_peak_change_pct": -1.9275227717418075,
+   "bill_change_mean_pct": 9.216469883966871,
+   "bill_change_p10_pct": 3.32252640436433,
+   "bill_change_median_pct": 9.46660809279134,
+   "bill_change_p90_pct": 16.08973985108591,
+   "high_slots": 96,
+   "low_slots": 0
+  },
+  "Direct optimisation, perfect carbon forecast": {
+   "emissions_change_pct": -0.9018947963000084,
+   "emissions_change_kg_per_hh": -2.689726344068333,
+   "mean_price": 13.577704918032788,
+   "price_paid": 14.295209584725903,
+   "kwh_change_pct": -0.7888102312621825,
+   "daily_peak_change_pct": -1.9275227717418075,
+   "bill_change_mean_pct": 9.216469883966871,
+   "bill_change_p10_pct": 3.32252640436433,
+   "bill_change_median_pct": 9.46660809279134,
+   "bill_change_p90_pct": 16.08973985108591,
+   "high_slots": 96,
+   "low_slots": 0
+  },
+  "Oracle (perfect hindsight)": {
+   "emissions_change_pct": -0.9687987379686541,
+   "emissions_change_kg_per_hh": -2.889254376790575,
+   "mean_price": 13.596209016393441,
+   "price_paid": 15.001226323482516,
+   "kwh_change_pct": -0.8756361307298843,
+   "daily_peak_change_pct": -2.889124368993967,
+   "bill_change_mean_pct": 14.510187933437058,
+   "bill_change_p10_pct": 7.14297965751387,
+   "bill_change_median_pct": 14.482805138445487,
+   "bill_change_p90_pct": 21.5562363032256,
+   "high_slots": 118,
+   "low_slots": 150
+  },
+  "Budget-aware policy tree": {
+   "emissions_change_pct": -0.9347694205861736,
+   "emissions_change_kg_per_hh": -2.787768536302508,
+   "mean_price": 13.56651639344262,
+   "price_paid": 15.001893995856692,
+   "kwh_change_pct": -0.8517713041751973,
+   "daily_peak_change_pct": -2.4897091289481033,
+   "bill_change_mean_pct": 14.542855005689702,
+   "bill_change_p10_pct": 6.239346429753203,
+   "bill_change_median_pct": 14.678879750503937,
+   "bill_change_p90_pct": 22.70799888534883,
+   "high_slots": 124,
+   "low_slots": 204
+  },
+  "Budget-aware direct optimisation": {
+   "emissions_change_pct": -0.9175901674010963,
+   "emissions_change_kg_per_hh": -2.7365347448970283,
+   "mean_price": 13.540266393442623,
+   "price_paid": 14.693198996768011,
+   "kwh_change_pct": -0.8265942520209291,
+   "daily_peak_change_pct": -2.6380283445980424,
+   "bill_change_mean_pct": 12.214386283062929,
+   "bill_change_p10_pct": 6.056733078623949,
+   "bill_change_median_pct": 11.966679956454628,
+   "bill_change_p90_pct": 19.161228293073822,
+   "high_slots": 110,
+   "low_slots": 114
+  }
+ },
+ "bootstrap_ci_emissions_change_pct": {
+  "Simple carbon-based tariff": [
+   1.3979525347843886,
+   1.9409575426920824
+  ],
+  "Optimal policy tree": [
+   -1.0054291866432312,
+   -0.7965375102146931
+  ],
+  "Direct optimisation": [
+   -1.0054291866432312,
+   -0.7965375102146931
+  ],
+  "Direct optimisation, perfect carbon forecast": [
+   -1.0054291866432312,
+   -0.7965375102146931
+  ],
+  "Oracle (perfect hindsight)": [
+   -1.059182051119546,
+   -0.869956348455797
+  ],
+  "Budget-aware policy tree": [
+   -1.0302029055929578,
+   -0.834881434962119
+  ],
+  "Budget-aware direct optimisation": [
+   -1.0027160233766934,
+   -0.8190164859111007
+  ]
+ },
+ "sensitivity_constraints": {
+  "matched": {
+   "label": "Time-average price <= 12.795 (historical TOU, test period)",
+   "results": {
+    "Historical TOU (2013 trial)": {
+     "emissions_change_pct": 0.0,
+     "bill_change_mean_pct": 0.0
+    },
+    "Simple carbon-based tariff": {
+     "emissions_change_pct": 1.2540096056493764,
+     "bill_change_mean_pct": -12.307348143876274
+    },
+    "Optimal policy tree": {
+     "emissions_change_pct": -0.7060411589769774,
+     "bill_change_mean_pct": 0.603654557592681
+    },
+    "Direct optimisation": {
+     "emissions_change_pct": -0.7060411589769774,
+     "bill_change_mean_pct": 0.603654557592681
+    },
+    "Direct optimisation, perfect carbon forecast": {
+     "emissions_change_pct": -0.7060411589769774,
+     "bill_change_mean_pct": 0.603654557592681
+    },
+    "Oracle (perfect hindsight)": {
+     "emissions_change_pct": -0.760266137856937,
+     "bill_change_mean_pct": 6.291831423907568
+    },
+    "Budget-aware policy tree": {
+     "emissions_change_pct": -0.729577353428972,
+     "bill_change_mean_pct": 6.3671401563573315
+    },
+    "Budget-aware direct optimisation": {
+     "emissions_change_pct": -0.726433919195211,
+     "bill_change_mean_pct": 5.124464306791365
+    }
+   }
+  },
+  "full_year": {
+   "label": "Time-average price <= 13.517 (full-year 2013 TOU in Tariffs.xlsx; proposal)",
+   "results": {
+    "Historical TOU (2013 trial)": {
+     "emissions_change_pct": 0.0,
+     "bill_change_mean_pct": 0.0
+    },
+    "Simple carbon-based tariff": {
+     "emissions_change_pct": 1.890779598316173,
+     "bill_change_mean_pct": -11.784202439095893
+    },
+    "Optimal policy tree": {
+     "emissions_change_pct": -0.8737212400849332,
+     "bill_change_mean_pct": 8.00982399918244
+    },
+    "Direct optimisation": {
+     "emissions_change_pct": -0.8737212400849332,
+     "bill_change_mean_pct": 8.00982399918244
+    },
+    "Direct optimisation, perfect carbon forecast": {
+     "emissions_change_pct": -0.8737212400849332,
+     "bill_change_mean_pct": 8.00982399918244
+    },
+    "Oracle (perfect hindsight)": {
+     "emissions_change_pct": -0.9371274977949838,
+     "bill_change_mean_pct": 13.465355638632337
+    },
+    "Budget-aware policy tree": {
+     "emissions_change_pct": -0.9080583828640926,
+     "bill_change_mean_pct": 13.444232074139716
+    },
+    "Budget-aware direct optimisation": {
+     "emissions_change_pct": -0.8939905592223943,
+     "bill_change_mean_pct": 11.343506544357718
+    }
+   }
+  },
+  "main": {
+   "label": "Time-average price <= 13.608 (Jan-Oct historical TOU; main)",
+   "results": {
+    "Historical TOU (2013 trial)": {
+     "emissions_change_pct": 0.0,
+     "bill_change_mean_pct": 0.0
+    },
+    "Simple carbon-based tariff": {
+     "emissions_change_pct": 1.6760474066302802,
+     "bill_change_mean_pct": -10.599445845898714
+    },
+    "Optimal policy tree": {
+     "emissions_change_pct": -0.9018947963000084,
+     "bill_change_mean_pct": 9.216469883966871
+    },
+    "Direct optimisation": {
+     "emissions_change_pct": -0.9018947963000084,
+     "bill_change_mean_pct": 9.216469883966871
+    },
+    "Direct optimisation, perfect carbon forecast": {
+     "emissions_change_pct": -0.9018947963000084,
+     "bill_change_mean_pct": 9.216469883966871
+    },
+    "Oracle (perfect hindsight)": {
+     "emissions_change_pct": -0.9687987379686541,
+     "bill_change_mean_pct": 14.510187933437058
+    },
+    "Budget-aware policy tree": {
+     "emissions_change_pct": -0.9347694205861736,
+     "bill_change_mean_pct": 14.542855005689702
+    },
+    "Budget-aware direct optimisation": {
+     "emissions_change_pct": -0.9175901674010963,
+     "bill_change_mean_pct": 12.214386283062929
+    }
+   }
+  },
+  "flat": {
+   "label": "Time-average price <= 14.228 (flat Std tariff)",
+   "results": {
+    "Historical TOU (2013 trial)": {
+     "emissions_change_pct": 0.0,
+     "bill_change_mean_pct": 0.0
+    },
+    "Simple carbon-based tariff": {
+     "emissions_change_pct": 0.931643581508102,
+     "bill_change_mean_pct": -6.500141918422875
+    },
+    "Optimal policy tree": {
+     "emissions_change_pct": -1.0642740095243393,
+     "bill_change_mean_pct": 16.415782281564063
+    },
+    "Direct optimisation": {
+     "emissions_change_pct": -1.0642740095243393,
+     "bill_change_mean_pct": 16.415782281564063
+    },
+    "Direct optimisation, perfect carbon forecast": {
+     "emissions_change_pct": -1.0642740095243393,
+     "bill_change_mean_pct": 16.415782281564063
+    },
+    "Oracle (perfect hindsight)": {
+     "emissions_change_pct": -1.1293898284881752,
+     "bill_change_mean_pct": 21.151029192831583
+    },
+    "Budget-aware policy tree": {
+     "emissions_change_pct": -1.0959127705832026,
+     "bill_change_mean_pct": 21.086286322623437
+    },
+    "Budget-aware direct optimisation": {
+     "emissions_change_pct": -1.0631283431568934,
+     "bill_change_mean_pct": 18.98994524197466
+    }
+   }
+  },
+  "paid": {
+   "label": "Average price paid <= 13.784 (Jan-Oct historical level)",
+   "results": {
+    "Historical TOU (2013 trial)": {
+     "emissions_change_pct": 0.0,
+     "bill_change_mean_pct": 0.0
+    },
+    "Optimal policy tree": {
+     "emissions_change_pct": -0.7814952757965323,
+     "bill_change_mean_pct": 3.953275703091208
+    },
+    "Direct optimisation": {
+     "emissions_change_pct": -0.7814952757965323,
+     "bill_change_mean_pct": 3.953275703091208
+    },
+    "Direct optimisation, perfect carbon forecast": {
+     "emissions_change_pct": -0.7814952757965323,
+     "bill_change_mean_pct": 3.953275703091208
+    },
+    "Oracle (perfect hindsight)": {
+     "emissions_change_pct": -0.8260651136428768,
+     "bill_change_mean_pct": 5.566217696046416
+    },
+    "Budget-aware policy tree": {
+     "emissions_change_pct": -0.8101961279003105,
+     "bill_change_mean_pct": 5.164459035190849
+    },
+    "Budget-aware direct optimisation": {
+     "emissions_change_pct": -0.8086373006282238,
+     "bill_change_mean_pct": 5.117605532212255
+    }
+   }
+  }
+ },
+ "sensitivity_worlds": {
+  "x0.5": {
+   "label": "Response x0.5",
+   "main_policies_evaluated_here": {
+    "Historical TOU (2013 trial)": 0.0,
+    "Simple carbon-based tariff": 0.7508739885597746,
+    "Optimal policy tree": -0.48759579856888796,
+    "Direct optimisation": -0.48759579856888796,
+    "Direct optimisation, perfect carbon forecast": -0.48759579856888796,
+    "Oracle (perfect hindsight)": -0.5248717564018277,
+    "Budget-aware policy tree": -0.5108564023197277,
+    "Budget-aware direct optimisation": -0.4975471909686138
+   },
+   "retrained_here": {
+    "Historical TOU (2013 trial)": 0.0,
+    "Simple carbon-based tariff": 0.7508739885597746,
+    "Optimal policy tree": -0.48759579856888796,
+    "Direct optimisation": -0.48759579856888796,
+    "Direct optimisation, perfect carbon forecast": -0.48759579856888796,
+    "Oracle (perfect hindsight)": -0.5257102117330974,
+    "Budget-aware policy tree": -0.5091993719393615,
+    "Budget-aware direct optimisation": -0.49394057747850206
+   }
+  },
+  "x1.5": {
+   "label": "Response x1.5",
+   "main_policies_evaluated_here": {
+    "Historical TOU (2013 trial)": 0.0,
+    "Simple carbon-based tariff": 2.800262849057844,
+    "Optimal policy tree": -1.2497480758318593,
+    "Direct optimisation": -1.2497480758318593,
+    "Direct optimisation, perfect carbon forecast": -1.2497480758318593,
+    "Oracle (perfect hindsight)": -1.3417813549217088,
+    "Budget-aware policy tree": -1.2816859875470612,
+    "Budget-aware direct optimisation": -1.268210288597714
+   },
+   "retrained_here": {
+    "Historical TOU (2013 trial)": 0.0,
+    "Simple carbon-based tariff": 2.800262849057844,
+    "Optimal policy tree": -1.2497480758318593,
+    "Direct optimisation": -1.2497480758318593,
+    "Direct optimisation, perfect carbon forecast": -1.2497480758318593,
+    "Oracle (perfect hindsight)": -1.3446355829447405,
+    "Budget-aware policy tree": -1.2982543351430564,
+    "Budget-aware direct optimisation": -1.294588139916446
+   }
+  },
+  "inblock": {
+   "label": "In-block effects only",
+   "main_policies_evaluated_here": {
+    "Historical TOU (2013 trial)": 0.0,
+    "Simple carbon-based tariff": 1.702737710547002,
+    "Optimal policy tree": -0.9038183361173214,
+    "Direct optimisation": -0.9038183361173214,
+    "Direct optimisation, perfect carbon forecast": -0.9038183361173214,
+    "Oracle (perfect hindsight)": -0.9368319177336025,
+    "Budget-aware policy tree": -0.8975225386052204,
+    "Budget-aware direct optimisation": -0.8921864295583615
+   },
+   "retrained_here": {
+    "Historical TOU (2013 trial)": 0.0,
+    "Simple carbon-based tariff": 1.702737710547002,
+    "Optimal policy tree": -0.9038183361173214,
+    "Direct optimisation": -0.9038183361173214,
+    "Direct optimisation, perfect carbon forecast": -0.9038183361173214,
+    "Oracle (perfect hindsight)": -0.9426401980709677,
+    "Budget-aware policy tree": -0.9292302213311706,
+    "Budget-aware direct optimisation": -0.9208935225738742
+   }
+  },
+  "full": {
+   "label": "Full model (+ post-block and day-level terms)",
+   "main_policies_evaluated_here": {
+    "Historical TOU (2013 trial)": 0.0,
+    "Simple carbon-based tariff": 1.2233905976043968,
+    "Optimal policy tree": -0.826049914024644,
+    "Direct optimisation": -0.826049914024644,
+    "Direct optimisation, perfect carbon forecast": -0.826049914024644,
+    "Oracle (perfect hindsight)": -1.124806704059794,
+    "Budget-aware policy tree": -1.14341742091718,
+    "Budget-aware direct optimisation": -1.02869919372787
+   },
+   "retrained_here": {
+    "Historical TOU (2013 trial)": 0.0,
+    "Simple carbon-based tariff": 1.2233905976043968,
+    "Optimal policy tree": -1.1556000973399518,
+    "Direct optimisation": -1.1556000973399518,
+    "Direct optimisation, perfect carbon forecast": -1.1556000973399518,
+    "Oracle (perfect hindsight)": -1.1935648666522225,
+    "Budget-aware policy tree": -1.1951327061411443,
+    "Budget-aware direct optimisation": -1.166285261952826
+   }
+  },
+  "cvae": {
+   "label": "CVAE ensemble (proposal's simulator)",
+   "main_policies_evaluated_here": {
+    "Historical TOU (2013 trial)": 0.0,
+    "Simple carbon-based tariff": 4.703621157147596,
+    "Optimal policy tree": -0.012801676189069093,
+    "Direct optimisation": -0.012801676189069093,
+    "Direct optimisation, perfect carbon forecast": -0.012801676189069093,
+    "Oracle (perfect hindsight)": 6.442598988530013,
+    "Budget-aware policy tree": 8.522871730729047,
+    "Budget-aware direct optimisation": 4.948637751604737
+   },
+   "retrained_here": {
+    "Historical TOU (2013 trial)": 0.0,
+    "Simple carbon-based tariff": 4.703621157147596,
+    "Optimal policy tree": -0.48654445668013874,
+    "Direct optimisation": -0.48654445668013874,
+    "Direct optimisation, perfect carbon forecast": -0.48654445668013874,
+    "Oracle (perfect hindsight)": -0.7609844054420457,
+    "Budget-aware policy tree": -0.4781112497929927,
+    "Budget-aware direct optimisation": -0.7587343068501551
+   }
+  }
+ },
+ "night_low_day_kwh_change_pct": {
+  "label": "Low 02:00-05:00",
+  "main": 0.15616131147400125,
+  "x0.5": 0.0748355939325096,
+  "x1.5": 0.2444543343405048,
+  "inblock": 0.20059120380924167,
+  "full": -0.27381548285628776,
+  "cvae": 14.001393173939691
+ },
+ "rolling": {
+  "5": {
+   "label": "May-Jun",
+   "days": {
+    "train": 59,
+    "val": 61,
+    "test": 61
+   },
+   "target": 13.630166666666668,
+   "historical_test_price": 15.001659836065574,
+   "menu": [
+    "Normal all day",
+    "High 17:00-19:00",
+    "High 18:00-20:00"
+   ],
+   "depth": 1,
+   "lambda_tree": 0.013,
+   "tree": {
+    "leaf": false,
+    "feature": 7,
+    "threshold": 0.22149849593961657,
+    "n": 120,
+    "left": {
+     "leaf": true,
+     "action": 0,
+     "n": 23,
+     "ranking": [
+      0,
+      2,
+      1
+     ]
+    },
+    "right": {
+     "leaf": true,
+     "action": 2,
+     "n": 97,
+     "ranking": [
+      2,
+      1,
+      0
+     ]
+    }
+   },
+   "tree_prescribed_counts": {
+    "Normal all day": 61
+   },
+   "tree_event_days": 0,
+   "tree_adjustments": 0,
+   "paced_depth": 1,
+   "paced_tree": {
+    "leaf": false,
+    "feature": 8,
+    "threshold": 4.0,
+    "n": 1080,
+    "left": {
+     "leaf": true,
+     "action": 0,
+     "n": 840,
+     "ranking": [
+      0,
+      2,
+      1
+     ]
+    },
+    "right": {
+     "leaf": true,
+     "action": 2,
+     "n": 240,
+     "ranking": [
+      2,
+      1,
+      0
+     ]
+    }
+   },
+   "paced_event_days": 24,
+   "paced_adjustments": 0,
+   "scored_with_each_factor": {
+    "marginal": {
+     "Historical TOU (2013 trial)": 0.0,
+     "Simple carbon-based tariff": 2.1398500571218997,
+     "Optimal policy tree": 0.09852166493395384,
+     "Direct optimisation": 0.09852166493395384,
+     "Direct optimisation, perfect carbon forecast": 0.09852166493395384,
+     "Oracle (perfect hindsight)": -0.3676979098021927,
+     "Budget-aware policy tree": -0.310499444234794,
+     "Budget-aware direct optimisation": -0.3117281545388707
+    },
+    "marginal_unadjusted": {
+     "Historical TOU (2013 trial)": 0.0,
+     "Simple carbon-based tariff": 1.6423400794256164,
+     "Optimal policy tree": 0.048181815223489036,
+     "Direct optimisation": 0.048181815223489036,
+     "Direct optimisation, perfect carbon forecast": 0.048181815223489036,
+     "Oracle (perfect hindsight)": -0.2612215671667992,
+     "Budget-aware policy tree": -0.22375900956991826,
+     "Budget-aware direct optimisation": -0.2244676130881771
+    },
+    "marginal_netload": {
+     "Historical TOU (2013 trial)": 0.0,
+     "Simple carbon-based tariff": 2.201889506382269,
+     "Optimal policy tree": 0.10687804945918378,
+     "Direct optimisation": 0.10687804945918378,
+     "Direct optimisation, perfect carbon forecast": 0.10687804945918378,
+     "Oracle (perfect hindsight)": -0.3282518766920229,
+     "Budget-aware policy tree": -0.2878254034453755,
+     "Budget-aware direct optimisation": -0.2880108064415585
+    },
+    "average": {
+     "Historical TOU (2013 trial)": 0.0,
+     "Simple carbon-based tariff": 2.209208333853659,
+     "Optimal policy tree": 0.1093409727726236,
+     "Direct optimisation": 0.1093409727726236,
+     "Direct optimisation, perfect carbon forecast": 0.1093409727726236,
+     "Oracle (perfect hindsight)": -0.3438960808032739,
+     "Budget-aware policy tree": -0.26089490455513925,
+     "Budget-aware direct optimisation": -0.26630250861013655
+    }
+   },
+   "main": {
+    "Historical TOU (2013 trial)": {
+     "emissions_change_pct": 0.0,
+     "bill_change_mean_pct": 0.0,
+     "mean_price": 15.001659836065574,
+     "high_slots": 204,
+     "low_slots": 234
+    },
+    "Simple carbon-based tariff": {
+     "emissions_change_pct": 2.1398500571218997,
+     "bill_change_mean_pct": -22.497105814349805,
+     "mean_price": 13.60625,
+     "high_slots": 183,
+     "low_slots": 610
+    },
+    "Optimal policy tree": {
+     "emissions_change_pct": 0.09852166493395384,
+     "bill_change_mean_pct": -23.20267547576669,
+     "mean_price": 11.76,
+     "high_slots": 0,
+     "low_slots": 0
+    },
+    "Direct optimisation": {
+     "emissions_change_pct": 0.09852166493395384,
+     "bill_change_mean_pct": -23.20267547576669,
+     "mean_price": 11.76,
+     "high_slots": 0,
+     "low_slots": 0
+    },
+    "Direct optimisation, perfect carbon forecast": {
+     "emissions_change_pct": 0.09852166493395384,
+     "bill_change_mean_pct": -23.20267547576669,
+     "mean_price": 11.76,
+     "high_slots": 0,
+     "low_slots": 0
+    },
+    "Oracle (perfect hindsight)": {
+     "emissions_change_pct": -0.3676979098021927,
+     "bill_change_mean_pct": -7.2669633631218815,
+     "mean_price": 13.577704918032786,
+     "high_slots": 96,
+     "low_slots": 0
+    },
+    "Budget-aware policy tree": {
+     "emissions_change_pct": -0.310499444234794,
+     "bill_change_mean_pct": -8.979504333499033,
+     "mean_price": 13.577704918032788,
+     "high_slots": 96,
+     "low_slots": 0
+    },
+    "Budget-aware direct optimisation": {
+     "emissions_change_pct": -0.3117281545388707,
+     "bill_change_mean_pct": -8.91117116736675,
+     "mean_price": 13.577704918032788,
+     "high_slots": 96,
+     "low_slots": 0
+    }
+   },
+   "matched_tree_event_days": 0,
+   "matched_tree_adjustments": 0,
+   "matched_paced_event_days": 42,
+   "matched_paced_adjustments": 0,
+   "matched": {
+    "Historical TOU (2013 trial)": {
+     "emissions_change_pct": 0.0,
+     "bill_change_mean_pct": 0.0,
+     "mean_price": 15.001659836065574,
+     "high_slots": 204,
+     "low_slots": 234
+    },
+    "Simple carbon-based tariff": {
+     "emissions_change_pct": 1.8210837958295023,
+     "bill_change_mean_pct": -17.291032284641496,
+     "mean_price": 14.923125,
+     "high_slots": 244,
+     "low_slots": 549
+    },
+    "Optimal policy tree": {
+     "emissions_change_pct": 0.09852166493395384,
+     "bill_change_mean_pct": -23.20267547576669,
+     "mean_price": 11.76,
+     "high_slots": 0,
+     "low_slots": 0
+    },
+    "Direct optimisation": {
+     "emissions_change_pct": 0.09852166493395384,
+     "bill_change_mean_pct": -23.20267547576669,
+     "mean_price": 11.76,
+     "high_slots": 0,
+     "low_slots": 0
+    },
+    "Direct optimisation, perfect carbon forecast": {
+     "emissions_change_pct": 0.09852166493395384,
+     "bill_change_mean_pct": -23.20267547576669,
+     "mean_price": 11.76,
+     "high_slots": 0,
+     "low_slots": 0
+    },
+    "Oracle (perfect hindsight)": {
+     "emissions_change_pct": -0.6835256415542074,
+     "bill_change_mean_pct": 3.701555576802429,
+     "mean_price": 14.940983606557376,
+     "high_slots": 168,
+     "low_slots": 0
+    },
+    "Budget-aware policy tree": {
+     "emissions_change_pct": -0.6386580991563064,
+     "bill_change_mean_pct": 2.440576198952349,
+     "mean_price": 14.940983606557378,
+     "high_slots": 168,
+     "low_slots": 0
+    },
+    "Budget-aware direct optimisation": {
+     "emissions_change_pct": -0.6499256359978336,
+     "bill_change_mean_pct": 2.841215637613037,
+     "mean_price": 14.940983606557376,
+     "high_slots": 168,
+     "low_slots": 0
+    }
+   }
+  },
+  "7": {
+   "label": "Jul-Aug",
+   "days": {
+    "train": 120,
+    "val": 61,
+    "test": 62
+   },
+   "target": 14.092382596685084,
+   "historical_test_price": 12.278225806451616,
+   "menu": [
+    "Normal all day",
+    "High 17:00-19:00",
+    "High 18:00-20:00",
+    "Low 02:00-05:00"
+   ],
+   "depth": 1,
+   "lambda_tree": 0.009,
+   "tree": {
+    "leaf": false,
+    "feature": 7,
+    "threshold": 0.18926859970611318,
+    "n": 181,
+    "left": {
+     "leaf": true,
+     "action": 0,
+     "n": 72,
+     "ranking": [
+      0,
+      3,
+      2,
+      1
+     ]
+    },
+    "right": {
+     "leaf": true,
+     "action": 2,
+     "n": 109,
+     "ranking": [
+      2,
+      1,
+      0,
+      3
+     ]
+    }
+   },
+   "tree_prescribed_counts": {
+    "Normal all day": 62
+   },
+   "tree_event_days": 0,
+   "tree_adjustments": 0,
+   "paced_depth": 1,
+   "paced_tree": {
+    "leaf": false,
+    "feature": 8,
+    "threshold": 2.5,
+    "n": 1629,
+    "left": {
+     "leaf": true,
+     "action": 0,
+     "n": 1086,
+     "ranking": [
+      0,
+      3,
+      2,
+      1
+     ]
+    },
+    "right": {
+     "leaf": true,
+     "action": 2,
+     "n": 543,
+     "ranking": [
+      2,
+      1,
+      0,
+      3
+     ]
+    }
+   },
+   "paced_event_days": 31,
+   "paced_adjustments": 0,
+   "scored_with_each_factor": {
+    "marginal": {
+     "Historical TOU (2013 trial)": 0.0,
+     "Simple carbon-based tariff": 0.921152079012162,
+     "Optimal policy tree": -0.3171124768861831,
+     "Direct optimisation": -0.3171124768861831,
+     "Direct optimisation, perfect carbon forecast": -0.3171124768861831,
+     "Oracle (perfect hindsight)": -0.8605747083662729,
+     "Budget-aware policy tree": -0.833133014079438,
+     "Budget-aware direct optimisation": -0.8436300572385016
+    },
+    "marginal_unadjusted": {
+     "Historical TOU (2013 trial)": 0.0,
+     "Simple carbon-based tariff": 0.6326122914073302,
+     "Optimal policy tree": -0.23545952025289366,
+     "Direct optimisation": -0.23545952025289366,
+     "Direct optimisation, perfect carbon forecast": -0.23545952025289366,
+     "Oracle (perfect hindsight)": -0.5920830712051217,
+     "Budget-aware policy tree": -0.5742543437866631,
+     "Budget-aware direct optimisation": -0.5810680647324783
+    },
+    "marginal_netload": {
+     "Historical TOU (2013 trial)": 0.0,
+     "Simple carbon-based tariff": 1.0799101187753395,
+     "Optimal policy tree": -0.28264451397838297,
+     "Direct optimisation": -0.28264451397838297,
+     "Direct optimisation, perfect carbon forecast": -0.28264451397838297,
+     "Oracle (perfect hindsight)": -0.8161509874750985,
+     "Budget-aware policy tree": -0.7935811331260413,
+     "Budget-aware direct optimisation": -0.8011147051601649
+    },
+    "average": {
+     "Historical TOU (2013 trial)": 0.0,
+     "Simple carbon-based tariff": 1.0236253469859462,
+     "Optimal policy tree": -0.3021292814406001,
+     "Direct optimisation": -0.3021292814406001,
+     "Direct optimisation, perfect carbon forecast": -0.3021292814406001,
+     "Oracle (perfect hindsight)": -0.7940300818423975,
+     "Budget-aware policy tree": -0.7640444466626908,
+     "Budget-aware direct optimisation": -0.7763305489626173
+    }
+   },
+   "main": {
+    "Historical TOU (2013 trial)": {
+     "emissions_change_pct": 0.0,
+     "bill_change_mean_pct": 0.0,
+     "mean_price": 12.278225806451616,
+     "high_slots": 48,
+     "low_slots": 144
+    },
+    "Simple carbon-based tariff": {
+     "emissions_change_pct": 0.921152079012162,
+     "bill_change_mean_pct": 1.8401268757328282,
+     "mean_price": 14.091875,
+     "high_slots": 186,
+     "low_slots": 434
+    },
+    "Optimal policy tree": {
+     "emissions_change_pct": -0.3171124768861831,
+     "bill_change_mean_pct": -3.6068846944543265,
+     "mean_price": 11.760000000000002,
+     "high_slots": 0,
+     "low_slots": 0
+    },
+    "Direct optimisation": {
+     "emissions_change_pct": -0.3171124768861831,
+     "bill_change_mean_pct": -3.6068846944543265,
+     "mean_price": 11.760000000000002,
+     "high_slots": 0,
+     "low_slots": 0
+    },
+    "Direct optimisation, perfect carbon forecast": {
+     "emissions_change_pct": -0.3171124768861831,
+     "bill_change_mean_pct": -3.6068846944543265,
+     "mean_price": 11.760000000000002,
+     "high_slots": 0,
+     "low_slots": 0
+    },
+    "Oracle (perfect hindsight)": {
+     "emissions_change_pct": -0.8605747083662729,
+     "bill_change_mean_pct": 20.56987248572839,
+     "mean_price": 14.07,
+     "high_slots": 124,
+     "low_slots": 0
+    },
+    "Budget-aware policy tree": {
+     "emissions_change_pct": -0.833133014079438,
+     "bill_change_mean_pct": 19.542847339041813,
+     "mean_price": 14.069999999999997,
+     "high_slots": 124,
+     "low_slots": 0
+    },
+    "Budget-aware direct optimisation": {
+     "emissions_change_pct": -0.8436300572385016,
+     "bill_change_mean_pct": 19.840087765795133,
+     "mean_price": 14.069999999999997,
+     "high_slots": 124,
+     "low_slots": 0
+    }
+   },
+   "matched_tree_event_days": 0,
+   "matched_tree_adjustments": 0,
+   "matched_paced_event_days": 6,
+   "matched_paced_adjustments": 1,
+   "matched": {
+    "Historical TOU (2013 trial)": {
+     "emissions_change_pct": 0.0,
+     "bill_change_mean_pct": 0.0,
+     "mean_price": 12.278225806451616,
+     "high_slots": 48,
+     "low_slots": 144
+    },
+    "Simple carbon-based tariff": {
+     "emissions_change_pct": 2.17825469504837,
+     "bill_change_mean_pct": -10.05091999558041,
+     "mean_price": 12.127500000000001,
+     "high_slots": 124,
+     "low_slots": 744
+    },
+    "Optimal policy tree": {
+     "emissions_change_pct": -0.3171124768861831,
+     "bill_change_mean_pct": -3.6068846944543265,
+     "mean_price": 11.760000000000002,
+     "high_slots": 0,
+     "low_slots": 0
+    },
+    "Direct optimisation": {
+     "emissions_change_pct": -0.3171124768861831,
+     "bill_change_mean_pct": -3.6068846944543265,
+     "mean_price": 11.760000000000002,
+     "high_slots": 0,
+     "low_slots": 0
+    },
+    "Direct optimisation, perfect carbon forecast": {
+     "emissions_change_pct": -0.3171124768861831,
+     "bill_change_mean_pct": -3.6068846944543265,
+     "mean_price": 11.760000000000002,
+     "high_slots": 0,
+     "low_slots": 0
+    },
+    "Oracle (perfect hindsight)": {
+     "emissions_change_pct": -0.4280606540819719,
+     "bill_change_mean_pct": 1.2369883412583826,
+     "mean_price": 12.20709677419355,
+     "high_slots": 24,
+     "low_slots": 0
+    },
+    "Budget-aware policy tree": {
+     "emissions_change_pct": -0.4231705609757973,
+     "bill_change_mean_pct": 1.128004769821045,
+     "mean_price": 12.20709677419355,
+     "high_slots": 24,
+     "low_slots": 0
+    },
+    "Budget-aware direct optimisation": {
+     "emissions_change_pct": -0.4040489429935358,
+     "bill_change_mean_pct": 3.1748077669236485,
+     "mean_price": 12.270181451612903,
+     "high_slots": 40,
+     "low_slots": 90
+    }
+   }
+  },
+  "9": {
+   "label": "Sep-Oct",
+   "days": {
+    "train": 181,
+    "val": 62,
+    "test": 61
+   },
+   "target": 13.629511316872428,
+   "historical_test_price": 13.520471311475411,
+   "menu": [
+    "Normal all day",
+    "High 17:00-19:00",
+    "High 18:00-20:00",
+    "Low 02:00-05:00",
+    "High 17:00-20:00"
+   ],
+   "depth": 2,
+   "lambda_tree": 0.008,
+   "tree": {
+    "leaf": false,
+    "feature": 5,
+    "threshold": 12.460571638666693,
+    "n": 243,
+    "left": {
+     "leaf": false,
+     "feature": 7,
+     "threshold": 0.20634313947998587,
+     "n": 149,
+     "left": {
+      "leaf": true,
+      "action": 2,
+      "n": 46,
+      "ranking": [
+       2,
+       4,
+       0,
+       1,
+       3
+      ]
+     },
+     "right": {
+      "leaf": true,
+      "action": 4,
+      "n": 103,
+      "ranking": [
+       4,
+       2,
+       1,
+       0,
+       3
+      ]
+     }
+    },
+    "right": {
+     "leaf": false,
+     "feature": 1,
+     "threshold": 468.530186343193,
+     "n": 94,
+     "left": {
+      "leaf": true,
+      "action": 0,
+      "n": 75,
+      "ranking": [
+       0,
+       2,
+       3,
+       1,
+       4
+      ]
+     },
+     "right": {
+      "leaf": true,
+      "action": 2,
+      "n": 19,
+      "ranking": [
+       2,
+       0,
+       4,
+       1,
+       3
+      ]
+     }
+    }
+   },
+   "tree_prescribed_counts": {
+    "Normal all day": 7,
+    "High 18:00-20:00": 54
+   },
+   "tree_event_days": 24,
+   "tree_adjustments": 30,
+   "paced_depth": 3,
+   "paced_tree": {
+    "leaf": false,
+    "feature": 7,
+    "threshold": 0.22386651690175258,
+    "n": 2187,
+    "left": {
+     "leaf": false,
+     "feature": 8,
+     "threshold": 3.0,
+     "n": 1350,
+     "left": {
+      "leaf": false,
+      "feature": 8,
+      "threshold": 1.25,
+      "n": 1050,
+      "left": {
+       "leaf": true,
+       "action": 3,
+       "n": 600,
+       "ranking": [
+        3,
+        0,
+        2,
+        1,
+        4
+       ]
+      },
+      "right": {
+       "leaf": true,
+       "action": 0,
+       "n": 450,
+       "ranking": [
+        0,
+        3,
+        2,
+        1,
+        4
+       ]
+      }
+     },
+     "right": {
+      "leaf": false,
+      "feature": 8,
+      "threshold": 7.25,
+      "n": 300,
+      "left": {
+       "leaf": true,
+       "action": 2,
+       "n": 150,
+       "ranking": [
+        2,
+        4,
+        0,
+        1,
+        3
+       ]
+      },
+      "right": {
+       "leaf": true,
+       "action": 4,
+       "n": 150,
+       "ranking": [
+        4,
+        2,
+        1,
+        0,
+        3
+       ]
+      }
+     }
+    },
+    "right": {
+     "leaf": false,
+     "feature": 8,
+     "threshold": 0.5,
+     "n": 837,
+     "left": {
+      "leaf": false,
+      "feature": 5,
+      "threshold": 0.17024271483336326,
+      "n": 279,
+      "left": {
+       "leaf": true,
+       "action": 1,
+       "n": 30,
+       "ranking": [
+        1,
+        2,
+        4,
+        0,
+        3
+       ]
+      },
+      "right": {
+       "leaf": true,
+       "action": 0,
+       "n": 249,
+       "ranking": [
+        0,
+        3,
+        2,
+        1,
+        4
+       ]
+      }
+     },
+     "right": {
+      "leaf": false,
+      "feature": 8,
+      "threshold": 2.5,
+      "n": 558,
+      "left": {
+       "leaf": true,
+       "action": 2,
+       "n": 279,
+       "ranking": [
+        2,
+        1,
+        4,
+        0,
+        3
+       ]
+      },
+      "right": {
+       "leaf": true,
+       "action": 4,
+       "n": 279,
+       "ranking": [
+        4,
+        2,
+        1,
+        0,
+        3
+       ]
+      }
+     }
+    }
+   },
+   "paced_event_days": 24,
+   "paced_adjustments": 1,
+   "scored_with_each_factor": {
+    "marginal": {
+     "Historical TOU (2013 trial)": 0.0,
+     "Simple carbon-based tariff": 1.8486646656176335,
+     "Optimal policy tree": -0.5536661445361711,
+     "Direct optimisation": -0.5414725697410027,
+     "Direct optimisation, perfect carbon forecast": -0.5318317365146987,
+     "Oracle (perfect hindsight)": -0.6430793785529385,
+     "Budget-aware policy tree": -0.5971968949180396,
+     "Budget-aware direct optimisation": -0.6157531625622494
+    },
+    "marginal_unadjusted": {
+     "Historical TOU (2013 trial)": 0.0,
+     "Simple carbon-based tariff": 1.3483036550798986,
+     "Optimal policy tree": -0.3985552980530806,
+     "Direct optimisation": -0.39022138613289836,
+     "Direct optimisation, perfect carbon forecast": -0.38719312471917516,
+     "Oracle (perfect hindsight)": -0.3834626626672331,
+     "Budget-aware policy tree": -0.4196777383559321,
+     "Budget-aware direct optimisation": -0.3917770351730233
+    },
+    "marginal_netload": {
+     "Historical TOU (2013 trial)": 0.0,
+     "Simple carbon-based tariff": 1.9488541920110696,
+     "Optimal policy tree": -0.525445985803858,
+     "Direct optimisation": -0.5185133870244636,
+     "Direct optimisation, perfect carbon forecast": -0.5143509237365849,
+     "Oracle (perfect hindsight)": -0.586945089070986,
+     "Budget-aware policy tree": -0.5792036032104447,
+     "Budget-aware direct optimisation": -0.5720074677249145
+    },
+    "average": {
+     "Historical TOU (2013 trial)": 0.0,
+     "Simple carbon-based tariff": 1.9556733463700762,
+     "Optimal policy tree": -0.5426349019762751,
+     "Direct optimisation": -0.5298197317890322,
+     "Direct optimisation, perfect carbon forecast": -0.5236456306987931,
+     "Oracle (perfect hindsight)": -0.5942279621994353,
+     "Budget-aware policy tree": -0.5780290054637093,
+     "Budget-aware direct optimisation": -0.5837410798346283
+    }
+   },
+   "main": {
+    "Historical TOU (2013 trial)": {
+     "emissions_change_pct": 0.0,
+     "bill_change_mean_pct": 0.0,
+     "mean_price": 13.520471311475411,
+     "high_slots": 114,
+     "low_slots": 150
+    },
+    "Simple carbon-based tariff": {
+     "emissions_change_pct": 1.8486646656176335,
+     "bill_change_mean_pct": -13.164132912562188,
+     "mean_price": 13.60625,
+     "high_slots": 183,
+     "low_slots": 610
+    },
+    "Optimal policy tree": {
+     "emissions_change_pct": -0.5536661445361711,
+     "bill_change_mean_pct": 6.328415928372566,
+     "mean_price": 13.577704918032788,
+     "high_slots": 96,
+     "low_slots": 0
+    },
+    "Direct optimisation": {
+     "emissions_change_pct": -0.5414725697410027,
+     "bill_change_mean_pct": 5.832635944451181,
+     "mean_price": 13.577704918032788,
+     "high_slots": 96,
+     "low_slots": 0
+    },
+    "Direct optimisation, perfect carbon forecast": {
+     "emissions_change_pct": -0.5318317365146987,
+     "bill_change_mean_pct": 5.644396286505038,
+     "mean_price": 13.577704918032788,
+     "high_slots": 96,
+     "low_slots": 0
+    },
+    "Oracle (perfect hindsight)": {
+     "emissions_change_pct": -0.6430793785529385,
+     "bill_change_mean_pct": 8.53698963638616,
+     "mean_price": 13.561782786885244,
+     "high_slots": 96,
+     "low_slots": 6
+    },
+    "Budget-aware policy tree": {
+     "emissions_change_pct": -0.5971968949180396,
+     "bill_change_mean_pct": 7.725344558043479,
+     "mean_price": 13.577704918032786,
+     "high_slots": 96,
+     "low_slots": 0
+    },
+    "Budget-aware direct optimisation": {
+     "emissions_change_pct": -0.6157531625622494,
+     "bill_change_mean_pct": 7.759734012667852,
+     "mean_price": 13.577704918032788,
+     "high_slots": 96,
+     "low_slots": 0
+    }
+   },
+   "matched_tree_event_days": 23,
+   "matched_tree_adjustments": 31,
+   "matched_paced_event_days": 23,
+   "matched_paced_adjustments": 0,
+   "matched": {
+    "Historical TOU (2013 trial)": {
+     "emissions_change_pct": 0.0,
+     "bill_change_mean_pct": 0.0,
+     "mean_price": 13.520471311475411,
+     "high_slots": 114,
+     "low_slots": 150
+    },
+    "Simple carbon-based tariff": {
+     "emissions_change_pct": 2.0045474538059826,
+     "bill_change_mean_pct": -13.798891951977833,
+     "mean_price": 13.444374999999999,
+     "high_slots": 183,
+     "low_slots": 671
+    },
+    "Optimal policy tree": {
+     "emissions_change_pct": -0.533830711117646,
+     "bill_change_mean_pct": 5.471620362651719,
+     "mean_price": 13.501967213114755,
+     "high_slots": 92,
+     "low_slots": 0
+    },
+    "Direct optimisation": {
+     "emissions_change_pct": -0.5234814634307257,
+     "bill_change_mean_pct": 5.042396010087247,
+     "mean_price": 13.501967213114755,
+     "high_slots": 92,
+     "low_slots": 0
+    },
+    "Direct optimisation, perfect carbon forecast": {
+     "emissions_change_pct": -0.5052042979099053,
+     "bill_change_mean_pct": 4.4287465349952315,
+     "mean_price": 13.46409836065574,
+     "high_slots": 90,
+     "low_slots": 0
+    },
+    "Oracle (perfect hindsight)": {
+     "emissions_change_pct": -0.6221691991949975,
+     "bill_change_mean_pct": 7.703529181974811,
+     "mean_price": 13.486045081967212,
+     "high_slots": 92,
+     "low_slots": 6
+    },
+    "Budget-aware policy tree": {
+     "emissions_change_pct": -0.5780702225071949,
+     "bill_change_mean_pct": 6.927851230767645,
+     "mean_price": 13.501967213114753,
+     "high_slots": 92,
+     "low_slots": 0
+    },
+    "Budget-aware direct optimisation": {
+     "emissions_change_pct": -0.591950190196361,
+     "bill_change_mean_pct": 6.848646198592423,
+     "mean_price": 13.501967213114753,
+     "high_slots": 92,
+     "low_slots": 0
+    }
+   }
+  },
+  "11": {
+   "label": "Nov-Dec",
+   "days": {
+    "train": 243,
+    "val": 61,
+    "test": 61
+   },
+   "target": 13.607631578947368,
+   "historical_test_price": 12.795368852459015,
+   "menu": [
+    "Normal all day",
+    "High 17:00-20:00",
+    "High 18:00-20:00",
+    "Low 02:00-05:00"
+   ],
+   "depth": 1,
+   "lambda_tree": 0.008,
+   "tree": {
+    "leaf": false,
+    "feature": 7,
+    "threshold": 0.1710707294711571,
+    "n": 304,
+    "left": {
+     "leaf": true,
+     "action": 0,
+     "n": 115,
+     "ranking": [
+      0,
+      2,
+      3,
+      1
+     ]
+    },
+    "right": {
+     "leaf": true,
+     "action": 1,
+     "n": 189,
+     "ranking": [
+      1,
+      2,
+      0,
+      3
+     ]
+    }
+   },
+   "tree_prescribed_counts": {
+    "High 17:00-20:00": 61
+   },
+   "tree_event_days": 16,
+   "tree_adjustments": 45,
+   "paced_depth": 2,
+   "paced_tree": {
+    "leaf": false,
+    "feature": 7,
+    "threshold": 0.22386651690175258,
+    "n": 2736,
+    "left": {
+     "leaf": false,
+     "feature": 8,
+     "threshold": 4.0,
+     "n": 1899,
+     "left": {
+      "leaf": true,
+      "action": 3,
+      "n": 1477,
+      "ranking": [
+       3,
+       0,
+       2,
+       1
+      ]
+     },
+     "right": {
+      "leaf": true,
+      "action": 1,
+      "n": 422,
+      "ranking": [
+       1,
+       2,
+       0,
+       3
+      ]
+     }
+    },
+    "right": {
+     "leaf": false,
+     "feature": 8,
+     "threshold": 1.25,
+     "n": 837,
+     "left": {
+      "leaf": true,
+      "action": 2,
+      "n": 372,
+      "ranking": [
+       2,
+       0,
+       3,
+       1
+      ]
+     },
+     "right": {
+      "leaf": true,
+      "action": 1,
+      "n": 465,
+      "ranking": [
+       1,
+       2,
+       0,
+       3
+      ]
+     }
+    }
+   },
+   "paced_event_days": 55,
+   "paced_adjustments": 6,
+   "scored_with_each_factor": {
+    "marginal": {
+     "Historical TOU (2013 trial)": 0.0,
+     "Simple carbon-based tariff": 1.6760474066302802,
+     "Optimal policy tree": -0.9018947963000084,
+     "Direct optimisation": -0.9018947963000084,
+     "Direct optimisation, perfect carbon forecast": -0.9018947963000084,
+     "Oracle (perfect hindsight)": -0.9687987379686541,
+     "Budget-aware policy tree": -0.9347694205861736,
+     "Budget-aware direct optimisation": -0.9175901674010963
+    },
+    "marginal_unadjusted": {
+     "Historical TOU (2013 trial)": 0.0,
+     "Simple carbon-based tariff": 1.2068364513303627,
+     "Optimal policy tree": -0.6524551920182339,
+     "Direct optimisation": -0.6524551920182339,
+     "Direct optimisation, perfect carbon forecast": -0.6524551920182339,
+     "Oracle (perfect hindsight)": -0.6682949586736021,
+     "Budget-aware policy tree": -0.6213009311505284,
+     "Budget-aware direct optimisation": -0.6433253184444497
+    },
+    "marginal_netload": {
+     "Historical TOU (2013 trial)": 0.0,
+     "Simple carbon-based tariff": 1.7307995450166436,
+     "Optimal policy tree": -0.8481774839793058,
+     "Direct optimisation": -0.8481774839793058,
+     "Direct optimisation, perfect carbon forecast": -0.8481774839793058,
+     "Oracle (perfect hindsight)": -0.9127692083098884,
+     "Budget-aware policy tree": -0.8821773298794977,
+     "Budget-aware direct optimisation": -0.8625358765941185
+    },
+    "average": {
+     "Historical TOU (2013 trial)": 0.0,
+     "Simple carbon-based tariff": 1.723994269951815,
+     "Optimal policy tree": -0.7856897918992339,
+     "Direct optimisation": -0.7856897918992339,
+     "Direct optimisation, perfect carbon forecast": -0.7856897918992339,
+     "Oracle (perfect hindsight)": -0.8746385494963519,
+     "Budget-aware policy tree": -0.8425646436315105,
+     "Budget-aware direct optimisation": -0.8298550455131908
+    }
+   },
+   "main": {
+    "Historical TOU (2013 trial)": {
+     "emissions_change_pct": 0.0,
+     "bill_change_mean_pct": 0.0,
+     "mean_price": 12.795368852459015,
+     "high_slots": 90,
+     "low_slots": 252
+    },
+    "Simple carbon-based tariff": {
+     "emissions_change_pct": 1.6760474066302802,
+     "bill_change_mean_pct": -10.599445845898714,
+     "mean_price": 13.606249999999998,
+     "high_slots": 183,
+     "low_slots": 610
+    },
+    "Optimal policy tree": {
+     "emissions_change_pct": -0.9018947963000084,
+     "bill_change_mean_pct": 9.216469883966871,
+     "mean_price": 13.577704918032788,
+     "high_slots": 96,
+     "low_slots": 0
+    },
+    "Direct optimisation": {
+     "emissions_change_pct": -0.9018947963000084,
+     "bill_change_mean_pct": 9.216469883966871,
+     "mean_price": 13.577704918032788,
+     "high_slots": 96,
+     "low_slots": 0
+    },
+    "Direct optimisation, perfect carbon forecast": {
+     "emissions_change_pct": -0.9018947963000084,
+     "bill_change_mean_pct": 9.216469883966871,
+     "mean_price": 13.577704918032788,
+     "high_slots": 96,
+     "low_slots": 0
+    },
+    "Oracle (perfect hindsight)": {
+     "emissions_change_pct": -0.9687987379686541,
+     "bill_change_mean_pct": 14.510187933437058,
+     "mean_price": 13.596209016393441,
+     "high_slots": 118,
+     "low_slots": 150
+    },
+    "Budget-aware policy tree": {
+     "emissions_change_pct": -0.9347694205861736,
+     "bill_change_mean_pct": 14.542855005689702,
+     "mean_price": 13.56651639344262,
+     "high_slots": 124,
+     "low_slots": 204
+    },
+    "Budget-aware direct optimisation": {
+     "emissions_change_pct": -0.9175901674010963,
+     "bill_change_mean_pct": 12.214386283062929,
+     "mean_price": 13.540266393442623,
+     "high_slots": 110,
+     "low_slots": 114
+    }
+   },
+   "matched_tree_event_days": 9,
+   "matched_tree_adjustments": 52,
+   "matched_paced_event_days": 55,
+   "matched_paced_adjustments": 6,
+   "matched": {
+    "Historical TOU (2013 trial)": {
+     "emissions_change_pct": 0.0,
+     "bill_change_mean_pct": 0.0,
+     "mean_price": 12.795368852459015,
+     "high_slots": 90,
+     "low_slots": 252
+    },
+    "Simple carbon-based tariff": {
+     "emissions_change_pct": 1.2540096056493764,
+     "bill_change_mean_pct": -12.307348143876274,
+     "mean_price": 12.775000000000002,
+     "high_slots": 122,
+     "low_slots": 488
+    },
+    "Optimal policy tree": {
+     "emissions_change_pct": -0.7060411589769774,
+     "bill_change_mean_pct": 0.603654557592681,
+     "mean_price": 12.782459016393442,
+     "high_slots": 54,
+     "low_slots": 0
+    },
+    "Direct optimisation": {
+     "emissions_change_pct": -0.7060411589769774,
+     "bill_change_mean_pct": 0.603654557592681,
+     "mean_price": 12.782459016393442,
+     "high_slots": 54,
+     "low_slots": 0
+    },
+    "Direct optimisation, perfect carbon forecast": {
+     "emissions_change_pct": -0.7060411589769774,
+     "bill_change_mean_pct": 0.603654557592681,
+     "mean_price": 12.782459016393442,
+     "high_slots": 54,
+     "low_slots": 0
+    },
+    "Oracle (perfect hindsight)": {
+     "emissions_change_pct": -0.760266137856937,
+     "bill_change_mean_pct": 6.291831423907568,
+     "mean_price": 12.78719262295082,
+     "high_slots": 82,
+     "low_slots": 198
+    },
+    "Budget-aware policy tree": {
+     "emissions_change_pct": -0.729577353428972,
+     "bill_change_mean_pct": 6.3671401563573315,
+     "mean_price": 12.789344262295083,
+     "high_slots": 88,
+     "low_slots": 240
+    },
+    "Budget-aware direct optimisation": {
+     "emissions_change_pct": -0.726433919195211,
+     "bill_change_mean_pct": 5.124464306791365,
+     "mean_price": 12.759221311475413,
+     "high_slots": 78,
+     "low_slots": 180
+    }
+   }
+  }
+ }
+}

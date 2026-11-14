@@ -30,14 +30,29 @@ import numpy as np
 import pandas as pd
 
 # --------------------------------------------------------------------------- paths
-PROJECT = Path(__file__).resolve().parents[2]  # repository root (raw data files live here)
+# Repository-relative paths (merged: Clement's fresh-clone fix + Panle's MVP integration). Raw data files are looked up
+# in $CARBON_RAW_DIR (if set), then the repository root (Clement's layout), then the folder that contains the repository
+# (Panle's layout); they are only read, never copied or modified.
+PROJECT = Path(__file__).resolve().parents[2]  # repository root
 REPRO = PROJECT / "CVAE_reproduction"
 DATA = REPRO / "data"
 OUT = REPRO / "outputs"
 FIG = OUT / "figures"
 UP_DATA = DATA / "authors"  # copy of the authors' repo data/*.feather (byte-identical; read as data only)
-RAW_CSV = PROJECT / "CC_LCL-FullData.csv"
-TARIFFS_XLSX = PROJECT / "Tariffs.xlsx"
+RAW_DIRS = ([Path(os.environ["CARBON_RAW_DIR"])] if os.environ.get("CARBON_RAW_DIR") else []) + [PROJECT, PROJECT.parent]
+
+
+def raw_file(*names) -> Path:
+    """First existing raw-data file among RAW_DIRS x names (else the first candidate, for a clear error message)."""
+    for d in RAW_DIRS:
+        for n in names:
+            if (d / n).exists():
+                return d / n
+    return RAW_DIRS[0] / names[0]
+
+
+RAW_CSV = raw_file("CC_LCL-FullData.csv", "LCL_Data/CC_LCL-FullData.csv")
+TARIFFS_XLSX = raw_file("Tariffs.xlsx")
 
 # output files of the data build (scripts/01_build_lcl2013.py)
 LONG_PARQUET = DATA / "lcl2013_long.parquet"        # LCLid, group, ts, kwh (deduplicated, on-grid)

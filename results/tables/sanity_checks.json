@@ -1,0 +1,102 @@
+[
+ {
+  "check": "NESO 2013 alignment: 17,520 half-hours, 48 per day, no missing CI",
+  "passed": true,
+  "detail": "rows 17520, days with 48 365, missing 0"
+ },
+ {
+  "check": "Carbon-intensity units plausible (gCO2/kWh)",
+  "passed": true,
+  "detail": "actual mean 475.0, forecast range 307-588"
+ },
+ {
+  "check": "Price units: only 3.99 / 11.76 / 67.20 p/kWh; Low and High never overlap",
+  "passed": true,
+  "detail": "price levels [np.float64(3.99), np.float64(11.76), np.float64(67.2)]"
+ },
+ {
+  "check": "Tariffs.xlsx full-year time-average = proposal's 13.517 p/kWh",
+  "passed": true,
+  "detail": "13.5173"
+ },
+ {
+  "check": "Consumption panel: finite, non-negative, kWh per half-hour scale",
+  "passed": true,
+  "detail": "ToU mean 0.1962 kWh/half-hour"
+ },
+ {
+  "check": "Predicted consumption non-negative and finite for every menu action and day",
+  "passed": true,
+  "detail": "min 0.0812, max 0.460 kWh/half-hour"
+ },
+ {
+  "check": "Cost formula C_d(z) = (1/1000) sum_t CI_dt y_dt(z) matches the optimisation costs",
+  "passed": true,
+  "detail": "max |diff| 0.0e+00 kg"
+ },
+ {
+  "check": "Chronological, disjoint splits (train < val < test)",
+  "passed": true,
+  "detail": "243/61/61 days"
+ },
+ {
+  "check": "Price target uses train+val only",
+  "passed": true,
+  "detail": "target 13.6076"
+ },
+ {
+  "check": "All-Normal day fits the target (constraint always feasible)",
+  "passed": true,
+  "detail": "11.76 <= 13.608"
+ },
+ {
+  "check": "Every proposed policy meets the average-price target on the test window",
+  "passed": true,
+  "detail": "violations: none; prices: A. Historical TOU (2013) 12.795, B. Carbon-based heuristic 13.606, D. Policy tree (exact solver) 13.578, C. Direct model-based optimisation 13.594, Direct optimisation, perfect carbon forecast 13.588, Ref. Oracle (perfect hindsight) 13.551, Ext. Budget-aware policy tree 13.575, Budget-aware direct optimisation 13.588"
+ },
+ {
+  "check": "Sensitivity target 12.795: enforced by the same feasibility rule",
+  "passed": true,
+  "detail": "Time-average price <= 12.795 (historical TOU, test period)"
+ },
+ {
+  "check": "Sensitivity target 13.517: enforced by the same feasibility rule",
+  "passed": true,
+  "detail": "Time-average price <= 13.517 (full-year 2013 TOU in Tariffs.xlsx; proposal)"
+ },
+ {
+  "check": "Sensitivity target 13.608: enforced by the same feasibility rule",
+  "passed": true,
+  "detail": "Time-average price <= 13.608 (Jan-Oct historical TOU; main)"
+ },
+ {
+  "check": "Sensitivity target 14.228: enforced by the same feasibility rule",
+  "passed": true,
+  "detail": "Time-average price <= 14.228 (flat Std tariff)"
+ },
+ {
+  "check": "No look-ahead in policy features (perturb data after 12:00 GMT on d-1 -> features of d unchanged)",
+  "passed": true,
+  "detail": "40 random days tested; leaking days: []"
+ },
+ {
+  "check": "Original realised-temperature feature DID leak (fixed in the MVP)",
+  "passed": true,
+  "detail": "perturbing day d's own temperature changed X[d] in the original setting"
+ },
+ {
+  "check": "Carbon forecasts are out-of-sample",
+  "passed": true,
+  "detail": "by construction (01_ci_forecast.py): features end 12:00 GMT on d-1; model for month m trained on days <= 1st of m - 2 days; hyper-parameters chosen on Sep-Oct; test Nov-Dec unseen"
+ },
+ {
+  "check": "Menu, tree depth and lambda chosen without test data",
+  "passed": true,
+  "detail": "select_menu uses training days; depth/lambda on validation; final refit on train+val; test window evaluated once (03_policy.run_policies, 07_iai_opt)"
+ },
+ {
+  "check": "Clement's Steps 2-3 reproduce exactly from his Step-1 inputs",
+  "passed": true,
+  "detail": "2738 numbers compared"
+ }
+]
