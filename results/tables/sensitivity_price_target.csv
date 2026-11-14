@@ -1,0 +1,6 @@
+Constraint,Role,B. Carbon-based heuristic,D. Policy tree (exact solver),C. Direct model-based optimisation,Ref. Oracle (perfect hindsight),Ext. Budget-aware policy tree
+Time-average price <= 13.608 (Jan-Oct historical TOU; main),PRIMARY: train+val historical TOU average (deployable),-0.289827827164089,0.76262879887019,0.8414123446295642,0.8898218041518954,0.8030079602470194
+"Time-average price <= 12.795 (historical TOU, test period)",RETROSPECTIVE fairness check: uses the test period's own historical price (not deployable),-0.20478969334740332,0.6132209482863558,0.6699790363827348,0.6929777269229418,0.6396235281577478
+Time-average price <= 13.517 (full-year 2013 TOU in Tariffs.xlsx; proposal),"proposal reference (full-year 2013, Tariffs.xlsx)",-0.4197937186427797,0.7500782117719514,0.8150360237450262,0.8814896178447338,0.7885449809018803
+Time-average price <= 14.228 (flat Std tariff),flat Std tariff (sensitivity),0.06877924317002929,0.8840627853557876,0.934993714429597,1.0216706232242472,0.9302123702218302
+Average price paid <= 13.784 (Jan-Oct historical level),cap on consumption-weighted price paid instead of time-average,n/a (rule defined for time-average only),0.6687366707800014,0.6823690847755062,0.7288685485686416,0.6836691516882113

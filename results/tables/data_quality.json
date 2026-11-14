@@ -1,0 +1,192 @@
+{
+ "lcl": {
+  "raw_rows": 167932474,
+  "raw_households": 5566,
+  "raw_households_by_tariff": {
+   "Std": 4443,
+   "ToU": 1123
+  },
+  "rows_per_year": {
+   "2011": 399740,
+   "2012": 60410060,
+   "2013": 93087837,
+   "2014": 14034837
+  },
+  "unparseable_timestamps": 0,
+  "rows_2013_window": 93098438,
+  "off_grid_rows_dropped_2013": 12,
+  "duplicate_rows_2013": 63608,
+  "duplicate_groups_with_conflicting_values": 0,
+  "duplicate_distinct_timestamps": 12,
+  "negative_values_2013": 0,
+  "max_kwh_per_half_hour": 10.7609997,
+  "mean_kwh_per_half_hour_2013": 0.2108560296557431,
+  "households_by_completeness": {
+   "households_in_window": {
+    "Std": 4411,
+    "ToU": 1117
+   },
+   "households_with_any_2013_row": {
+    "Std": 4411,
+    "ToU": 1117
+   },
+   "households_with_any_valid_2013_value": {
+    "Std": 4411,
+    "ToU": 1117
+   },
+   "completeness_gt_0.95 (n_valid/17520 > 0.95; main)": {
+    "Std": 4034,
+    "ToU": 1032
+   },
+   "completeness_ge_0.95": {
+    "Std": 4034,
+    "ToU": 1032
+   },
+   "completeness_rows_gt_0.95 (Null rows counted as present)": {
+    "Std": 4034,
+    "ToU": 1032
+   },
+   "raw_rows_incl_duplicates_gt_0.95": {
+    "Std": 4034,
+    "ToU": 1032
+   },
+   "completeness_gt_0.95_on_LCL_index_1..17520 (shift +1 frame)": {
+    "Std": 4034,
+    "ToU": 1032
+   },
+   "completeness_gt_0.95_on_LCL_index_-1..17518 (shift -1 frame)": {
+    "Std": 4034,
+    "ToU": 1032
+   },
+   "completeness_gt_0.90": {
+    "Std": 4071,
+    "ToU": 1038
+   },
+   "completeness_gt_0.99": {
+    "Std": 3979,
+    "ToU": 1021
+   },
+   "ToU_completeness_in_(0.94,0.96]": 2,
+   "ToU_completeness_in_(0.95,0.951]": 1,
+   "ToU_completeness_in_(0.949,0.95]": 0
+  },
+  "selected": {
+   "ToU": 1032,
+   "Std (flat, random sample, seed 0)": 1032,
+   "threshold": 0.95
+  },
+  "gap_fill": {
+   "short_gaps_linear_slots": 3328,
+   "long_gaps_same_slot_slots": 19128,
+   "missing_share_selected": 0.0006209957169657711,
+   "left_missing": 0
+  },
+  "mean_kwh_selected": {
+   "ToU": 0.19619259238243103,
+   "Std": 0.21005412936210632
+  },
+  "dst": "LCL DateTime is GMT: no gap at 2013-03-31 or duplication at 2013-10-27 (rows per timestamp around both changes in lcl2013_build_stats.json); every 2013 day has 48 half-hours.",
+  "rows_per_ts_around_dst": {
+   "2013-03-30 23:00:00": 5407,
+   "2013-03-30 23:30:00": 5407,
+   "2013-03-31 00:00:00": 5407,
+   "2013-03-31 00:30:00": 5402,
+   "2013-03-31 01:00:00": 5403,
+   "2013-03-31 01:30:00": 5403,
+   "2013-03-31 02:00:00": 5403,
+   "2013-03-31 02:30:00": 5403,
+   "2013-03-31 03:00:00": 5403,
+   "2013-10-26 22:00:00": 5187,
+   "2013-10-26 22:30:00": 5187,
+   "2013-10-26 23:00:00": 5187,
+   "2013-10-26 23:30:00": 5187,
+   "2013-10-27 00:00:00": 10374,
+   "2013-10-27 00:30:00": 5190,
+   "2013-10-27 01:00:00": 5190,
+   "2013-10-27 01:30:00": 5189,
+   "2013-10-27 02:00:00": 5190,
+   "2013-10-27 02:30:00": 5190,
+   "2013-10-27 03:00:00": 5190
+  }
+ },
+ "neso": {
+  "rows": 87744,
+  "first": "2009-01-01 00:00:00",
+  "last_used": "2014-01-02 23:30:00",
+  "timezone": "UTC (DATETIME), start-labelled; 48 rows on every 2013 day incl. DST days",
+  "rows_2013": 17520,
+  "days_2013_with_48_rows": 365,
+  "missing_ci_2013": 0,
+  "duplicates": 0,
+  "ci_2013_gco2_per_kwh": {
+   "mean": 474.97425799086756,
+   "min": 259.0,
+   "max": 622.0
+  }
+ },
+ "era5": {
+  "rows": 3924480,
+  "first": "2013-01-01 00:00:00",
+  "last": "2014-12-31 23:00:00",
+  "grid_points": 224,
+  "resolution": "hourly, 0.25 deg",
+  "units": "t2m in Kelvin (converted to degC)",
+  "kind": "reanalysis (step = ['0 days']): realised weather, NOT a forecast; used only lagged (24 h to 12:00 GMT on d-1) as a policy feature",
+  "missing_t2m": 0
+ },
+ "tariff": {
+  "source": "authors' slot-aligned 2013 schedule (CVAE_reproduction/data/conditions_ours.parquet, *_auth); Tariffs.xlsx is London clock time and differs on 17 days (REPRO_SPEC.md section 7)",
+  "prices_p_per_kwh": {
+   "L": 3.99,
+   "N": 11.76,
+   "H": 67.2
+  },
+  "schedule_shape": [
+   365,
+   48
+  ],
+  "low_high_overlap_slots": 0,
+  "full_year_mean_price_authors": 13.471883561643835,
+  "full_year_mean_price_tariffs_xlsx": 13.517335616438357,
+  "tariffs_xlsx_rows": 17520
+ },
+ "splits": [
+  {
+   "split": "train",
+   "dates": "2013-01-01 to 2013-08-31",
+   "days": 243,
+   "High-event days": 53,
+   "Low-event days": 61,
+   "High slots": 536,
+   "Low slots": 1018,
+   "time-average announced price (p/kWh)": 13.629511316872428
+  },
+  {
+   "split": "val",
+   "dates": "2013-09-01 to 2013-10-31",
+   "days": 61,
+   "High-event days": 13,
+   "Low-event days": 14,
+   "High slots": 114,
+   "Low slots": 150,
+   "time-average announced price (p/kWh)": 13.520471311475411
+  },
+  {
+   "split": "test",
+   "dates": "2013-11-01 to 2013-12-31",
+   "days": 61,
+   "High-event days": 7,
+   "Low-event days": 18,
+   "High slots": 90,
+   "Low slots": 252,
+   "time-average announced price (p/kWh)": 12.795368852459015
+  }
+ ],
+ "exclusions": [
+  "38 households with no 2013 data",
+  "households with <= 95 % valid 2013 half-hours (ToU 1,117 -> 1,032; Std 4,411 -> 4,034 eligible, 1,032 sampled)",
+  "12 off-grid timestamps in 2013 (not on the 30-min grid) dropped",
+  "63,608 exact duplicate rows (identical values) at 12 timestamps averaged",
+  "NESO data after 2014-01-02 unused; 2009-2013 used for the carbon-intensity forecast"
+ ]
+}

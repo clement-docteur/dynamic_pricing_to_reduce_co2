@@ -1,0 +1,11 @@
+# Python 3.12. Versions = the ones the MVP was run with (Nov 2026, macOS arm64).
+numpy==2.5.3
+pandas==3.0.5
+scipy==1.18.1
+scikit-learn==1.9.1
+xgboost==3.4.1
+matplotlib==3.11.2
+statsmodels==0.15.0
+duckdb==2.0.0
+pyarrow==26.0.1
+openpyxl==3.1.5

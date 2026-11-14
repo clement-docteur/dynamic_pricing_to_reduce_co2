@@ -22,3 +22,17 @@ __pycache__/
 Thumbs.db
 desktop.ini
 ~$*
+
+# --- MVP integration (2026-11-14) ---
+.venv/
+venv/
+CVAE_reproduction/data/_scratch/
+CVAE_reproduction/data/lcl2013_*.npy
+results/processed/
+results/cache/
+*.parquet.tmp
+*.tmp.parquet
+*.log
+results/mvp/outputs/iai_opt_*/
+results/logs/
+results/reproduction/figures/

@@ -30,18 +30,29 @@ import numpy as np
 import pandas as pd
 
 # --------------------------------------------------------------------------- paths
-PROJECT = Path(r"C:/Users/cleme/Desktop/MIT/Courses/Fall/Machine Learning/Project/Claude_ML_Project")
-REPRO = PROJECT / "CVAE_reproduction"
+# Portable paths (MVP integration, 2026-11-14): repository-relative; raw data are looked up in
+# $CARBON_RAW_DIR, else the folder that contains the repository (raw files are never copied or modified).
+REPRO = Path(__file__).resolve().parents[1]
+PROJECT = REPRO.parent                                   # repository root
+RAW_DIR = Path(os.environ.get("CARBON_RAW_DIR", PROJECT.parent))
 DATA = REPRO / "data"
 OUT = REPRO / "outputs"
 FIG = OUT / "figures"
-UPSTREAM = Path(r"C:/Users/cleme/AppData/Local/Temp/claude/2f83cc224499e10e/"
-                r"1aa3d082-c193-42de-888f-c8f5d2fbba90/scratchpad/upstream/repo")
+UPSTREAM = Path(os.environ.get("CVAE_UPSTREAM", REPRO / "data" / "authors_upstream_not_present"))
 UP_DATA = DATA / "authors"  # copy of the authors' repo data/*.feather (byte-identical; read as data only); the clone above may be gone
-RAW_CSV = PROJECT / "CC_LCL-FullData.csv"
-TARIFFS_XLSX = PROJECT / "Tariffs.xlsx"
-_SCRATCH = Path(r"C:/Users/cleme/AppData/Local/Temp/claude/2f83cc224499e10e/"
-                r"1aa3d082-c193-42de-888f-c8f5d2fbba90/scratchpad")
+
+
+def _first_existing(*cands):
+    for c in cands:
+        if Path(c).exists():
+            return Path(c)
+    return Path(cands[0])
+
+
+RAW_CSV = _first_existing(RAW_DIR / "LCL_Data" / "CC_LCL-FullData.csv", RAW_DIR / "CC_LCL-FullData.csv",
+                          PROJECT / "CC_LCL-FullData.csv")
+TARIFFS_XLSX = _first_existing(RAW_DIR / "Tariffs.xlsx", PROJECT / "Tariffs.xlsx")
+_SCRATCH = DATA / "_scratch"                             # gitignored
 
 # output files of the data build (scripts/01_build_lcl2013.py)
 LONG_PARQUET = DATA / "lcl2013_long.parquet"        # LCLid, group, ts, kwh (deduplicated, on-grid)
@@ -78,15 +89,12 @@ def season_of_day(day_index):
 
 
 def work_dir() -> Path:
-    """Scratch directory for large intermediates: $LCL_WORK, else the session scratchpad,
-    else the system temp dir."""
+    """Scratch directory for large intermediates: $LCL_WORK, else CVAE_reproduction/data/_scratch (gitignored)."""
     env = os.environ.get("LCL_WORK")
     if env:
         p = Path(env)
-    elif _SCRATCH.exists():
-        p = _SCRATCH / "lcl_work"
     else:
-        p = Path(tempfile.gettempdir()) / "lcl_work"
+        p = _SCRATCH / "lcl_work"
     p.mkdir(parents=True, exist_ok=True)
     return p
 

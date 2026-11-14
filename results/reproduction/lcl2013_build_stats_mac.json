@@ -1,0 +1,204 @@
+{
+  "csv": "<RAW_DIR>/LCL_Data/CC_LCL-FullData.csv",
+  "full_parquet_scratch": "<REPO>/CVAE_reproduction/data/_scratch/lcl_work/CC_LCL-FullData_full.parquet",
+  "full_file_rows": 167932474,
+  "full_file_households": 5566,
+  "full_file_households_per_label": {
+    "Std": 4443,
+    "ToU": 1123
+  },
+  "households_with_both_labels_full_file": [],
+  "lclid_bad_format": 0,
+  "unparseable_timestamps": 0,
+  "rows_per_year": {
+    "2011": 399740,
+    "2012": 60410060,
+    "2013": 93087837,
+    "2014": 14034837
+  },
+  "off_grid_rows_full_file": 5560,
+  "off_grid_rows_full_file_numeric": 0,
+  "window_rows_total": 93098438,
+  "window_off_grid_rows": 12,
+  "window_off_grid_rows_numeric": 0,
+  "window_off_grid_households": 12,
+  "window_off_grid_examples": [
+    "2013-01-04 18:20:32",
+    "2013-02-06 18:22:38",
+    "2013-02-13 18:14:54",
+    "2013-03-08 18:19:44",
+    "2013-04-16 18:15:40",
+    "2013-07-05 12:54:31",
+    "2013-07-05 13:15:05",
+    "2013-09-20 18:24:09",
+    "2013-10-29 09:33:01",
+    "2013-10-29 18:23:02"
+  ],
+  "window_on_grid_rows": 93098426,
+  "window_on_grid_null_string_rows": 0,
+  "window_on_grid_unparseable_non_null": 0,
+  "window_negative_values": 0,
+  "window_max_value": 10.7609997,
+  "window_mean_value": 0.21085602965603356,
+  "rows_per_ts_around_dst": {
+    "2013-03-30 23:00:00": 5407,
+    "2013-03-30 23:30:00": 5407,
+    "2013-03-31 00:00:00": 5407,
+    "2013-03-31 00:30:00": 5402,
+    "2013-03-31 01:00:00": 5403,
+    "2013-03-31 01:30:00": 5403,
+    "2013-03-31 02:00:00": 5403,
+    "2013-03-31 02:30:00": 5403,
+    "2013-03-31 03:00:00": 5403,
+    "2013-10-26 22:00:00": 5187,
+    "2013-10-26 22:30:00": 5187,
+    "2013-10-26 23:00:00": 5187,
+    "2013-10-26 23:30:00": 5187,
+    "2013-10-27 00:00:00": 10374,
+    "2013-10-27 00:30:00": 5190,
+    "2013-10-27 01:00:00": 5190,
+    "2013-10-27 01:30:00": 5189,
+    "2013-10-27 02:00:00": 5190,
+    "2013-10-27 02:30:00": 5190,
+    "2013-10-27 03:00:00": 5190
+  },
+  "window_households_with_both_labels": [],
+  "dup_groups": 63608,
+  "dup_extra_rows": 63608,
+  "dup_max_multiplicity": 2,
+  "dup_groups_with_conflicting_values": 0,
+  "dup_groups_mixed_null_and_value": 0,
+  "dup_groups_all_null": 0,
+  "dup_max_abs_spread_kwh": 0.0,
+  "dup_households": 5515,
+  "dup_top_timestamps": {
+    "2013-01-21 00:00:00": 5499,
+    "2013-02-21 00:00:00": 5464,
+    "2013-03-24 00:00:00": 5416,
+    "2013-04-24 00:00:00": 5382,
+    "2013-05-25 00:00:00": 5357,
+    "2013-06-25 00:00:00": 5329,
+    "2013-07-26 00:00:00": 5290,
+    "2013-08-26 00:00:00": 5243,
+    "2013-09-26 00:00:00": 5217,
+    "2013-10-27 00:00:00": 5187
+  },
+  "dup_distinct_timestamps": 12,
+  "long_rows_written": 93034818,
+  "dense_shape": [
+    5528,
+    17520
+  ],
+  "missing_share_2013_all_households": 0.039507701349377845,
+  "counts": {
+    "households_in_window": {
+      "Std": 4411,
+      "ToU": 1117
+    },
+    "households_with_any_2013_row": {
+      "Std": 4411,
+      "ToU": 1117
+    },
+    "households_with_any_valid_2013_value": {
+      "Std": 4411,
+      "ToU": 1117
+    },
+    "completeness_gt_0.95 (n_valid/17520 > 0.95; main)": {
+      "Std": 4034,
+      "ToU": 1032
+    },
+    "completeness_ge_0.95": {
+      "Std": 4034,
+      "ToU": 1032
+    },
+    "completeness_rows_gt_0.95 (Null rows counted as present)": {
+      "Std": 4034,
+      "ToU": 1032
+    },
+    "raw_rows_incl_duplicates_gt_0.95": {
+      "Std": 4034,
+      "ToU": 1032
+    },
+    "completeness_gt_0.95_on_LCL_index_1..17520 (shift +1 frame)": {
+      "Std": 4034,
+      "ToU": 1032
+    },
+    "completeness_gt_0.95_on_LCL_index_-1..17518 (shift -1 frame)": {
+      "Std": 4034,
+      "ToU": 1032
+    },
+    "completeness_gt_0.90": {
+      "Std": 4071,
+      "ToU": 1038
+    },
+    "completeness_gt_0.99": {
+      "Std": 3979,
+      "ToU": 1021
+    },
+    "ToU_completeness_in_(0.94,0.96]": 2,
+    "ToU_completeness_in_(0.95,0.951]": 1,
+    "ToU_completeness_in_(0.949,0.95]": 0
+  },
+  "dup_detail_by_timestamp": {
+    "2013-01-21 00:00:00": {
+      "groups": 5499,
+      "conflicting": 0,
+      "mixed_null": 0
+    },
+    "2013-02-21 00:00:00": {
+      "groups": 5464,
+      "conflicting": 0,
+      "mixed_null": 0
+    },
+    "2013-03-24 00:00:00": {
+      "groups": 5416,
+      "conflicting": 0,
+      "mixed_null": 0
+    },
+    "2013-04-24 00:00:00": {
+      "groups": 5382,
+      "conflicting": 0,
+      "mixed_null": 0
+    },
+    "2013-05-25 00:00:00": {
+      "groups": 5357,
+      "conflicting": 0,
+      "mixed_null": 0
+    },
+    "2013-06-25 00:00:00": {
+      "groups": 5329,
+      "conflicting": 0,
+      "mixed_null": 0
+    },
+    "2013-07-26 00:00:00": {
+      "groups": 5290,
+      "conflicting": 0,
+      "mixed_null": 0
+    },
+    "2013-08-26 00:00:00": {
+      "groups": 5243,
+      "conflicting": 0,
+      "mixed_null": 0
+    },
+    "2013-09-26 00:00:00": {
+      "groups": 5217,
+      "conflicting": 0,
+      "mixed_null": 0
+    },
+    "2013-10-27 00:00:00": {
+      "groups": 5187,
+      "conflicting": 0,
+      "mixed_null": 0
+    },
+    "2013-11-27 00:00:00": {
+      "groups": 5125,
+      "conflicting": 0,
+      "mixed_null": 0
+    },
+    "2013-12-28 00:00:00": {
+      "groups": 5099,
+      "conflicting": 0,
+      "mixed_null": 0
+    }
+  }
+}

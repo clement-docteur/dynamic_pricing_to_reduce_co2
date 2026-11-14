@@ -1,0 +1,80 @@
+{
+ "method": "out-of-sample Nov-Dec 2013; ToU mean predicted from the same-day flat-tariff (Std) mean x exp(model), model fitted on Jan-Oct; 'no tariff terms' drops the tariff regressors (counterfactual all-Normal level)",
+ "daily_total": {
+  "mean_obs_kwh": 10.559830385080092,
+  "mean_pred_kwh": 10.61592956499,
+  "mape_pct": 1.2768120182504583,
+  "bias_pct": 0.5312507669552158
+ },
+ "halfhour": {
+  "rmse_kwh": 0.009926955761282314,
+  "mae_kwh": 0.007637968870335764,
+  "mean_obs_kwh": 0.21999646635583525
+ },
+ "by_price_period": {
+  "H": {
+   "obs_mean_kwh": 0.24650159279361017,
+   "pred_mean_kwh": 0.24756013473562208,
+   "pred_no_tariff_terms_kwh": 0.2649883558319377,
+   "n_halfhours": 90
+  },
+  "N": {
+   "obs_mean_kwh": 0.218591620649224,
+   "pred_mean_kwh": 0.21974472312799886,
+   "pred_no_tariff_terms_kwh": 0.21977467857889668,
+   "n_halfhours": 2586
+  },
+  "L": {
+   "obs_mean_kwh": 0.2249467426173313,
+   "pred_mean_kwh": 0.22631522749674216,
+   "pred_no_tariff_terms_kwh": 0.20961835355462669,
+   "n_halfhours": 252
+  }
+ },
+ "daily_peak": {
+  "obs_mean_kwh": 0.3603429391237859,
+  "pred_mean_kwh": 0.358554072841263
+ },
+ "heldout_effects_nov_dec": {
+  "in-block High": {
+   "n_days": 7,
+   "observed_pct": -7.705953939072952,
+   "observed_ci95": [
+    -8.955709135607993,
+    -5.928660711836898
+   ],
+   "main_pct": -7.453748154721951,
+   "cvae_pct": -1.0562288172291212
+  },
+  "in-block Low": {
+   "n_days": 18,
+   "observed_pct": 6.5436315792858135,
+   "observed_ci95": [
+    3.4621338136163526,
+    9.152107018121791
+   ],
+   "main_pct": 7.721977338954744,
+   "cvae_pct": 8.492183514772966
+  },
+  "2 h before Low": {
+   "n_days": 12,
+   "observed_pct": -2.5082179125809567,
+   "observed_ci95": [
+    -4.174904176973815,
+    -0.525835462703439
+   ],
+   "main_pct": -2.9521781141395476,
+   "cvae_pct": 0.7248964697395444
+  },
+  "2 h before High": {
+   "n_days": 6,
+   "observed_pct": 4.209353486373679,
+   "observed_ci95": [
+    0.8630570010089267,
+    8.08736457876953
+   ],
+   "main_pct": 4.519652942044194,
+   "cvae_pct": 5.436836448536964
+  }
+ }
+}

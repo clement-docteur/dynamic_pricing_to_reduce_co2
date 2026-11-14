@@ -20,6 +20,7 @@ Slot-offset convention for tariffs: see lib/tariffs.py (result[g] = xlsx[g - off
 from __future__ import annotations
 
 import argparse
+import os
 import itertools
 import json
 import sys
@@ -37,8 +38,9 @@ from lib import conditions as C  # noqa: E402
 from lib import tariffs as TF  # noqa: E402
 
 DEFAULT_UPSTREAM = REPRO / "data" / "authors"  # copy of the authors' repo data/*.feather (byte-identical; read as data only)
-ERA5_CSV = PROJECT / "temp UK 2013-14.csv"
-TARIFF_XLSX = PROJECT / "Tariffs.xlsx"
+RAW_DIR = Path(os.environ.get("CARBON_RAW_DIR", PROJECT.parent))   # raw data live outside the repository
+ERA5_CSV = RAW_DIR / "temp UK 2013-14.csv"
+TARIFF_XLSX = RAW_DIR / "Tariffs.xlsx"
 OUT_PARQUET = REPRO / "data" / "conditions_ours.parquet"
 OUT_JSON = REPRO / "outputs" / "conditions_checks.json"
 OUT_FIG = REPRO / "outputs" / "figures" / "temperature_check.png"

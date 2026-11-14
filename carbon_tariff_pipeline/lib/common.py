@@ -34,8 +34,9 @@ import pandas as pd  # noqa: E402
 PROJECT = Path(__file__).resolve().parents[2]
 PIPE = PROJECT / "carbon_tariff_pipeline"
 REPRO = PROJECT / "CVAE_reproduction"
-OUT = PIPE / "outputs"
-FIG = PIPE / "figures"
+OUT = Path(os.environ.get("CARBON_OUT", PIPE / "outputs"))      # MVP: overridable so reruns never overwrite the committed outputs
+RAW_DIR = Path(os.environ.get("CARBON_RAW_DIR", PROJECT.parent))   # raw data live outside the repository
+FIG = Path(os.environ.get("CARBON_FIG", PIPE / "figures"))
 
 H = 48
 PRICE = {"L": 3.99, "N": 11.76, "H": 67.20}           # p/kWh
@@ -116,7 +117,7 @@ def load_json(path):
 
 # ------------------------------------------------------------------------------------------------ NESO
 def load_neso() -> pd.DataFrame:
-    df = pd.read_csv(PROJECT / "df_fuel_ckan.csv", parse_dates=["DATETIME"])
+    df = pd.read_csv(RAW_DIR / "df_fuel_ckan.csv", parse_dates=["DATETIME"])
     df = df.sort_values("DATETIME").set_index("DATETIME").loc[:"2014-01-02"]
     assert not df.index.duplicated().any()
     return df
